@@ -47,6 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .itinerary-card:nth-child(3) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
 .itinerary-card:nth-child(4) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
 .itinerary-card:nth-child(5) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card:nth-child(6) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
 .itinerary-card .card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
 .itinerary-card h3{font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem}
 .itinerary-card h3 i{color:var(--accent);font-size:1rem}
@@ -110,9 +111,8 @@ footer a{color:var(--accent);text-decoration:none}
     <h1>Trip <span>Dashboard</span></h1>
     <p class="subtitle">Two family road trip itineraries &middot; Oslo &rarr; Fjords &rarr; Home</p>
     <div class="hero-stats">
-       <div class="hero-stat"><span class="num">5</span><span class="label">Itineraries</span></div>
+        <div class="hero-stat"><span class="num">6</span><span class="label">Itineraries</span></div>
       <div class="hero-stat"><span class="num">10</span><span class="label">Days Each</span></div>
-      <div class="hero-stat"><span class="num">2</span><span class="label">Families</span></div>
       <div class="hero-stat"><span class="num">May&ndash;Jun</span><span class="label">2027</span></div>
     </div>
   </div>
@@ -122,7 +122,6 @@ footer a{color:var(--accent);text-decoration:none}
 
   <div class="section-header">
     <h2><i class="fas fa-route"></i> Choose Your Route</h2>
-    <p>Five different 10-day Norway itineraries — compare and pick the one that fits your family best.</p>
   </div>
 
   <div class="itinerary-grid">
@@ -300,22 +299,58 @@ footer a{color:var(--accent);text-decoration:none}
         <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
       </div>
     </a>
+
+    <!-- Route 6 -->
+    <a href="itinerary6.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-flag"></i> Route 6 &mdash; South Coast &amp; Fjords</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Evje &rarr; Stavanger &rarr; Bergen &rarr; Voss &rarr; Hardanger &rarr; Bergen</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Evje</span>
+          <span class="route-pill">Stavanger</span>
+          <span class="route-pill">Stavanger</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Voss</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 5</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~16h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Bergen (BGO)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $2,000&ndash;3,800</span></div>
+        </div>
+        <ul class="card-highlights">
+          <li><i class="fas fa-check"></i> TrollAktiv family rafting, Setesdal valley scenic drive</li>
+          <li><i class="fas fa-check"></i> Pulpit Rock (Preikestolen) hike, Lervig Brewery, Lysefjord RIB</li>
+          <li><i class="fas fa-check"></i> Bryggen UNESCO wharf, Fløyen funicular, Bergen Fish Market</li>
+          <li><i class="fas fa-check"></i> Voss family/whitewater rafting, MTB Park, gondola, zipline</li>
+          <li><i class="fas fa-check"></i> Vøringsfossen, Steinsdalsfossen, Folgefonna glacier, Hardanger cider</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
   </div>
 
   <div class="section-header">
     <h2><i class="fas fa-balance-scale"></i> Quick Comparison</h2>
-    <p>Key metrics at a glance across all five routes.</p>
+    <p>Key metrics at a glance across all six routes.</p>
   </div>
 
   <table class="comparison-table">
       <thead>
       <tr>
-        <th style="width:16.6%"></th>
-        <th style="width:16.6%">Route 1</th>
-        <th style="width:16.6%">Route 2</th>
-        <th style="width:16.6%">Route 3</th>
-        <th style="width:16.6%">Route 4</th>
-        <th style="width:16.6%">Route 5</th>
+        <th style="width:14.2%"></th>
+        <th style="width:14.2%">Route 1</th>
+        <th style="width:14.2%">Route 2</th>
+        <th style="width:14.2%">Route 3</th>
+        <th style="width:14.2%">Route 4</th>
+        <th style="width:14.2%">Route 5</th>
+        <th style="width:14.2%">Route 6</th>
       </tr>
     </thead>
     <tbody>
@@ -326,6 +361,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Oslo &rarr; Geiranger &rarr; &Aring;lesund &rarr; Trondheim</td>
         <td>Oslo &rarr; Rjukan &rarr; Hardanger &rarr; Bergen</td>
         <td>Oslo &rarr; Fl&aring;m 🚂 &rarr; Bergen &rarr; Lofoten ✈️</td>
+        <td>Oslo &rarr; Evje &rarr; Stavanger &rarr; Bergen &rarr; Voss &rarr; Hardanger &rarr; BGO</td>
       </tr>
       <tr>
         <td><i class="fas fa-plane-departure"></i> End city</td>
@@ -334,6 +370,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Trondheim (TRD)</td>
         <td>Bergen (BGO)</td>
         <td>Leknes (LKN)</td>
+        <td>Bergen (BGO)</td>
       </tr>
       <tr>
         <td><i class="fas fa-car"></i> Driving</td>
@@ -342,6 +379,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>~17h</td>
         <td>~12h</td>
         <td>~2.5h</td>
+        <td>~16h</td>
       </tr>
       <tr>
         <td><i class="fas fa-wallet"></i> Budget</td>
@@ -350,6 +388,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>$1,115&ndash;2,365</td>
         <td>$870&ndash;2,050</td>
         <td>$810&ndash;2,490</td>
+        <td>$2,000&ndash;3,800</td>
       </tr>
       <tr>
         <td><i class="fas fa-moon"></i> Lodging/night</td>
@@ -358,6 +397,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>$128&ndash;267</td>
         <td>$113&ndash;284</td>
         <td>$95&ndash;300</td>
+        <td>$145&ndash;320</td>
       </tr>
       <tr>
         <td><i class="fas fa-mountain"></i> Glaciers</td>
@@ -366,6 +406,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>None on route</td>
         <td>Bondhusbreen, Folgefonna views</td>
         <td>None on route</td>
+        <td>Folgefonna guided walk</td>
       </tr>
       <tr>
         <td><i class="fas fa-water"></i> Fjord cruises</td>
@@ -374,6 +415,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Geirangerfjord UNESCO, RIB safari</td>
         <td>Mostraumen</td>
         <td>N&aelig;r&oslash;yfjord UNESCO, RIB safari</td>
+        <td>Lysefjord RIB, Hardangerfjord cruise</td>
       </tr>
       <tr>
         <td><i class="fas fa-hiking"></i> Signature hikes</td>
@@ -382,6 +424,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Storseterfossen, Skagefl&aring;, Sukkertoppen</td>
         <td>Gaustatoppen, Bondhusbreen, V&oslash;ringsfossen</td>
         <td>Reinebringen, Ryten, Henningsv&aelig;r</td>
+        <td>Preikestolen, Kjeragbolten, Hardangervidda</td>
       </tr>
       <tr>
         <td><i class="fas fa-church"></i> Stave churches</td>
@@ -390,6 +433,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Ringebu, Lom, Kvernes</td>
         <td>Heddal (largest in Norway)</td>
         <td>None on route</td>
+        <td>Fantoft (Bergen)</td>
       </tr>
       <tr>
         <td><i class="fas fa-bullseye"></i> Disc golf</td>
@@ -398,6 +442,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Medalen (Lom)</td>
         <td>Fantoft (Bergen)</td>
         <td>None on route</td>
+        <td>Kulleseid (Stavanger)</td>
       </tr>
       <tr>
         <td><i class="fas fa-campground"></i> Unique stays</td>
@@ -406,6 +451,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Historic fjord hotel (Geiranger)</td>
         <td>Mountain cabins (Rjukan)</td>
         <td>Rorbu cabins (Reine/Hamn&oslash;y)</td>
+        <td>Floating hotel Iris (Salmon Eye), fjord hotels</td>
       </tr>
       <tr>
         <td><i class="fas fa-beer"></i> Local food/drink</td>
@@ -414,6 +460,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Bacalao, reindeer stew, Valldal strawberries</td>
         <td>Hardanger cider &amp; apple cake, Bergen fish soup</td>
         <td>Anita's Sj&oslash;mat, &AElig;gir BrewPub, Lysverket</td>
+        <td>Lervig Brewery, Bergen Fish Market, Hardanger cider</td>
       </tr>
       <tr>
         <td><i class="fas fa-star"></i> Best for</td>
@@ -422,6 +469,7 @@ footer a{color:var(--accent);text-decoration:none}
         <td>Epic roads + UNESCO fjord + music</td>
         <td>WWII history + plateau + lowest cost</td>
         <td>Train + flight + midnight sun + Lofoten</td>
+        <td>Rafting + Pulpit Rock + adventure sports + cider</td>
       </tr>
     </tbody>
   </table>

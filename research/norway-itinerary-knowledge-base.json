@@ -1,0 +1,760 @@
+{
+  "meta": {
+    "title": "Norway 10-Day Itinerary Knowledge Base",
+    "description": "Comprehensive research from 50+ sources analyzing what travelers liked, disliked, and recommend for 10-day Norway trips. Covers hiking, kayaking, rafting, disc golf, mountain biking, food, beer, culture, scenic drives, and more.",
+    "sources_count": 52,
+    "generated": "2026-06-22",
+    "intended_use": "Generate new 10-day Norway itineraries for two families (2 teens) departing Pittsburgh/Morgantown, May 28 - Jun 6, 2027"
+  },
+
+  "common_route_patterns": {
+    "most_popular_routes": [
+      "Oslo → Bergen (train) → Flåm → Geiranger → Ålesund → fly home",
+      "Bergen → Flåm → Geiranger → Ålesund → Atlantic Road → Trondheim",
+      "Oslo → Stavanger → Pulpit Rock → Bergen → Flåm → Geiranger → Ålesund",
+      "Tromsø → Senja → Vesterålen → Lofoten Islands (fly in/out)",
+      "Oslo → Bergen → Lofoten (fly) → Tromsø (fly) → home",
+      "Bergen → Hardanger → Odda → Flåm → Loen → Geiranger → Ålesund",
+      "Oslo → Lillehammer → Jotunheimen → Sognefjell → Geiranger → Ålesund",
+      "Stavanger → Preikestolen → Kjerag → Bergen → Flåm → Geiranger → Romsdalseggen → Ålesund"
+    ],
+    "common_start_points": ["Oslo (OSL) - most common international arrival", "Bergen (BGO) - gateway to fjords", "Stavanger (SVG) - southern hikes"],
+    "common_end_points": ["Ålesund (AES) - fly to Oslo", "Bergen (BGO) - international flights", "Oslo (OSL) - most connections", "Tromsø (TOS) - arctic", "Leknes (LKN) / Svolvær (SVJ) - Lofoten"],
+    "typical_pacing": [
+      "2-3 nights per base, max 4 travel days",
+      "Driving days: 2-5 hours between destinations",
+      "Heavy/light day alternation recommended",
+      "Day 1: arrival + jet lag recovery (light)",
+      "Day 10: departure (morning, no activities)"
+    ]
+  },
+
+  "what_travelers_loved": {
+    "top_rated_experiences": [
+      {
+        "experience": "Nærøyfjord cruise (UNESCO)",
+        "source": "Multiple itineraries",
+        "why": "Narrowest fjord, 1400m cliffs, waterfalls, intimate scale"
+      },
+      {
+        "experience": "Geirangerfjord cruise + Dalsnibba Skywalk",
+        "source": "~20 itineraries",
+        "why": "UNESCO site, Seven Sisters waterfall, 1500m viewpoint"
+      },
+      {
+        "experience": "Flåm Railway",
+        "source": "Almost every fjord itinerary",
+        "why": "Steepest standard-gauge railway, waterfall stop, mountain views"
+      },
+      {
+        "experience": "Trollstigen drive",
+        "source": "~15 itineraries",
+        "why": "11 hairpin turns, epic viewpoints, Stigfossen waterfall"
+      },
+      {
+        "experience": "Pulpit Rock (Preikestolen) hike",
+        "source": "~10 itineraries",
+        "why": "Iconic cliff 604m above Lysefjord, moderate 4h hike"
+      },
+      {
+        "experience": "Bergen Bryggen + Fløyen funicular",
+        "source": "All itineraries including Bergen",
+        "why": "UNESCO wharf, panoramic city views, charming streets"
+      },
+      {
+        "experience": "Loen Skylift + Via Ferrata",
+        "source": "~8 itineraries",
+        "why": "5-min cable car to 1011m, Europe's longest via ferrata bridge"
+      },
+      {
+        "experience": "Atlantic Ocean Road",
+        "source": "~8 itineraries",
+        "why": "Dramatic bridges, ocean views, iconic Storseisundbrua"
+      },
+      {
+        "experience": "Stegastein Viewpoint",
+        "source": "~12 itineraries",
+        "why": "Cantilevered platform 650m above Aurlandsfjord"
+      },
+      {
+        "experience": "Lofoten Islands (Reine, Hamnøy, Reinebringen hike)",
+        "source": "~10 itineraries",
+        "why": "Dramatic peaks, fishing villages, white beaches, rorbu cabins"
+      },
+      {
+        "experience": "Kjeragbolten hike",
+        "source": "~6 itineraries",
+        "why": "Boulder wedged in crevasse 984m above Lysefjord, famous photo"
+      },
+      {
+        "experience": "Trolltunga hike",
+        "source": "~8 itineraries",
+        "why": "Iconic cliff rock formation, 700m above Ringedalsvatnet"
+      },
+      {
+        "experience": "Jotunheimen National Park / Sognefjellet drive",
+        "source": "~8 itineraries",
+        "why": "Norway's roof, highest mountains, glaciers, turquoise lakes"
+      },
+      {
+        "experience": "Ålesund (Aksla viewpoint, Art Nouveau)",
+        "source": "~10 itineraries",
+        "why": "Unique Art Nouveau architecture, 418 steps to Fjellstua"
+      },
+      {
+        "experience": "Romsdalseggen Ridge hike",
+        "source": "~5 itineraries",
+        "why": "11km ridge walk, stunning views, challenging but rewarding"
+      }
+    ],
+    "most_loved_aspects": [
+      "Fjord cruises - peaceful, epic scenery",
+      "Scenic drives - every turn reveals new beauty",
+      "Hiking - trails for all levels with payoff views",
+      "Train journeys (Bergen Railway + Flåm Railway)",
+      "Cinnamon buns (kanelboller) at any café",
+      "Fresh seafood - especially in Bergen fish market",
+      "Friendly locals, excellent English",
+      "Cleanliness and safety everywhere",
+      "Midnight sun (long days = more exploring)",
+      "Rorbu cabins (unique accommodation experience)",
+      "National Tourist Route viewpoints and architecture",
+      "Waterfall viewing - countless beautiful falls"
+    ]
+  },
+
+  "what_travelers_disliked": {
+    "most_common_complaints": [
+      {
+        "complaint": "Extremely high costs (food, accommodation, activities)",
+        "frequency": "Mentioned in 90%+ of sources",
+        "tip": "Shop at Kiwi/Rema 1000, take hotel breakfast food for lunch, book Minipris train tickets in advance"
+      },
+      {
+        "complaint": "Unpredictable / rainy weather",
+        "frequency": "Mentioned in 80%+ of sources",
+        "tip": "Always carry rain gear, build flex days into itinerary, visit June-August for best odds"
+      },
+      {
+        "complaint": "Trying to cram too much into too few days",
+        "frequency": "Very common trip planning mistake",
+        "tip": "10 days = max 3-4 bases, not 7. Focus on one region (fjords OR Lofoten, not both)"
+      },
+      {
+        "complaint": "Jet lag ruining first 1-2 days",
+        "frequency": "Common for US travelers",
+        "tip": "Arrive Day 1, plan light activities, embrace early mornings from jet lag"
+      },
+      {
+        "complaint": "Expensive/difficult parking in cities (Bergen, Oslo)",
+        "frequency": "Common",
+        "tip": "Use park-and-ride, drop rental car before city stays"
+      },
+      {
+        "complaint": "Overcrowded popular spots in July-August",
+        "frequency": "Common",
+        "tip": "Visit May-June or September; start hikes before 8am"
+      },
+      {
+        "complaint": "Limited vegetarian/vegan options in rural areas",
+        "frequency": "Occasional",
+        "tip": "Stock up in cities, fish is the staple protein"
+      },
+      {
+        "complaint": "Bergen Railway is long (7h) if weather is bad",
+        "frequency": "Occasional",
+        "tip": "Book right-side window seat, bring entertainment and snacks"
+      },
+      {
+        "complaint": "Flåm is touristy and overpriced",
+        "frequency": "Some reviewers",
+        "tip": "Stay in Aurland or Undredal instead; visit Flåm for the train only"
+      },
+      {
+        "complaint": "Ferry queues in peak summer",
+        "frequency": "Common",
+        "tip": "Check ferry schedules in advance; arrive 30min early"
+      }
+    ],
+    "biggest_mistakes": [
+      "Skipping Oslo entirely (some great museums and food scene)",
+      "Not booking accommodation early enough (especially Lofoten rorbu)",
+      "Underestimating driving distances on winding roads",
+      "Forgetting AutoPASS toll tag for rental car",
+      "Not bringing waterproof layers (rain is guaranteed)",
+      "Over-relying on Norway in a Nutshell when self-driving is better",
+      "Trying to do both fjords AND Lofoten in 10 days"
+    ]
+  },
+
+  "destinations": {
+    "oslo": {
+      "name": "Oslo",
+      "airport": "OSL",
+      "lat": 59.9139,
+      "lng": 10.7522,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Vigeland Sculpture Park", "time": "2h", "price": "Free", "desc": "200+ granite/bronze sculptures in Frogner Park"},
+        {"name": "Oslo Opera House", "time": "1.5h", "price": "Free", "desc": "Walkable marble roof with fjord views"},
+        {"name": "Munch Museum", "time": "2h", "price": "~$20", "desc": "The Scream and extensive Munch collection"},
+        {"name": "Viking Ship Museum (CLOSED until 2027)", "time": "N/A", "price": "Temporary closure", "desc": "Reopening as Museum of Viking Age in 2027. See Historical Museum instead."},
+        {"name": "Historical Museum", "time": "1.5h", "price": "~$12", "desc": "Viking artifacts including helmets, Miðgarðr exhibition"},
+        {"name": "Akershus Fortress", "time": "1h", "price": "Free", "desc": "Medieval castle, harbor views"},
+        {"name": "Karl Johans Gate", "time": "1h", "price": "Free", "desc": "Main street, shopping, cafes, Royal Palace"},
+        {"name": "Grünerløkka neighborhood", "time": "2h", "price": "Free", "desc": "Hip district, street art, cafes, vintage shopping"},
+        {"name": "Mathallen Food Hall", "time": "1.5h", "price": "$$", "desc": "Indoor food market with Norwegian specialties"},
+        {"name": "Holmenkollen Ski Jump + Museum", "time": "2h", "price": "~$18", "desc": "Iconic ski jump, museum, zipline"},
+        {"name": "Aker Brygge", "time": "1h", "price": "Free", "desc": "Waterfront promenade, restaurants, shops"}
+      ],
+      "disc_golf": [
+        {"name": "Krokhol Disc Golf Course", "distance": "20min drive", "rating": 4.9, "holes": 18, "price": "50-80 NOK", "rank": "#2 World 2026, #1 Norway", "desc": "World-class 18 holes, pro shop, cafe with beer"},
+        {"name": "Ekeberg Frisbeegolfbane", "distance": "10min", "rating": 4.2, "holes": 18, "price": "Free", "desc": "Popular Oslo course with city views"},
+        {"name": "Ølberg Frisbeegolfbane", "distance": "40min", "rating": 4.3, "holes": 18, "price": "Free"}
+      ],
+      "food": [
+        "Mathallen Food Hall - try everything",
+        "Maaemo (3 Michelin stars) - New Nordic cuisine",
+        "Restaurant Schrøder - traditional Norwegian",
+        "Fuglen - iconic coffee shop",
+        "Vippa - street food market at the harbor"
+      ],
+      "breweries": ["Akershus Bryggeri", "Schouskjelleren Mikrobryggeri", "Amundsen Bryggeri"],
+      "shopping": ["Norway Designs", "Husfliden (traditional crafts)", "Way Nor souvenir shops", "Porsgrund porcelain"],
+      "notes": "Jet lag recovery base. Don't over-schedule Day 1. Walkable city, excellent public transit."
+    },
+
+    "bergen": {
+      "name": "Bergen",
+      "airport": "BGO",
+      "lat": 60.3913,
+      "lng": 5.3221,
+      "days_needed": "2 days",
+      "top_attractions": [
+        {"name": "Bryggen UNESCO Wharf", "time": "1.5h", "price": "Free", "desc": "Colorful Hanseatic wooden buildings"},
+        {"name": "Fløyen Funicular (Fløibanen)", "time": "2-3h", "price": "~$12", "desc": "Panoramic city views, hiking trails at top"},
+        {"name": "Bergen Fish Market", "time": "1h", "price": "$$", "desc": "Fresh seafood, whale meat, shrimp sandwiches"},
+        {"name": "Ulriken Cable Car", "time": "2-3h", "price": "~$20", "desc": "Highest Bergen mountain, Vidden hike to Fløyen"},
+        {"name": "KODE Art Museums", "time": "2h", "price": "~$15", "desc": "4 buildings, Munch collection, design"},
+        {"name": "Fantoft Stave Church", "time": "1h", "price": "~$8", "desc": "12th century reconstructed stave church"},
+        {"name": "Bergenhus Fortress", "time": "1h", "price": "Free", "desc": "Medieval castle, Rosenkrantz Tower"},
+        {"name": "Troldhaugen (Grieg Museum)", "time": "2h", "price": "~$15", "desc": "Composer Edvard Grieg's home, concerts"}
+      ],
+      "food": [
+        "Fish Market - shrimp sandwiches, fish soup",
+        "Colonialen - high-end gastro experience",
+        "Lysverket - modern Norwegian",
+        "Bare Vestland - traditional",
+        "Pingvinen - cozy, affordable Norwegian"
+      ],
+      "breweries": ["7 Fjell Bryggeri", "Bergenhus Bryggeri", "Håndverksbryggeriet"],
+      "distilleries": [],
+      "activities": [
+        "Vidden hike (Ulriken to Fløyen, 15km)",
+        "Voss rafting day trip (1h from Bergen)",
+        "Fjord cruise to Mostraumen or Rosendal"
+      ],
+      "shopping": ["Bryggen artisan shops", "Juhls Silver Gallery (Sami jewelry)", "Husfliden Bergen"],
+      "notes": "Gateway to fjords. Rain is expected - pack waterproof gear. Best base for Hardangerfjord day trips."
+    },
+
+    "flam": {
+      "name": "Flåm / Aurland",
+      "lat": 60.8633,
+      "lng": 7.1124,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Flåm Railway", "time": "2h round trip", "price": "~$55", "desc": "20km, steepest in world, mountain views, waterfall stop"},
+        {"name": "Nærøyfjord Cruise", "time": "2-3h", "price": "~$60", "desc": "UNESCO fjord, narrowest in world, 1400m cliff walls"},
+        {"name": "Stegastein Viewpoint", "time": "1h", "price": "Free (parking fee)", "desc": "Cantilevered platform 650m above fjord"},
+        {"name": "Aurlandsvegen (Snow Road)", "time": "2h drive", "price": "Free", "desc": "Scenic route over mountain pass"},
+        {"name": "Undredal Village", "time": "1h", "price": "Free", "desc": "Tiny village with stave church, goat cheese"},
+        {"name": "Viking Valley (Gudvangen)", "time": "2-3h", "price": "260 NOK", "desc": "Living Viking village, Njardarheimr"},
+        {"name": "Aegir BrewPub", "time": "1-2h", "price": "$$", "desc": "Viking-themed brewery, excellent beer and food"}
+      ],
+      "kayaking": [
+        {"company": "Njord Kayak Centre", "tour": "Guided Fjord Kayak", "duration": "3h", "price": "~$100", "skill": "Beginner", "ages": "5+", "desc": "Stable double kayaks, Aurlandsfjord, waterfalls, seals"},
+        {"company": "Outdoor Norway", "tour": "Nærøyfjord Sea Kayak", "duration": "4-6h", "price": "~$120", "skill": "Beginner", "desc": "UNESCO fjord, 3-seat family kayaks available"}
+      ],
+      "disc_golf": [
+        {"name": "Kaupanger frisbeepark", "distance": "30min", "rating": 4.5, "holes": 18, "price": "Free"}
+      ],
+      "food": ["Ægir BrewPub Restaurant", "Flåm Bakery (cinnamon buns)", "Furukammen (local cuisine)"],
+      "notes": "Tourist hub but worth it. Stay in Aurland or Undredal for quieter experience. Book Flåm Railway ahead."
+    },
+
+    "geiranger": {
+      "name": "Geiranger",
+      "lat": 62.0991,
+      "lng": 7.2056,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Geirangerfjord Cruise", "time": "1h", "price": "~$40", "desc": "UNESCO fjord, Seven Sisters, Bridal Veil waterfalls"},
+        {"name": "Dalsnibba Skywalk", "time": "1h", "price": "~$15 toll", "desc": "1500m viewpoint, glass platform"},
+        {"name": "Eagle Road (Ørnevegen)", "time": "30min drive", "price": "Free", "desc": "11 hairpin bends, epic Ørnesvingen viewpoint"},
+        {"name": "Flydalsjuvet viewpoint", "time": "30min", "price": "Free", "desc": "Classic Geirangerfjord photo spot"},
+        {"name": "Skageflå hike", "time": "3-4h", "price": "Free", "desc": "Historic mountain farm trail, fjord views"},
+        {"name": "Geiranger Nature Park (Zipline + Via Ferrata)", "time": "1.5h", "price": "950 NOK", "desc": "Climbing, zipline, Nepal bridges"},
+        {"name": "Geiranger Brenneri (Distillery)", "time": "1-1.5h", "price": "~$30", "desc": "Gin, aquavit, whisky distillery tour & tasting"}
+      ],
+      "kayaking": [
+        {"company": "Geiranger Fjordservice", "tour": "Beginner Fjord Kayak", "duration": "2h", "price": "~$80", "skill": "Beginner", "ages": "6+", "desc": "Calm waters, UNESCO fjord, family-friendly"}
+      ],
+      "distilleries": [
+        {"name": "Geiranger Brenneri", "tours": true, "products": "Gin, aquavit, whisky", "price": "~$30", "desc": "Local distillery, tasting included, free pickup"}
+      ],
+      "food": ["Geiranger Brenneri Bar & Lunch", "Grande Fjord Hotel restaurant", "Brasserie Posten"],
+      "notes": "Very popular in summer. Book accommodation early. Can be done as day trip from Hellesylt/Stranda."
+    },
+
+    "alesund": {
+      "name": "Ålesund",
+      "airport": "AES",
+      "lat": 62.4723,
+      "lng": 6.1495,
+      "days_needed": "1 day",
+      "top_attractions": [
+        {"name": "Aksla Viewpoint (Fjellstua)", "time": "1h", "price": "Free", "desc": "418 steps up, panoramic Art Nouveau city + fjord views"},
+        {"name": "Art Nouveau Architecture Walk", "time": "1.5h", "price": "Free", "desc": "Self-guided tour of 1904 rebuilt city center"},
+        {"name": "Atlantershavsparken Aquarium", "time": "2h", "price": "~$20", "desc": "Large aquarium, seal feeding, kid-friendly"},
+        {"name": "Jugendstilsenteret (Art Nouveau Centre)", "time": "1h", "price": "~$10", "desc": "Museum of Ålesund's Art Nouveau history"},
+        {"name": "Borgund Stave Church", "time": "1h", "price": "~$10", "desc": "12th century, best preserved stave church"}
+      ],
+      "disc_golf": [
+        {"name": "Øverås Diskgolfpark", "distance": "30min", "rating": 4.7, "holes": 18, "price": "60 NOK", "rank": "#27 World, #4 Norway", "desc": "Stunning fjord views, 3 layouts, pro shop"},
+        {"name": "Harøy Diskgolfpark", "distance": "1h (ferry)", "rating": 4.6, "holes": 18, "price": "30 NOK"}
+      ],
+      "food": ["Maki - sustainable sushi", "Sjøbua - seafood", "XL Diner - classic Norwegian", "Brosundet Bar"],
+      "breweries": ["Norsk Kjellerbryggeri", "Aalesund Bryggeri"],
+      "notes": "Perfect last stop before flying home. Compact walkable city."
+    },
+
+    "stavanger": {
+      "name": "Stavanger",
+      "airport": "SVG",
+      "lat": 58.9699,
+      "lng": 5.7329,
+      "days_needed": "2 days",
+      "top_attractions": [
+        {"name": "Pulpit Rock (Preikestolen) hike", "time": "4-5h", "price": "Free (ferry + bus ~$15)", "desc": "Iconic 604m cliff, moderate hike, Norway's most popular"},
+        {"name": "Kjeragbolten hike", "time": "6-8h", "price": "Free", "desc": "Boulder wedged in crevasse, challenging hike, June-Sept only"},
+        {"name": "Lysefjord Cruise", "time": "2.5h", "price": "~$50", "desc": "Scenic fjord cruise from Stavanger"},
+        {"name": "Old Stavanger (Gamle Stavanger)", "time": "1.5h", "price": "Free", "desc": "Cobblestone streets, white wooden houses"},
+        {"name": "Norwegian Canning Museum", "time": "1h", "price": "~$8", "desc": "Quirky sardine canning history"},
+        {"name": "Flor & Fjære", "time": "4h", "price": "~$80", "desc": "Tropical garden on Sør-Hidle island, dinner included"}
+      ],
+      "breweries": [
+        {"name": "Lervig", "tours": true, "price": "500 NOK", "desc": "World-renowned craft brewery, barrel-aged stouts, tour + tasting"}
+      ],
+      "food": ["RE-NAA (3 Michelin stars)", "Bølgen & Moi", "Fisketorget", "Tango Bar & Kjøkken"],
+      "disc_golf": [
+        {"name": "Kulleseid frisbeegolfbane", "distance": "20min", "rating": 4.3, "holes": 18}
+      ],
+      "notes": "Hiking hub. Trolltunga also accessible from here. Lervig brewery is world-class."
+    },
+
+    "loen": {
+      "name": "Loen / Olden",
+      "lat": 61.8703,
+      "lng": 6.8481,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Loen Skylift", "time": "1h", "price": "~$40", "desc": "5 min cable car to Mt. Hoven 1011m, restaurant at top"},
+        {"name": "Via Ferrata Loen", "time": "4-5h", "price": "~$100", "desc": "Europe's longest via ferrata bridge (120m), extreme routes available"},
+        {"name": "Briksdal Glacier", "time": "2-3h", "price": "Free", "desc": "Arm of Jostedalsbreen, easy hike to glacier face"},
+        {"name": "Kjenndalen Glacier", "time": "2h", "price": "Free", "desc": "Less crowded glacier arm, dramatic setting"},
+        {"name": "Lovatnet Lake", "time": "1h", "price": "Free", "desc": "Turquoise glacier lake, stunning turquoise color"}
+      ],
+      "kayaking": [
+        {"company": "Discover Olden", "tour": "Fjord Kayak with Lunch by Fire", "duration": "3h", "price": "~$100", "skill": "Beginner", "ages": "6+", "desc": "Calm fjord, fire-cooked lunch, small groups"}
+      ],
+      "via_ferrata": [
+        {"name": "Via Ferrata Loen", "difficulty": "B-E (beginner to extreme)", "routes": 5, "bridge": "120m longest in Europe", "zipline": true, "min_age": "12+"}
+      ],
+      "notes": "Adventure hub. Via Ferrata Loen is world-class. Skylift is excellent for all ages."
+    },
+
+    "lofoten": {
+      "name": "Lofoten Islands",
+      "airports": "Leknes (LKN), Svolvær (SVJ), Evenes (EVE)",
+      "lat": 68.1,
+      "lng": 14.0,
+      "days_needed": "3-4 days minimum",
+      "top_attractions": [
+        {"name": "Reine + Hamnøy villages", "time": "2h", "price": "Free", "desc": "Most photographed fishing villages, iconic rorbu cabins"},
+        {"name": "Reinebringen hike", "time": "2-3h", "price": "Free", "desc": "Steep but short, insane views over Reine"},
+        {"name": "Haukland Beach", "time": "1-2h", "price": "Free", "desc": "White sand, turquoise water, Arctic beach"},
+        {"name": "Å i Lofoten", "time": "1h", "price": "Free", "desc": "Fishing village with stockfish museum"},
+        {"name": "Henningsvær", "time": "2h", "price": "Free", "desc": "Football pitch on island, galleries, cafes"},
+        {"name": "Nusfjord", "time": "1.5h", "price": "~$12", "desc": "Best preserved fishing village, open-air museum"},
+        {"name": "Lofotr Viking Museum", "time": "2-3h", "price": "~$15", "desc": "World's longest reconstructed longhouse, Viking experiences"},
+        {"name": "Unstad Beach (surfing)", "time": "2-3h", "price": "Free", "desc": "World-class Arctic surfing beach"},
+        {"name": "Ryten hike", "time": "3-4h", "price": "Free", "desc": "Panoramic views of Kvalvika Beach"},
+        {"name": "Kvalvika Beach hike", "time": "2-3h", "price": "Free", "desc": "Remote white sand beach, dramatic setting"}
+      ],
+      "kayaking": [
+        {"company": "Lofoten Kayak", "tour": "Various guided tours", "skill": "Beginner-friendly"}
+      ],
+      "breweries": [
+        {"name": "Lofotpils Brewery", "tours": true, "desc": "Only brewery in Lofoten, 6-beer tasting included"}
+      ],
+      "food": ["Børsen Spiseri (Svolvær)", "Kvitnes Gård (17-course dinner)", "Anitas Seafood (Reine)"],
+      "shopping": ["Taste Lofoten culinary tour", "Lofoten Seaweed products", "Way Nor Svolvær"],
+      "notes": "Rental car essential. Book rorbu 4-6 months ahead. 4 nights recommended. Midnight sun in summer."
+    },
+
+    "tromso": {
+      "name": "Tromsø",
+      "airport": "TOS",
+      "lat": 69.6496,
+      "lng": 18.956,
+      "days_needed": "2 days",
+      "top_attractions": [
+        {"name": "Fjellheisen Cable Car", "time": "2h", "price": "~$25", "desc": "Panoramic views of Tromsø and surrounding fjords"},
+        {"name": "Arctic Cathedral", "time": "30min", "price": "~$8", "desc": "Iconic modern architecture, stunning stained glass"},
+        {"name": "Polar Museum", "time": "1.5h", "price": "~$10", "desc": "Arctic exploration history, seal hunting exhibits"},
+        {"name": "Polaria", "time": "1.5h", "price": "~$15", "desc": "Arctic aquarium, bearded seals, panoramic film"},
+        {"name": "Tromsø Bridge", "time": "30min walk", "price": "Free", "desc": "Walkable bridge connecting mainland to island"},
+        {"name": "Northern Lights Chase (winter)", "time": "6-8h", "price": "~$150", "desc": "Guided aurora tour, professional photography"}
+      ],
+      "breweries": ["Mack Brewery (oldest in northern Norway)", "Ølhallen pub (oldest pub in Tromsø)"],
+      "distilleries": [],
+      "food": ["Fiskekompaniet", "Rå Sushi", "Hildr (Sami-inspired)"],
+      "notes": "Winter = aurora season. Summer = midnight sun. Add-on to Lofoten or standalone. AURORA SPIRIT distillery 1h away."
+    },
+
+    "voss": {
+      "name": "Voss",
+      "lat": 60.6289,
+      "lng": 6.4244,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Voss Gondola to Hangurstoppen", "time": "1h", "price": "~$25", "desc": "Mountain views, MTB park, hiking trails"},
+        {"name": "Tvindefossen Waterfall", "time": "30min", "price": "Free", "desc": "Impressive roadside waterfall"},
+        {"name": "Voss Active High Rope + Zipline Park", "time": "2-3h", "price": "~$40", "desc": "64 elements, 7 ziplines, treetop adventure"}
+      ],
+      "rafting": [
+        {"company": "Outdoor Norway Voss", "tour": "Family Rafting Grade 2", "duration": "3h", "price": "~$90", "ages": "5+", "river": "Raundal", "desc": "Perfect for families, Grade 2 rapids, beginner-friendly"},
+        {"company": "Outdoor Norway Voss", "tour": "Whitewater Rafting Grade 3", "duration": "3h", "price": "~$110", "ages": "12+", "river": "Raundal", "desc": "More adrenaline, play section rapids"}
+      ],
+      "mountain_biking": [
+        {"name": "Voss Gondola MTB Park", "difficulty": "Blue to Black", "desc": "Trails from gondola top, bike rental at Bavallen"},
+        {"name": "Bavallen Forest Trails", "difficulty": "Easy (Blue)", "desc": "Family-friendly forest trails near town center"}
+      ],
+      "notes": "Norway's adventure capital. Rafting, biking, ziplining galore. 1h from Bergen."
+    },
+
+    "sjoa": {
+      "name": "Sjoa / Heidal",
+      "lat": 61.69,
+      "lng": 9.53,
+      "days_needed": "1 day",
+      "rafting": [
+        {"company": "Sjoa Familierafting", "tour": "Family Rafting", "duration": "3h", "price": "~$90", "ages": "6+", "river": "Gudbrandsdalslågen", "desc": "Grade 2 rapids, play, swim, cliff jump"},
+        {"company": "Mad Goats", "tour": "Family Chill Rafting Grade 2", "duration": "2.5h", "price": "895 NOK", "ages": "5+", "river": "Lågen", "desc": "Easy rafting + river sauna available"},
+        {"company": "Sjoa Rafting AS", "tour": "Whitewater Rafting", "ages": "15+", "desc": "More challenging rapids, canyoning also available"}
+      ],
+      "notes": "One of Norway's best rafting regions. On way between Oslo and Geiranger/Loen."
+    },
+
+    "odda": {
+      "name": "Odda / Trolltunga",
+      "lat": 60.0679,
+      "lng": 6.5435,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Trolltunga hike", "time": "8-12h", "price": "Free (shuttle ~$15)", "desc": "20-28km, iconic cliff, June 1 open for independent hiking"},
+        {"name": "Trolltunga Zipline", "time": "5h", "price": "~$120", "desc": "3 ziplines totaling 600m, hike + ride back"},
+        {"name": "Tyssedal Via Ferrata", "time": "3-4h", "price": "~$80", "desc": "Historical hydropower climbing route, fjord views"},
+        {"name": "Låtefoss Waterfall", "time": "20min", "price": "Free", "desc": "Twin waterfalls dropping 165m, roadside stop"},
+        {"name": "Hardangerfjord views", "time": "varies", "price": "Free", "desc": "Fruit orchards, fjord panoramas"}
+      ],
+      "notes": "Trolltunga is a full-day strenuous hike. Start before 7am. Shuttle from P2 parking required in peak season."
+    },
+
+    "trondheim": {
+      "name": "Trondheim",
+      "airport": "TRD",
+      "lat": 63.4305,
+      "lng": 10.3951,
+      "days_needed": "1 day",
+      "top_attractions": [
+        {"name": "Nidaros Cathedral", "time": "1.5h", "price": "~$12", "desc": "Northern Europe's most important pilgrimage site"},
+        {"name": "Bakklandet", "time": "1.5h", "price": "Free", "desc": "Colorful wooden houses, cobblestone streets, cozy cafes"},
+        {"name": "Archbishop's Palace Museum", "time": "1h", "price": "~$10", "desc": "Viking artifacts, medieval history"},
+        {"name": "Kristiansten Fortress", "time": "1h", "price": "Free", "desc": "City views, 17th century fortress"},
+        {"name": "Rockheim Museum", "time": "1.5h", "price": "~$12", "desc": "Norwegian pop/rock music museum"}
+      ],
+      "disc_golf": [
+        {"name": "Dragvoll Diskgolfpark", "distance": "15min", "rating": 4.3, "holes": 18, "plays": "135k+"}
+      ],
+      "food": ["Restaurant To Tårn", "Baklandet Skydsstation", "Fjordgården"],
+      "breweries": ["Trondhjem Mikrobryggeri", "Austmann Bryggeri"],
+      "notes": "Viking history center. Good stop between Atlantic Road and north."
+    },
+
+    "jotunheimen": {
+      "name": "Jotunheimen National Park",
+      "lat": 61.6,
+      "lng": 8.5,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Sognefjellet Scenic Route", "time": "2-3h drive", "price": "Free", "desc": "Highest mountain pass in northern Europe, 1434m"},
+        {"name": "Besseggen Ridge hike", "time": "6-8h", "price": "Free (ferry added)", "desc": "Norway's most famous hike, turquoise Gjende lake"},
+        {"name": "Galdhøpiggen (highest peak)", "time": "6-7h", "price": "Free", "desc": "Norway's highest mountain at 2469m, guided trips available"},
+        {"name": "Valdresflye Scenic Route", "time": "1-2h", "price": "Free", "desc": "Mountain plateau, 1389m, views toward Jotunheimen"},
+        {"name": "Lom Stave Church", "time": "45min", "price": "~$8", "desc": "17th century stave church, rune inscriptions"}
+      ],
+      "notes": "Norway's roof. Hiking paradise. Sognefjellet drive is a must-do scenic route."
+    },
+
+    "hardanger": {
+      "name": "Hardangerfjord Region",
+      "lat": 60.3,
+      "lng": 6.7,
+      "days_needed": "1-2 days",
+      "top_attractions": [
+        {"name": "Vøringsfossen Waterfall", "time": "1h", "price": "Free", "desc": "182m waterfall, Fossli Hotel viewpoint, new staircase bridge"},
+        {"name": "Steinsdalsfossen Waterfall", "time": "30min", "price": "Free", "desc": "Walk behind the waterfall, roadside near Norheimsund"},
+        {"name": "Folgefonna Glacier", "time": "4-6h", "price": "~$100", "desc": "Blue ice glacier walk, crampons provided"},
+        {"name": "Hardanger Scenic Route", "time": "3h drive", "price": "Free", "desc": "Fruit orchards, fjord views, cider farms"},
+        {"name": "Salmon Eye / Iris Restaurant", "time": "3h", "price": "$$$$", "desc": "Floating art + Michelin-starred dining on Hardangerfjord"},
+        {"name": "Kinsarvik + Lofthus", "time": "1h", "price": "Free", "desc": "Fjordside villages, fruit farms, Hotel Ullensvang"}
+      ],
+      "food": ["Iris (Michelin-starred floating restaurant)", "Cider tasting at local farms"],
+      "notes": "Fruit orchard region. Apple/cherry blossoms in May. Cider trail. Less crowded than Sognefjord."
+    }
+  },
+
+  "activities_database": {
+    "kayaking_locations": [
+      {"location": "Flåm / Aurlandsfjord", "company": "Njord Kayak Centre", "type": "Stillwater fjord", "skill": "Beginner", "ages": "5+"},
+      {"location": "Nærøyfjord (Gudvangen)", "company": "Outdoor Norway", "type": "UNESCO fjord", "skill": "Beginner", "ages": "6+"},
+      {"location": "Geirangerfjord", "company": "Geiranger Fjordservice", "type": "UNESCO fjord", "skill": "Beginner", "ages": "6+"},
+      {"location": "Olden / Nordfjord", "company": "Discover Olden", "type": "Stillwater fjord", "skill": "Beginner", "ages": "6+"},
+      {"location": "Tafjorden", "company": "Raein", "type": "Tranquil fjord", "skill": "Beginner", "ages": "5+"},
+      {"location": "Ulvik (Hardanger)", "company": "Various guides", "type": "Calm fjord", "skill": "Beginner", "ages": "Family"},
+      {"location": "Hellesylt (Sunnylvsfjorden)", "company": "Hellesylt Kayak", "type": "Calm fjord", "skill": "Beginner", "ages": "5+"}
+    ],
+    "whitewater_rafting_locations": [
+      {"location": "Voss (Raundal River)", "companies": ["Outdoor Norway"], "grades": "Class 2 (family), Class 3 (thrill)", "min_ages": "5 (family), 12 (thrill)", "price_range": "$80-120"},
+      {"location": "Sjoa / Heidal (Lågen River)", "companies": ["Sjoa Familierafting", "Mad Goats", "Sjoa Rafting AS"], "grades": "Class 2-3", "min_ages": "5-6 (family), 15 (whitewater)", "price_range": "$80-110"},
+      {"location": "Evje / Setesdal (Otra River)", "companies": ["TrollAktiv"], "grades": "Class 2-3", "min_ages": "120cm height (family)", "desc": "Southern Norway option, good add-on from Oslo"},
+      {"location": "Oppdal (Driva River)", "companies": ["Opplev Oppdal"], "grades": "Class 1-2 family", "min_ages": "116cm height", "desc": "Also has zipline park + wilderness camp"},
+      {"location": "Mosjøen / Vefsna River", "companies": ["Rivernorth"], "grades": "Class 1-2 family", "min_ages": "6", "price": "950 NOK"},
+      {"location": "Voss (Bergen area)", "companies": ["Outdoor Norway", "Voss Active"], "grades": "Class 1-2 family", "min_ages": "5", "price": "~$90"}
+    ],
+    "disc_golf_courses_near_routes": [
+      {"name": "Krokhol", "location": "Oslo (20min)", "rating": 4.9, "world_rank": "#2 (2026)", "holes": 18, "fee": "50-80 NOK"},
+      {"name": "Øverås Diskgolfpark", "location": "Near Ålesund (30min)", "rating": 4.7, "world_rank": "#27 (2026)", "holes": 18, "fee": "60 NOK"},
+      {"name": "Karidalen FrisbeeGolfPark", "location": "Lena (near Lillehammer)", "rating": 4.6, "norway_rank": "#2", "holes": 18, "fee": "Free/Dono"},
+      {"name": "Glåmos Diskgolfbane", "location": "Near Røros", "rating": 4.5, "holes": 34, "fee": "Free"},
+      {"name": "Valdres Discgolfpark", "location": "Valdres region", "rating": 4.4, "holes": 18},
+      {"name": "Harøy Diskgolfpark", "location": "Harøy (near Ålesund)", "rating": 4.6, "holes": 18, "fee": "30 NOK"},
+      {"name": "Ekeberg Frisbeegolfbane", "location": "Oslo", "rating": 4.2, "holes": 18, "fee": "Free"},
+      {"name": "Holmenkollen DiscGolfpark", "location": "Oslo", "holes": 9, "fee": "Free"},
+      {"name": "Eidsvåg DiscGolf Park", "location": "Eidsvåg (near Åndalsnes)", "rating": 3.8, "holes": 18, "fee": "Free"},
+      {"name": "Kaupanger frisbeepark", "location": "Near Sognefjord/Flåm", "rating": 4.5, "holes": 18, "fee": "Free"},
+      {"name": "Dragvoll Diskgolfpark", "location": "Trondheim", "rating": 4.3, "holes": 18, "fee": "Free"},
+      {"name": "Fjellstua Diskgolfbane", "location": "Near Ålesund", "rating": "5.0 scenery", "holes": 9}
+    ],
+    "mountain_biking_routes": [
+      {"name": "Rallarvegen", "region": "Finse to Flåm (or Haugastøl)", "distance": "27-60km", "difficulty": "Easy/Moderate", "desc": "Gravel road, historic, family-friendly, train-assisted"},
+      {"name": "HallingSpranget", "region": "Nesbyen", "distance": "17km", "difficulty": "Blue (moderate)", "desc": "Norway's longest family-friendly MTB trail, 1000m drop"},
+      {"name": "Nesfjellet Bike Park", "region": "Nesbyen", "difficulty": "Green to Black", "desc": "Lift-assisted, gravity zone for kids"},
+      {"name": "Voss MTB Park", "region": "Voss (Gondola)", "difficulty": "Blue to Black", "desc": "Alpine trails, bike rental, gondola access"},
+      {"name": "Lærdalsdalen", "region": "Lærdal (near Flåm)", "distance": "Up to 32km", "difficulty": "Easy", "desc": "Flat, riverside, almost no climb"},
+      {"name": "Fløafjorden Family Ride", "region": "Valdres/Fagernes", "distance": "22.5km", "difficulty": "Easy", "desc": "Family-friendly, farm café detour"},
+      {"name": "Fagernes–Storøya Family Loop", "region": "Valdres/Fagernes", "distance": "8km", "difficulty": "Easy (flat)", "desc": "Paved, kid-friendly, park + beach stops"},
+      {"name": "Eidfjord Coastal Route", "region": "Hardanger", "distance": "15km", "difficulty": "Easy", "desc": "Paved fjordside path, Nature Center stop"},
+      {"name": "Nærøyfjord Bakka Church loop", "region": "Gudvangen", "distance": "11.6km", "difficulty": "Easy", "desc": "Scenic fjordside cycling"}
+    ],
+    "teen_thrills": [
+      {"activity": "Via Ferrata Loen (Europe's longest bridge)", "location": "Loen", "min_age": "12", "price": "~$100"},
+      {"activity": "Loen Zipline (1000m above fjord)", "location": "Loen Skylift top", "min_age": "Varies", "price": "~$30"},
+      {"activity": "Geiranger Nature Park (Via Ferrata + Zipline)", "location": "Geiranger", "min_age": "130cm height", "price": "950 NOK"},
+      {"activity": "Flåm Zipline (1,381m - Northern Europe's longest)", "location": "Flåm", "min_age": "12?", "price": "~$50"},
+      {"activity": "Holmenkollen Zipline (Oslo)", "location": "Oslo", "min_age": "Varies", "price": "~$30"},
+      {"activity": "Voss High Rope + Zipline Park", "location": "Voss", "min_age": "All ages", "price": "~$40"},
+      {"activity": "Whitewater Rafting Grade 3 (Voss)", "location": "Voss", "min_age": "12", "price": "~$110"},
+      {"activity": "Whitewater Rafting (Sjoa, age 15+)", "location": "Sjoa", "min_age": "15", "price": "~$100"},
+      {"activity": "Trolltunga Zipline", "location": "Tyssedal/Odda", "min_age": "15 (12 with parent)", "price": "~$120"},
+      {"activity": "Romsdalseggen Ridge Hike", "location": "Åndalsnes", "difficulty": "Strenuous, 8-10h", "desc": "Epic ridge walk, not for vertigo"},
+      {"activity": "Kjeragbolten Hike", "location": "Lysefjord", "min_age": "12+ recommended", "difficulty": "Strenuous"},
+      {"activity": "RIB Boat Safari", "location": "Various fjords", "desc": "Speedboat fjord tour, thrill ride"},
+      {"activity": "Surfing at Unstad Beach", "location": "Lofoten", "skill": "All levels", "desc": "Arctic surfing experience"},
+      {"activity": "Via Ferrata Haldenkanalen", "location": "Halden (near Oslo)", "min_age": "10", "desc": "Europe's longest suspension bridge in via ferrata, 250m zipline"}
+    ],
+    "breweries_and_distilleries": [
+      {"name": "Lervig", "location": "Stavanger", "type": "Brewery", "tours": true, "price": "500 NOK", "highlight": "World-class stouts, sours"},
+      {"name": "Geiranger Brenneri", "location": "Geiranger", "type": "Distillery", "tours": true, "products": "Gin, aquavit, whisky"},
+      {"name": "Aegir BrewPub", "location": "Flåm", "type": "Brewery", "tours": false, "highlight": "Viking-themed, excellent food pairings"},
+      {"name": "Lofotpils", "location": "Lofoten", "type": "Brewery", "tours": true, "highlight": "6-beer tasting, Lofoten water"},
+      {"name": "Aurora Spirit / Bivrost", "location": "Lyngen (near Tromsø)", "type": "Distillery", "tours": true, "highlight": "World's northernmost whisky distillery"},
+      {"name": "Mack Brewery", "location": "Tromsø", "type": "Brewery", "tours": true, "highlight": "Oldest in northern Norway, Ølhallen pub"},
+      {"name": "Aass Brewery", "location": "Drammen (near Oslo)", "type": "Brewery", "tours": true, "price": "495 NOK", "highlight": "Oldest in Norway, 1834"},
+      {"name": "Berentsens Brygghus", "location": "Egersund (near Stavanger)", "type": "Brewery + Distillery", "tours": true, "highlight": "Gin, whisky, beer"},
+      {"name": "Feddie Ocean Distillery", "location": "Fedje", "type": "Distillery", "tours": true, "price": "550 NOK", "highlight": "Island distillery, whisky, gin, aquavit"},
+      {"name": "Destilleriveien 11", "location": "Oslo area (30min)", "type": "Distillery", "tours": true, "price": "190+160 NOK", "highlight": "Make your own aquavit and gin, 8000 oak barrels"},
+      {"name": "Harstad Brewery", "location": "Harstad", "type": "Brewery", "tours": true, "highlight": "Part of FOOD & FIRE experience"}
+    ],
+    "scenic_drives": [
+      {"name": "Geiranger–Trollstigen", "length": "104km", "time": "6-8h", "season": "mid-May to Oct", "highlights": "Eagle Road, 11 hairpins, Stigfossen"},
+      {"name": "Atlantic Road", "length": "8.3km", "time": "2-4h", "season": "Year-round", "highlights": "8 bridges, Storseisundbrua, ocean views"},
+      {"name": "Sognefjellet", "length": "108km", "time": "2-3h", "season": "June-Oct", "highlights": "Highest pass, glaciers, Jotunheimen views, 1434m"},
+      {"name": "Aurlandsfjellet (Snow Road)", "length": "47km", "time": "2-3h", "season": "June-Oct", "highlights": "Stegastein viewpoint, snow fences"},
+      {"name": "Trollstigen", "length": "Part of Geiranger route", "time": "1-2h", "season": "mid-May to Oct", "highlights": "11 hairpin bends, Trollveggen cliff"},
+      {"name": "Hardanger Scenic Route", "length": "158km", "time": "3-5 days for loop", "season": "Year-round, best May-Sep", "highlights": "Orchards, waterfalls, cider farms"},
+      {"name": "Gaularfjellet", "length": "~90km", "time": "2-3h", "season": "June-Oct", "highlights": "Waterfalls, fjord to mountain"},
+      {"name": "Valdresflye", "length": "37km", "time": "1-2h", "season": "June-Oct", "highlights": "Mountain plateau, Jotunheimen views"},
+      {"name": "Lofoten (E10)", "length": "230km", "time": "2-3 days", "season": "Year-round", "highlights": "Fishing villages, beaches, peaks"},
+      {"name": "Ryfylke (Lysevegen)", "length": "~100km", "time": "3-4h", "season": "Year-round", "highlights": "27 hairpin bends, Lysefjord views"}
+    ],
+    "cultural_experiences": [
+      {"experience": "Viking Valley (Njardarheimr)", "location": "Gudvangen", "type": "Living history village", "duration": "2-3h"},
+      {"experience": "Lofotr Viking Museum", "location": "Borg, Lofoten", "type": "Longhouse + exhibits", "duration": "2-3h"},
+      {"experience": "Urnes Stave Church (UNESCO)", "location": "Urnes (Sognefjord)", "type": "12th century stave church", "duration": "1h"},
+      {"experience": "Heddal Stave Church", "location": "Telemark", "type": "Norway's largest stave church", "duration": "1h"},
+      {"experience": "Borgund Stave Church", "location": "Near Ålesund", "type": "Best preserved stave church", "duration": "1h"},
+      {"experience": "Historical Museum Oslo", "location": "Oslo", "type": "Viking artifacts", "duration": "1.5h"},
+      {"experience": "Avaldsnes Viking Farm", "location": "Haugesund", "type": "Working Viking farm", "duration": "2-3h"},
+      {"experience": "Kaupang Viking Town", "location": "Larvik", "type": "Archaeological site", "duration": "1-2h"},
+      {"experience": "Stiklestad National Culture Center", "location": "Verdal", "type": "Battle of Stiklestad, Viking summer", "duration": "2-3h"},
+      {"experience": "Sami cultural experiences", "location": "Tromsø / Finnmark", "type": "Reindeer, lavvu, bidos stew", "duration": "2-4h"},
+      {"experience": "Bergen International Festival", "location": "Bergen", "type": "May-June, music/dance/theater", "duration": "Multiple days"},
+      {"experience": "Norwegian Fjord Centre", "location": "Geiranger", "type": "UNESCO visitor center", "duration": "1h"},
+      {"experience": "Sylvsmidja Jewelry Workshop", "location": "Voss", "type": "Norwegian silver craftsmanship", "duration": "1h"}
+    ],
+    "food_experiences": [
+      {"experience": "Bergen Fish Market", "location": "Bergen", "type": "Fresh seafood, shrimp sandwiches", "price": "$$"},
+      {"experience": "RE-NAA (3 Michelin stars)", "location": "Stavanger", "type": "Fine dining", "price": "$$$$"},
+      {"experience": "Iris at Salmon Eye", "location": "Hardangerfjord", "type": "Michelin-starred floating restaurant", "price": "$$$$"},
+      {"experience": "Mathallen Oslo", "location": "Oslo", "type": "Food hall", "price": "$$"},
+      {"experience": "Cinnamon buns (kanelboller)", "location": "Everywhere", "type": "Must-try pastry", "price": "$"},
+      {"experience": "Brunost (brown cheese)", "location": "Everywhere", "type": "Unique Norwegian cheese", "price": "$"},
+      {"experience": "Taste Lofoten tour", "location": "Lofoten", "type": "Guided culinary tour", "price": "$$$"},
+      {"experience": "FOOD & FIRE Harstad", "location": "Harstad", "type": "Arctic dining experience", "price": "2790 NOK"},
+      {"experience": "Sami bidos dinner in lavvu", "location": "Kautokeino", "type": "Traditional Sami stew", "price": "550 NOK"},
+      {"experience": "Cider tasting in Hardanger", "location": "Hardangerfjord", "type": "Fruit orchard cider", "price": "$$"},
+      {"experience": "Kvitnes Gård 17-course dinner", "location": "Lofoten", "type": "Farm-to-table Arctic", "price": "$$$$"},
+      {"experience": "Fishing + beachside cookout", "location": "Various fjords", "type": "Catch-and-cook experience", "price": "$$$"}
+    ],
+    "unique_shopping": [
+      {"item": "Norwegian wool sweater (lusekofte)", "where": "Dale of Norway, Husfliden", "price": "$$$"},
+      {"item": "Troll figurines", "where": "Way Nor stores, souvenir shops", "price": "$"},
+      {"item": "Viking jewelry (Thor's hammer)", "where": "Sylvsmidja (Voss), Juhls Silver Gallery", "price": "$$"},
+      {"item": "Sami duodji crafts", "where": "Tromsø, Kautokeino, Karasjok", "price": "$$-$$$"},
+      {"item": "Brunost cheese slicer (ostehøvel)", "where": "Lillehammer factory, supermarkets", "price": "$"},
+      {"item": "Rosemaling painted items", "where": "Husfliden, craft shops", "price": "$$"},
+      {"item": "Aquavit", "where": "Geiranger Brenneri, vinylmonopol stores", "price": "$$"},
+      {"item": "Kuksa (Sami drinking cup)", "where": "Northern Norway craft shops", "price": "$$"},
+      {"item": "Norwegian chocolate (Freia, Nidar)", "where": "Supermarkets everywhere", "price": "$"},
+      {"item": "Reindeer hide / antler crafts", "where": "Northern Norway, Sami markets", "price": "$$$"},
+      {"item": "Handmade mittens (votter)", "where": "Local craft shops, Kronebutikken", "price": "$$"},
+      {"item": "Porsgrund / ceramic ware", "where": "Oslo, specialty stores", "price": "$$$"}
+    ]
+  },
+
+  "route_templates": {
+    "template_1_northern_loop": {
+      "name": "Northern Fjord Loop",
+      "start": "Oslo", "end": "Ålesund (fly to Oslo)",
+      "drive_days": 3,
+      "bases": ["Oslo (2)", "Flåm/Aurland (2)", "Loen/Olden (2)", "Geiranger (2)", "Ålesund (1)"],
+      "highlights": "Flåm Railway, Nærøyfjord cruise, Loen Skylift, Via Ferrata, Geirangerfjord, Trollstigen, Ålesund",
+      "disc_golf": "Krokhol (Oslo), Kaupanger (near Flåm), Øverås (Ålesund)",
+      "rafting": "Sjoa (detour on drive between Flåm and Loen)",
+      "kayaking": "Flåm, Olden, or Geiranger",
+      "breweries_distilleries": "Ægir (Flåm), Geiranger Brenneri",
+      "mountain_biking": "Lærdalsdalen (easy)",
+      "teen_thrills": "Loen Via Ferrata + Zipline, Geiranger Nature Park, Flåm Zipline"
+    },
+    "template_2_southern_loop": {
+      "name": "Southern Fjord + Hikes",
+      "start": "Oslo", "end": "Bergen or Stavanger (fly out)",
+      "drive_days": 4,
+      "bases": ["Oslo (1)", "Stavanger (2)", "Odda/Trolltunga (2)", "Bergen (2)", "Flåm (2)"],
+      "highlights": "Pulpit Rock, Kjeragbolten, Trolltunga, Bergen, Flåm Railway, Nærøyfjord",
+      "disc_golf": "Krokhol (Oslo), Kulleseid (Stavanger)",
+      "rafting": "Voss (day trip from Bergen)",
+      "kayaking": "Flåm, Nærøyfjord, or Ulvik",
+      "breweries_distilleries": "Lervig (Stavanger), Ægir (Flåm)",
+      "mountain_biking": "Voss MTB Park",
+      "teen_thrills": "Trolltunga Zipline, Voss Rafting, Voss High Rope"
+    },
+    "template_3_geiranger_northwest": {
+      "name": "Geiranger & Northwest",
+      "start": "Oslo", "end": "Trondheim or Ålesund",
+      "drive_days": 4,
+      "bases": ["Oslo (1)", "Lillehammer (1)", "Geiranger (2)", "Ålesund (2)", "Atlantic Road (1)", "Trondheim (2)"],
+      "highlights": "Lillehammer, Jotunheimen, Sognefjellet, Geirangerfjord, Trollstigen, Atlantic Road, Trondheim",
+      "disc_golf": "Krokhol (Oslo), Karidalen (Lillehammer), Øverås (Ålesund), Dragvoll (Trondheim)",
+      "rafting": "Sjoa (near Lillehammer)",
+      "kayaking": "Geiranger, Tafjorden",
+      "breweries_distilleries": "Geiranger Brenneri, Trondhjem Mikrobryggeri",
+      "mountain_biking": "HallingSpranget (Nesbyen, near Oslo)",
+      "teen_thrills": "Geiranger Nature Park, Trollstigen drive"
+    },
+    "template_4_telemark_hardanger": {
+      "name": "Telemark & Hardanger",
+      "start": "Oslo", "end": "Bergen",
+      "drive_days": 3,
+      "bases": ["Oslo (1)", "Rjukan (1)", "Hardanger (3)", "Bergen (3)"],
+      "highlights": "Rjukan waterfall, Gaustatoppen, Hardangerfjord, Vøringsfossen, Steinsdalsfossen, Trolltunga, Bergen",
+      "disc_golf": "Krokhol (Oslo)",
+      "rafting": "Voss (near Bergen)",
+      "kayaking": "Ulvik (Hardanger), Nærøyfjord",
+      "breweries_distilleries": "Ægir (Flåm detour)",
+      "notes": "Less traveled route, quieter, fruit orchard region"
+    },
+    "template_5_lofoten_fly": {
+      "name": "Lofoten & Fjords Fly",
+      "start": "Oslo", "end": "Leknes or Svolvær",
+      "drive_days": 2,
+      "bases": ["Oslo (1)", "Bergen (2)", "Lofoten (4)", "Tromsø (2)"],
+      "flight_needed": true,
+      "highlights": "Bergen + Lofoten + Tromsø",
+      "disc_golf": "None in Lofoten (bring discs, beautiful landscape)",
+      "rafting": "Voss (from Bergen)",
+      "kayaking": "Lofoten, Nærøyfjord",
+      "breweries_distilleries": "Lofotpils, Aurora Spirit (Tromsø), Mack (Tromsø)",
+      "notes": "Requires internal flights. Best for those who accept higher cost for Arctic experience."
+    }
+  },
+
+  "travel_tips": {
+    "arrival_jet_lag_strategy": {
+      "day_0": "Depart US mid-morning. Sleep on plane. Arrive next morning Norway time.",
+      "day_1": "Land ~7-9am local. Stay awake until 8-9pm local. Light activities only (walking tours, parks, cafes). Melatonin at local bedtime.",
+      "day_2": "Will likely wake very early (~4-5am). Use this for early starts on activities. Afternoon nap if needed."
+    },
+    "budget_estimates": {
+      "daily_per_person": "$133-$200 (mid-range)",
+      "daily_family_of_4": "$500-$800 (excluding accommodation)",
+      "meal_costs": "Breakfast $10-20, Lunch $15-25, Dinner $30-60 per person",
+      "gas": "~$8-9/gallon",
+      "tolls_ferries": "AutoPASS system, ~$50-100 total for 10 days"
+    },
+    "booking_timeline": {
+      "flights": "4-6 months ahead (to US/from US)",
+      "rental_car": "As soon as flights booked (especially automatic transmission)",
+      "hotels": "3-4 months ahead (2-3 months for shoulder season)",
+      "flam_railway": "30-60 days ahead (Minipris fares)",
+      "loen_skylift": "Can book day before or same day",
+      "popular_hikes": "Parking permits (Trolltunga P2) book 2-3 months ahead",
+      "lofoten_accommodation": "4-6 months ahead for rorbu"
+    },
+    "family_tips": [
+      "Two rental cars recommended for two families (more flexibility)",
+      "Automatic transmission costs more but worth it for US drivers",
+      "AutoPASS toll tag included with most rentals - don't remove",
+      "Pack layers: t-shirt, fleece, rain jacket daily",
+      "Waterproof hiking boots essential",
+      "Buy snacks at Kiwi/Rema 1000 (budget supermarkets)",
+      "Hotel breakfasts are generous - take fruit/bread for lunch",
+      "Free tap water everywhere - bring reusable bottles",
+      "Museums: check for family tickets (usually 2 adults + kids)",
+      "Download offline Google Maps for fjord areas (limited cell service)"
+    ]
+  }
+}
