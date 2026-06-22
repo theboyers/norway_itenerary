@@ -88,6 +88,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--accent);text-decoration:none}
 
+.info-section{padding:3rem 1rem;max-width:1000px;margin:0 auto}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.info-card:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow)}
+.info-card h3{font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.info-card h3 i{color:var(--accent)}
+.info-card p,.info-card li{color:var(--muted);font-size:0.92rem;line-height:1.7}
+.info-card a{color:var(--accent);text-decoration:none;font-weight:500}
+.info-card a:hover{text-decoration:underline}
+.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
+.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
+.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
+.info-card .collapse-toggle.open i{transform:rotate(180deg)}
+.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.info-card .collapse-content.open{max-height:2000px}
+.checklist{list-style:none;margin-top:0.5rem}
+.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.checklist li:last-child{border-bottom:none}
+.checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
+.checklist li strong{color:var(--text)}
+.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
+@media print{ .collapse-toggle{display:none!important} .collapse-content{max-height:none!important} }
+
 @media(max-width:768px){
   .hero{min-height:40vh}
   .hero-stats{gap:1rem}
@@ -109,11 +132,10 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="hero-content">
     <div class="hero-badge"><i class="fas fa-map-marked-alt"></i> Norway 2027</div>
     <h1>Trip <span>Dashboard</span></h1>
-    <p class="subtitle">Two family road trip itineraries &middot; Oslo &rarr; Fjords &rarr; Home</p>
     <div class="hero-stats">
         <div class="hero-stat"><span class="num">6</span><span class="label">Itineraries</span></div>
       <div class="hero-stat"><span class="num">10</span><span class="label">Days Each</span></div>
-      <div class="hero-stat"><span class="num">May&ndash;Jun</span><span class="label">2027</span></div>
+      <div class="hero-stat"><span class="num">May - June</span><span class="label">2027</span></div>
     </div>
   </div>
 </section>
@@ -336,7 +358,7 @@ footer a{color:var(--accent);text-decoration:none}
     </a>
   </div>
 
-  <div class="section-header">
+  <div class="section-header" id="comparison">
     <h2><i class="fas fa-balance-scale"></i> Quick Comparison</h2>
     <p>Key metrics at a glance across all six routes.</p>
   </div>
@@ -476,6 +498,91 @@ footer a{color:var(--accent);text-decoration:none}
 
 </div>
 
+  <section class="info-section" id="info">
+    <div class="section-header">
+      <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
+      <p>Everything you need to plan the trip — shared across all routes.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3><i class="fas fa-users"></i> The Group</h3>
+        <p><strong>Two families traveling together</strong> — each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
+        <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
+        <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
+        Each day in the individual itineraries has a <em>Group Notes</em> section with specific suggestions.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-car"></i> Driving</h3>
+        <p>Rental car for the full trip (except Route 5 which uses train + flight + rental in Lofoten). Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Toll roads are common — AutoPASS covers all tolls automatically. Ferries are part of the normal road network. Norwegian Scenic Routes (Sognefjellet, Aurlandsfjellet, Valdresflye, Trollstigen) are highlights of many routes.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
+        <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F) in valleys/fjords; 5&ndash;15&deg;C (40&ndash;60&deg;F) in mountains and Lofoten. Sunset ~10:30 PM &ndash; midnight depending on latitude, sunrise ~4:00 AM. Lofoten has 24-hour daylight starting May 27. Rain gear essential &mdash; fjord weather changes fast. Glacier areas stay cooler. Pack layers: base layer, fleece, waterproof outer.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
+        <p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am — you have to survive a full Oslo day.</p>
+        <div class="collapse-content" id="jetlagContent">
+          <p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p>
+          <p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing — drink water, skip the coffee.</p>
+          <p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p>
+          <p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p>
+        </div>
+        <button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-utensils"></i> Food</h3>
+        <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots. Must-tries: <em>raspeballer</em> (potato dumplings), fresh salmon, <em>brunost</em> (brown cheese), <em>fårikål</em> (lamb stew), cloudberries with cream, fresh seafood at fish markets, local craft beer and aquavit. Each itinerary has specific restaurant recommendations.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-hiking"></i> Activities</h3>
+        <p>Most outdoor activities run late May to September. Book fjord cruises and glacier guides in advance. Key activity types: fjord cruises (electric catamaran or RIB), glacier hiking/walks, stillwater kayaking, via ferrata, stave churches, scenic mountain passes, brewery visits, and disc golf. Each itinerary lists specific bookable activities.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-language"></i> Language</h3>
+        <p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English. Learning a few words (takk = thank you, hei = hello, ha det = goodbye) is appreciated.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-mobile-alt"></i> Connectivity</h3>
+        <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
+        <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap &mdash; install on both iPhone and Android.</p>
+        <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
+        <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Lærdal tunnel, Jotunheimen valleys, Lofoten mountain passes) may have no signal regardless.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
+        <p><strong>"Cancel for Any Reason" (CFAR)</strong> — Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p>
+        <p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation to nearest adequate facility. Confirm your plan covers Norway (Schengen area). Some credit cards (Chase Sapphire Preferred/Reserve, Capital One Venture X) include travel medical — verify limits before buying separate.</p>
+        <p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing Via Ferrata, glacier hiking, or whitewater rafting (some policies exclude "hazardous activities").</p>
+        <p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
+        <p><strong>Budget varies by route</strong> &mdash; see the <a href="#comparison">Quick Comparison table above</a> for per-route budget ranges and the individual itinerary pages for detailed breakdowns by base.<br>
+        <strong>Typical ranges per family (9 nights):</strong> $800&ndash;3,800 depending on route and hotel tier (budget, mid, or premium).<br>
+        Costs include accommodation (one room per family per night). Activities, food, fuel, tolls, and flights are separate. Each family books and pays separately.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
+        <p><strong>Flights (PIT/MGW &rarr; various Norwegian airports):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking. From Pittsburgh (PIT), connecting through JFK/EWR or direct to a European hub (LHR, CDG, FRA) then connect. Aim for Economy Plus ~$800&ndash;1,200 round trip. Open-jaw itineraries (fly into one city, out of another) are common.</p>
+        <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a>. Mid-size SUV or station wagon recommended. Expect ~$400&ndash;800 total per car. Check for free cancellation.</p>
+        <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027). Popular properties (Fretheim, Alexandra, Lofoten rorbuer) sell out first &mdash; book even earlier for Lofoten (6+ months). Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation, rebook if rates drop.</p>
+        <p><strong>Tip:</strong> Set calendar reminders for each booking window. Check hotel websites directly for member rates.</p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
+        <ul class="checklist">
+          <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for your chosen route's airports</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book competitive hotels (rorbuer in Lofoten, Fretheim, Alexandra, Arctic Dome)</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, travel insurance with CFAR</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Feb&ndash;Mar 2027:</strong> Book activities (fjord cruises, glacier guides, Via Ferrata, rafting, Flåm Railway)</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Mar&ndash;Apr 2027:</strong> Book rental cars (both families)</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>May 2027:</strong> Install eSIMs, download offline maps, pack rain gear and layers, shift sleep schedule</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 <footer>
   <p>Norway 2027 &middot; May 28 &ndash; Jun 6 &middot; EDT &rarr; CEST (+6h) &middot; <i class="fas fa-heart" style="color:var(--accent)"></i></p>
 </footer>
@@ -493,6 +600,14 @@ toggle.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark');
   icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
 });
+
+function toggleCollapse(id, btn) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open');
+  const textNode = btn.childNodes[btn.childNodes.length - 1];
+  textNode.textContent = isOpen ? ' Hide details' : ' Show full playbook';
+}
 </script>
 </body>
 </html>

@@ -85,7 +85,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .day-card.open .toggle-icon{transform:rotate(180deg)}
 
 .day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
-.day-card.open .day-body{max-height:2000px;padding:0 2rem 1.5rem}
+.day-card.open .day-body{max-height:10000px;padding:0 2rem 1.5rem}
 
 .day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
 .day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
@@ -118,9 +118,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 
 /* Stop grid cards */
 .stop-grid{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.75rem}
-.stop-card{padding:0.75rem 1rem;background:var(--bg);border-radius:10px;border-left:3px solid var(--gold)}
-.stop-card-top{display:flex;gap:0.5rem;margin-bottom:0.3rem}
-.stop-card-name{font-weight:600;font-size:0.9rem;color:var(--text)}
+.stop-card{padding:0.75rem 1rem;background:var(--bg);border-radius:10px;border-left:3px solid var(--gold);min-width:0}
+.stop-card-top{display:flex;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap}
+.stop-card-name{font-weight:600;font-size:0.9rem;color:var(--text);word-break:break-word;overflow-wrap:break-word;line-height:1.3}
 .stop-desc{font-size:0.8rem;color:var(--muted);margin-top:0.25rem;line-height:1.5}
 .badge{display:inline-flex;align-items:center;gap:0.25rem;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;font-weight:600;white-space:nowrap}
 .badge-price{background:#d4a37333;color:#c77d3a}
@@ -166,13 +166,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .info-card a{color:var(--accent);text-decoration:none;font-weight:500}
 .info-card a:hover{text-decoration:underline}
 
-/* Collapsible info cards */
-.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
-.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
-.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
-.info-card .collapse-toggle.open i{transform:rotate(180deg)}
-.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.info-card .collapse-content.open{max-height:2000px}
 
 /* Planning checklist */
 .checklist{list-style:none;margin-top:0.5rem}
@@ -185,6 +178,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--accent);text-decoration:none}
 
+/* Per-day mini maps */
+.day-map { height: 220px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; z-index: 1; }
+@media(max-width:768px) { .day-map { height: 180px; } }
+@media print { .day-map { display: none; } }
+
 /* Leaflet overrides */
 .leaflet-popup-content-wrapper{border-radius:12px!important;font-family:inherit!important}
 .leaflet-popup-content{margin:12px 16px!important;font-size:0.9rem!important;line-height:1.5!important}
@@ -196,14 +194,13 @@ footer a{color:var(--accent);text-decoration:none}
 
 /* Print */
 @media print{
-  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip,.collapse-toggle{display:none!important}
+  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip{display:none!important}
   .hero{min-height:auto;padding:1rem}
   .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important}
   .day-header{cursor:default}
   .toggle-icon{display:none!important}
   #map{height:300px}
-  .collapse-content{max-height:none!important}
 }
 
 /* Sticky nav */
@@ -286,7 +283,6 @@ footer a{color:var(--accent);text-decoration:none}
   <span class="nav-divider"></span>
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
-  <a href="#info"><i class="fas fa-info-circle"></i> Info</a>
   <span class="nav-divider"></span>
   <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
   <a href="#day-2" class="day-jump" title="Day 2 — Flåm">2</a>
@@ -310,6 +306,7 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="map-legend">
     <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Overnight stop</span>
     <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Day trip / POI</span>
+    <span class="legend-item"><span style="width:10px;height:10px;display:inline-block;background:#fff;border:2px solid #2d6a4f;border-radius:1px"></span> Stop / attraction</span>
     <span class="legend-item"><span class="legend-line" style="background:#2d6a4f"></span> Drive route</span>
     <a href="https://maps.app.goo.gl/XRrUWct1mEGTHiKd7" target="_blank" rel="noopener" class="route-link">
       <i class="fas fa-route"></i> Open in Google Maps
@@ -327,102 +324,6 @@ footer a{color:var(--accent);text-decoration:none}
   <div id="timelineContainer"></div>
 </section>
 
-<!-- Info -->
-<section class="info-section" id="info">
-  <div class="section-header">
-    <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
-  </div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3><i class="fas fa-users"></i> The Group</h3>
-      <p><strong>Two families traveling together</strong> — each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
-      <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
-      <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
-      Each day has a <em>Group Notes</em> section with specific suggestions.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-car"></i> Driving</h3>
-      <p>Rental car for the full trip. Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
-      <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F). Sunset ~10:30 PM, sunrise ~4:00 AM &mdash; nearly 19 hours of daylight. Rain gear essential &mdash; fjord weather changes fast. Glacier areas stay cooler.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
-      <p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am — you have to survive a full Oslo day.</p>
-      <div class="collapse-content" id="jetlagContent">
-        <p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p>
-        <p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing — drink water, skip the coffee.</p>
-        <p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p>
-        <p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. The National Museum has The Scream and is a perfect indoor buffer — dim lighting won't hurt. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p>
-      </div>
-      <button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-utensils"></i> Food</h3>
-      <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots. Try <em>raspeballer</em>, fresh salmon, and <em>brunost</em>.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-hiking"></i> Activities</h3>
-      <p>Most outdoor activities run late May to September. Book fjord cruises and glacier guides in advance (especially Njord kayak). The Fl&aring;m Railway runs year-round.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-language"></i> Language</h3>
-      <p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-mobile-alt"></i> Connectivity</h3>
-      <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
-      <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap &mdash; install on both iPhone and Android.</p>
-      <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
-      <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Lærdal tunnel, Jotunheimen valleys) will have no signal regardless.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
-      <p><strong>"Cancel for Any Reason" (CFAR)</strong> — Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p>
-      <p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation to nearest adequate facility. Confirm your plan covers Norway (Schengen area). Some credit cards (Chase Sapphire Preferred/Reserve, Capital One Venture X) include travel medical — verify limits before buying separate.</p>
-      <p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing Via Ferrata or glacier hiking (some policies exclude "hazardous activities").</p>
-      <p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
-      <p><strong>Per family (9 nights):</strong><br>
-      <strong>Oslo (2 nights):</strong> $190–570 total ($95–285/night).<br>
-      <strong>Flåm (3 nights):</strong> $570–1,143 total ($190–381/night).<br>
-      <strong>Loen (3 nights):</strong> $771–1,485 total ($257–495/night).<br>
-      <strong>Arctic Dome (1 night):</strong> $333–476.<br>
-      <strong>Total per family:</strong> $1,864–3,674 depending on hotel tier.<br>
-      <strong>Fjord cruise &amp; activities:</strong> ~$150–300/person.<br>
-      Prices are per night for one room. Each family books separately.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
-      <p><strong>Flights (PIT/MGW &rarr; OSL):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed, avoid weekends. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking — set alerts for PIT &rarr; OSL and MGW &rarr; OSL. Morgantown (MGW) has limited regional flights — most routes connect through Pittsburgh or a major hub. From Pittsburgh (PIT), options include connecting through JFK/EWR, or direct to a European hub (LHR, CDG, FRA) then connect to OSL. Aim for Economy Plus or equivalent ~$800&ndash;1,200 round trip. SAS, Norwegian, or United via Newark are common choices. If connecting, avoid &lt;90min layovers and consider booking Pittsburgh&ndash;Oslo as a single itinerary rather than self-connecting.</p>
-      <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a> to compare (Sixt, Avis, Hertz at OSL). Mid-size SUV or station wagon recommended for luggage + 3 people. Book for 9 days. Check for free cancellation — rebook if price drops. Expect ~$400&ndash;800 total per car.</p>
-      <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027) for Flåm and Loen — these sell out first, especially Fretheim and Alexandra. Arctic Dome Sjusjøen books even earlier (glamping is niche — secure by Dec 2026). Oslo hotels are flexible until 1&ndash;2 months before. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation — rebook if rates drop. Check hotel websites directly for member rates.</p>
-      <p><strong>Tip:</strong> Set calendar reminders for each booking window. If you have travel credit cards with transferable points (Chase UR, Amex MR), book flights through transfer partners for better value than cash rates.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
-      <ul class="checklist">
-        <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for PIT &rarr; OSL and MGW &rarr; OSL</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book Arctic Dome Sjusjøen, Flåm hotels (Fretheim), Loen hotels (Alexandra)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, remaining Flåm/Loen hotels, travel insurance (CFAR)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Mar 2027:</strong> Book rental cars (both families), Njord Kayak, Via Ferrata, Sjoa rafting</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Apr 2027:</strong> Book Flåm Railway, Loen Skylift, fjord cruise, Oslo hotels</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>May 2027:</strong> Install eSIMs, download offline maps, pack rain gear, shift sleep schedule</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="info-section" id="references" style="margin-top:1rem">
-  <div class="section-header">
-    <h2><i class="fas fa-bookmark"></i> References</h2>
-  </div>
-  <div class="info-grid" id="referencesContainer"></div>
-</section>
 
 <footer>
   <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Built with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
@@ -463,7 +364,18 @@ const data = [
       dinner: 'Den Glade Gris — Norwegian pork-focused gastropub (try ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Himkok for a craft aquavit cocktail or Schouskjelleren for a nightcap'
     },
     lat: 59.9139, lng: 10.7522,
-    poi: []
+    poi: [
+      {name:'Aker Brygge', lat:59.9100, lng:10.7300, note:'Harbor promenade with shops and restaurants'},
+      {name:'National Museum', lat:59.9167, lng:10.7361, note:'Munch\'s The Scream and Norwegian art'},
+      {name:'Oslo Opera House', lat:59.9075, lng:10.7531, note:'Iconic sloping marble roof'},
+      {name:'Vigeland Sculpture Park', lat:59.9267, lng:10.7097, note:'200+ sculptures in Frogner Park'},
+      {name:'Karl Johans Gate', lat:59.9139, lng:10.7400, note:'Main boulevard to Royal Palace'},
+      {name:'Historical Museum', lat:59.9167, lng:10.7350, note:'Viking artifacts and medieval art'},
+      {name:'Ekebergparken', lat:59.8967, lng:10.7683, note:'Sculpture park with fjord views'},
+      {name:'Sørenga Sauna', lat:59.9000, lng:10.7550, note:'Floating sauna with fjord plunge'},
+      {name:'Grünerløkka', lat:59.9200, lng:10.7600, note:'Craft beer district'},
+      {name:'Mathallen Food Hall', lat:59.9217, lng:10.7567, note:'Indoor food market'}
+    ]
   },
   {
     day: 2, date: new Date(2027, 4, 29),
@@ -475,14 +387,14 @@ const data = [
       'Take Nedre Fretheim to your destination in Flåm (2 min, 1 km)'
     ],
     stops: [
-      {name:'Hønefossen Waterfall', price:'Free', time:'15-20 min', desc:'Powerful waterfall right in the center of Hønefoss town. Quick leg-stretch stop', cite:'https://www.visitnorway.com'},
-      {name:'Norefjell Scenic Viewpoint', price:'Free', time:'20-30 min', desc:'Mountain panorama overlooking Lake Krøderen. Marked viewpoint with parking', cite:'https://www.visitnorway.com'},
-      {name:'Borgund Stave Church', price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church in Norway, built 1150. Guided tours available. A must-see', cite:'https://www.stavechurch.com/en/borgund/'},
-      {name:'Midtødegården Cheese Farm', price:'Free to browse', time:'20-30 min', desc:'Family-run goat and cow dairy near Borgund. Try the local brunost and geitost', cite:'https://www.visitnorway.com'},
-      {name:'Rjukandefossen Waterfall', price:'Free', time:'15-30 min', desc:'Roadside waterfall along Rv52 — quick photo stop and leg stretch', cite:'https://www.visitnorway.com'},
-      {name:'Lærdalstunnelen', price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Illuminated with blue and yellow color zones every 6 km (mimicking sunrise)'},
-      {name:'Lærdal Town historic walk', price:'Free', time:'30-45 min', desc:'Best-preserved 18th century wooden houses in Norway. The old town is charming and quick to explore', cite:'https://www.visitnorway.com'},
-      {name:'Aurland Shoe Factory & Museum', price:'$10 (100 NOK)', time:'30-45 min', desc:'Historic shoe factory turned museum. See how traditional Norwegian shoes were made', cite:'https://www.visitflam.com'}
+      {name:'Hønefossen Waterfall', lat:60.1658, lng:10.3025, price:'Free', time:'15-20 min', desc:'Powerful waterfall right in the center of Hønefoss town. Quick leg-stretch stop', cite:'https://www.visitnorway.com'},
+      {name:'Norefjell Scenic Viewpoint', lat:60.1700, lng:9.5100, price:'Free', time:'20-30 min', desc:'Mountain panorama overlooking Lake Krøderen. Marked viewpoint with parking', cite:'https://www.visitnorway.com'},
+      {name:'Borgund Stave Church', lat:61.0467, lng:7.8125, price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church in Norway, built 1150. Guided tours available. A must-see', cite:'https://www.stavechurch.com/en/borgund/'},
+      {name:'Midtødegården Cheese Farm', lat:61.0500, lng:7.8000, price:'Free to browse', time:'20-30 min', desc:'Family-run goat and cow dairy near Borgund. Try the local brunost and geitost', cite:'https://www.visitnorway.com'},
+      {name:'Rjukandefossen Waterfall', lat:61.0333, lng:7.8000, price:'Free', time:'15-30 min', desc:'Roadside waterfall along Rv52 — quick photo stop and leg stretch', cite:'https://www.visitnorway.com'},
+      {name:'Lærdalstunnelen', lat:61.0000, lng:7.5500, price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Illuminated with blue and yellow color zones every 6 km (mimicking sunrise)'},
+      {name:'Lærdal Town historic walk', lat:61.1000, lng:7.4833, price:'Free', time:'30-45 min', desc:'Best-preserved 18th century wooden houses in Norway. The old town is charming and quick to explore', cite:'https://www.visitnorway.com'},
+      {name:'Aurland Shoe Factory & Museum', lat:60.9061, lng:7.1881, price:'$10 (100 NOK)', time:'30-45 min', desc:'Historic shoe factory turned museum. See how traditional Norwegian shoes were made', cite:'https://www.visitflam.com'}
     ],
     activities: [
       {icon:'fa-car', text:'Scenic drive Oslo → Flåm via Hallingdal', price:'Toll road', time:'4.5 hr', desc:'Rv7 through Hallingdal valley is Norway\'s most scenic alternative to E16. Mountain passes, lakes, waterfalls'},
@@ -496,7 +408,7 @@ const data = [
       {icon:'fa-museum', text:'Aurland Shoe Factory Museum', price:'$10', time:'30-45 min', desc:'Housed in a 1920s shoe factory. Audioguide tells the story of Norwegian footwear craftsmanship', cite:'https://www.visitflam.com'},
       {icon:'fa-ship', text:'Aurland Fjord evening walk', price:'Free', time:'30-45 min', desc:'Short walk from Flåm to Aurland along the fjord. Peaceful evening stroll after the drive'}
     ],
-    groupNotes: 'Drive in separate cars. Rv7 through Hallingdal valley is more scenic than the direct E16. Borgund Stave Church, Rjukandefossen, and Lærdalstunnelen are essential stops. Lærdal town is worth a brief detour. Dinner at Ægir in Flåm. Check into hotel, then evening fjord walk.',
+    groupNotes: 'Rv7 through Hallingdal valley is more scenic than the direct E16. Borgund Stave Church, Rjukandefossen, and Lærdalstunnelen are essential stops. Lærdal town is worth a brief detour. Dinner at Ægir in Flåm. Check into hotel, then evening fjord walk.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$190/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms good for families', cons:'No breakfast or restaurant, 15-min walk from Flåm center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$210/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast included', cons:'No pool or spa, limited parking, busy during cruise ship arrivals', cite:'https://www.flamsbrygga.no'},
@@ -546,7 +458,11 @@ const data = [
     lat: 60.8622, lng: 7.1141,
     poi: [
       {name:'Stegastein', lat:60.9028, lng:7.1736, note:'Viewpoint above Aurlandsfjord'},
-      {name:'Njord Kayak', lat:60.8600, lng:7.1150, note:'Kayak launch point'}
+      {name:'Njord Kayak', lat:60.8600, lng:7.1150, note:'Kayak launch point'},
+      {name:'Myrdal Station (Flåm Railway)', lat:60.7333, lng:7.1167, note:'Top of the Flåm Railway'},
+      {name:'Gudvangen (Nærøyfjord)', lat:60.8833, lng:6.8333, note:'UNESCO fjord cruise terminal'},
+      {name:'Flåm Zipline', lat:60.8500, lng:7.1167, note:'Northern Europe\'s longest zipline'},
+      {name:'Flåmsdalen Valley', lat:60.8500, lng:7.1200, note:'Hiking trail along the river'}
     ]
   },
   {
@@ -581,7 +497,11 @@ const data = [
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
-      {name:'Undredal', lat:60.9500, lng:7.1000, note:'Charming fjord village, famous for goat cheese'}
+      {name:'Undredal', lat:60.9500, lng:7.1000, note:'Charming fjord village, famous for goat cheese'},
+      {name:'Viking Valley Njardarheimr', lat:60.8833, lng:6.8333, note:'Living Viking village in Gudvangen'},
+      {name:'Aurlandsdalen Trail', lat:60.9000, lng:7.1833, note:'One of Norway\'s most beautiful valleys'},
+      {name:'Kaupanger Disc Golf', lat:61.1833, lng:7.2333, note:'18-hole course by Sognefjord'},
+      {name:'Aurlandsfjellet Snow Road', lat:60.9333, lng:7.3833, note:'47 km mountain pass scenic drive'}
     ]
   },
   {
@@ -597,13 +517,13 @@ const data = [
       'Drive on Fv60 to Loen (46 min, 46.4 km)'
     ],
     stops: [
-      {name:'Mannheller-Fodnes Ferry', price:'~$13 (130 NOK) car+driver', time:'15 min crossing', desc:'RV5 ferry across Sognefjord. Runs 24/7, frequent departures. Free with AutoPASS', cite:'https://www.vegvesen.no/en/ferry'},
-      {name:'Urnes Stave Church (UNESCO)', price:'$12 (120 NOK)', time:'45-60 min', desc:'Oldest stave church in Norway (1130). UNESCO World Heritage site. Short ferry from Solvorn, then 2 km walk uphill', cite:'https://www.stavechurch.com/en/urnes/'},
-      {name:'Bøyabreen Glacier', price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking to viewpoint. Parking on Rv5', cite:'https://www.visitnorway.com'},
-      {name:'Norwegian Glacier Museum', price:'$19 (180 NOK)', time:'1-1.5 hr', desc:'Interactive exhibits, panorama film, ice experiments, climate change exhibit. In Fjærland', cite:'https://www.norskbre.museum.no'},
-      {name:'Feigumfossen Waterfall', price:'Free', time:'15-20 min', desc:'218m waterfall — one of Norway\'s tallest. Visible from Rv5, use the marked pull-off', cite:'https://www.visitnorway.com'},
-      {name:'Lovatnet Lake viewpoint', price:'Free', time:'15-20 min', desc:'Turquoise glacier lake just south of Loen. The color is surreal. Pull over for photos', cite:'https://www.visitnorway.com'},
-      {name:'Loen Skylift', price:'$67 (650 NOK) round trip', time:'1-2 hr', desc:'Cable car 1,011m to Mt. Hoven top. Restaurant, panoramic fjord views. Do it at sunset', cite:'https://www.loenskylift.com'}
+      {name:'Mannheller-Fodnes Ferry', lat:61.1833, lng:7.2833, price:'~$13 (130 NOK) car+driver', time:'15 min crossing', desc:'RV5 ferry across Sognefjord. Runs 24/7, frequent departures. Free with AutoPASS', cite:'https://www.vegvesen.no/en/ferry'},
+      {name:'Urnes Stave Church (UNESCO)', lat:61.3000, lng:7.0333, price:'$12 (120 NOK)', time:'45-60 min', desc:'Oldest stave church in Norway (1130). UNESCO World Heritage site. Short ferry from Solvorn, then 2 km walk uphill', cite:'https://www.stavechurch.com/en/urnes/'},
+      {name:'Bøyabreen Glacier', lat:61.4917, lng:6.7650, price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking to viewpoint. Parking on Rv5', cite:'https://www.visitnorway.com'},
+      {name:'Norwegian Glacier Museum', lat:61.4067, lng:6.7550, price:'$19 (180 NOK)', time:'1-1.5 hr', desc:'Interactive exhibits, panorama film, ice experiments, climate change exhibit. In Fjærland', cite:'https://www.norskbre.museum.no'},
+      {name:'Feigumfossen Waterfall', lat:61.3500, lng:7.0000, price:'Free', time:'15-20 min', desc:'218m waterfall — one of Norway\'s tallest. Visible from Rv5, use the marked pull-off', cite:'https://www.visitnorway.com'},
+      {name:'Lovatnet Lake viewpoint', lat:61.8667, lng:6.8667, price:'Free', time:'15-20 min', desc:'Turquoise glacier lake just south of Loen. The color is surreal. Pull over for photos', cite:'https://www.visitnorway.com'},
+      {name:'Loen Skylift', lat:61.8767, lng:6.8592, price:'$67 (650 NOK) round trip', time:'1-2 hr', desc:'Cable car 1,011m to Mt. Hoven top. Restaurant, panoramic fjord views. Do it at sunset', cite:'https://www.loenskylift.com'}
     ],
     activities: [
       {icon:'fa-ship', text:'Mannheller-Fodnes ferry crossing', price:'~$13 car+driver', time:'15 min', desc:'Ferry across the Sognefjord — stay in the car. Part of the regular road network', cite:'https://www.vegvesen.no/en/ferry'},
@@ -665,7 +585,11 @@ const data = [
     lat: 61.8786, lng: 6.8700,
     poi: [
       {name:'Briksdal Glacier', lat:61.6753, lng:6.8583, note:'Glacier arm of Jostedalsbreen'},
-      {name:'Lake Lovatnet', lat:61.8800, lng:6.8700, note:'Kayaking on glacial lake'}
+      {name:'Lake Lovatnet', lat:61.8800, lng:6.8700, note:'Kayaking on glacial lake'},
+      {name:'Kjenndalen Glacier', lat:61.8833, lng:7.1333, note:'Quiet glacier walk alternative'},
+      {name:'Olden Kayak Launch', lat:61.8333, lng:6.8000, note:'Stillwater kayak on Nordfjord'},
+      {name:'Stryn', lat:61.9167, lng:6.7333, note:'Cozy traditional Norwegian restaurant'},
+      {name:'Bødalen Via Ferrata', lat:61.8667, lng:6.9000, note:'Beginner via ferrata option'}
     ]
   },
   {
@@ -674,10 +598,10 @@ const data = [
     drive: 'Loen → Jotunheimen area',
     driveTime: '~3 h',
     stops: [
-      {name:'Sognefjellet Scenic Route (1434m pass)', price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe. Spectacular views over Jotunheimen, glaciers, turquoise lakes. The drive itself is the attraction', cite:'https://www.visitnorway.com'},
-      {name:'Lom Stave Church', price:'$12 (120 NOK)', time:'20-30 min', desc:'Built c.1158. One of largest stave churches. Rune inscriptions inside', cite:'https://www.lomstavechurch.no'},
-      {name:'Utladalen Valley hike', price:'Free', time:'2-4 hr', desc:'Marked trails near Øvre Årdal in Jotunheimen. Dramatic valley between Hurrungane peaks', cite:'https://www.visitnorway.com'},
-      {name:'Sjoa River rafting', price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'11 km on Sjoa River. Guide, wetsuit, gear included. Full day $155', cite:'https://www.sjoarafting.no'}
+      {name:'Sognefjellet Scenic Route (1434m pass)', lat:61.5667, lng:8.2833, price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe. Spectacular views over Jotunheimen, glaciers, turquoise lakes. The drive itself is the attraction', cite:'https://www.visitnorway.com'},
+      {name:'Lom Stave Church', lat:61.8378, lng:8.5683, price:'$12 (120 NOK)', time:'20-30 min', desc:'Built c.1158. One of largest stave churches. Rune inscriptions inside', cite:'https://www.lomstavechurch.no'},
+      {name:'Utladalen Valley hike', lat:61.3833, lng:7.9333, price:'Free', time:'2-4 hr', desc:'Marked trails near Øvre Årdal in Jotunheimen. Dramatic valley between Hurrungane peaks', cite:'https://www.visitnorway.com'},
+      {name:'Sjoa River rafting', lat:61.6833, lng:9.5333, price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'11 km on Sjoa River. Guide, wetsuit, gear included. Full day $155', cite:'https://www.sjoarafting.no'}
     ],
     activities: [
       {icon:'fa-road', text:'Sognefjellet Scenic Route (highest pass)', price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe at 1,434m. Drive through Jotunheimen with glaciers, turquoise lakes, and lunar landscapes. Norway\'s most scenic drive', cite:'https://www.visitnorway.com'},
@@ -721,11 +645,11 @@ const data = [
       'Take Hovearmen, Gudbrandsdalsvegen and Fv213 to Jernbanegata (11 min, 6 km)'
     ],
     stops: [
-      {name:'Sjoa River rafting (if not Day 7)', price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'Second-chance rafting. Morning session before heading east', cite:'https://www.sjoarafting.no'},
-      {name:'Valdresflye Scenic Route (1389m)', price:'Free', time:'1-2 hr', desc:'Alternative mountain route over a plateau at 1,389m. Views toward Jotunheimen. Shorter than going via Otta', cite:'https://www.visitnorway.com'},
-      {name:'Slogen Mountain viewpoint', price:'Free', time:'20-30 min', desc:'Spectacular viewpoint over the fjord and surrounding peaks. Photo stop on Rv15', cite:'https://www.visitnorway.com'},
-      {name:'Ringebu Stave Church', price:'$10 (100 NOK)', time:'20-30 min', desc:'Built c.1220 in Gudbrandsdalen valley. Medieval interior with original furnishings', cite:'https://www.ringebustavkirke.no'},
-      {name:'Arctic Dome Sjusjøen', price:'$333-476/night', time:'Overnight', desc:'Glamping geodesic dome. Self-catering, no restaurant. Book ahead', cite:'https://www.arcticdome.no'}
+      {name:'Sjoa River rafting (if not Day 7)', lat:61.6833, lng:9.5333, price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'Second-chance rafting. Morning session before heading east', cite:'https://www.sjoarafting.no'},
+      {name:'Valdresflye Scenic Route (1389m)', lat:61.2833, lng:9.1167, price:'Free', time:'1-2 hr', desc:'Alternative mountain route over a plateau at 1,389m. Views toward Jotunheimen. Shorter than going via Otta', cite:'https://www.visitnorway.com'},
+      {name:'Slogen Mountain viewpoint', lat:62.2167, lng:6.6667, price:'Free', time:'20-30 min', desc:'Spectacular viewpoint over the fjord and surrounding peaks. Photo stop on Rv15', cite:'https://www.visitnorway.com'},
+      {name:'Ringebu Stave Church', lat:61.5333, lng:10.1333, price:'$10 (100 NOK)', time:'20-30 min', desc:'Built c.1220 in Gudbrandsdalen valley. Medieval interior with original furnishings', cite:'https://www.ringebustavkirke.no'},
+      {name:'Arctic Dome Sjusjøen', lat:61.1667, lng:10.6833, price:'$333-476/night', time:'Overnight', desc:'Glamping geodesic dome. Self-catering, no restaurant. Book ahead', cite:'https://www.arcticdome.no'}
     ],
     activities: [
       {icon:'fa-car', text:'Scenic drive Loen → Lillehammer', price:'Toll road', time:'4.5 hr', desc:'Take Rv15 over the mountains past Slogen viewpoint, then E6 through the Gudbrandsdalen valley. One of Norway\'s great cross-country drives'},
@@ -772,9 +696,9 @@ const data = [
       'Turn right onto Dronning Mauds gate (27 sec, 150 m)'
     ],
     stops: [
-      {name:'Eidsvoll Manor (Constitution of Norway)', price:'$12 (120 NOK)', time:'45-60 min', desc:'Where Norway\'s constitution was signed in 1814. Beautiful neoclassical manor house. Quick detour off E6', cite:'https://www.eidsvoll1814.no'},
-      {name:'Mjøsa Lake viewpoint & Minneparken', price:'Free', time:'15-20 min', desc:'Norway\'s largest lake. Quick scenic stop at the E6 viewpoint near Hamar', cite:'https://www.visitnorway.com'},
-      {name:'Holmenkollen Ski Jump & Museum', price:'$18 (180 NOK)', time:'1-1.5 hr', desc:'Iconic Oslo ski jump. Museum, tower view, zipline option. 20 min from city center', cite:'https://www.holmenkollen.com'}
+      {name:'Eidsvoll Manor (Constitution of Norway)', lat:60.3167, lng:11.2500, price:'$12 (120 NOK)', time:'45-60 min', desc:'Where Norway\'s constitution was signed in 1814. Beautiful neoclassical manor house. Quick detour off E6', cite:'https://www.eidsvoll1814.no'},
+      {name:'Mjøsa Lake viewpoint & Minneparken', lat:60.8000, lng:11.0667, price:'Free', time:'15-20 min', desc:'Norway\'s largest lake. Quick scenic stop at the E6 viewpoint near Hamar', cite:'https://www.visitnorway.com'},
+      {name:'Holmenkollen Ski Jump & Museum', lat:59.9633, lng:10.6678, price:'$18 (180 NOK)', time:'1-1.5 hr', desc:'Iconic Oslo ski jump. Museum, tower view, zipline option. 20 min from city center', cite:'https://www.holmenkollen.com'}
     ],
     activities: [
       {icon:'fa-car', text:'Drive Lillehammer → Oslo via E6', price:'Toll road', time:'2 hr', desc:'E6 south along Lake Mjøsa, past Hamar and Eidsvoll. Quick highway drive with separate cars'},
@@ -787,7 +711,7 @@ const data = [
       {icon:'fa-beer', text:'Akershus Bryggeri tasting', price:'$8-12/pint', time:'1-2 hr', desc:'Local craft brewery near the fortress. Try their seasonal beers and enjoy the harbor views', cite:'https://www.akershusbryggeri.no'},
       {icon:'fa-utensils', text:'Farewell dinner', price:'$30-60', time:'1.5-2 hr', desc:'Choose your final flavor of Norway'}
     ],
-    groupNotes: 'Drive Lillehammer → Oslo in separate cars. Eidsvoll 1814 Manor is a worthwhile en-route stop. Arrive Oslo by early afternoon. Last chance shopping and farewell dinner.',
+    groupNotes: 'Eidsvoll 1814 Manor is a worthwhile en-route stop. Arrive Oslo by early afternoon. Last chance shopping and farewell dinner.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist, free Wi-Fi', cons:'No breakfast, no housekeeping by default, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern design, breakfast bar, near Opera House', cons:'Standard chain feel, can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
@@ -803,7 +727,9 @@ const data = [
     poi: [
       {name:'Eidsvoll Manor', lat:60.3167, lng:11.2500, note:'Constitution of Norway 1814'},
       {name:'Holmenkollen', lat:59.9633, lng:10.6678, note:'Ski jump & museum'},
-      {name:'Fram Museum', lat:59.9033, lng:10.6989, note:'Polar ship museum on Bygdøy'}
+      {name:'Fram Museum', lat:59.9033, lng:10.6989, note:'Polar ship museum on Bygdøy'},
+      {name:'Akershus Fortress', lat:59.9000, lng:10.7333, note:'Medieval castle from the 1290s'},
+      {name:'Akershus Bryggeri', lat:59.9083, lng:10.7400, note:'Craft brewery near the fortress'}
     ]
   },
   {
@@ -828,7 +754,9 @@ const data = [
       dinner: 'On the plane or at home'
     },
     lat: 59.9139, lng: 10.7522,
-    poi: []
+    poi: [
+      {name:'Oslo Airport (OSL)', lat:60.1939, lng:11.1004, note:'Departure point back to the US'}
+    ]
   }
 ];
 
@@ -933,6 +861,7 @@ data.forEach((d, idx) => {
       <i class="fas fa-chevron-down toggle-icon"></i>
     </div>
     <div class="day-body">
+      <div id="day-map-${d.day}" class="day-map"></div>
       ${groupNotesHtml}
       <h3><i class="fas fa-mountain"></i> Activities</h3>
       <ul class="activity-list">${activitiesHtml}</ul>
@@ -946,6 +875,7 @@ data.forEach((d, idx) => {
 
   card.querySelector('.day-header').addEventListener('click', () => {
     card.classList.toggle('open');
+    if (card.classList.contains('open')) initPerDayMap(d.day);
   });
 });
 
@@ -978,6 +908,7 @@ data.forEach((d, idx) => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
+    initPerDayMap(d.day);
     }
   });
   glanceStrip.appendChild(item);
@@ -1008,6 +939,8 @@ dayJumps.forEach(jump => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
     }
+    const dayNum = parseInt(href.replace('#day-', ''));
+    initPerDayMap(dayNum);
   });
 });
 
@@ -1079,6 +1012,19 @@ data.forEach((d, idx) => {
         .bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
     });
   }
+  // Stop markers on overview map
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        const stopIcon = L.divIcon({
+          html: `<div style="width:10px;height:10px;background:#fff;border:2px solid ${color};border-radius:1px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [10, 10], iconAnchor: [5, 5]
+        });
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(map)
+          .bindPopup(`<strong>${s.name}</strong>`);
+      }
+    });
+  }
 });
 
 // ---------- Theme ----------
@@ -1100,20 +1046,93 @@ toggle.addEventListener('click', () => {
 const allCoords = [...routePoints];
 data.forEach(d => {
   if (d.poi) d.poi.forEach(p => allCoords.push([p.lat, p.lng]));
+  if (d.stops) d.stops.forEach(s => { if (s.lat && s.lng) allCoords.push([s.lat, s.lng]); });
 });
 map.fitBounds(allCoords, { padding: [50, 50] });
 
+// ---------- Per-day maps ----------
+function initPerDayMap(dayNum) {
+  const mapId = `day-map-${dayNum}`;
+  const el = document.getElementById(mapId);
+  if (!el) return;
+  if (el._leaflet_map) {
+    setTimeout(() => el._leaflet_map.invalidateSize(), 150);
+    return;
+  }
+  const d = data[dayNum - 1];
+  if (!d) return;
+  const color = colors[dayNum - 1];
+  const dm = L.map(mapId, { zoomControl: false, scrollWheelZoom: false, dragging: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>', maxZoom: 18
+  }).addTo(dm);
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700">${d.day}</div>`,
+    className: '', iconSize: [22, 22], iconAnchor: [11, 11]
+  });
+  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
+    .bindPopup(`<strong>Day ${d.day} &mdash; ${d.base}</strong><br>${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`);
+  const coords = [[d.lat, d.lng]];
+  // Stop markers (white square with colored border)
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        coords.push([s.lat, s.lng]);
+        const stopIcon = L.divIcon({
+          html: `<div style="width:12px;height:12px;background:#fff;border:2.5px solid ${color};border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [12, 12], iconAnchor: [6, 6]
+        });
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm)
+          .bindPopup(`<strong>${s.name}</strong><br>${s.desc || ''}`);
+      }
+    });
+  }
+  // POI markers (solid colored circles)
+  if (d.poi) {
+    d.poi.forEach(p => {
+      coords.push([p.lat, p.lng]);
+      L.circleMarker([p.lat, p.lng], { radius: 6, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.8 })
+        .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+  // Driving route polyline — fetch real road path from OSRM
+  if (d.drive) {
+    const waypoints = [];
+    // Previous day base as start point
+    if (dayNum > 1) {
+      const prev = data[dayNum - 2];
+      waypoints.push({ lat: prev.lat, lng: prev.lng });
+    }
+    // Stops along the way (in order)
+    if (d.stops) {
+      d.stops.forEach(s => { if (s.lat && s.lng) waypoints.push({ lat: s.lat, lng: s.lng }); });
+    }
+    // Current day base as end point
+    waypoints.push({ lat: d.lat, lng: d.lng });
+    if (waypoints.length > 1) {
+      const coordStr = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+      fetch(url).then(r => r.json()).then(res => {
+        if (res.code === 'Ok' && res.routes && res.routes[0]) {
+          const coordsGeo = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+          L.polyline(coordsGeo, {
+            color: '#2d6a4f', weight: 4, opacity: 0.7
+          }).addTo(dm);
+        }
+      }).catch(() => {});
+    }
+  }
+
+  if (coords.length > 0) dm.fitBounds(coords, { padding: [40, 40], maxZoom: 11 });
+  el._leaflet_map = dm;
+  setTimeout(() => dm.invalidateSize(), 200);
+}
+
 // ---------- Open first day by default ----------
 document.querySelector('.day-card:first-child').classList.add('open');
+initPerDayMap(1);
 
-// ---------- Collapsible info cards ----------
-function toggleCollapse(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.toggle('open');
-  btn.classList.toggle('open');
-  const textNode = btn.childNodes[btn.childNodes.length - 1];
-  textNode.textContent = isOpen ? ' Hide details' : ' Show full playbook';
-}
+
 
 // ---------- Export JSON ----------
 function exportJSON() {

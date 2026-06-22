@@ -136,12 +136,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .info-card p{color:var(--muted);font-size:0.92rem;line-height:1.7}
 .info-card a{color:var(--accent);text-decoration:none;font-weight:500}
 .info-card a:hover{text-decoration:underline}
-.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
-.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
-.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
-.info-card .collapse-toggle.open i{transform:rotate(180deg)}
-.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.info-card .collapse-content.open{max-height:2000px}
+
 .checklist{list-style:none;margin-top:0.5rem}
 .checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
 .checklist li:last-child{border-bottom:none}
@@ -155,14 +150,13 @@ footer a{color:var(--accent);text-decoration:none}
 .leaflet-control-zoom a{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
 .day-body,.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
 @media print{
-  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip,.collapse-toggle{display:none!important}
+  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip{display:none!important}
   .hero{min-height:auto;padding:1rem}
   .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important}
   .day-header{cursor:default}
   .toggle-icon{display:none!important}
   #map{height:300px}
-  .collapse-content{max-height:none!important}
 }
 .sticky-nav{position:sticky;top:0;z-index:999;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:0.5rem 1rem;display:flex;align-items:center;gap:0.75rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .sticky-nav::-webkit-scrollbar{display:none}
@@ -239,7 +233,6 @@ footer a{color:var(--accent);text-decoration:none}
   <span class="nav-divider"></span>
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
-  <a href="#info"><i class="fas fa-info-circle"></i> Info</a>
   <span class="nav-divider"></span>
   <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
   <a href="#day-2" class="day-jump" title="Day 2 — Evje">2</a>
@@ -279,108 +272,11 @@ footer a{color:var(--accent);text-decoration:none}
   <div id="timelineContainer"></div>
 </section>
 
-<!-- Info -->
-<section class="info-section" id="info">
-  <div class="section-header">
-    <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
-  </div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3><i class="fas fa-users"></i> The Group</h3>
-      <p><strong>Two families traveling together</strong> — each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
-      <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
-      <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
-      Each day has a <em>Group Notes</em> section with specific suggestions.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-car"></i> Driving</h3>
-      <p>Rental car for the full trip. Most drives are 2&ndash;5 hours through scenic mountain, fjord, and coastal roads. Toll roads are common &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Includes several ferry crossings as part of the normal road network.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
-      <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F). Sunset ~10:30 PM, sunrise ~4:00 AM &mdash; nearly 19 hours of daylight. Rain gear essential &mdash; fjord weather changes fast. The west coast (Bergen, Stavanger) sees more rain than Oslo.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
-      <p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am — you have to survive a full Oslo day.</p>
-      <div class="collapse-content" id="jetlagContent">
-        <p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p>
-        <p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing — drink water, skip the coffee.</p>
-        <p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p>
-        <p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p>
-      </div>
-      <button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-utensils"></i> Food</h3>
-      <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots. Bergen has Norway's best seafood — don't miss the Fish Market. Try <em>raspeballer</em>, fresh salmon, and <em>brunost</em>. Hardanger is famous for its cider and fruit orchards.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-hiking"></i> Activities</h3>
-      <p>Most outdoor activities run late May to September. Book Pulpit Rock ferry/bus, Voss rafting, and Folgefonna glacier guide in advance. Lervig Brewery tours book up — reserve ahead.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-language"></i> Language</h3>
-      <p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-mobile-alt"></i> Connectivity</h3>
-      <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
-      <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap &mdash; install on both iPhone and Android.</p>
-      <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
-      <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
-      <p><strong>"Cancel for Any Reason" (CFAR)</strong> — Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p>
-      <p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation. Confirm your plan covers Norway (Schengen area). Some credit cards include travel medical — verify limits before buying separate.</p>
-      <p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing Pulpit Rock hike, Voss rafting, or Folgefonna glacier hiking (some policies exclude "hazardous activities").</p>
-      <p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
-      <p><strong>Per family (9 nights):</strong><br>
-      <strong>Oslo (1 night):</strong> $95–285/night.<br>
-      <strong>Evje (1 night):</strong> $90–250/night.<br>
-      <strong>Stavanger (2 nights):</strong> $100–300/night.<br>
-      <strong>Bergen (2 nights):</strong> $120–350/night.<br>
-      <strong>Voss (1 night):</strong> $130–280/night.<br>
-      <strong>Hardanger (2 nights):</strong> $150–350/night.<br>
-      <strong>Total per family:</strong> ~$2,000–3,800 depending on hotel tier.<br>
-      <strong>Activities &amp; ferry crossings:</strong> ~$200–400/person.<br>
-      Prices are per night for one room. Each family books separately.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
-      <p><strong>Flights (PIT/MGW &rarr; OSL, return from BGO):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking — set alerts for PIT &rarr; OSL and MGW &rarr; OSL, plus separate alerts for BGO &rarr; PIT and BGO &rarr; MGW. Multi-city booking (Oslo in, Bergen out) typically costs the same as round-trip. Aim for Economy Plus or equivalent ~$800&ndash;1,200.</p>
-      <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a> to compare (Sixt, Avis, Hertz at OSL). Mid-size SUV or station wagon recommended. Book for 10 days (pick up OSL, drop at BGO). Expect ~$500&ndash;900 total per car for one-way rental.</p>
-      <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027). Bergen and Stavanger hotels sell out during festival season. Hardanger accommodation is limited — book early. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation.</p>
-      <p><strong>Activities:</strong> Pulpit Rock ferry/bus combo, Voss rafting, Folgefonna glacier guide, and Lervig brewery tour — book 2&ndash;4 weeks ahead.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
-      <ul class="checklist">
-        <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for PIT &rarr; OSL, BGO &rarr; PIT/MGW</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book Bergen and Stavanger hotels, Hardanger accommodation</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, travel insurance (CFAR)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Mar 2027:</strong> Book rental cars (both families, OSL pickup, BGO drop), Folgefonna glacier guide</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Apr 2027:</strong> Book Pulpit Rock ferry/bus, Lervig Brewery tour, Oslo hotel</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>May 2027:</strong> Install eSIMs, download offline maps, pack rain gear, shift sleep schedule</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="info-section" id="references" style="margin-top:1rem">
-  <div class="section-header">
-    <h2><i class="fas fa-bookmark"></i> References</h2>
-  </div>
-  <div class="info-grid" id="referencesContainer"></div>
-</section>
 
 <footer>
   <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Built with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
 </footer>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const data = [
@@ -878,13 +774,7 @@ map.fitBounds(allCoords, { padding: [50,50] });
 // ---------- Open first day ----------
 document.querySelector('.day-card:first-child').classList.add('open');
 
-// ---------- Collapsible ----------
-function toggleCollapse(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.toggle('open');
-  btn.classList.toggle('open');
-  btn.childNodes[btn.childNodes.length - 1].textContent = isOpen ? ' Hide details' : ' Show full playbook';
-}
+
 
 // ---------- Export JSON ----------
 function exportJSON() {

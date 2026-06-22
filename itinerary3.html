@@ -166,13 +166,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .info-card a{color:var(--accent);text-decoration:none;font-weight:500}
 .info-card a:hover{text-decoration:underline}
 
-/* Collapsible info cards */
-.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
-.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
-.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
-.info-card .collapse-toggle.open i{transform:rotate(180deg)}
-.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.info-card .collapse-content.open{max-height:2000px}
 
 /* Planning checklist */
 .checklist{list-style:none;margin-top:0.5rem}
@@ -196,14 +189,13 @@ footer a{color:var(--accent);text-decoration:none}
 
 /* Print */
 @media print{
-  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip,.collapse-toggle{display:none!important}
+  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip{display:none!important}
   .hero{min-height:auto;padding:1rem}
   .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important}
   .day-header{cursor:default}
   .toggle-icon{display:none!important}
   #map{height:300px}
-  .collapse-content{max-height:none!important}
 }
 
 /* Sticky nav */
@@ -286,7 +278,6 @@ footer a{color:var(--accent);text-decoration:none}
   <span class="nav-divider"></span>
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
-  <a href="#info"><i class="fas fa-info-circle"></i> Info</a>
   <span class="nav-divider"></span>
   <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
   <a href="#day-2" class="day-jump" title="Day 2 — Lom">2</a>
@@ -327,111 +318,6 @@ footer a{color:var(--accent);text-decoration:none}
   <div id="timelineContainer"></div>
 </section>
 
-<!-- Info -->
-<section class="info-section" id="info">
-  <div class="section-header">
-    <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
-  </div>
-  <div class="info-grid">
-    <div class="info-card">
-      <h3><i class="fas fa-users"></i> The Group</h3>
-      <p><strong>Two families traveling together</strong> — each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
-      <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
-      <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
-      Each day has a <em>Group Notes</em> section with specific suggestions.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-car"></i> Driving</h3>
-      <p>Rental car for the full trip. Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network.</p>
-      <p style="margin-top:0.5rem"><strong>Trollstigen seasonal status:</strong> The Trollstigen mountain pass (Day 5) is typically open mid-May to early June. In late May it may still be closed due to snow — check <a href="https://www.vegvesen.no/en/traffic" target="_blank" rel="noopener">Statens Vegvesen</a> before driving. If closed, the E136 via &Aring;ndalsnes alternative adds ~30 minutes and is still very scenic.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
-      <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F). Sunset ~10:30 PM, sunrise ~4:00 AM &mdash; nearly 19 hours of daylight. Rain gear essential &mdash; fjord weather changes fast. Geiranger and &Aring;lesund are rain-prone coastal areas (similar to Bergen). Mountain areas (Lom, Trollstigen) can be 5&ndash;10&deg;C cooler with possible snow at higher elevations. Pack layers for coastal-to-mountain transitions.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
-      <p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am — you have to survive a full Oslo day.</p>
-      <div class="collapse-content" id="jetlagContent">
-        <p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p>
-        <p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing — drink water, skip the coffee.</p>
-        <p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p>
-        <p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. The National Museum has The Scream and is a perfect indoor buffer — dim lighting won't hurt. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p>
-      </div>
-      <button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-utensils"></i> Food</h3>
-      <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots.</p>
-      <p style="margin-top:0.5rem">Regional specialties on this route: <strong>Bacalao</strong> (salt cod stew) in &Aring;lesund — the city's signature dish. <strong>Reindeer stew</strong> (finnebiff) in Trondheim. <strong>Valldal strawberry cake</strong> in late May/early June — the Valldal valley on Day 5 is famous for strawberries. <strong>Fossheim Bakeri</strong> in Lom — one of Norway's best bakeries, world-class kanelboller (cinnamon rolls). Try <em>raspeballer</em>, fresh salmon, and <em>brunost</em> throughout.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-hiking"></i> Activities</h3>
-      <p><strong>Trollstigen</strong> — the legendary mountain pass with 11 hairpin turns opens mid-May to early June. Check seasonal status before booking &Aring;lesund hotels (Day 5).</p>
-      <p style="margin-top:0.5rem"><strong>Geirangerfjord UNESCO cruise</strong> — a must-do. Book in advance for the 1.5&ndash;2 hour cruise past the Seven Sisters waterfall.</p>
-      <p style="margin-top:0.5rem"><strong>Atlantic Ocean Road</strong> (Atlanterhavsvegen) — one of the world's most scenic drives. 8.3 km across islands with dramatic bridges. Free and open year-round.</p>
-      <p style="margin-top:0.5rem"><strong>Nidaros Cathedral</strong> in Trondheim — Scandinavia's largest medieval building. Interior tour includes crown jewels and the rose window.</p>
-      <p style="margin-top:0.5rem"><strong>Rockheim museum</strong> — Norway's National Museum of Pop Music in Trondheim. Interactive exhibits, recording studios, hands-on music history.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-language"></i> Language</h3>
-      <p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-mobile-alt"></i> Connectivity</h3>
-      <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
-      <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap &mdash; install on both iPhone and Android.</p>
-      <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
-      <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Trollstigen, Geirangerfjord, Atlantic Road exposed sections) will have no signal regardless.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
-      <p><strong>"Cancel for Any Reason" (CFAR)</strong> — Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p>
-      <p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation to nearest adequate facility. Confirm your plan covers Norway (Schengen area). Some credit cards (Chase Sapphire Preferred/Reserve, Capital One Venture X) include travel medical — verify limits before buying separate.</p>
-      <p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing Via Ferrata or glacier hiking (some policies exclude "hazardous activities").</p>
-      <p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
-      <p><strong>Per family (10 days, 9 nights):</strong><br>
-      <strong>Oslo (1 night):</strong> $95&ndash;285 total ($95&ndash;285/night).<br>
-      <strong>Lom (1 night):</strong> $90&ndash;280 total ($90&ndash;280/night).<br>
-      <strong>Geiranger (2 nights):</strong> $360&ndash;700 total ($180&ndash;350/night).<br>
-      <strong>&Aring;lesund (2 nights):</strong> $240&ndash;520 total ($120&ndash;260/night).<br>
-      <strong>Molde (1 night):</strong> $110&ndash;200 total ($110&ndash;200/night).<br>
-      <strong>Trondheim (2 nights):</strong> $220&ndash;380 total ($110&ndash;190/night).<br>
-      <strong>Total per family:</strong> $1,115&ndash;2,365 depending on hotel tier.<br>
-      <strong>Fjord cruise &amp; activities:</strong> ~$150&ndash;300/person.<br>
-      Prices are per night for one room. Each family books separately.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
-      <p><strong>Flights (PIT/MGW &rarr; OSL):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed, avoid weekends. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking — set alerts for PIT &rarr; OSL and MGW &rarr; OSL. For the return from Trondheim (TRD), check PIT &rarr; OSL one-way paired with TRD &rarr; PIT one-way (multi-city). KLM and SAS offer TRD&ndash;AMS&ndash;US connections. Aim for Economy Plus or equivalent ~$800&ndash;1,200 round trip. If connecting, avoid &lt;90min layovers.</p>
-      <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a> to compare (Sixt, Avis, Hertz at OSL). Mid-size SUV or station wagon recommended for luggage + 3 people. Book for 10 days. Check for free cancellation — rebook if price drops. Expect ~$400&ndash;800 total per car.</p>
-      <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027) for Geiranger — hotels sell out 6&ndash;8 months ahead, especially Hotel Union and Hotel Geiranger with fjord-view rooms. &Aring;lesund and Trondheim hotels are more flexible until 2&ndash;3 months before. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation — rebook if rates drop. Check hotel websites directly for member rates.</p>
-      <p><strong>Tip:</strong> Set calendar reminders for each booking window. If you have travel credit cards with transferable points (Chase UR, Amex MR), book flights through transfer partners for better value than cash rates. Check Trollstigen opening status (typically mid-May to early June) before booking &Aring;lesund hotels — if it's likely to be closed on Day 5, the E136 alternative still works fine.</p>
-    </div>
-    <div class="info-card">
-      <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
-      <ul class="checklist">
-        <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for PIT &rarr; OSL and MGW &rarr; OSL (inbound) + TRD &rarr; PIT / MGW (outbound multi-city)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book Geiranger hotels (Hotel Union / Hotel Geiranger — sell out 6&ndash;8 months ahead)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, travel insurance (CFAR), Lom and &Aring;lesund hotels</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Mar 2027:</strong> Book rental cars (both families), Geirangerfjord cruise, RIB safari, Rockheim tickets</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Apr 2027:</strong> Book Molde and Trondheim hotels, Nidaros Cathedral interior tour, kayak rentals (&Aring;lesund canals)</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Early May 2027:</strong> Check Trollstigen opening status on Statens Vegvesen. Install eSIMs, download offline maps, pack rain gear, shift sleep schedule</span></li>
-        <li><i class="fas fa-check-circle"></i> <span><strong>Late May 2027:</strong> Confirm all bookings, print itinerary, pack layers for coastal-to-mountain transitions</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="info-section" id="references" style="margin-top:1rem">
-  <div class="section-header">
-    <h2><i class="fas fa-bookmark"></i> References</h2>
-  </div>
-  <div class="info-grid" id="referencesContainer"></div>
-</section>
 
 <footer>
   <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Geiranger &amp; Northwest Route</p>
@@ -930,14 +816,7 @@ map.fitBounds(allCoords, { padding: [50, 50] });
 // ---------- Open first day by default ----------
 document.querySelector('.day-card:first-child').classList.add('open');
 
-// ---------- Collapsible info cards ----------
-function toggleCollapse(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.toggle('open');
-  btn.classList.toggle('open');
-  const textNode = btn.childNodes[btn.childNodes.length - 1];
-  textNode.textContent = isOpen ? ' Hide details' : ' Show full playbook';
-}
+
 
 // ---------- Export JSON ----------
 function exportJSON() {
