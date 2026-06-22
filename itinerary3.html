@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norway 2027 — Geiranger & Northwest</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f2ed;--surface:#ffffff;--text:#1a1a2e;--muted:#6b7280;--accent:#2d6a4f;--accent2:#1b4332;--gold:#d4a373;--border:#e5e7eb;--card-shadow:0 4px 24px rgba(0,0,0,0.06);--hover-shadow:0 8px 40px rgba(0,0,0,0.1);--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.dark{--bg:#0f172a;--surface:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#4ade80;--accent2:#22c55e;--border:#334155;--card-shadow:0 4px 24px rgba(0,0,0,0.3);--hover-shadow:0 8px 40px rgba(0,0,0,0.4)}
+html{scroll-behavior:smooth;scroll-padding-top:52px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:var(--transition)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+
+/* Theme toggle */
+.theme-toggle{position:fixed;top:20px;right:20px;z-index:1000;background:var(--surface);border:2px solid var(--border);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.2rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.theme-toggle:hover{transform:rotate(15deg);box-shadow:var(--hover-shadow)}
+
+/* Hero */
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1a2e 0%,#1a3a3a 40%,#2d6a4f 70%,#40916c 100%);overflow:hidden;padding:2rem}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.03)' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") bottom/cover no-repeat;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.5rem,8vw,5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-0.02em}
+.hero h1 span{background:linear-gradient(135deg,#4ade80,#d4a373);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,0.8);margin-bottom:2rem;font-weight:300}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.hero-stat{text-align:center;display:flex;flex-direction:column;gap:0.35rem}
+.hero-stat .num{font-size:2rem;font-weight:700;color:#4ade80;display:block}
+.hero-stat .label{font-size:0.8rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
+.hero-cta{display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;transition:var(--transition);font-size:0.95rem}
+.hero-cta:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+
+/* Map section */
+.map-section{padding:3rem 1rem;max-width:1400px;margin:0 auto}
+.map-section h2{font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem}
+.map-section h2 i{color:var(--accent)}
+.map-section>p{color:var(--muted);margin-bottom:1.5rem;max-width:600px}
+#map{height:500px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border);z-index:1}
+.map-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;font-size:0.85rem;color:var(--muted);align-items:center}
+.map-legend .legend-item{display:flex;align-items:center;gap:0.4rem}
+.map-legend .legend-dot{width:12px;height:12px;border-radius:50%}
+.map-legend .legend-line{width:24px;height:3px;border-radius:2px}
+
+/* Route link */
+.route-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.6rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:50px;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;transition:var(--transition)}
+.route-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:var(--card-shadow)}
+.route-link i{color:var(--accent)}
+
+/* Timeline */
+.timeline{padding:3rem 1rem 5rem;max-width:1000px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.section-header h2 i{color:var(--accent)}
+.section-header p{color:var(--muted);margin-top:0.5rem}
+
+.day-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--card-shadow);margin-bottom:1.5rem;overflow:hidden;transition:var(--transition);border:1px solid var(--border);position:relative}
+.day-card:hover{box-shadow:var(--hover-shadow);transform:translateY(-2px)}
+.day-card .day-number{position:absolute;top:0;left:0;bottom:0;width:6px}
+.day-card:nth-child(1) .day-number{background:#ef4444}
+.day-card:nth-child(2) .day-number{background:#f97316}
+.day-card:nth-child(3) .day-number{background:#eab308}
+.day-card:nth-child(4) .day-number{background:#22c55e}
+.day-card:nth-child(5) .day-number{background:#06b6d4}
+.day-card:nth-child(6) .day-number{background:#3b82f6}
+.day-card:nth-child(7) .day-number{background:#8b5cf6}
+.day-card:nth-child(8) .day-number{background:#ec4899}
+.day-card:nth-child(9) .day-number{background:#14b8a6}
+.day-card:nth-child(10) .day-number{background:#f43f5e}
+
+.day-header{padding:1.25rem 1.5rem 1.25rem 2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;user-select:none;-webkit-tap-highlight-color:transparent}
+.day-header-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0}
+.day-header .day-label{display:flex;flex-direction:column}
+.day-header .day-label .day-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:600}
+.day-header .day-label .day-date{font-weight:700;font-size:1.1rem}
+.day-header .base-badge{background:var(--accent);color:#fff;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .drive-badge{background:var(--gold);color:#1a1a2e;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .toggle-icon{color:var(--muted);transition:transform 0.3s ease;font-size:1rem;flex-shrink:0}
+.day-card.open .toggle-icon{transform:rotate(180deg)}
+
+.day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
+.day-card.open .day-body{max-height:2000px;padding:0 2rem 1.5rem}
+
+.day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
+.day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
+.day-body .activity-list{list-style:none;margin-bottom:1rem}
+.day-body .activity-list li{display:flex;align-items:flex-start;gap:0.6rem;padding:0.35rem 0;color:var(--text);font-size:0.92rem}
+.day-body .activity-list li i{color:var(--accent);margin-top:0.2em;width:1rem;text-align:center;flex-shrink:0}
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+
+.day-body .hotel-section{margin-top:0.75rem;padding:0.9rem 1.2rem;background:var(--bg);border-radius:10px;font-size:0.9rem}
+.day-body .hotel-section .hotel-label{font-weight:600;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;color:var(--text)}
+.day-body .hotel-section .hotel-label i{color:var(--accent)}
+.day-body .hotel-section p{color:var(--muted)}
+.lodging-tier{margin-bottom:0.35rem;padding-bottom:0.35rem}
+.lodging-tier:not(:last-child){border-bottom:1px solid var(--border)}
+.lodging-tier:last-child{margin-bottom:0;padding-bottom:0}
+.lodging-tier .lodging-tier-header{display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap}
+.lodging-tier .lodging-tier-header .lodging-tier-badge{display:inline-block;padding:0.08rem 0.45rem;border-radius:4px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:#fff;line-height:1.4}
+.lodging-tier-header strong{font-size:0.85rem;flex:1;min-width:0}
+.lodging-tier .lodging-tier-header .lodging-tier-price{color:var(--accent);font-weight:600;font-size:0.82rem;white-space:nowrap}
+.lodging-tier .lodging-tier-details{margin-top:0.15rem;color:var(--muted);font-size:0.8rem;line-height:1.45}
+.lodging-tier .lodging-tier-details .lodging-pros{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details .lodging-cons{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details a{font-size:0.78rem}
+
+/* Day 0 special marker adjustment */
+.day-card .drive-detail{display:block;margin-top:0.35rem;padding:0.4rem 0.75rem;background:var(--bg);border-radius:8px;font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem}
+.day-card .drive-detail i{color:var(--gold)}
+.day-body .stop-item{font-size:0.85rem;color:var(--muted);padding:0.15rem 0}
+
+/* Stop grid cards */
+.stop-grid{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.75rem}
+.stop-card{padding:0.75rem 1rem;background:var(--bg);border-radius:10px;border-left:3px solid var(--gold)}
+.stop-card-top{display:flex;gap:0.5rem;margin-bottom:0.3rem}
+.stop-card-name{font-weight:600;font-size:0.9rem;color:var(--text)}
+.stop-desc{font-size:0.8rem;color:var(--muted);margin-top:0.25rem;line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:0.25rem;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;font-weight:600;white-space:nowrap}
+.badge-price{background:#d4a37333;color:#c77d3a}
+.dark .badge-price{background:#d4a37322;color:#f0c27a}
+.badge-time{background:#2d6a4f22;color:var(--accent)}
+.dark .badge-time{background:#4ade8022;color:#4ade80}
+.activity-content{display:flex;flex-direction:column;gap:0.25rem;min-width:0}
+.activity-text{font-size:0.92rem;line-height:1.3}
+.activity-meta{display:flex;gap:0.35rem;flex-wrap:wrap}
+.activity-list li{align-items:flex-start!important}
+.activity-list li i.fas{margin-top:0.3em!important}
+
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+
+.activity-desc{font-size:0.8rem;color:var(--muted);line-height:1.4}
+
+/* Group notes */
+.group-notes{padding:0.85rem 1.1rem;background:#3b82f610;border:1px solid #3b82f630;border-radius:10px;font-size:0.85rem;color:var(--text);margin-bottom:0.75rem;display:flex;align-items:flex-start;gap:0.7rem;line-height:1.6}
+.group-notes i{color:#3b82f6;font-size:1rem;margin-top:0.15em;flex-shrink:0}
+.dark .group-notes{background:#3b82f608;border-color:#3b82f640}
+
+/* Meals */
+.meals-grid{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem}
+.meal-item{display:flex;flex-direction:column;gap:0.3rem;padding:0.6rem 1rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--accent)}
+.meal-item:nth-child(2){border-left-color:var(--gold)}
+.meal-item:nth-child(3){border-left-color:#8b5cf6}
+.meal-label{font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);display:flex;align-items:center;gap:0.35rem}
+.meal-label i{font-size:0.75rem;width:1rem;text-align:center}
+.meal-label .fa-sun{color:#eab308}
+.meal-label .fa-bread-slice{color:var(--gold)}
+.meal-label .fa-moon{color:#8b5cf6}
+.meal-text{font-size:0.85rem;color:var(--muted);line-height:1.5}
+
+/* Info section */
+.info-section{padding:3rem 1rem;max-width:1000px;margin:0 auto}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.info-card:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow)}
+.info-card h3{font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.info-card h3 i{color:var(--accent)}
+.info-card p{color:var(--muted);font-size:0.92rem;line-height:1.7}
+.info-card a{color:var(--accent);text-decoration:none;font-weight:500}
+.info-card a:hover{text-decoration:underline}
+
+/* Collapsible info cards */
+.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
+.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
+.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
+.info-card .collapse-toggle.open i{transform:rotate(180deg)}
+.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.info-card .collapse-content.open{max-height:2000px}
+
+/* Planning checklist */
+.checklist{list-style:none;margin-top:0.5rem}
+.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.checklist li:last-child{border-bottom:none}
+.checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
+.checklist li strong{color:var(--text)}
+
+/* Footer */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+
+/* Leaflet overrides */
+.leaflet-popup-content-wrapper{border-radius:12px!important;font-family:inherit!important}
+.leaflet-popup-content{margin:12px 16px!important;font-size:0.9rem!important;line-height:1.5!important}
+.leaflet-popup-content strong{color:var(--accent)}
+.leaflet-control-zoom a{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+
+/* Prevent right-side overflow */
+.day-body,.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
+
+/* Print */
+@media print{
+  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip,.collapse-toggle{display:none!important}
+  .hero{min-height:auto;padding:1rem}
+  .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important}
+  .day-header{cursor:default}
+  .toggle-icon{display:none!important}
+  #map{height:300px}
+  .collapse-content{max-height:none!important}
+}
+
+/* Sticky nav */
+.sticky-nav{position:sticky;top:0;z-index:999;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:0.5rem 1rem;display:flex;align-items:center;gap:0.75rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sticky-nav::-webkit-scrollbar{display:none}
+.sticky-nav a{display:inline-flex;align-items:center;gap:0.35rem;padding:0.35rem 0.75rem;border-radius:50px;font-size:0.8rem;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;transition:var(--transition);border:1px solid transparent}
+.sticky-nav a:hover{color:var(--accent);border-color:var(--accent);background:var(--bg)}
+.sticky-nav .nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.sticky-nav .day-jump{width:28px;height:28px;padding:0;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700}
+.sticky-nav .day-jump.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sticky-nav .export-btn{margin-left:auto;background:var(--accent);color:#fff!important;border-color:var(--accent)!important;font-weight:600!important}
+.sticky-nav .export-btn:hover{background:var(--accent2)!important}
+
+/* At a glance */
+.glance-strip{display:flex;gap:0.5rem;padding:1.5rem 1rem;max-width:1000px;margin:0 auto 1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.glance-strip::-webkit-scrollbar{display:none}
+.glance-item{flex:1;min-width:80px;max-width:120px;text-align:center;padding:0.75rem 0.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--text)}
+.glance-item:hover{transform:translateY(-2px);box-shadow:var(--card-shadow);border-color:var(--accent)}
+.glance-item .glance-day{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);font-weight:600}
+.glance-item .glance-icon{font-size:1.3rem;margin:0.3rem 0;display:block}
+.glance-item .glance-base{font-size:0.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.glance-item .glance-drive{font-size:0.6rem;color:var(--gold);margin-top:0.15rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero-stats{gap:1rem}
+  .hero-stat .num{font-size:1.5rem}
+  .day-header{padding:1rem 1rem 1rem 1.5rem;flex-wrap:wrap}
+  .day-header-left{flex-wrap:wrap;gap:0.5rem}
+  .day-body{padding:0 1rem}
+  .day-card.open .day-body{padding:0 1rem 1rem 1rem}
+  #map{height:350px}
+  .map-legend{gap:0.5rem;font-size:0.8rem}
+  .sticky-nav{padding:0.4rem 0.75rem;gap:0.5rem}
+  .sticky-nav a{font-size:0.75rem;padding:0.3rem 0.6rem}
+  .sticky-nav .day-jump{width:26px;height:26px;font-size:0.65rem}
+  .glance-strip{padding:1rem 0.75rem}
+  .glance-item{min-width:80px;padding:0.6rem 0.4rem}
+  .glance-item .glance-icon{font-size:1.1rem}
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <i class="fas fa-moon"></i>
+</button>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-plane"></i> May 28 &mdash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h)</div>
+    <h1>Norway <span>Road Trip</span></h1>
+    <p class="subtitle">Oslo &rarr; Geiranger &rarr; &Aring;lesund &rarr; Atlantic Road &rarr; Trondheim</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">10</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">4</span>
+        <span class="label">Bases</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">~17h</span>
+        <span class="label">Driving</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">May</span>
+        <span class="label">Departure</span>
+      </div>
+    </div>
+    <a href="#map" class="hero-cta"><i class="fas fa-map-marked-alt"></i> See the Route</a>
+  </div>
+</section>
+
+<!-- Sticky Nav -->
+<nav class="sticky-nav" id="stickyNav">
+  <a href="index.html"><i class="fas fa-th-large"></i> All Routes</a>
+  <span class="nav-divider"></span>
+  <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
+  <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
+  <a href="#info"><i class="fas fa-info-circle"></i> Info</a>
+  <span class="nav-divider"></span>
+  <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
+  <a href="#day-2" class="day-jump" title="Day 2 — Lom">2</a>
+  <a href="#day-3" class="day-jump" title="Day 3 — Geiranger">3</a>
+  <a href="#day-4" class="day-jump" title="Day 4 — Geiranger">4</a>
+  <a href="#day-5" class="day-jump" title="Day 5 — Ålesund">5</a>
+  <a href="#day-6" class="day-jump" title="Day 6 — Ålesund">6</a>
+  <a href="#day-7" class="day-jump" title="Day 7 — Molde">7</a>
+  <a href="#day-8" class="day-jump" title="Day 8 — Trondheim">8</a>
+  <a href="#day-9" class="day-jump" title="Day 9 — Trondheim">9</a>
+  <a href="#day-10" class="day-jump" title="Day 10 — Depart">10</a>
+  <span class="nav-divider"></span>
+  <a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV (Google Sheets compatible)"><i class="fas fa-file-csv"></i> CSV</a>
+</nav>
+
+<!-- Map -->
+<section class="map-section" id="mapSection">
+  <h2><i class="fas fa-map"></i> Route Overview</h2>
+  <p>Click a marker on the map to see details about each stop. The route line shows the full driving path.</p>
+  <div id="map"></div>
+  <div class="map-legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Overnight stop</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Day trip / POI</span>
+    <span class="legend-item"><span class="legend-line" style="background:#2d6a4f"></span> Drive route</span>
+    <a href="https://maps.app.goo.gl/XRrUWct1mEGTHiKd7" target="_blank" rel="noopener" class="route-link">
+      <i class="fas fa-route"></i> Open in Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="timeline" id="days">
+  <div class="section-header">
+    <h2><i class="fas fa-calendar-alt"></i> Day-by-Day Itinerary</h2>
+    <p>Click each day to expand details &mdash; drive routes, activities, and lodging for every stop.</p>
+  </div>
+  <div class="glance-strip" id="glanceStrip"></div>
+  <div id="timelineContainer"></div>
+</section>
+
+<!-- Info -->
+<section class="info-section" id="info">
+  <div class="section-header">
+    <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3><i class="fas fa-users"></i> The Group</h3>
+      <p><strong>Two families traveling together</strong> — each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
+      <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
+      <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
+      Each day has a <em>Group Notes</em> section with specific suggestions.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-car"></i> Driving</h3>
+      <p>Rental car for the full trip. Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network.</p>
+      <p style="margin-top:0.5rem"><strong>Trollstigen seasonal status:</strong> The Trollstigen mountain pass (Day 5) is typically open mid-May to early June. In late May it may still be closed due to snow — check <a href="https://www.vegvesen.no/en/traffic" target="_blank" rel="noopener">Statens Vegvesen</a> before driving. If closed, the E136 via &Aring;ndalsnes alternative adds ~30 minutes and is still very scenic.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
+      <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F). Sunset ~10:30 PM, sunrise ~4:00 AM &mdash; nearly 19 hours of daylight. Rain gear essential &mdash; fjord weather changes fast. Geiranger and &Aring;lesund are rain-prone coastal areas (similar to Bergen). Mountain areas (Lom, Trollstigen) can be 5&ndash;10&deg;C cooler with possible snow at higher elevations. Pack layers for coastal-to-mountain transitions.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
+      <p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am — you have to survive a full Oslo day.</p>
+      <div class="collapse-content" id="jetlagContent">
+        <p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p>
+        <p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing — drink water, skip the coffee.</p>
+        <p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p>
+        <p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. The National Museum has The Scream and is a perfect indoor buffer — dim lighting won't hurt. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p>
+      </div>
+      <button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-utensils"></i> Food</h3>
+      <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots.</p>
+      <p style="margin-top:0.5rem">Regional specialties on this route: <strong>Bacalao</strong> (salt cod stew) in &Aring;lesund — the city's signature dish. <strong>Reindeer stew</strong> (finnebiff) in Trondheim. <strong>Valldal strawberry cake</strong> in late May/early June — the Valldal valley on Day 5 is famous for strawberries. <strong>Fossheim Bakeri</strong> in Lom — one of Norway's best bakeries, world-class kanelboller (cinnamon rolls). Try <em>raspeballer</em>, fresh salmon, and <em>brunost</em> throughout.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-hiking"></i> Activities</h3>
+      <p><strong>Trollstigen</strong> — the legendary mountain pass with 11 hairpin turns opens mid-May to early June. Check seasonal status before booking &Aring;lesund hotels (Day 5).</p>
+      <p style="margin-top:0.5rem"><strong>Geirangerfjord UNESCO cruise</strong> — a must-do. Book in advance for the 1.5&ndash;2 hour cruise past the Seven Sisters waterfall.</p>
+      <p style="margin-top:0.5rem"><strong>Atlantic Ocean Road</strong> (Atlanterhavsvegen) — one of the world's most scenic drives. 8.3 km across islands with dramatic bridges. Free and open year-round.</p>
+      <p style="margin-top:0.5rem"><strong>Nidaros Cathedral</strong> in Trondheim — Scandinavia's largest medieval building. Interior tour includes crown jewels and the rose window.</p>
+      <p style="margin-top:0.5rem"><strong>Rockheim museum</strong> — Norway's National Museum of Pop Music in Trondheim. Interactive exhibits, recording studios, hands-on music history.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-language"></i> Language</h3>
+      <p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-mobile-alt"></i> Connectivity</h3>
+      <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
+      <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap &mdash; install on both iPhone and Android.</p>
+      <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
+      <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Trollstigen, Geirangerfjord, Atlantic Road exposed sections) will have no signal regardless.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
+      <p><strong>"Cancel for Any Reason" (CFAR)</strong> — Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p>
+      <p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation to nearest adequate facility. Confirm your plan covers Norway (Schengen area). Some credit cards (Chase Sapphire Preferred/Reserve, Capital One Venture X) include travel medical — verify limits before buying separate.</p>
+      <p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing Via Ferrata or glacier hiking (some policies exclude "hazardous activities").</p>
+      <p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
+      <p><strong>Per family (10 days, 9 nights):</strong><br>
+      <strong>Oslo (1 night):</strong> $95&ndash;285 total ($95&ndash;285/night).<br>
+      <strong>Lom (1 night):</strong> $90&ndash;280 total ($90&ndash;280/night).<br>
+      <strong>Geiranger (2 nights):</strong> $360&ndash;700 total ($180&ndash;350/night).<br>
+      <strong>&Aring;lesund (2 nights):</strong> $240&ndash;520 total ($120&ndash;260/night).<br>
+      <strong>Molde (1 night):</strong> $110&ndash;200 total ($110&ndash;200/night).<br>
+      <strong>Trondheim (2 nights):</strong> $220&ndash;380 total ($110&ndash;190/night).<br>
+      <strong>Total per family:</strong> $1,115&ndash;2,365 depending on hotel tier.<br>
+      <strong>Fjord cruise &amp; activities:</strong> ~$150&ndash;300/person.<br>
+      Prices are per night for one room. Each family books separately.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
+      <p><strong>Flights (PIT/MGW &rarr; OSL):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed, avoid weekends. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking — set alerts for PIT &rarr; OSL and MGW &rarr; OSL. For the return from Trondheim (TRD), check PIT &rarr; OSL one-way paired with TRD &rarr; PIT one-way (multi-city). KLM and SAS offer TRD&ndash;AMS&ndash;US connections. Aim for Economy Plus or equivalent ~$800&ndash;1,200 round trip. If connecting, avoid &lt;90min layovers.</p>
+      <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a> to compare (Sixt, Avis, Hertz at OSL). Mid-size SUV or station wagon recommended for luggage + 3 people. Book for 10 days. Check for free cancellation — rebook if price drops. Expect ~$400&ndash;800 total per car.</p>
+      <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027) for Geiranger — hotels sell out 6&ndash;8 months ahead, especially Hotel Union and Hotel Geiranger with fjord-view rooms. &Aring;lesund and Trondheim hotels are more flexible until 2&ndash;3 months before. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation — rebook if rates drop. Check hotel websites directly for member rates.</p>
+      <p><strong>Tip:</strong> Set calendar reminders for each booking window. If you have travel credit cards with transferable points (Chase UR, Amex MR), book flights through transfer partners for better value than cash rates. Check Trollstigen opening status (typically mid-May to early June) before booking &Aring;lesund hotels — if it's likely to be closed on Day 5, the E136 alternative still works fine.</p>
+    </div>
+    <div class="info-card">
+      <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
+      <ul class="checklist">
+        <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for PIT &rarr; OSL and MGW &rarr; OSL (inbound) + TRD &rarr; PIT / MGW (outbound multi-city)</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book Geiranger hotels (Hotel Union / Hotel Geiranger — sell out 6&ndash;8 months ahead)</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, travel insurance (CFAR), Lom and &Aring;lesund hotels</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Mar 2027:</strong> Book rental cars (both families), Geirangerfjord cruise, RIB safari, Rockheim tickets</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Apr 2027:</strong> Book Molde and Trondheim hotels, Nidaros Cathedral interior tour, kayak rentals (&Aring;lesund canals)</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Early May 2027:</strong> Check Trollstigen opening status on Statens Vegvesen. Install eSIMs, download offline maps, pack rain gear, shift sleep schedule</span></li>
+        <li><i class="fas fa-check-circle"></i> <span><strong>Late May 2027:</strong> Confirm all bookings, print itinerary, pack layers for coastal-to-mountain transitions</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="info-section" id="references" style="margin-top:1rem">
+  <div class="section-header">
+    <h2><i class="fas fa-bookmark"></i> References</h2>
+  </div>
+  <div class="info-grid" id="referencesContainer"></div>
+</section>
+
+<footer>
+  <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Geiranger &amp; Northwest Route</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const data = [
+  {
+    day: 1, date: new Date(2027, 4, 28), base: 'Oslo', drive: null, driveTime: null, stops: [],
+    activities: [
+      {icon:'fa-plane-arrival', text:'Fly into Oslo Airport (OSL)', price:'~$800-1,200 round trip', time:'7-8 hr flight', desc:'Depart from Pittsburgh (PIT) or Morgantown (MGW). EDT → CEST (+6h)', cite:'https://www.google.com/travel/flights'},
+      {icon:'fa-ship', text:'Explore Aker Brygge waterfront', price:'Free', time:'1-2 hr', desc:'Stroll the harbor promenade with shops, restaurants, and marina views'},
+      {icon:'fa-monument', text:'National Museum', price:'$20 (200 NOK)', time:'1.5-2 hr', desc:'Munch\'s The Scream, Viking gold, and Norwegian art. Indoor, central, jet-lag-friendly', cite:'https://www.nasjonalmuseet.no'},
+      {icon:'fa-walking', text:'Walk the city center', price:'Free', time:'Flexible', desc:'Karl Johans gate, Royal Palace, Akershus Fortress'},
+      {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for iconic city + fjord views', cite:'https://www.operaen.no/en'},
+      {icon:'fa-tree', text:'Ekebergparken Sculpture Park', price:'Free', time:'1-2 hr', desc:'Modern art + forest trails with panoramic Oslo Fjord views. Light hike', cite:'https://ekebergparken.com/en'},
+      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri — craft beer for the adults'}
+    ],
+    groupNotes: 'Arrive in Oslo. Keep Day 1 light — see Jet Lag Playbook. The National Museum (The Scream) and Opera House roof are must-dos. Activities during the day help power through jet lag.',
+    lodging: [
+      {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi', cons:'No breakfast, no daily housekeeping, small rooms', cite:'https://www.citybox.no'},
+      {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern design, excellent breakfast bar, great location near Opera House and waterfront', cons:'Standard chain feel, no pool, can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
+      {tier:'Premium', name:'Grand Hotel Oslo', price:'$285/night', pros:'Historic 1874 property, Nobel Peace Prize venue, rooftop terrace, exceptional breakfast, prime location', cons:'Very expensive, some dated rooms, tourist crowds', cite:'https://www.grand.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Included hotel buffet', lunch:'Godt Brød coffee shop (skolebrød) or Mathallen Oslo food hall', dinner:'Den Glade Gris — Norwegian pork-focused gastropub (try the ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Fuglen — a vintage Norwegian café-bar for a nightcap' },
+    lat: 59.9139, lng: 10.7522, poi: []
+  },
+  {
+    day: 2, date: new Date(2027, 4, 29), base: 'Lom', drive: 'Oslo → Lom (up Gudbrandsdalen)', driveTime: '~5h (with activities)',
+    directions: ['Take E6 north from Oslo through Gudbrandsdalen valley','Stop at Ringebu Stave Church (quick detour off E6)','Continue to Sjoa River for family rafting','Follow RV15 west to Lom'],
+    stops: [
+      {name:'Ringebu Stave Church', price:'$10 (100 NOK)', time:'20-30 min', desc:'Built c.1220 in Gudbrandsdalen valley. Medieval interior with original furnishings', cite:'https://www.ringebustavkirke.no'},
+      {name:'Sjoa River rafting', price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'11 km gentle rafting on Sjoa River. Guide, wetsuit, gear included. Class 1-2 rapids', cite:'https://www.sjoarafting.no'},
+      {name:'Lom Stave Church', price:'$12 (120 NOK)', time:'20-30 min', desc:'Built c.1158. One of Norway\'s largest stave churches. Open May–Sep', cite:'https://www.lomstavechurch.no'}
+    ],
+    activities: [
+      {icon:'fa-church', text:'Ringebu Stave Church', price:'$10', time:'20-30 min', cite:'https://www.ringebustavkirke.no'},
+      {icon:'fa-water', text:'Sjoa River rafting', price:'$111 half-day', time:'3 hr', desc:'Mild whitewater on Sjoa River. Guide, wetsuit included. Class 1-2 rapids — suitable for beginners', cite:'https://www.sjoarafting.no'},
+      {icon:'fa-church', text:'Lom Stave Church', price:'$12', time:'20-30 min', cite:'https://www.lomstavechurch.no'},
+      {icon:'fa-bread-slice', text:'Fossheim Bakeri', price:'$5-10', time:'30 min', desc:'Norway\'s best bakery — famous kanelboller and bread', cite:'https://fossheim-bakeri.no'},
+      {icon:'fa-hiking', text:'Lom village walk', price:'Free', time:'30-45 min', desc:'Charming mountain village. Walk along the Bøvra River and explore the historic center'},
+      {icon:'fa-bullseye', text:'Medalen Disc Golf (18 holes)', price:'Free', time:'1.5-2 hr', desc:'Flat course right in Lom village. Quick round for disc golf enthusiasts', cite:'https://www.pdga.com/course/medalen-frisbeegolf'}
+    ],
+    groupNotes: 'Longest drive day but broken up with stops along the Gudbrandsdalen valley. Ringebu Stave Church is a quick detour off E6. The Sjoa River rafting center offers class 1-2 trips. Arrive Lom in the afternoon; Medalen Disc Golf is a free flat course right in the village. Fossheim Bakeri has Norway\'s best kanelboller — a great spot for pastries and coffee.',
+    lodging: [
+      {tier:'Budget', name:'Nordal Turistsenter', price:'$90/night', pros:'Affordable cabin-style lodging, kitchen facilities, central Lom location near church, family-friendly', cons:'Basic amenities, no restaurant on site, older cabins, thin walls', cite:'https://www.nordalturistsenter.no'},
+      {tier:'Mid', name:'Fossheim Hotel', price:'$140/night', pros:'Historic hotel right in Lom center, cozy atmosphere, good restaurant with local lamb, across from Lom Stave Church', cons:'No pool or spa, limited parking, older building with some small rooms', cite:'https://www.fossheimhotel.no'},
+      {tier:'Premium', name:'Røisheim Hotel', price:'$250/night', pros:'Historic 1800s timber manor, exceptional Norwegian farm-to-table restaurant, unique traditional decor, serene setting', cons:'Very expensive for the area, limited availability, no modern amenities like pool', cite:'https://www.roisheim.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Sjoa Rafting Center cafe — burgers, coffee, and Kvikk Lunsj for the road, or pack from Matkroken in Otta', dinner:'Fossheim Hotel restaurant — traditional Gudbrandsdalen lamb stew and local beer in a cozy 1830s timber building. After dinner, walk across the street to see Lom Stave Church lit up at night' },
+    lat: 61.8378, lng: 8.5683, poi: [{name:'Ringebu Stave Church', lat:61.5333, lng:10.1333, note:'Historic stave church'},{name:'Sjoa River', lat:61.6833, lng:9.5333, note:'Family rafting on Sjoa'},{name:'Lom Stave Church', lat:61.8378, lng:8.5683, note:'Stave church in Lom'}]
+  },
+  {
+    day: 3, date: new Date(2027, 4, 30), base: 'Geiranger', drive: 'Lom → Geirangerfjord', driveTime: '~2 hr',
+    directions: ['Take RV15 from Lom heading northwest','Turn onto RV63 at Grotli towards Geiranger','Stop at Dalsnibba Skywalk (toll road, 1500m) before descending','Descend Ørnevegen (Eagle Road) into Geiranger village — 11 hairpin turns'],
+    stops: [
+      {name:'Dalsnibba Skywalk', price:'$8 (80 NOK) toll', time:'20-30 min', desc:'1,500m viewpoint over Geirangerfjord. Europe\'s highest fjord view by road', cite:'https://www.dalsnibba.no'},
+      {name:'Flydalsjuvet viewpoint', price:'Free', time:'15 min', desc:'Iconic photo spot looking down Geirangerfjord. The classic postcard view'}
+    ],
+    activities: [
+      {icon:'fa-mountain', text:'Dalsnibba Skywalk', price:'$8 toll', time:'20-30 min', desc:'1,500m above the fjord. Unbelievable views over the entire Geirangerfjord', cite:'https://www.dalsnibba.no'},
+      {icon:'fa-camera', text:'Flydalsjuvet photo stop', price:'Free', time:'15 min', desc:'The classic Geirangerfjord postcard photo'},
+      {icon:'fa-ship', text:'Geirangerfjord cruise', price:'$40-55 (400-550 NOK)', time:'1.5-2 hr', desc:'UNESCO World Heritage fjord. The Seven Sisters and Friaren waterfalls. Lunch on board', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-geirangerfjord/'},
+      {icon:'fa-hiking', text:'Storseterfossen waterfall walk', price:'Free', time:'1.5-2 hr', desc:'Walk BEHIND a waterfall. Easy-moderate trail from Geiranger'}
+    ],
+    groupNotes: 'Epic drive day — Dalsnibba and Flydalsjuvet are quick photo stops. The fjord cruise is the highlight. Evening: explore Geiranger village.',
+    lodging: [
+      {tier:'Budget', name:'Grande Fjord Hotel', price:'$180/night', pros:'More affordable Geiranger option, quieter location 5 min from center, fjord views from many rooms, free parking', cons:'No elevator, older building, less well-known than other Geiranger hotels, basic breakfast', cite:'https://www.grandefjordhotel.com'},
+      {tier:'Mid', name:'Hotel Geiranger', price:'$240/night', pros:'Classic Norwegian fjord hotel, panoramic dining room, central Geiranger location, excellent breakfast and dinner buffet', cons:'Limited parking, peak season crowds, no pool or spa', cite:'https://www.hotelgeiranger.no'},
+      {tier:'Premium', name:'Hotel Union Geiranger', price:'$320/night', pros:'Historic 1891 property with full spa, indoor/outdoor pools, stunning fjord panorama, award-winning breakfast, gardens', cons:'Very expensive, large hotel, some rooms need renovation', cite:'https://www.union.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Café onboard the fjord cruise — salmon wrap', dinner:'Brasserie Posten at Hotel Union — Norwegian seafood platter, reindeer fillet, cloudberries for dessert with panoramic Geirangerfjord views. After dinner, use the Hotel Union spa (pools, sauna) or sit on the terrace with a nightcap' },
+    lat: 62.1000, lng: 7.2000, poi: [{name:'Dalsnibba', lat:62.0486, lng:7.2681, note:'1,500m viewpoint'},{name:'Flydalsjuvet', lat:62.0917, lng:7.2167, note:'Fjord viewpoint'},{name:'Storseterfossen', lat:62.0833, lng:7.2167, note:'Walk-behind waterfall'}]
+  },
+  {
+    day: 4, date: new Date(2027, 4, 31), base: 'Geiranger', drive: null, driveTime: null, stops: [],
+    activities: [
+      {icon:'fa-ship', text:'RIB fjord safari', price:'$70-90 (700-900 NOK)', time:'1-1.5 hr', desc:'High-speed RIB boat through Geirangerfjord. Get right next to the Seven Sisters waterfall', cite:'https://www.geirangerfjord.no'},
+      {icon:'fa-water', text:'Geirangerfjord kayaking', price:'$85-100 guided', time:'2-3 hr', desc:'Stillwater kayak on the fjord. Paddle right under the waterfalls. Suitable for all skill levels'},
+      {icon:'fa-car', text:'Ørnevegen (Eagle Road) drive', price:'Free', time:'45 min', desc:'Historic road with 11 hairpins and a panoramic fjord viewpoint at the top'},
+      {icon:'fa-mountain', text:'Westerås Farm hike', price:'Free', time:'1.5-2 hr', desc:'Farm trail above Geiranger. Stunning fjord views from the meadow. Easy walk'},
+      {icon:'fa-hiking', text:'Skageflå mountain farm hike', price:'Free (water taxi $15)', time:'3-4 hr', desc:'Abandoned mountain farm perched 250m above the fjord. Moderate fitness'}
+    ],
+    groupNotes: 'Full day in Geiranger. Morning: RIB safari. Afternoon: choose between kayaking the fjord or hiking Skageflå. Evening: dinner followed by a casual Eagle Road sunset drive.',
+    lodging: [
+      {tier:'Budget', name:'Grande Fjord Hotel', price:'$180/night', pros:'More affordable Geiranger option, quieter location 5 min from center, fjord views from many rooms, free parking', cons:'No elevator, older building, less well-known than other Geiranger hotels, basic breakfast', cite:'https://www.grandefjordhotel.com'},
+      {tier:'Mid', name:'Hotel Geiranger', price:'$240/night', pros:'Classic Norwegian fjord hotel, panoramic dining room, central Geiranger location, excellent breakfast and dinner buffet', cons:'Limited parking, peak season crowds, no pool or spa', cite:'https://www.hotelgeiranger.no'},
+      {tier:'Premium', name:'Hotel Union Geiranger', price:'$320/night', pros:'Historic 1891 property with full spa, indoor/outdoor pools, stunning fjord panorama, award-winning breakfast, gardens', cons:'Very expensive, large hotel, some rooms need renovation', cite:'https://www.union.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Westerås Farm café — local goat cheese waffles and berry jam with fjord views', dinner:'Naustkroa Café in the village — traditional Norwegian fish soup and local craft beer by the Geiranger waterfront. After dinner, walk down to the fjord shore for sunset photos' },
+    lat: 62.1000, lng: 7.2000, poi: [{name:'Seven Sisters', lat:62.1000, lng:7.1000, note:'Famous waterfall'},{name:'Ørnevegen', lat:62.1167, lng:7.1667, note:'Eagle Road viewpoint'}]
+  },
+  {
+    day: 5, date: new Date(2027, 5, 1), base: 'Ålesund', drive: 'Geiranger → Ålesund (via Trollstigen)', driveTime: '~2h 30 min',
+    directions: ['Take Ørnevegen (RV63) up from Geiranger','Continue RV63 north through Valldal valley (famous for strawberries)','Cross Trollstigen mountain pass (check if open — late May borderline)','If Trollstigen closed: take E136 via Åndalsnes (adds 30 min)','Continue to Ålesund via E136 + E39'],
+    stops: [
+      {name:'Trollstigen Viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic viewing platform cantilevered over the mountain. 11 hairpin turns below', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/geiranger-and-trollstigen/'},
+      {name:'Gudbrandsjuvet Gorge', price:'Free', time:'15-20 min', desc:'Spectacular river gorge with metal walkways over the churning water'}
+    ],
+    activities: [
+      {icon:'fa-car', text:'Trollstigen mountain pass', price:'Free', time:'30 min', desc:'Legendary mountain road with 11 hairpin turns. Cantilevered viewing platform. Iconic Norway', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/geiranger-and-trollstigen/'},
+      {icon:'fa-tint', text:'Gudbrandsjuvet gorge', price:'Free', time:'15-20 min', desc:'Walkways suspended over a raging river gorge'},
+      {icon:'fa-mountain', text:'Aksla viewpoint', price:'Free', time:'30-45 min', desc:'Climb 418 steps to Ålesund\'s panoramic city viewpoint. Sweeping views over the archipelago'},
+      {icon:'fa-landmark', text:'Art Nouveau architecture walk', price:'Free', time:'1-1.5 hr', desc:'Self-guided walk through Europe\'s most complete Art Nouveau city center'}
+    ],
+    groupNotes: 'The Trollstigen drive is a bucket-list experience. Drive the pass at your own pace — cars can stagger by 10 minutes. If Trollstigen is closed due to snow, the E136 alternative through Åndalsnes is still scenic. Evening: walk up Aksla — 418 steps to the city viewpoint.',
+    lodging: [
+      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$140/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
+      {tier:'Mid', name:'Quality Hotel Ålesund', price:'$170/night', pros:'Modern waterfront hotel, spacious rooms, good breakfast, harbor views, near Art Nouveau center', cons:'Slightly out of the old town, can feel corporate, no pool', cite:'https://www.qualityhotelalesund.no'},
+      {tier:'Premium', name:'Hotel Brosundet', price:'$220/night', pros:'Stunning waterfront boutique hotel in historic Art Nouveau building, exceptional restaurant, cozy atmosphere, harbor views', cons:'Pricey, limited parking, no pool or spa, some rooms small', cite:'https://www.brosundet.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Valldal strawberry farm café — fresh strawberry cake (late May)', dinner:'XL Diner — classic Norwegian seafood. Try the bacalao (dried salted cod stew — an Ålesund specialty since the Portuguese trade days), or the fresh catch of the day. After dinner, climb the 418 steps to Aksla viewpoint for the midnight panorama' },
+    lat: 62.4722, lng: 6.1543, poi: [{name:'Trollstigen', lat:62.4500, lng:7.6667, note:'Mountain pass'},{name:'Aksla', lat:62.4722, lng:6.1667, note:'418 steps to city view'}]
+  },
+  {
+    day: 6, date: new Date(2027, 5, 2), base: 'Ålesund', drive: null, driveTime: null, stops: [],
+    activities: [
+      {icon:'fa-fish', text:'Atlanterhavsparken (Atlantic Sea Park)', price:'$22 (220 NOK)', time:'2-3 hr', desc:'One of Scandinavia\'s largest aquariums. Huge ocean tank, penguins, seals', cite:'https://www.atlanterhavsparken.no'},
+      {icon:'fa-water', text:'Kayak Brosundet canal', price:'$50-70 rental', time:'2 hr', desc:'Paddle Ålesund\'s inner canals right through the city center. Stillwater'},
+      {icon:'fa-hiking', text:'Sukkertoppen hike', price:'Free', time:'1.5-2 hr', desc:'Short but steep hike to a granite peak (314m). 360° views over Ålesund and the Atlantic'},
+      {icon:'fa-monument', text:'Alnes Lighthouse', price:'Free (toll bridge)', time:'1 hr', desc:'Drive to Godøya island. Climb the lighthouse. Rugged Atlantic coast views'},
+      {icon:'fa-beer', text:'Molo Brew taproom', price:'$8-12/pint', time:'1 hr', desc:'Harborside brewery in a historic pier building'}
+    ],
+    groupNotes: 'Flex day in Ålesund. Morning: Atlantic Sea Park. Afternoon: choose between kayaking the canals or hiking Sukkertoppen. Late afternoon: Alnes Lighthouse. Evening: Molo Brew taproom.',
+    lodging: [
+      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$140/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
+      {tier:'Mid', name:'Quality Hotel Ålesund', price:'$170/night', pros:'Modern waterfront hotel, spacious rooms, good breakfast, harbor views, near Art Nouveau center', cons:'Slightly out of the old town, can feel corporate, no pool', cite:'https://www.qualityhotelalesund.no'},
+      {tier:'Premium', name:'Hotel Brosundet', price:'$220/night', pros:'Stunning waterfront boutique hotel in historic Art Nouveau building, exceptional restaurant, cozy atmosphere, harbor views', cons:'Pricey, limited parking, no pool or spa, some rooms small', cite:'https://www.brosundet.no'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Café at Atlanterhavsparken — fish and chips with Atlantic views', dinner:'Apotekergata No. 5 — modern Norwegian shared plates in a historic Art Nouveau building. Great cocktails and local craft beer. After dinner, take a twilight stroll through the Art Nouveau streets to admire the spire-lit skyline' },
+    lat: 62.4722, lng: 6.1543, poi: [{name:'Atlanterhavsparken', lat:62.4611, lng:6.1000, note:'Aquarium'},{name:'Alnes', lat:62.4833, lng:6.0000, note:'Lighthouse on Godøya'}]
+  },
+  {
+    day: 7, date: new Date(2027, 5, 3), base: 'Molde', drive: 'Ålesund → Atlantic Road → Molde', driveTime: '~3 hr',
+    directions: ['Take E136 east from Ålesund','Turn onto RV64 — drive the Atlantic Ocean Road','Cross 8 bridges between small islands — stop at viewpoints','Continue to the fishing village of Bud','Follow coastal road to Molde'],
+    stops: [
+      {name:'Atlantic Ocean Road viewpoints', price:'Free', time:'30-45 min', desc:'8 stunning bridges connecting islands over the open Atlantic. Norway\'s most scenic drive', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/northwest/atlantic-road/'},
+      {name:'Bud fishing village', price:'Free', time:'30 min', desc:'Authentic Norwegian fishing village. Coastal fortifications from WWII'}
+    ],
+    activities: [
+      {icon:'fa-car', text:'Atlantic Ocean Road', price:'Free', time:'1 hr', desc:'One of the world\'s most scenic drives. 8.3 km across islands with dramatic bridges', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/northwest/atlantic-road/'},
+      {icon:'fa-fish', text:'Bud fishing village', price:'Free', time:'30-45 min', desc:'Charming coastal village. WWII coastal fort. Fresh fish right from the boats'},
+      {icon:'fa-mountain', text:'Varden Molde Panorama', price:'Free', time:'30 min', desc:'Famous 407m viewpoint over Molde, the Romsdal Alps, and 222 mountain peaks across the fjord'}
+    ],
+    groupNotes: 'The Atlantic Road offers dramatic bridge crossings and photo opportunities at every stop. Stop at Eldhusøya rest area for the best views. Bud is a peaceful lunch stop. Arrive Molde late afternoon for the Varden viewpoint.',
+    lodging: [
+      {tier:'Budget', name:'Thon Hotel Moldefjord', price:'$130/night', pros:'Reliable chain hotel, excellent breakfast, central Molde location near harbor, good value', cons:'Basic rooms, no unique atmosphere, no pool', cite:'https://www.thonhotels.com/hotels/norway/molde/thon-hotel-moldefjord/'},
+      {tier:'Mid', name:'Molde Fjordhotell', price:'$150/night', pros:'Fjord-view rooms, central location, good restaurant, rooftop terrace with panoramic Molde panorama', cons:'Older building, some rooms dated, basic amenities', cite:'https://www.moldefjordhotell.no'},
+      {tier:'Premium', name:'Scandic Seilet Hotel', price:'$200/night', pros:'Iconic sail-shaped tower dominating Molde skyline, stunning 360-degree views from upper floors, modern rooms, excellent breakfast', cons:'A bit out of the old town, large conference hotel, windy location', cite:'https://www.scandichotels.com/seilet'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Bryggjen Restaurant in Bud — freshest fish soup and crab sandwiches', dinner:'Glass Restaurant at Scandic Seilet — floor-to-ceiling Moldefjord views. Try the bacalao or pan-seared halibut. After dinner, check the view from the Molde panorama terrace (222 peaks visible on clear evenings)' },
+    lat: 62.7375, lng: 7.1591, poi: [{name:'Atlantic Road', lat:63.0167, lng:7.3500, note:'Atlanterhavsvegen'},{name:'Varden Molde', lat:62.7458, lng:7.2000, note:'222-peak panorama'}]
+  },
+  {
+    day: 8, date: new Date(2027, 5, 4), base: 'Trondheim', drive: 'Molde → Trondheim', driveTime: '~4h 30 min',
+    directions: ['Take E39 east from Molde along the Romsdalsfjord','Continue through the scenic Innerdalen valley','Take E6 south into Trondheim','Cross Trondheimsfjord (ferry or drive around)'],
+    stops: [
+      {name:'Kvernes Stave Church', price:'$8 (80 NOK)', time:'15-20 min', desc:'Beautiful 14th-century stave church near Averøy. Quick detour', cite:'https://www.visitnorway.com'}
+    ],
+    activities: [
+      {icon:'fa-church', text:'Kvernes Stave Church', price:'$8', time:'15-20 min', cite:'https://www.visitnorway.com'},
+      {icon:'fa-ship', text:'Trondheimsfjord crossing', price:'Free', time:'20 min', desc:'Drive around Norway\'s third-longest fjord'},
+      {icon:'fa-landmark', text:'Nidaros Cathedral exterior', price:'Free (exterior)', time:'30 min', desc:'Scandinavia\'s largest medieval building. Evening exterior sighting', cite:'https://www.nidarosdomen.no'},
+      {icon:'fa-walking', text:'Evening walk Bakklandet', price:'Free', time:'45-60 min', desc:'Trondheim\'s most charming neighborhood. Colorful wooden houses, cobblestone streets'}
+    ],
+    groupNotes: 'Longest drive day but last big push. Break it up with Kvernes Stave Church and coffee stops. Arrive Trondheim late afternoon. Evening: walk through Bakklandet — Gamle Bybro (Old Town Bridge) is especially photogenic.',
+    lodging: [
+      {tier:'Budget', name:'City Living Schøller Hotel', price:'$110/night', pros:'Self-catering apartments with kitchenette, central Trondheim location near Bakklandet, affordable for groups', cons:'No restaurant, no daily housekeeping, basic facilities, check-in at separate location', cite:'https://www.cityliving.no'},
+      {tier:'Mid', name:'Clarion Hotel Trondheim', price:'$150/night', pros:'Modern harborfront hotel, excellent breakfast, rooftop bar with views, close to Nidaros Cathedral and Bakklandet', cons:'Parking expensive, busy with business travelers on weekdays', cite:'https://www.clarionhoteltrondheim.no'},
+      {tier:'Premium', name:'Radisson Blu Royal Garden', price:'$180/night', pros:'Central Trondheim location, large comfortable rooms, indoor pool and sauna, extensive breakfast buffet, attached to shopping center', cons:'Large chain hotel, impersonal feel, some rooms face interior atrium', cite:'https://www.radissonhotels.com/royal-garden-trondheim'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Coffee stop in Kyrksæterøra — traditional lefse and coffee', dinner:'Bakklandet Skydsstation — cozy historic inn on Bakklandet cobblestone street. Reindeer stew with lingonberry jam, fresh salmon, or fårikål when available. After dinner, walk across the Old Town Bridge for a Nidaros Cathedral night view' },
+    lat: 63.4305, lng: 10.3951, poi: [{name:'Kvernes Stave Church', lat:63.0000, lng:7.7333, note:'14th-century stave church'},{name:'Nidaros Cathedral', lat:63.4269, lng:10.3969, note:'National cathedral'}]
+  },
+  {
+    day: 9, date: new Date(2027, 5, 5), base: 'Trondheim', drive: null, driveTime: null, stops: [],
+    activities: [
+      {icon:'fa-church', text:'Nidaros Cathedral interior tour', price:'$15 (150 NOK)', time:'1-1.5 hr', desc:'Crown jewels, rose window, crypt', cite:'https://www.nidarosdomen.no'},
+      {icon:'fa-monument', text:'Kristiansten Fortress', price:'Free (grounds)', time:'45 min', desc:'17th-century fortress. Cannons, city views, Resistance Museum'},
+      {icon:'fa-music', text:'Rockheim — National Museum of Pop Music', price:'$18 (180 NOK)', time:'1.5-2 hr', desc:'Interactive music museum. Hands-on exhibits, recording studios', cite:'https://www.rockheim.no'},
+      {icon:'fa-walking', text:'Bakklandet & Gamle Bybro', price:'Free', time:'1 hr', desc:'Shopping and coffee in Trondheim\'s most photogenic neighborhood'},
+      {icon:'fa-shopping-bag', text:'Last-minute Norwegian souvenirs', price:'Variable', time:'1 hr', desc:'Trondheim Torg and independent boutiques in Bakklandet'}
+    ],
+    groupNotes: 'Full city day in Trondheim. Morning: Nidaros Cathedral. Mid-day: Rockheim museum — interactive music exhibits. Afternoon: choose between exploring Kristiansten Fortress or shopping in Bakklandet. Evening: farewell dinner.',
+    lodging: [
+      {tier:'Budget', name:'City Living Schøller Hotel', price:'$110/night', pros:'Self-catering apartments with kitchenette, central Trondheim location near Bakklandet, affordable for groups', cons:'No restaurant, no daily housekeeping, basic facilities, check-in at separate location', cite:'https://www.cityliving.no'},
+      {tier:'Mid', name:'Clarion Hotel Trondheim', price:'$150/night', pros:'Modern harborfront hotel, excellent breakfast, rooftop bar with views, close to Nidaros Cathedral and Bakklandet', cons:'Parking expensive, busy with business travelers on weekdays', cite:'https://www.clarionhoteltrondheim.no'},
+      {tier:'Premium', name:'Radisson Blu Royal Garden', price:'$180/night', pros:'Central Trondheim location, large comfortable rooms, indoor pool and sauna, extensive breakfast buffet, attached to shopping center', cons:'Large chain hotel, impersonal feel, some rooms face interior atrium', cite:'https://www.radissonhotels.com/royal-garden-trondheim'}
+    ],
+    lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Kaffebrenneriet Bakklandet — best coffee and fresh pastries on the cobblestone street', dinner:'Farewell dinner at Credo (Michelin-starred new Nordic tasting menu) or Bula Neobistro (relaxed modern Norwegian, great wine list). End the trip at Trondheim Mikrobryggeri for a final Norwegian craft beer' },
+    lat: 63.4305, lng: 10.3951, poi: [{name:'Rockheim', lat:63.4392, lng:10.4000, note:'Pop music museum'},{name:'Kristiansten', lat:63.4306, lng:10.4083, note:'Fortress'}]
+  },
+  {
+    day: 10, date: new Date(2027, 5, 6), base: 'Depart Trondheim', drive: null, driveTime: null, stops: [],
+    activities: [
+      {icon:'fa-plane-departure', text:'Fly home from Trondheim Airport (TRD)', price:'—', time:'7-8 hr flight (with connections)', desc:'CEST → EDT (-6h). Connect via Amsterdam (AMS), Copenhagen (CPH), or Oslo (OSL). KLM, SAS, Norwegian. Return to PIT or MGW'},
+      {icon:'fa-sun', text:'Morning in Trondheim (if late flight)', price:'Free', time:'1-3 hr', desc:'Last walk through Bakklandet, coffee at Kaffebrenneriet, or Ringve Music Museum'},
+      {icon:'fa-shopping-bag', text:'Duty-free at TRD', price:'Variable', time:'30 min', desc:'Aquavit, brunost, Norwegian wool'}
+    ],
+    groupNotes: 'Departure day from Trondheim (TRD). Most US connections route through Amsterdam or Copenhagen. Plan flights to coordinate connections through AMS if possible.',
+    lodging: '—', lodgingDetail: '',
+    meals: { breakfast:'Hotel buffet included', lunch:'Airport lounge or grab sandwiches for the plane', dinner:'In flight' },
+    lat: 63.4543, lng: 10.9155, poi: [{name:'Trondheim Airport', lat:63.4543, lng:10.9155, note:'TRD'}]
+  }
+];
+
+// Colors per day
+const colors = ['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#14b8a6','#f43f5e'];
+
+// ---------- Timeline ----------
+const container = document.getElementById('timelineContainer');
+
+const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+data.forEach((d, idx) => {
+  const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
+  const dayName = dayNames[d.date.getDay()];
+
+  const driveHtml = d.drive
+    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive} &middot; ${d.driveTime}</span>`
+    : '';
+
+  const directionsHtml = d.directions
+    ? `<h3 style="margin-top:0.75rem"><i class="fas fa-route"></i> Directions</h3><div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">${d.directions.map(dir => `<div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.25rem 0"><span style="color:var(--accent);font-size:0.75rem;margin-top:0.2em;flex-shrink:0"><i class="fas fa-arrow-right"></i></span><span>${dir}</span></div>`).join('')}</div>`
+    : '';
+
+  const citeHtml = url => url ? ` <a href="${url}" target="_blank" rel="noopener" style="color:var(--muted);font-size:0.7rem;text-decoration:none;white-space:nowrap"><i class="fas fa-external-link-alt"></i></a>` : '';
+
+  const stopsHtml = d.stops.length
+    ? `<h3 style="margin-top:0.75rem"><i class="fas fa-stop-circle"></i> Stops Along the Way</h3><div class="stop-grid">${d.stops.map(s => {
+        const name = s.name || s.text || '';
+        const priceBadge = s.price ? `<span class="badge badge-price">${s.price}</span>` : '';
+        const timeBadge = s.time ? `<span class="badge badge-time"><i class="far fa-clock"></i> ${s.time}</span>` : '';
+        const descHtml = s.desc ? `<div class="stop-desc">${s.desc}${citeHtml(s.cite)}</div>` : '';
+        return `<div class="stop-card">
+          <div class="stop-card-top">${priceBadge}${timeBadge}</div>
+          <div class="stop-card-name">${name}${citeHtml(s.cite)}</div>
+          ${descHtml}
+        </div>`;
+      }).join('')}</div>`
+    : '';
+
+  const activitiesHtml = d.activities.map(a => {
+    return `<li>
+      <i class="fas ${a.icon}"></i>
+      <div class="activity-content">
+        <span class="activity-text">${a.text}${citeHtml(a.cite)}</span>
+        <span class="activity-meta">${a.price ? `<span class="badge badge-price">${a.price}</span>` : ''}${a.time ? `<span class="badge badge-time"><i class="far fa-clock"></i> ${a.time}</span>` : ''}</span>
+        ${a.desc ? `<span class="activity-desc">${a.desc}${citeHtml(a.cite)}</span>` : ''}
+      </div>
+    </li>`;
+  }).join('');
+
+  const groupNotesHtml = d.groupNotes ? `<div class="group-notes"><i class="fas fa-users"></i> ${d.groupNotes}</div>` : '';
+
+  const mealsHtml = d.meals ? `<h3><i class="fas fa-utensils"></i> Meals</h3>
+    <div class="meals-grid">
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-sun"></i> Breakfast</span>
+        <span class="meal-text">${d.meals.breakfast || 'Hotel buffet included'}</span>
+      </div>
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-bread-slice"></i> Lunch</span>
+        <span class="meal-text">${d.meals.lunch}</span>
+      </div>
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-moon"></i> Dinner</span>
+        <span class="meal-text">${d.meals.dinner}</span>
+      </div>
+    </div>` : '';
+
+  const hotelHtml = Array.isArray(d.lodging) ? `<div class="hotel-section">
+    ${d.lodging.map(l => `
+      <div class="lodging-tier">
+        <div class="lodging-tier-header">
+          <span class="lodging-tier-badge" style="background:${l.tier==='Budget'?'var(--accent)':l.tier==='Mid'?'#8b5cf6':'#f59e0b'}">${l.tier}</span>
+          <strong>${l.name}</strong>
+          <span class="lodging-tier-price">${l.price}</span>
+        </div>
+        <div class="lodging-tier-details">
+          <span class="lodging-pros"><strong>Pros:</strong> ${l.pros}</span>
+          <span class="lodging-cons"><strong>Cons:</strong> ${l.cons}</span>
+          ${l.cite ? `<a href="${l.cite}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Book / Details</a>` : ''}
+        </div>
+      </div>
+    `).join('')}
+  </div>` : d.lodging === '—' ? '' : `<div class="hotel-section">
+    <div class="hotel-label"><i class="fas fa-moon"></i> ${d.lodging}</div>
+    <p>${d.lodgingDetail}</p>
+  </div>`;
+
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.id = `day-${d.day}`;
+  card.innerHTML = `
+    <div class="day-number"></div>
+    <div class="day-header" data-day="${idx}">
+      <div class="day-header-left">
+        <div class="day-label">
+          <span class="day-num">Day ${d.day} &middot; ${dayName}</span>
+          <span class="day-date">${dateStr} &mdash; ${d.base}</span>
+        </div>
+        ${driveHtml}
+      </div>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+    <div class="day-body">
+      ${groupNotesHtml}
+      <h3><i class="fas fa-mountain"></i> Activities</h3>
+      <ul class="activity-list">${activitiesHtml}</ul>
+      ${mealsHtml}
+      ${directionsHtml}
+      ${stopsHtml}
+      ${hotelHtml}
+    </div>
+  `;
+  container.appendChild(card);
+
+  card.querySelector('.day-header').addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+});
+
+// ---------- At a Glance strip ----------
+const glanceIcons = {
+  'Oslo': 'fa-city',
+  'Lom': 'fa-campground',
+  'Geiranger': 'fa-water',
+  'Ålesund': 'fa-ship',
+  'Molde': 'fa-mountain',
+  'Trondheim': 'fa-church',
+  'Depart Trondheim': 'fa-plane-departure'
+};
+
+const glanceStrip = document.getElementById('glanceStrip');
+data.forEach((d, idx) => {
+  const icon = glanceIcons[d.base] || 'fa-map-pin';
+  const item = document.createElement('a');
+  item.className = 'glance-item';
+  item.href = `#day-${d.day}`;
+  item.style.borderTopColor = colors[idx];
+  item.style.borderTopWidth = '3px';
+  item.innerHTML = `
+    <div class="glance-day">Day ${d.day}</div>
+    <i class="fas ${icon} glance-icon" style="color:${colors[idx]}"></i>
+    <div class="glance-base">${d.base}</div>
+    ${d.drive ? `<div class="glance-drive"><i class="fas fa-car"></i> ${d.driveTime.replace(' (','<br>(')}</div>` : ''}
+  `;
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById(`day-${d.day}`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target.classList.contains('open')) target.classList.add('open');
+    }
+  });
+  glanceStrip.appendChild(item);
+});
+
+// ---------- Scroll tracking for nav ----------
+const dayJumps = document.querySelectorAll('.sticky-nav .day-jump');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const dayNum = entry.target.id.replace('day-', '');
+      dayJumps.forEach(j => j.classList.remove('active'));
+      const activeJump = document.querySelector(`.sticky-nav .day-jump[title*="Day ${dayNum} "]`);
+      if (activeJump) activeJump.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+document.querySelectorAll('.day-card').forEach(card => observer.observe(card));
+
+// Day jump click: also open the card
+dayJumps.forEach(jump => {
+  jump.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = jump.getAttribute('href');
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target.classList.contains('open')) target.classList.add('open');
+    }
+  });
+});
+
+// ---------- Map ----------
+const map = L.map('map', {
+  zoomControl: true,
+  scrollWheelZoom: true
+}).setView([63.0, 8.5], 7);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18
+}).addTo(map);
+
+// Route points for polyline
+const routePoints = [
+  [59.9139, 10.7522], [60.1667, 10.5000], [60.8000, 10.7000], [61.2000, 10.5000],
+  [61.5333, 10.1333], [61.7000, 9.7000], [61.8378, 8.5683], [62.0000, 7.5000],
+  [62.0486, 7.2681], [62.1000, 7.2000], [62.3500, 7.5000], [62.4500, 7.6667],
+  [62.5000, 6.5000], [62.4722, 6.1543], [63.0167, 7.3500], [62.7375, 7.1591],
+  [63.0000, 8.5000], [63.4305, 10.3951], [63.4543, 10.9155]
+];
+
+// Primary route line
+L.polyline(routePoints, {
+  color: '#2d6a4f',
+  weight: 4,
+  opacity: 0.7,
+  dashArray: '12,8'
+}).addTo(map);
+
+// Main markers (base locations)
+data.forEach((d, idx) => {
+  const color = colors[idx];
+  const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
+
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;font-weight:700">${d.day}</div>`,
+    className: '',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+  });
+
+  const popupHtml = `
+    <strong>Day ${d.day} &mdash; ${d.base}</strong><br>
+    ${dateStr}<br>
+    ${d.drive ? `<em>${d.drive} ${d.driveTime}</em><br>` : ''}
+    <a href="#days" onclick="document.querySelector('.day-card:nth-child(${d.day}) .day-header').click();return false;">View details →</a>
+  `;
+
+  const marker = L.marker([d.lat, d.lng], { icon: markerIcon })
+    .addTo(map)
+    .bindPopup(popupHtml);
+
+  // Label
+  const labelIcon = L.divIcon({
+    html: `<div style="background:rgba(0,0,0,0.6);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;white-space:nowrap">${d.base}</div>`,
+    className: '',
+    iconSize: [0, 0],
+    iconAnchor: [0, -15]
+  });
+  L.marker([d.lat, d.lng], { icon: labelIcon, interactive: false }).addTo(map);
+
+  // POI markers
+  if (d.poi) {
+    d.poi.forEach(p => {
+      L.circleMarker([p.lat, p.lng], {
+        radius: 6,
+        fillColor: color,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map)
+        .bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+});
+
+// ---------- Theme ----------
+const toggle = document.getElementById('themeToggle');
+const icon = toggle.querySelector('i');
+const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+if (prefersDark) {
+  document.body.classList.add('dark');
+  icon.className = 'fas fa-sun';
+}
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+});
+
+// ---------- Fit map to bounds ----------
+const allCoords = [...routePoints];
+data.forEach(d => {
+  if (d.poi) d.poi.forEach(p => allCoords.push([p.lat, p.lng]));
+});
+map.fitBounds(allCoords, { padding: [50, 50] });
+
+// ---------- Open first day by default ----------
+document.querySelector('.day-card:first-child').classList.add('open');
+
+// ---------- Collapsible info cards ----------
+function toggleCollapse(id, btn) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.toggle('open');
+  btn.classList.toggle('open');
+  const textNode = btn.childNodes[btn.childNodes.length - 1];
+  textNode.textContent = isOpen ? ' Hide details' : ' Show full playbook';
+}
+
+// ---------- Export JSON ----------
+function exportJSON() {
+  var cleanData = data.map(function(d) {
+    var o = {};
+    for (var k in d) {
+      if (k === 'date') {
+        o[k] = d.date instanceof Date ? d.date.toISOString().split('T')[0] : d.date;
+      } else {
+        o[k] = d[k];
+      }
+    }
+    return o;
+  });
+  var blob = new Blob([JSON.stringify(cleanData, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'norway-route3-geiranger-northwest.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------- Export CSV ----------
+function exportCSV() {
+  function esc(v) {
+    if (v === null || v === undefined) return '';
+    var s = String(v).replace(/\n/g, ' ').replace(/\r/g, '');
+    return s.indexOf(',') >= 0 || s.indexOf('"') >= 0 ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+  function fmtLodging(l) {
+    if (!l) return '';
+    if (Array.isArray(l)) return l.map(function(x) { return x.tier + ': ' + x.name + ' (' + x.price + ')'; }).join(' | ');
+    return String(l);
+  }
+  function fmtActivities(acts) {
+    if (!acts || !acts.length) return '';
+    return acts.map(function(a) { return a.text + (a.desc ? ': ' + a.desc : ''); }).join('; ');
+  }
+  function fmtStops(stops) {
+    if (!stops || !stops.length) return '';
+    return stops.map(function(s) { return s.name + (s.desc ? ': ' + s.desc : ''); }).join('; ');
+  }
+  function fmtPOI(poi) {
+    if (!poi || !poi.length) return '';
+    return poi.map(function(p) { return p.name; }).join('; ');
+  }
+  function fmtDirs(dirs) {
+    if (!dirs || !dirs.length) return '';
+    return dirs.join(' \u2192 ');
+  }
+  var cols = ['Day','Date','Base','Drive','Drive Time','Directions','Breakfast','Lunch','Dinner','Stops','Activities','Group Notes','Lodging','Latitude','Longitude','Points of Interest'];
+  var rows = data.map(function(d) {
+    return [d.day, d.date instanceof Date ? d.date.toISOString().split('T')[0] : d.date, d.base, d.drive, d.driveTime, fmtDirs(d.directions), d.meals ? d.meals.breakfast : '', d.meals ? d.meals.lunch : '', d.meals ? d.meals.dinner : '', fmtStops(d.stops), fmtActivities(d.activities), d.groupNotes, fmtLodging(d.lodging), d.lat, d.lng, fmtPOI(d.poi)].map(esc).join(',');
+  });
+  var csv = '\uFEFF' + cols.join(',') + '\n' + rows.join('\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'norway-route3-geiranger-northwest.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------- References ----------
+const citeUrls = new Set();
+data.forEach(d => {
+  (d.activities || []).forEach(a => { if (a.cite) citeUrls.add(a.cite); });
+  (d.stops || []).forEach(s => { if (s.cite) citeUrls.add(s.cite); });
+});
+const refContainer = document.getElementById('referencesContainer');
+if (refContainer && citeUrls.size) {
+  const items = [...citeUrls].sort().map(url => {
+    const label = url.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    return `<li style="break-inside:avoid;margin-bottom:0.5rem"><a href="${url}" target="_blank" rel="noopener" style="font-size:0.85rem">${label}</a></li>`;
+  }).join('');
+  refContainer.innerHTML = `<div class="info-card"><h3><i class="fas fa-link"></i> Sources (${citeUrls.size})</h3><ul style="column-count:2;column-gap:2rem;list-style:none;padding:0">${items}</ul></div>`;
+}
+</script>
+</body>
+</html>

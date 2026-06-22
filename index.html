@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norway 2027 — Trip Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f2ed;--surface:#ffffff;--text:#1a1a2e;--muted:#6b7280;--accent:#2d6a4f;--accent2:#1b4332;--gold:#d4a373;--border:#e5e7eb;--card-shadow:0 4px 24px rgba(0,0,0,0.06);--hover-shadow:0 8px 40px rgba(0,0,0,0.1);--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.dark{--bg:#0f172a;--surface:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#4ade80;--accent2:#22c55e;--border:#334155;--card-shadow:0 4px 24px rgba(0,0,0,0.3);--hover-shadow:0 8px 40px rgba(0,0,0,0.4)}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:var(--transition);min-height:100vh}
+
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+
+.theme-toggle{position:fixed;top:20px;right:20px;z-index:1000;background:var(--surface);border:2px solid var(--border);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.2rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.theme-toggle:hover{transform:rotate(15deg);box-shadow:var(--hover-shadow)}
+
+.hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1a2e 0%,#1a3a3a 40%,#2d6a4f 70%,#40916c 100%);overflow:hidden;padding:2rem}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.03)' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") bottom/cover no-repeat;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-0.02em}
+.hero h1 span{background:linear-gradient(135deg,#4ade80,#d4a373);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.8);margin-bottom:1.5rem;font-weight:300}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.hero-stat{text-align:center;display:flex;flex-direction:column;gap:0.35rem}
+.hero-stat .num{font-size:1.5rem;font-weight:700;color:#4ade80;display:block}
+.hero-stat .label{font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
+
+.container{max-width:1100px;margin:0 auto;padding:3rem 1rem}
+
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-header h2{font-size:1.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.section-header h2 i{color:var(--accent)}
+.section-header p{color:var(--muted);margin-top:0.5rem;max-width:600px;margin-left:auto;margin-right:auto}
+
+.itinerary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-bottom:3rem}
+.itinerary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);transition:var(--transition);text-decoration:none;color:var(--text);display:flex;flex-direction:column}
+.itinerary-card:hover{transform:translateY(-4px);box-shadow:var(--hover-shadow)}
+.itinerary-card .card-top{height:8px;flex-shrink:0}
+.itinerary-card:nth-child(1) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card:nth-child(2) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card:nth-child(3) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card:nth-child(4) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card:nth-child(5) .card-top{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899,#14b8a6,#f43f5e)}
+.itinerary-card .card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.itinerary-card h3{font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem}
+.itinerary-card h3 i{color:var(--accent);font-size:1rem}
+.itinerary-card .card-subtitle{color:var(--muted);font-size:0.85rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.35rem}
+.itinerary-card .card-subtitle i{font-size:0.75rem}
+.route-pills{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem}
+.route-pill{padding:0.2rem 0.6rem;border-radius:20px;font-size:0.7rem;font-weight:600;color:#fff;white-space:nowrap}
+.route-pill:nth-child(1){background:#ef4444}
+.route-pill:nth-child(2){background:#f97316}
+.route-pill:nth-child(3){background:#eab308}
+.route-pill:nth-child(4){background:#22c55e}
+.route-pill:nth-child(5){background:#06b6d4}
+.route-pill:nth-child(6){background:#3b82f6}
+.route-pill:nth-child(7){background:#8b5cf6}
+.route-pill:nth-child(8){background:#ec4899}
+.route-pill:nth-child(9){background:#14b8a6}
+.route-pill:nth-child(10){background:#f43f5e}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem}
+.card-stat{background:var(--bg);border-radius:8px;padding:0.6rem}
+.card-stat .cs-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);font-weight:600;margin-bottom:0.35rem;display:block}
+.card-stat .cs-value{font-size:0.95rem;font-weight:600;color:var(--text)}
+.card-stat .cs-value i{color:var(--accent);width:1rem}
+.card-highlights{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;flex:1}
+.card-highlights li{list-style:none;display:flex;align-items:flex-start;gap:0.4rem}
+.card-highlights li i{color:var(--accent);margin-top:0.25em;font-size:0.7rem}
+.card-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.25rem;background:var(--accent);color:#fff;border-radius:50px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:var(--transition);align-self:flex-start}
+.card-cta:hover{background:var(--accent2);transform:translateY(-2px)}
+.card-cta i{font-size:0.8rem}
+
+.comparison-table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border)}
+.comparison-table th,.comparison-table td{padding:0.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:0.88rem}
+.comparison-table th{background:var(--bg);font-weight:600;color:var(--text);white-space:nowrap;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em}
+.comparison-table td{color:var(--muted)}
+.comparison-table tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.comparison-table i{color:var(--accent);width:1.2rem;text-align:center}
+
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+
+@media(max-width:768px){
+  .hero{min-height:40vh}
+  .hero-stats{gap:1rem}
+  .hero-stat .num{font-size:1.2rem}
+  .itinerary-grid{grid-template-columns:1fr}
+  .card-stats{grid-template-columns:1fr 1fr}
+  .container{padding:2rem 1rem}
+  .comparison-table th,.comparison-table td{padding:0.5rem 0.6rem;font-size:0.8rem}
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <i class="fas fa-moon"></i>
+</button>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-map-marked-alt"></i> Norway 2027</div>
+    <h1>Trip <span>Dashboard</span></h1>
+    <p class="subtitle">Two family road trip itineraries &middot; Oslo &rarr; Fjords &rarr; Home</p>
+    <div class="hero-stats">
+       <div class="hero-stat"><span class="num">5</span><span class="label">Itineraries</span></div>
+      <div class="hero-stat"><span class="num">10</span><span class="label">Days Each</span></div>
+      <div class="hero-stat"><span class="num">2</span><span class="label">Families</span></div>
+      <div class="hero-stat"><span class="num">May&ndash;Jun</span><span class="label">2027</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="section-header">
+    <h2><i class="fas fa-route"></i> Choose Your Route</h2>
+    <p>Five different 10-day Norway itineraries — compare and pick the one that fits your family best.</p>
+  </div>
+
+  <div class="itinerary-grid">
+    <!-- Route 1 -->
+    <a href="itinerary1.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-mountain"></i> Route 1 &mdash; Northern Loop</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Fl&aring;m &rarr; Loen &rarr; Lillehammer &rarr; Oslo</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Loen</span>
+          <span class="route-pill">Loen</span>
+          <span class="route-pill">Jotunheimen</span>
+          <span class="route-pill">Lillehammer</span>
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 5</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~17h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Oslo (OSL)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,864&ndash;3,674</span></div>
+        </div>
+        <ul class="card-highlights">
+           <li><i class="fas fa-check"></i> National Museum (The Scream), Opera House roof walk</li>
+           <li><i class="fas fa-check"></i> Fl&aring;m Railway, Stegastein Viewpoint, fjord kayak</li>
+          <li><i class="fas fa-check"></i> Briksdal glacier, Loen Skylift, Via Ferrata</li>
+           <li><i class="fas fa-check"></i> Lom Stave Church, Sjoa River rafting</li>
+          <li><i class="fas fa-check"></i> Arctic Dome glamping, Maihaugen Museum</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
+
+    <!-- Route 2 -->
+    <a href="itinerary2.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-ship"></i> Route 2 &mdash; Southern Loop</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Hardanger &rarr; Stavanger</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Stavanger</span>
+          <span class="route-pill">Stavanger</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 5</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~19h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Stavanger (SVG)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,135&ndash;2,907</span></div>
+        </div>
+        <ul class="card-highlights">
+          <li><i class="fas fa-check"></i> Oslo Fjord cruise, Vigeland Sculpture Park</li>
+          <li><i class="fas fa-check"></i> Fl&aring;m Railway, Stegastein, Aurlandsfjord kayak</li>
+          <li><i class="fas fa-check"></i> Fl&oslash;yen funicular, Bryggen wharf, Bergen Fish Market</li>
+          <li><i class="fas fa-check"></i> Steinsdalsfossen, V&oslash;ringsfossen, Bondhusbreen glacier, fruit farms</li>
+          <li><i class="fas fa-check"></i> Preikestolen hike, Lysefjord cruise</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
+
+    <!-- Route 3 -->
+    <a href="itinerary3.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-water"></i> Route 3 &mdash; Geiranger &amp; Northwest</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Lom &rarr; Geiranger &rarr; &angst;lesund &rarr; Trondheim</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Lom</span>
+          <span class="route-pill">Geiranger</span>
+          <span class="route-pill">Geiranger</span>
+          <span class="route-pill">&Aring;lesund</span>
+          <span class="route-pill">&Aring;lesund</span>
+          <span class="route-pill">Molde</span>
+          <span class="route-pill">Trondheim</span>
+          <span class="route-pill">Trondheim</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 6</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~17h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Trondheim (TRD)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,115&ndash;2,365</span></div>
+        </div>
+        <ul class="card-highlights">
+          <li><i class="fas fa-check"></i> UNESCO Geirangerfjord cruise, Dalsnibba Skywalk</li>
+          <li><i class="fas fa-check"></i> Trollstigen mountain pass, Atlantic Ocean Road</li>
+          <li><i class="fas fa-check"></i> &Aring;lesund Art Nouveau city, Atlantic Sea Park</li>
+           <li><i class="fas fa-check"></i> Nidaros Cathedral, Rockheim pop music museum</li>
+          <li><i class="fas fa-check"></i> Lom Bakery, bacalao in &Aring;lesund, reindeer stew in Trondheim</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
+
+    <!-- Route 4 -->
+    <a href="itinerary4.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-hiking"></i> Route 4 &mdash; Telemark &amp; Hardanger</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Rjukan &rarr; Hardangervidda &rarr; Hardanger &rarr; Bergen</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Rjukan</span>
+          <span class="route-pill">Rjukan</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Hardanger</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 5</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~12h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Bergen (BGO)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $870&ndash;2,050</span></div>
+        </div>
+        <ul class="card-highlights">
+          <li><i class="fas fa-check"></i> Vemork Heavy Water Museum &mdash; Heroes of Telemark WWII history</li>
+          <li><i class="fas fa-check"></i> Gaustabanen tram INSIDE a mountain, Gaustatoppen views</li>
+          <li><i class="fas fa-check"></i> Hardangervidda wild reindeer, V&oslash;ringsfossen waterfall</li>
+          <li><i class="fas fa-check"></i> Bondhusbreen glacier hike, Hardanger fruit farms &amp; cider</li>
+          <li><i class="fas fa-check"></i> Bergen: Fl&oslash;ibanen, Bryggen wharf, Mostraumen fjord cruise</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
+
+    <!-- Route 5 -->
+    <a href="itinerary5.html" class="itinerary-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3><i class="fas fa-sun"></i> Route 5 &mdash; Lofoten &amp; Fjords</h3>
+        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 &middot; Oslo &rarr; Fl&aring;m 🚂 &rarr; Bergen &rarr; Lofoten ✈️</div>
+        <div class="route-pills">
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Oslo</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Fl&aring;m</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Bergen</span>
+          <span class="route-pill">Lofoten</span>
+          <span class="route-pill">Lofoten</span>
+          <span class="route-pill">Lofoten</span>
+          <span class="route-pill">Depart</span>
+        </div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 6</span></div>
+          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~2.5h</span></div>
+          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Leknes (LKN)</span></div>
+          <div class="card-stat"><span class="cs-label">Budget</span><span class="cs-value"><i class="fas fa-wallet"></i> $810&ndash;2,490</span></div>
+        </div>
+        <ul class="card-highlights">
+          <li><i class="fas fa-check"></i> Fl&aring;m Railway (world's most beautiful train ride)</li>
+          <li><i class="fas fa-check"></i> N&aelig;r&oslash;yfjord UNESCO cruise, Stegastein viewpoint</li>
+          <li><i class="fas fa-check"></i> Bryggen wharf, Fl&oslash;ybanen funicular, Bergen food tour</li>
+          <li><i class="fas fa-check"></i> Reinebringen hike (#1 in Lofoten), kayaking Reinefjorden</li>
+          <li><i class="fas fa-check"></i> Midnight sun, rorbu cabins, Anita's Sjømat fish burger</li>
+        </ul>
+        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-header">
+    <h2><i class="fas fa-balance-scale"></i> Quick Comparison</h2>
+    <p>Key metrics at a glance across all five routes.</p>
+  </div>
+
+  <table class="comparison-table">
+      <thead>
+      <tr>
+        <th style="width:16.6%"></th>
+        <th style="width:16.6%">Route 1</th>
+        <th style="width:16.6%">Route 2</th>
+        <th style="width:16.6%">Route 3</th>
+        <th style="width:16.6%">Route 4</th>
+        <th style="width:16.6%">Route 5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><i class="fas fa-route"></i> Route</td>
+        <td>Oslo &rarr; Fl&aring;m &rarr; Loen &rarr; Oslo</td>
+        <td>Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Stavanger</td>
+        <td>Oslo &rarr; Geiranger &rarr; &Aring;lesund &rarr; Trondheim</td>
+        <td>Oslo &rarr; Rjukan &rarr; Hardanger &rarr; Bergen</td>
+        <td>Oslo &rarr; Fl&aring;m 🚂 &rarr; Bergen &rarr; Lofoten ✈️</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-plane-departure"></i> End city</td>
+        <td>Oslo (OSL)</td>
+        <td>Stavanger (SVG)</td>
+        <td>Trondheim (TRD)</td>
+        <td>Bergen (BGO)</td>
+        <td>Leknes (LKN)</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-car"></i> Driving</td>
+        <td>~17h</td>
+        <td>~19h</td>
+        <td>~17h</td>
+        <td>~12h</td>
+        <td>~2.5h</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-wallet"></i> Budget</td>
+        <td>$1,864&ndash;3,674</td>
+        <td>$1,135&ndash;2,907</td>
+        <td>$1,115&ndash;2,365</td>
+        <td>$870&ndash;2,050</td>
+        <td>$810&ndash;2,490</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-moon"></i> Lodging/night</td>
+        <td>$175&ndash;300</td>
+        <td>$141&ndash;338</td>
+        <td>$128&ndash;267</td>
+        <td>$113&ndash;284</td>
+        <td>$95&ndash;300</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-mountain"></i> Glaciers</td>
+        <td>Briksdal, B&oslash;yabreen, Kjenndalen</td>
+        <td>Bondhusbreen</td>
+        <td>None on route</td>
+        <td>Bondhusbreen, Folgefonna views</td>
+        <td>None on route</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-water"></i> Fjord cruises</td>
+        <td>Undredal catamaran</td>
+        <td>Mostraumen, Hardangerfjord, Lysefjord</td>
+        <td>Geirangerfjord UNESCO, RIB safari</td>
+        <td>Mostraumen</td>
+        <td>N&aelig;r&oslash;yfjord UNESCO, RIB safari</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-hiking"></i> Signature hikes</td>
+        <td>Utladalen, Fl&aring;m Valley</td>
+        <td>Preikestolen, Bondhusbreen, Trolltunga</td>
+        <td>Storseterfossen, Skagefl&aring;, Sukkertoppen</td>
+        <td>Gaustatoppen, Bondhusbreen, V&oslash;ringsfossen</td>
+        <td>Reinebringen, Ryten, Henningsv&aelig;r</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-church"></i> Stave churches</td>
+        <td>Borgund, Lom, Ringebu</td>
+        <td>Borgund</td>
+        <td>Ringebu, Lom, Kvernes</td>
+        <td>Heddal (largest in Norway)</td>
+        <td>None on route</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-bullseye"></i> Disc golf</td>
+        <td>Kaupanger, Medalen, Skogen</td>
+        <td>Fantoft, Stokka</td>
+        <td>Medalen (Lom)</td>
+        <td>Fantoft (Bergen)</td>
+        <td>None on route</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-campground"></i> Unique stays</td>
+        <td>Arctic Dome glamping</td>
+        <td>Fjord hotels (Hardanger)</td>
+        <td>Historic fjord hotel (Geiranger)</td>
+        <td>Mountain cabins (Rjukan)</td>
+        <td>Rorbu cabins (Reine/Hamn&oslash;y)</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-beer"></i> Local food/drink</td>
+        <td>&AElig;gir BrewPub, brewery crawl</td>
+        <td>Fish Market, Hardanger cider</td>
+        <td>Bacalao, reindeer stew, Valldal strawberries</td>
+        <td>Hardanger cider &amp; apple cake, Bergen fish soup</td>
+        <td>Anita's Sj&oslash;mat, &AElig;gir BrewPub, Lysverket</td>
+      </tr>
+      <tr>
+        <td><i class="fas fa-star"></i> Best for</td>
+        <td>Mountains + glaciers + variety</td>
+        <td>Coastal cities + Preikestolen</td>
+        <td>Epic roads + UNESCO fjord + music</td>
+        <td>WWII history + plateau + lowest cost</td>
+        <td>Train + flight + midnight sun + Lofoten</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<footer>
+  <p>Norway 2027 &middot; May 28 &ndash; Jun 6 &middot; EDT &rarr; CEST (+6h) &middot; <i class="fas fa-heart" style="color:var(--accent)"></i></p>
+</footer>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+const icon = toggle.querySelector('i');
+const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+if (prefersDark) {
+  document.body.classList.add('dark');
+  icon.className = 'fas fa-sun';
+}
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+});
+</script>
+</body>
+</html>

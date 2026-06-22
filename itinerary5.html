@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norway 2027 — Lofoten &amp; Fjords</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f2ed;--surface:#ffffff;--text:#1a1a2e;--muted:#6b7280;--accent:#2d6a4f;--accent2:#1b4332;--gold:#d4a373;--border:#e5e7eb;--card-shadow:0 4px 24px rgba(0,0,0,0.06);--hover-shadow:0 8px 40px rgba(0,0,0,0.1);--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.dark{--bg:#0f172a;--surface:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#4ade80;--accent2:#22c55e;--border:#334155;--card-shadow:0 4px 24px rgba(0,0,0,0.3);--hover-shadow:0 8px 40px rgba(0,0,0,0.4)}
+html{scroll-behavior:smooth;scroll-padding-top:52px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:var(--transition)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+.theme-toggle{position:fixed;top:20px;right:20px;z-index:1000;background:var(--surface);border:2px solid var(--border);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.2rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.theme-toggle:hover{transform:rotate(15deg);box-shadow:var(--hover-shadow)}
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1a2e 0%,#1a3a3a 40%,#2d6a4f 70%,#40916c 100%);overflow:hidden;padding:2rem}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.03)' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") bottom/cover no-repeat;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.5rem,8vw,5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-0.02em}
+.hero h1 span{background:linear-gradient(135deg,#4ade80,#d4a373);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,0.8);margin-bottom:2rem;font-weight:300}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.hero-stat{text-align:center;display:flex;flex-direction:column;gap:0.35rem}
+.hero-stat .num{font-size:2rem;font-weight:700;color:#4ade80;display:block}
+.hero-stat .label{font-size:0.8rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
+.hero-cta{display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;transition:var(--transition);font-size:0.95rem}
+.hero-cta:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+.map-section{padding:3rem 1rem;max-width:1400px;margin:0 auto}
+.map-section h2{font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem}
+.map-section h2 i{color:var(--accent)}
+.map-section>p{color:var(--muted);margin-bottom:1.5rem;max-width:600px}
+#map{height:500px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border);z-index:1}
+.map-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;font-size:0.85rem;color:var(--muted);align-items:center}
+.map-legend .legend-item{display:flex;align-items:center;gap:0.4rem}
+.map-legend .legend-dot{width:12px;height:12px;border-radius:50%}
+.map-legend .legend-line{width:24px;height:3px;border-radius:2px}
+.route-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.6rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:50px;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;transition:var(--transition)}
+.route-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:var(--card-shadow)}
+.route-link i{color:var(--accent)}
+.timeline{padding:3rem 1rem 5rem;max-width:1000px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.section-header h2 i{color:var(--accent)}
+.section-header p{color:var(--muted);margin-top:0.5rem}
+.day-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--card-shadow);margin-bottom:1.5rem;overflow:hidden;transition:var(--transition);border:1px solid var(--border);position:relative}
+.day-card:hover{box-shadow:var(--hover-shadow);transform:translateY(-2px)}
+.day-card .day-number{position:absolute;top:0;left:0;bottom:0;width:6px}
+.day-card:nth-child(1) .day-number{background:#ef4444}
+.day-card:nth-child(2) .day-number{background:#f97316}
+.day-card:nth-child(3) .day-number{background:#eab308}
+.day-card:nth-child(4) .day-number{background:#22c55e}
+.day-card:nth-child(5) .day-number{background:#06b6d4}
+.day-card:nth-child(6) .day-number{background:#3b82f6}
+.day-card:nth-child(7) .day-number{background:#8b5cf6}
+.day-card:nth-child(8) .day-number{background:#ec4899}
+.day-card:nth-child(9) .day-number{background:#14b8a6}
+.day-card:nth-child(10) .day-number{background:#f43f5e}
+.day-header{padding:1.25rem 1.5rem 1.25rem 2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;user-select:none;-webkit-tap-highlight-color:transparent}
+.day-header-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0}
+.day-header .day-label{display:flex;flex-direction:column}
+.day-header .day-label .day-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:600}
+.day-header .day-label .day-date{font-weight:700;font-size:1.1rem}
+.day-header .base-badge{background:var(--accent);color:#fff;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .drive-badge{background:var(--gold);color:#1a1a2e;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .toggle-icon{color:var(--muted);transition:transform 0.3s ease;font-size:1rem;flex-shrink:0}
+.day-card.open .toggle-icon{transform:rotate(180deg)}
+.day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
+.day-card.open .day-body{max-height:2000px;padding:0 2rem 1.5rem}
+.day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
+.day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
+.day-body .activity-list{list-style:none;margin-bottom:1rem}
+.day-body .activity-list li{display:flex;align-items:flex-start;gap:0.6rem;padding:0.35rem 0;color:var(--text);font-size:0.92rem}
+.day-body .activity-list li i{color:var(--accent);margin-top:0.2em;width:1rem;text-align:center;flex-shrink:0}
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+.day-body .hotel-section{margin-top:0.75rem;padding:0.9rem 1.2rem;background:var(--bg);border-radius:10px;font-size:0.9rem}
+.day-body .hotel-section .hotel-label{font-weight:600;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;color:var(--text)}
+.day-body .hotel-section .hotel-label i{color:var(--accent)}
+.day-body .hotel-section p{color:var(--muted)}
+.lodging-tier{margin-bottom:0.35rem;padding-bottom:0.35rem}
+.lodging-tier:not(:last-child){border-bottom:1px solid var(--border)}
+.lodging-tier:last-child{margin-bottom:0;padding-bottom:0}
+.lodging-tier .lodging-tier-header{display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap}
+.lodging-tier .lodging-tier-header .lodging-tier-badge{display:inline-block;padding:0.08rem 0.45rem;border-radius:4px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:#fff;line-height:1.4}
+.lodging-tier-header strong{font-size:0.85rem;flex:1;min-width:0}
+.lodging-tier .lodging-tier-header .lodging-tier-price{color:var(--accent);font-weight:600;font-size:0.82rem;white-space:nowrap}
+.lodging-tier .lodging-tier-details{margin-top:0.15rem;color:var(--muted);font-size:0.8rem;line-height:1.45}
+.lodging-tier .lodging-tier-details .lodging-pros{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details .lodging-cons{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details a{font-size:0.78rem}
+.day-card .drive-detail{display:block;margin-top:0.35rem;padding:0.4rem 0.75rem;background:var(--bg);border-radius:8px;font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem}
+.day-card .drive-detail i{color:var(--gold)}
+.day-body .stop-item{font-size:0.85rem;color:var(--muted);padding:0.15rem 0}
+.stop-grid{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.75rem}
+.stop-card{padding:0.75rem 1rem;background:var(--bg);border-radius:10px;border-left:3px solid var(--gold)}
+.stop-card-top{display:flex;gap:0.5rem;margin-bottom:0.3rem}
+.stop-card-name{font-weight:600;font-size:0.9rem;color:var(--text)}
+.stop-desc{font-size:0.8rem;color:var(--muted);margin-top:0.25rem;line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:0.25rem;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;font-weight:600;white-space:nowrap}
+.badge-price{background:#d4a37333;color:#c77d3a}
+.dark .badge-price{background:#d4a37322;color:#f0c27a}
+.badge-time{background:#2d6a4f22;color:var(--accent)}
+.dark .badge-time{background:#4ade8022;color:#4ade80}
+.activity-content{display:flex;flex-direction:column;gap:0.25rem;min-width:0}
+.activity-text{font-size:0.92rem;line-height:1.3}
+.activity-meta{display:flex;gap:0.35rem;flex-wrap:wrap}
+.activity-list li{align-items:flex-start!important}
+.activity-list li i.fas{margin-top:0.3em!important}
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+.activity-desc{font-size:0.8rem;color:var(--muted);line-height:1.4}
+.group-notes{padding:0.85rem 1.1rem;background:#3b82f610;border:1px solid #3b82f630;border-radius:10px;font-size:0.85rem;color:var(--text);margin-bottom:0.75rem;display:flex;align-items:flex-start;gap:0.7rem;line-height:1.6}
+.group-notes i{color:#3b82f6;font-size:1rem;margin-top:0.15em;flex-shrink:0}
+.dark .group-notes{background:#3b82f608;border-color:#3b82f640}
+.meals-grid{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem}
+.meal-item{display:flex;flex-direction:column;gap:0.3rem;padding:0.6rem 1rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--accent)}
+.meal-item:nth-child(2){border-left-color:var(--gold)}
+.meal-item:nth-child(3){border-left-color:#8b5cf6}
+.meal-label{font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);display:flex;align-items:center;gap:0.35rem}
+.meal-label i{font-size:0.75rem;width:1rem;text-align:center}
+.meal-label .fa-sun{color:#eab308}
+.meal-label .fa-bread-slice{color:var(--gold)}
+.meal-label .fa-moon{color:#8b5cf6}
+.meal-text{font-size:0.85rem;color:var(--muted);line-height:1.5}
+.info-section{padding:3rem 1rem;max-width:1000px;margin:0 auto}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);transition:var(--transition)}
+.info-card:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow)}
+.info-card h3{font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.info-card h3 i{color:var(--accent)}
+.info-card p{color:var(--muted);font-size:0.92rem;line-height:1.7}
+.info-card a{color:var(--accent);text-decoration:none;font-weight:500}
+.info-card a:hover{text-decoration:underline}
+.info-card .collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
+.info-card .collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
+.info-card .collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
+.info-card .collapse-toggle.open i{transform:rotate(180deg)}
+.info-card .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.info-card .collapse-content.open{max-height:2000px}
+.checklist{list-style:none;margin-top:0.5rem}
+.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.checklist li:last-child{border-bottom:none}
+.checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
+.checklist li strong{color:var(--text)}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+.leaflet-popup-content-wrapper{border-radius:12px!important;font-family:inherit!important}
+.leaflet-popup-content{margin:12px 16px!important;font-size:0.9rem!important;line-height:1.5!important}
+.leaflet-popup-content strong{color:var(--accent)}
+.leaflet-control-zoom a{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+.day-body,.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
+@media print{ .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip,.collapse-toggle{display:none!important} .hero{min-height:auto;padding:1rem} .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc} .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important} .day-header{cursor:default} .toggle-icon{display:none!important} #map{height:300px} .collapse-content{max-height:none!important} }
+.sticky-nav{position:sticky;top:0;z-index:999;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:0.5rem 1rem;display:flex;align-items:center;gap:0.75rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sticky-nav::-webkit-scrollbar{display:none}
+.sticky-nav a{display:inline-flex;align-items:center;gap:0.35rem;padding:0.35rem 0.75rem;border-radius:50px;font-size:0.8rem;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;transition:var(--transition);border:1px solid transparent}
+.sticky-nav a:hover{color:var(--accent);border-color:var(--accent);background:var(--bg)}
+.sticky-nav .nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.sticky-nav .day-jump{width:28px;height:28px;padding:0;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700}
+.sticky-nav .day-jump.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sticky-nav .export-btn{margin-left:auto;background:var(--accent);color:#fff!important;border-color:var(--accent)!important;font-weight:600!important}
+.sticky-nav .export-btn:hover{background:var(--accent2)!important}
+.glance-strip{display:flex;gap:0.5rem;padding:1.5rem 1rem;max-width:1000px;margin:0 auto 1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.glance-strip::-webkit-scrollbar{display:none}
+.glance-item{flex:1;min-width:80px;max-width:120px;text-align:center;padding:0.75rem 0.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--text)}
+.glance-item:hover{transform:translateY(-2px);box-shadow:var(--card-shadow);border-color:var(--accent)}
+.glance-item .glance-day{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);font-weight:600}
+.glance-item .glance-icon{font-size:1.3rem;margin:0.3rem 0;display:block}
+.glance-item .glance-base{font-size:0.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.glance-item .glance-drive{font-size:0.6rem;color:var(--gold);margin-top:0.15rem}
+@media(max-width:768px){ .hero-stats{gap:1rem} .hero-stat .num{font-size:1.5rem} .day-header{padding:1rem 1rem 1rem 1.5rem;flex-wrap:wrap} .day-header-left{flex-wrap:wrap;gap:0.5rem} .day-body{padding:0 1rem} .day-card.open .day-body{padding:0 1rem 1rem 1rem} #map{height:350px} .map-legend{gap:0.5rem;font-size:0.8rem} .sticky-nav{padding:0.4rem 0.75rem;gap:0.5rem} .sticky-nav a{font-size:0.75rem;padding:0.3rem 0.6rem} .sticky-nav .day-jump{width:26px;height:26px;font-size:0.65rem} .glance-strip{padding:1rem 0.75rem} .glance-item{min-width:80px;padding:0.6rem 0.4rem} .glance-item .glance-icon{font-size:1.1rem} }
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+<section class="hero"><div class="hero-content"><div class="hero-badge"><i class="fas fa-plane"></i> May 28 &mdash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h)</div><h1>Norway <span>Fjords</span></h1><p class="subtitle">Oslo &rarr; Fl&aring;m 🚂 &rarr; Bergen &rarr; Lofoten ✈️ &rarr; Depart &middot; EDT +6h = CEST</p><div class="hero-stats"><div class="hero-stat"><span class="num">10</span><span class="label">Days</span></div><div class="hero-stat"><span class="num">6</span><span class="label">Bases</span></div><div class="hero-stat"><span class="num">~2.5h</span><span class="label">Driving</span></div><div class="hero-stat"><span class="num">May</span><span class="label">Departure</span></div></div><a href="#map" class="hero-cta"><i class="fas fa-map-marked-alt"></i> See the Route</a></div></section>
+<nav class="sticky-nav" id="stickyNav"><a href="index.html"><i class="fas fa-th-large"></i> All Routes</a><span class="nav-divider"></span><a href="#mapSection"><i class="fas fa-map"></i> Map</a><a href="#days"><i class="fas fa-calendar-alt"></i> Days</a><a href="#info"><i class="fas fa-info-circle"></i> Info</a><span class="nav-divider"></span><a href="#day-1" class="day-jump" title="Day 1 &mdash; Oslo">1</a><a href="#day-2" class="day-jump" title="Day 2 &mdash; Oslo">2</a><a href="#day-3" class="day-jump" title="Day 3 &mdash; Fl&aring;m">3</a><a href="#day-4" class="day-jump" title="Day 4 &mdash; Fl&aring;m">4</a><a href="#day-5" class="day-jump" title="Day 5 &mdash; Bergen">5</a><a href="#day-6" class="day-jump" title="Day 6 &mdash; Bergen">6</a><a href="#day-7" class="day-jump" title="Day 7 &mdash; Lofoten">7</a><a href="#day-8" class="day-jump" title="Day 8 &mdash; Lofoten">8</a><a href="#day-9" class="day-jump" title="Day 9 &mdash; Lofoten">9</a><a href="#day-10" class="day-jump" title="Day 10 &mdash; Depart">10</a><span class="nav-divider"></span><a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV"><i class="fas fa-file-csv"></i> CSV</a></nav>
+<section class="map-section" id="mapSection"><h2><i class="fas fa-map"></i> Route Overview</h2><p>Click a marker on the map to see details about each stop. The route line shows the full travel path.</p><div id="map"></div><div class="map-legend"><span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Overnight stop</span><span class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Day trip / POI</span><span class="legend-item"><span class="legend-line" style="background:#2d6a4f"></span> Route</span><a href="https://www.google.com/maps" target="_blank" rel="noopener" class="route-link"><i class="fas fa-route"></i> Open in Google Maps</a></div></section>
+<section class="timeline" id="days"><div class="section-header"><h2><i class="fas fa-calendar-alt"></i> Day-by-Day Itinerary</h2><p>Click each day to expand details &mdash; train routes, flights, activities, and lodging for every stop.</p></div><div class="glance-strip" id="glanceStrip"></div><div id="timelineContainer"></div></section>
+<section class="info-section" id="info"><div class="section-header"><h2><i class="fas fa-info-circle"></i> Trip Info</h2></div><div class="info-grid">
+<div class="info-card"><h3><i class="fas fa-users"></i> The Group</h3><p><strong>Two families traveling together</strong> &mdash; each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br><strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br><strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>This route includes train (Oslo&rarr;Fl&aring;m via Bergensbanen &amp; Fl&aring;msbana), minimal driving (Fl&aring;m&rarr;Bergen, ~2.5h), and a flight (Bergen&rarr;Lofoten). Each day has a <em>Group Notes</em> section with specific suggestions for coordinating both families.</p></div>
+<div class="info-card"><h3><i class="fas fa-car"></i> Driving</h3><p>Minimal driving on this route (~2.5h total, only Fl&aring;m&rarr;Bergen via Aurlandsfjellet). Both families rent cars in Lofoten (pick up at Leknes Airport, drop off at Leknes). The Aurlandsfjellet Snow Road (Fv243) is a toll-free Norwegian Scenic Route &mdash; snow-covered even in late May. Toll roads are common elsewhere &mdash; <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. In Lofoten: narrow roads, many tunnels (some single-lane with turnouts), and heavy summer tourist traffic. Download offline maps before driving in Lofoten &mdash; cell signal can be spotty in mountain passes.</p></div>
+<div class="info-card"><h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3><p><strong>Oslo:</strong> 10&ndash;20&deg;C (50&ndash;68&deg;F), pleasant spring weather. <strong>Fl&aring;m / Bergen:</strong> 8&ndash;16&deg;C (46&ndash;61&deg;F), rain gear essential &mdash; Bergen has 230+ rainy days per year. <strong>Lofoten:</strong> 5&ndash;15&deg;C (40&ndash;60&deg;F). Pack layers AND rain gear. <strong>Midnight sun:</strong> Lofoten has 24-hour daylight from May 27 to July 17 &mdash; you can hike at midnight! Sunset is ~midnight with continuous twilight. Bring a sleep mask for the rorbu cabins. Layering is essential: base layer, fleece, waterproof outer. Weather changes constantly in Lofoten &mdash; be prepared for sun, rain, and wind all in one day.</p></div>
+<div class="info-card"><h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3><p><strong>The problem:</strong> Depart 6pm EDT &rarr; Arrive 7am CEST (8h flight). Your body thinks it's 1am &mdash; you have to survive a full Oslo day.</p><div class="collapse-content" id="jetlagContent"><p style="margin-top:0.75rem"><strong>Before the flight:</strong> Shift meals and wake time 1h earlier for 2&ndash;3 days prior. Hydrate hard. No alcohol on the plane.</p><p><strong>On the plane:</strong> Set watch to CEST immediately. Eat dinner onboard, then sleep 4&ndash;5 hours. Eye mask, earplugs, neck pillow. Wake up 90 min before landing &mdash; drink water, skip the coffee.</p><p><strong>Arrival (7am CEST):</strong> Your room won't be ready. Drop bags at the hotel, then <u>go outside immediately</u>. Natural light is the best reset. Eat a real breakfast (protein, not just pastries). No napping. If you absolutely must, set an alarm for 20 min max.</p><p><strong>Survive Day 1:</strong> Walk the city (Aker Brygge, Opera House, Akershus Fortress). Movement beats lethargy. Caffeine before noon only. Stay awake until 9pm local time at minimum. Take a melatonin-3mg at 8pm if you're fading.</p></div><button class="collapse-toggle" onclick="toggleCollapse('jetlagContent', this)"><i class="fas fa-chevron-down"></i> Show full playbook</button></div>
+<div class="info-card"><h3><i class="fas fa-utensils"></i> Food</h3><p><strong>Consensus Picks from 40+ Sources:</strong><br><strong>Oslo:</strong> Mathallen Food Hall (Gr&uuml;nerl&oslash;kka's premier food hall).<br><strong>Fl&aring;m:</strong> &AElig;gir BrewPub (Viking-themed microbrewery with award-winning stouts and IPAs).<br><strong>Bergen:</strong> Lysverket (Michelin-starred New Nordic), Pingvinen (traditional raspeballer), Bryggen Tracteursted (historic 1708 Hanseatic merchant house), Bergen Fish Market (fresh seafood).<br><strong>Lofoten:</strong> Anita's S&oslash;mat (legendary fish burger &mdash; cited by EVERY source), Bacalao Restaurant (traditional dried cod), Lofoten Food Studio (New Nordic tasting menu), Fiskekrogen (fine dining seafood), Lofoten Seaweed tours (foraging + tasting).<br>Don't miss: cloudberries, reindeer, craft beer, local aquavit.</p></div>
+<div class="info-card"><h3><i class="fas fa-hiking"></i> Activities</h3><p><strong>Stillwater kayaking</strong> on Reinefjorden ("glassy, serene" &mdash; the best way to see Lofoten). <strong>Fjord cruises</strong> on N&aelig;r&oslash;yfjord (UNESCO World Heritage). <strong>RIB safari</strong> through narrow fjord straits. <strong>Reinebringen hike</strong> (#1 hike across all Lofoten sources &mdash; steep but incredible views). <strong>Ryten hike</strong> (Kvalvika Beach views). <strong>Henningsv&aelig;r</strong> fishing village ("Venice of Lofoten"). <strong>Haukland / Uttakleiv beaches</strong> (white sand + Arctic mountains). <strong>Nusfjord</strong> (UNESCO-protected fishing village). <strong>Fl&aring;m Railway</strong> (world's most beautiful train ride). <strong>Light rafting</strong> on Vosso River. <strong>Floating sauna</strong> + fjord dip. <strong>Midnight sun viewing</strong> in Lofoten.</p></div>
+<div class="info-card"><h3><i class="fas fa-language"></i> Language</h3><p>Norwegian is the official language, but English is widely spoken everywhere. Road signs use Nynorsk/Bokm&aring;l &mdash; same alphabet as English.</p></div>
+<div class="info-card"><h3><i class="fas fa-mobile-alt"></i> Connectivity</h3><p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. <strong>Lofoten has good 4G</strong> in villages (Reine, Henningsv&aelig;r, Leknes) but can be spotty in mountain passes and on remote beaches. Download offline maps before driving.</p><p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering.</p><p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included.</p><p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. Download offline Google Maps for the entire route as backup.</p></div>
+<div class="info-card"><h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3><p><strong>"Cancel for Any Reason" (CFAR)</strong> &mdash; Both families should book CFAR policies. Covers 50&ndash;75% of prepaid trip costs if you cancel for any reason not listed in standard coverage. Must be purchased within 14&ndash;21 days of first trip deposit.</p><p><strong>Medical &amp; evacuation:</strong> Standard travel insurance covers medical emergencies abroad ($100k&ndash;500k), emergency dental, and medical evacuation to nearest adequate facility. Confirm your plan covers Norway (Schengen area). Some credit cards (Chase Sapphire Preferred/Reserve, Capital One Venture X) include travel medical &mdash; verify limits before buying separate.</p><p><strong>Other protection:</strong> Trip delay (6+ hour delays &rarr; $500&ndash;2,000 reimbursement), baggage loss/delay, rental car collision (verify if your credit card covers CDW in Norway), and adventure sports coverage if doing glacier hiking or kayaking (some policies exclude "hazardous activities").</p><p><strong>Recommendations:</strong> <a href="https://www.allianztravelinsurance.com" target="_blank" rel="noopener">Allianz</a> (OneTrip Premier), <a href="https://www.travelguard.com" target="_blank" rel="noopener">Travel Guard</a> (Preferred), <a href="https://www.worldnomads.com" target="_blank" rel="noopener">World Nomads</a> (adventure-friendly). Expect ~5&ndash;10% of total trip cost for CFAR policies.</p></div>
+<div class="info-card"><h3><i class="fas fa-wallet"></i> Estimated Budget</h3><p><strong>Per family (9 nights):</strong><br><strong>Oslo (2 nights):</strong> $190&ndash;570 total ($95&ndash;285/night).<br><strong>Fl&aring;m (2 nights):</strong> $180&ndash;500 total ($90&ndash;250/night).<br><strong>Bergen (2 nights):</strong> $200&ndash;520 total ($100&ndash;260/night).<br><strong>Lofoten (3 nights):</strong> $240&ndash;900 total ($80&ndash;300/night).<br><strong>Total per family:</strong> ~$810&ndash;2,490 depending on hotel tier.<br><strong>Fl&aring;m Railway:</strong> ~$70/person. <strong>N&aelig;r&oslash;yfjord cruise:</strong> $55&ndash;85/person. <strong>Activities:</strong> ~$150&ndash;300/person. <strong>Flight Bergen&rarr;Leknes:</strong> $80&ndash;150/person.<br>Prices are per night for one room. Each family books separately.</p></div>
+<div class="info-card"><h3><i class="fas fa-calendar-alt"></i> When to Book</h3><p><strong>Flights (PIT/MGW &rarr; OSL, LKN &rarr; PIT/MGW):</strong> This is an open-jaw itinerary: fly into Oslo (OSL), out of Leknes (LKN) via Bod&oslash; (BOO) or Oslo. Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking &mdash; set alerts for PIT &rarr; OSL and MGW &rarr; OSL, plus LKN &rarr; PIT and LKN &rarr; MGW. The outbound flight from Leknes (LKN) typically connects in Bod&oslash; (BOO) then Oslo (OSL) before the transatlantic leg. Aim for Economy Plus ~$800&ndash;1,200 round trip.</p><p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a>. In Lofoten, rental cars are limited in summer &mdash; book early. Each family books their own car. Pick up at Leknes Airport (LKN), drop off at Leknes. Mid-size SUV or station wagon recommended. Book for 4 days (Jun 3&ndash;6). Expect ~$400&ndash;800 total per car.</p><p><strong>Hotels:</strong> <strong>Lofoten rorbu cabins are extremely competitive</strong> &mdash; book 6+ months ahead (Dec 2026&ndash;Jan 2027). The iconic red cabins (Eliassen, Hamn&oslash;y, Reine Rorbuer) sell out months in advance. Fl&aring;m hotels book 4&ndash;6 months ahead. Bergen hotels are competitive in summer. Oslo hotels are flexible until 1&ndash;2 months before. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation.</p><p><strong>Activities:</strong> <strong>Fl&aring;m Railway</strong> reservations recommended. <strong>N&aelig;r&oslash;yfjord cruise</strong> book ahead in summer. <strong>Reinebringen hike</strong> is free but start early. Lofoten activities (kayak, RIB safari) book 1&ndash;2 months ahead.</p><p><strong>Tip:</strong> Set calendar reminders for each booking window.</p></div>
+<div class="info-card"><h3><i class="fas fa-tasks"></i> Planning Checklist</h3><ul class="checklist"><li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for PIT/MGW &rarr; OSL (inbound) and LKN &rarr; PIT/MGW (outbound via BOO/OSL)</span></li><li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book Lofoten rorbu cabins (most competitive &mdash; 6+ months ahead), Fl&aring;m hotels</span></li><li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights (open-jaw OSL/LKN), Bergen hotels, travel insurance (CFAR)</span></li><li><i class="fas fa-check-circle"></i> <span><strong>Feb 2027:</strong> Book Fl&aring;m Railway tickets, N&aelig;r&oslash;yfjord cruise, Lofoten kayak/RIB tours</span></li><li><i class="fas fa-check-circle"></i> <span><strong>Mar 2027:</strong> Book rental cars (both families, LKN pickup/drop-off), Bergen&rarr;Leknes flights</span></li><li><i class="fas fa-check-circle"></i> <span><strong>Apr 2027:</strong> Book Fl&oslash;ibanen/Ulriken tickets, food tours in Bergen, floating sauna in Fl&aring;m</span></li><li><i class="fas fa-check-circle"></i> <span><strong>May 2027:</strong> Install eSIMs, download offline maps, pack layers + rain gear, check Aurlandsfjellet road status at vegvesen.no, shift sleep schedule</span></li></ul></div>
+</div></section>
+<section class="info-section" id="references" style="margin-top:1rem"><div class="section-header"><h2><i class="fas fa-bookmark"></i> References</h2></div><div class="info-grid" id="referencesContainer"></div></section>
+<footer><p>Norway Fjords &amp; Lofoten &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Lofoten &amp; Fjords Route</p></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const colors = ['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#14b8a6','#f43f5e'];
+
+const data = [
+  {day:1,date:new Date(2027,4,28),base:'Oslo',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-plane-arrival',text:'Fly into Oslo Airport (OSL)',price:'~$800-1,200 round trip',time:'7-8 hr flight',desc:'Depart from Pittsburgh (PIT) or Morgantown (MGW). EDT \u2192 CEST (+6h)'},
+    {icon:'fa-tree',text:'Vigeland Sculpture Park',price:'Free',time:'1 hr',desc:'200+ bronze, granite, and iron sculptures in Frogner Park. The Angry Boy and Monolith are must-sees',cite:'https://www.vigeland.museum.no'},
+    {icon:'fa-landmark',text:'Oslo Opera House roof walk',price:'Free',time:'20-30 min',desc:'Walk the sloping marble roof for iconic city + fjord views',cite:'https://www.operaen.no/en'},
+    {icon:'fa-ship',text:'Aker Brygge waterfront walk',price:'Free',time:'1 hr',desc:'Stroll the harbor promenade with shops, restaurants, and marina views'},
+    {icon:'fa-beer',text:'Mathallen Food Hall in Gr\u00fcnerl\u00f8kka',price:'$15-30 meal',time:'1.5-2 hr',desc:'Oslo\'s premier food hall. Each person picks their own vendor. Afterwards, grab a drink at Hallen Cocktailbar'}
+  ],groupNotes:'Arrive in Oslo. Keep Day 1 light \u2014 outdoor walking only. Vigeland Park: open air, easy walking. The Opera House roof is a must for sunset. Get dinner at Mathallen Food Hall in Gr\u00fcnerl\u00f8kka.',lodging:[
+    {tier:'Budget',name:'Citybox Oslo',price:'$95/night',pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi',cons:'No breakfast, no daily housekeeping, small rooms',cite:'https://www.citybox.no'},
+    {tier:'Mid',name:'Radisson RED Oslo',price:'$118/night',pros:'Modern Scandinavian design, excellent breakfast bar, great location near Opera House and waterfront',cons:'Standard chain feel, no pool, can be noisy',cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
+    {tier:'Premium',name:'Grand Hotel Oslo',price:'$285/night',pros:'Historic 1874 property, Nobel Peace Prize venue, rooftop terrace, exceptional breakfast, prime Karl Johans gate location',cons:'Very expensive, some rooms dated, tourist crowds',cite:'https://www.grand.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet included',lunch:'Picnic from Kiwi supermarket near hotel',dinner:'Mathallen Food Hall in Gr\u00fcnerl\u00f8kka \u2014 each person picks their own vendor. Afterwards, grab a drink at Hallen Cocktailbar.'},lat:59.9139,lng:10.7522,poi:[{name:'Vigeland Park',lat:59.9227,lng:10.7011,note:'Sculpture park'},{name:'Opera House',lat:59.9073,lng:10.7527,note:'Marble roof walk'}]},
+  {day:2,date:new Date(2027,4,29),base:'Oslo',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-monument',text:'Fram Museum (polar ship)',price:'$15 (150 NOK)',time:'1.5 hr',desc:'Polar exploration ship on Bygd\u00f8y. Walk inside the actual Fram. Interactive exhibits throughout',cite:'https://frammuseum.no'},
+    {icon:'fa-tree',text:'Norwegian Folk Museum',price:'$15 (150 NOK)',time:'1.5-2 hr',desc:'Open-air museum with historic buildings from across Norway. Stave church replica, farmhouses, and Sami exhibits',cite:'https://norskfolkemuseum.no'},
+    {icon:'fa-walking',text:'Gr\u00fcnerl\u00f8kka neighborhood walk',price:'Free',time:'1-1.5 hr',desc:'Oslo\'s hippest neighborhood. Street art, vintage shops, caf\u00e9s along the Akerselva river'},
+    {icon:'fa-walking',text:'Akershus Fortress sunset walk',price:'Free',time:'45-60 min',desc:'Medieval castle and fortress overlooking Oslo Fjord. Cannons and ramparts on display'}
+  ],groupNotes:'Full day to explore Oslo. Morning: Fram Museum on Bygd\u00f8y. Afternoon: Norwegian Folk Museum (next to Fram). Evening: walk through Gr\u00fcnerl\u00f8kka for dinner, then Akershus Fortress for sunset views.',lodging:[
+    {tier:'Budget',name:'Citybox Oslo',price:'$95/night',pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi',cons:'No breakfast, no daily housekeeping, small rooms',cite:'https://www.citybox.no'},
+    {tier:'Mid',name:'Radisson RED Oslo',price:'$118/night',pros:'Modern Scandinavian design, excellent breakfast bar, great location near Opera House and waterfront',cons:'Standard chain feel, no pool, can be noisy',cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
+    {tier:'Premium',name:'Grand Hotel Oslo',price:'$285/night',pros:'Historic 1874 property, Nobel Peace Prize venue, rooftop terrace, exceptional breakfast, prime Karl Johans gate location',cons:'Very expensive, some rooms dated, tourist crowds',cite:'https://www.grand.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet included',lunch:'Fram Museum caf\u00e9',dinner:'Restaurant Schr\u00f8der \u2014 historic 1910 Norwegian tavern. Kj\u00f8ttkaker (meatballs), f\u00e5rik\u00e5l (lamb and cabbage). After dinner, walk through the palace gardens.'},lat:59.9139,lng:10.7522,poi:[{name:'Fram Museum',lat:59.9033,lng:10.6981,note:'Polar ship museum'},{name:'Norwegian Folk Museum',lat:59.9075,lng:10.6858,note:'Open-air museum'},{name:'Akershus Fortress',lat:59.9075,lng:10.7358,note:'Medieval castle'}]},
+  {day:3,date:new Date(2027,4,30),base:'Fl\u00e5m',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-train',text:'Bergen Railway: Oslo \u2192 Myrdal',price:'~$60/person',time:'4.5 hr',desc:'One of the world\'s most scenic train routes. Sit on the LEFT side for best mountain views',cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-flam-railway/'},
+    {icon:'fa-train',text:'Fl\u00e5m Railway: Myrdal \u2192 Fl\u00e5m',price:'~$70/person',time:'1 hr',desc:'World\'s most beautiful train ride. Steep descent through 20 tunnels and waterfalls. The train stops at Kjosfossen for photos',cite:'https://www.flambanen.com'},
+    {icon:'fa-tint',text:'Kjosfossen waterfall stop',price:'Free',time:'10 min',desc:'The Fl\u00e5m Railway stops at Kjosfossen. In summer, dancers perform folklore by the waterfall'},
+    {icon:'fa-beer',text:'\u00c6gir BrewPub evening',price:'$15-30 meal',time:'1.5-2 hr',desc:'Fl\u00e5m\'s legendary microbrewery. Viking-themed interior. Bryggsoup (beer soup), reindeer stew, fresh-caught trout. Pair with their award-winning stouts and IPAs'}
+  ],groupNotes:'One of the most epic travel days in the world. Morning: Bergen Railway from Oslo to Myrdal \u2014 sit on the LEFT side for best mountain views. Transfer to Fl\u00e5m Railway at Myrdal \u2014 world-famous steep descent. The train stops at Kjosfossen waterfall for photos. Arrive Fl\u00e5m by late afternoon.',lodging:[
+    {tier:'Budget',name:'Fl\u00e5m Camping & Hostel',price:'$90/night',pros:'Affordable, central Fl\u00e5m location, kitchen facilities, close to train station and fjord',cons:'Basic cabins/hostel-style, shared facilities in budget options, no breakfast',cite:'https://www.flam-camping.no'},
+    {tier:'Mid',name:'Fl\u00e5m Marina & Apartment',price:'$150/night',pros:'Stunning fjord views from private apartments, full kitchen, free parking, quiet location, spacious',cons:'No restaurant on site, 5-min walk to Fl\u00e5m center, limited reception hours',cite:'https://www.flam-marina.no'},
+    {tier:'Premium',name:'Fretheim Hotel',price:'$230/night',pros:'Historic 1878 hotel with panoramic fjord views, excellent breakfast buffet, restaurant with local specialties, sauna, prime location',cons:'Very expensive, tourist-heavy, some rooms need updating',cite:'https://www.fretheimhotel.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet',lunch:'Picnic from Oslo Central Station bakery or onboard train caf\u00e9',dinner:'\u00c6gir BrewPub \u2014 Fl\u00e5m\'s legendary microbrewery. Viking-themed interior. Bryggsoup (beer soup), reindeer stew, fresh-caught trout. Pair with their award-winning stouts and IPAs.'},lat:60.8626,lng:7.1142,poi:[{name:'Fl\u00e5m Railway',lat:60.8626,lng:7.1142,note:'World-class scenic train'},{name:'Kjosfossen',lat:60.7458,lng:7.1389,note:'Waterfall train stop'}]},
+  {day:4,date:new Date(2027,4,31),base:'Fl\u00e5m',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-ship',text:'N\u00e6r\u00f8yfjord cruise (UNESCO)',price:'$55-85/person',time:'2 hr',desc:'The narrowest fjord in Europe. UNESCO World Heritage. Mountains rise 1,700m straight from the water',cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-naeroyfjord/'},
+    {icon:'fa-water',text:'Stillwater kayaking on Aurlandsfjord',price:'$60-90/person',time:'2-3 hr',desc:'Glassy, serene fjord paddling. Suitable for all skill levels. One of the most recommended Lofoten activities across 80% of sources'},
+    {icon:'fa-mountain',text:'Stegastein viewpoint',price:'Free',time:'30-45 min',desc:'Epic viewpoint platform jutting 30m over the fjord. 30 min drive from Fl\u00e5m. 90% of sources recommend this',cite:'https://www.visitnorway.com'},
+    {icon:'fa-ship',text:'RIB safari on N\u00e6r\u00f8yfjord',price:'$80-120/person',time:'1.5 hr',desc:'High-speed RIB boat through the narrow fjord. 60% of sources recommend for adrenaline seekers'},
+    {icon:'fa-hot-tub',text:'Floating sauna + fjord dip',price:'$30-50/person',time:'1 hr',desc:'Traditional wood-fired floating sauna on the fjord. Hot sauna then cold plunge into the fjord'}
+  ],groupNotes:'Fjord day! Morning: N\u00e6r\u00f8yfjord cruise UNESCO \u2014 the narrowest fjord in Europe. Midday: stillwater kayaking on Aurlandsfjord. Afternoon: Drive up to Stegastein viewpoint (30 min from Fl\u00e5m). For the adventurous: afternoon RIB safari. Evening: floating sauna on the fjord.',lodging:[
+    {tier:'Budget',name:'Fl\u00e5m Camping & Hostel',price:'$90/night',pros:'Affordable, central Fl\u00e5m location, kitchen facilities, close to train station and fjord',cons:'Basic cabins/hostel-style, shared facilities in budget options, no breakfast',cite:'https://www.flam-camping.no'},
+    {tier:'Mid',name:'Fl\u00e5m Marina & Apartment',price:'$150/night',pros:'Stunning fjord views from private apartments, full kitchen, free parking, quiet location, spacious',cons:'No restaurant on site, 5-min walk to Fl\u00e5m center, limited reception hours',cite:'https://www.flam-marina.no'},
+    {tier:'Premium',name:'Fretheim Hotel',price:'$230/night',pros:'Historic 1878 hotel with panoramic fjord views, excellent breakfast buffet, restaurant with local specialties, sauna, prime location',cons:'Very expensive, tourist-heavy, some rooms need updating',cite:'https://www.fretheimhotel.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet included',lunch:'Packed lunch from Fl\u00e5m Co-op \u2014 bread, Norvegia cheese, apples, Kvikk Lunsj',dinner:'Fl\u00e5m Station Restaurant \u2014 traditional Norwegian buffet in the historic station building. Lamb stew, salmon, local cheeses. After dinner, walk the fjord at golden hour (10pm sunset!)'},lat:60.8626,lng:7.1142,poi:[{name:'N\u00e6r\u00f8yfjord',lat:60.9367,lng:6.9467,note:'UNESCO fjord cruise'},{name:'Stegastein',lat:61.0567,lng:7.2792,note:'Epic viewpoint platform'}]},
+  {day:5,date:new Date(2027,5,1),base:'Bergen',drive:'Fl\u00e5m \u2192 Bergen (via Aurlandsfjellet)',driveTime:'~2.5h',directions:['Take the scenic Aurlandsfjellet Snow Road (Fv243) \u2014 one of Norway\'s highest mountain passes','Stop at viewpoint overlooking Aurlandsfjord','Descend to Gudvangen and continue along E16','Arrive Bergen by early afternoon'],stops:[{name:'Aurlandsfjellet Snow Road',price:'Free',time:'30 min photo stop',desc:'One of 18 Norwegian Scenic Routes. Snow-covered even in late May! Epic fjord views at the top',cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet'}],activities:[
+    {icon:'fa-car',text:'Scenic drive via Aurlandsfjellet Snow Road',price:'Free (toll-free)',time:'~2.5h',desc:'One of Norway\'s most epic mountain roads. The Fv243 climbs above the treeline with jaw-dropping fjord views'},
+    {icon:'fa-mountain',text:'Aurlandsfjellet viewpoint stop',price:'Free',time:'30 min',desc:'Snow-covered even in late May! Panoramic views over Aurlandsfjord from 1,300m'},
+    {icon:'fa-walking',text:'Evening Bryggen walk',price:'Free',time:'1 hr',desc:'Explore the colorful Hanseatic wharf, a UNESCO World Heritage site. Perfect for sunset photos'}
+  ],groupNotes:'Short drive day. Drive the Aurlandsfjellet Snow Road \u2014 one of Norway\'s most epic mountain roads. Unlikely to be fully open in late May but the lower section is spectacular. Arrive Bergen early afternoon. Evening: explore Bryggen wharf.',lodging:[
+    {tier:'Budget',name:'Citybox Bergen',price:'$100/night',pros:'Self-check-in 24/7, near Bergen Station, clean modern rooms, free Wi-Fi, great value',cons:'No breakfast, small rooms, no daily housekeeping',cite:'https://www.citybox.no/en/bergen/'},
+    {tier:'Mid',name:'Zander K Hotel',price:'$150/night',pros:'Design boutique hotel, excellent breakfast, central Bergen near train station, cool lobby with bar',cons:'Some rooms small, no pool',cite:'https://www.zanderk.no'},
+    {tier:'Premium',name:'Hotel Norge by Scandic',price:'$260/night',pros:'Historic Bergen landmark, rooftop pool with city views, full spa, multiple restaurants, prime location near city park',cons:'Very expensive, large hotel, some rooms feel corporate',cite:'https://www.hotelnorge.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet',lunch:'Roadside picnic at Aurlandsfjellet viewpoint',dinner:'Bryggen Tracteursted \u2014 historic 1708 Hanseatic merchant house. Traditional Norwegian stews on candlelit wooden tables. After dinner, walk through the colorful Bryggen wharf lit up at night.'},lat:60.3913,lng:5.3221,poi:[{name:'Aurlandsfjellet',lat:60.9367,lng:7.4200,note:'Scenic Snow Road'},{name:'Bryggen',lat:60.3975,lng:5.3167,note:'UNESCO Hanseatic wharf'}]},
+  {day:6,date:new Date(2027,5,2),base:'Bergen',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-train',text:'Fl\u00f8ibanen funicular to Mt. Fl\u00f8yen',price:'$13 (130 NOK) rtn',time:'1-2 hr',desc:'Bergen\'s iconic funicular. 320m up for panoramic views. Walking trails and playground at top',cite:'https://www.floyen.no'},
+    {icon:'fa-ship',text:'Bergen Fish Market',price:'Free to browse',time:'45-60 min',desc:'World-famous indoor/outdoor market. Fresh seafood, local specialties. Grab a shrimp sandwich',cite:'https://www.fisketorgetibergen.no'},
+    {icon:'fa-church',text:'Bryggen UNESCO waterfront & Hanseatic Museum',price:'$15 (150 NOK)',time:'1-1.5 hr',desc:'UNESCO wharf and museum about German Hanseatic merchants. Colorful wooden buildings',cite:'https://www.visitbergen.com'},
+    {icon:'fa-mountain',text:'Mt. Ulriken cable car',price:'$25 (250 NOK) rtn',time:'1-2 hr',desc:'Bergen\'s highest mountain (643m). Restaurant at top with 360\u00b0 views. Even better than Fl\u00f8yen',cite:'https://www.ulriken.no'},
+    {icon:'fa-utensils',text:'Food walking tour',price:'$40-60/person',time:'2-3 hr',desc:'Sm\u00f8rrebr\u00f8d, local cheeses, seafood. Sample Bergen\'s food scene with a local guide'}
+  ],groupNotes:'Full day in Bergen. Morning: Bryggen and Hanseatic Museum. Ride Fl\u00f8ibanen funicular. Lunch at the Fish Market. Afternoon: food walking tour or Ulriken cable car. Evening: sunset drinks atop Mt. Fl\u00f8yen.',lodging:[
+    {tier:'Budget',name:'Citybox Bergen',price:'$100/night',pros:'Self-check-in 24/7, near Bergen Station, clean modern rooms, free Wi-Fi, great value',cons:'No breakfast, small rooms, no daily housekeeping',cite:'https://www.citybox.no/en/bergen/'},
+    {tier:'Mid',name:'Zander K Hotel',price:'$150/night',pros:'Design boutique hotel, excellent breakfast, central Bergen near train station, cool lobby with bar',cons:'Some rooms small, no pool',cite:'https://www.zanderk.no'},
+    {tier:'Premium',name:'Hotel Norge by Scandic',price:'$260/night',pros:'Historic Bergen landmark, rooftop pool with city views, full spa, multiple restaurants, prime location near city park',cons:'Very expensive, large hotel, some rooms feel corporate',cite:'https://www.hotelnorge.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Hotel buffet included',lunch:'Bergen Fish Market \u2014 fresh shrimp sandwich (most popular), fish soup, whale sausage for the adventurous',dinner:'Lysverket \u2014 Michelin-listed New Nordic. Tasting menu with local seafood, game, and foraged ingredients. For a more budget-friendly option: Pingvinen for raspeballer (potato dumplings). After dinner, cocktails at No Stress Bar.'},lat:60.3913,lng:5.3221,poi:[{name:'Mt. Fl\u00f8yen',lat:60.3967,lng:5.3467,note:'Funicular views'},{name:'Bryggen',lat:60.3975,lng:5.3167,note:'UNESCO wharf'},{name:'Fish Market',lat:60.3947,lng:5.3156,note:'Indoor/outdoor seafood'}]},
+  {day:7,date:new Date(2027,5,3),base:'Lofoten (Reine)',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-plane',text:'Fly Bergen (BGO) \u2192 Leknes (LKN)',price:'$80-150/person',time:'~3h with connection',desc:'Wider\u00f8e or SAS. Usually connects through Bod\u00f8 (BOO). Book 3-5 months ahead',cite:'https://www.wideroe.no'},
+    {icon:'fa-car',text:'Pick up rental car at Leknes Airport',price:'~$400-800 total per car',time:'30 min',desc:'Each family rents their own car. Lofoten summer cars go fast \u2014 book early. Mid-size SUV recommended'},
+    {icon:'fa-home',text:'Settle into rorbu cabin in Reine / Hamn\u00f8y',price:'$95-300/night',time:'\u2014',desc:'Traditional red fisherman cabins right on the water. One of the most iconic accommodations in Norway'},
+    {icon:'fa-fish',text:'Anita\'s Sj\u00f8mat fish burger',price:'$15-20',time:'1 hr',desc:'Legendary fish burger \u2014 cited by EVERY Lofoten source. Fresh fried cod on a bun. Eat at outdoor tables with epic Reinefjord views'}
+  ],groupNotes:'Travel day to Lofoten! Fly from Bergen (BGO) to Leknes (LKN) \u2014 usually one stop in Bod\u00f8. Pick up rental cars at Leknes Airport. Drive to Reine (30 min). Check into rorbu cabin. Evening: Anita\'s Sj\u00f8mat for the famous fish burger.',lodging:[
+    {tier:'Budget',name:'Reine Rorbuer',price:'$95/night',pros:'Authentic fisherman cabins, affordable, prime Reine location, fjord views from most cabins, free parking',cons:'Shared facilities in budget options, basic amenities, no restaurant on site',cite:'https://www.reinerorbuer.no'},
+    {tier:'Mid',name:'Eliassen Rorbuer',price:'$165/night',pros:'Iconic red rorbuer on the water, kitchenette in each cabin, epic Hamn\u00f8y views, free parking, modern interiors',cons:'Very popular \u2014 book 6+ months ahead, no restaurant on site, compact cabins',cite:'https://www.eliassenrorbuer.no'},
+    {tier:'Premium',name:'Hamn\u00f8y Rorbuer',price:'$300/night',pros:'Most photographed rorbuer in Lofoten, right on water, modern interiors, private terrace with fjord view, restaurant on site',cons:'Extremely expensive, books out months ahead, limited availability',cite:'https://www.lofoten-rorbuer.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Bergen hotel breakfast',lunch:'Bod\u00f8 airport \u2014 fresh seafood soup at the airport restaurant',dinner:'Anita\'s Sj\u00f8mat \u2014 legendary fish burger (cited by EVERY Lofoten source). Fresh fried cod/battered fish on a bun. Eat at the outdoor tables with epic Reinefjord views.'},lat:67.9333,lng:13.0833,poi:[{name:'Leknes Airport',lat:68.1500,lng:13.6167,note:'LKN rental car pickup'},{name:'Reine',lat:67.9333,lng:13.0833,note:'Iconic Lofoten village'}]},
+  {day:8,date:new Date(2027,5,4),base:'Lofoten',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-walking',text:'Reinebringen hike',price:'Free',time:'2-3 hr',desc:'#1 hike in Lofoten \u2014 cited in EVERY source. STEEP (780 steps, 450m elevation). The view of Reinefjorden from the top is the most iconic in Norway. Start early',cite:'https://www.visitlofoten.com'},
+    {icon:'fa-camera',text:'Hamn\u00f8y photography',price:'Free',time:'30-45 min',desc:'The most photographed view in Norway. Red rorbuer reflected in the fjord. Best light in early morning or midnight sun'},
+    {icon:'fa-water',text:'Stillwater kayaking on Reinefjorden',price:'$60-90/person',time:'2-3 hr',desc:'Glassy, serene paddling through the Lofoten archipelago. 70% of sources recommend this. Suitable for all levels'},
+    {icon:'fa-walking',text:'\u00c5 village',price:'Free',time:'1 hr',desc:'Traditional fishing village at the end of the Lofoten road. Historical fishing museum and Norsk Fiskev\u00e6rsmuseum'}
+  ],groupNotes:'Epic Lofoten day! MORNING: Reinebringen hike \u2014 STEEP (780 steps, 450m elevation) but the view of Reinefjorden from the top is the most iconic in Norway. Start early (midnight sun means no darkness). Allow 2-3 hours round trip. MIDDAY: kayak the glassy Reinefjorden. AFTERNOON: drive to \u00c5 village or photograph Hamn\u00f8y. EVENING: relax at your rorbu.',lodging:[
+    {tier:'Budget',name:'Reine Rorbuer',price:'$95/night',pros:'Authentic fisherman cabins, affordable, prime Reine location, fjord views from most cabins, free parking',cons:'Shared facilities in budget options, basic amenities, no restaurant on site',cite:'https://www.reinerorbuer.no'},
+    {tier:'Mid',name:'Eliassen Rorbuer',price:'$165/night',pros:'Iconic red rorbuer on the water, kitchenette in each cabin, epic Hamn\u00f8y views, free parking, modern interiors',cons:'Very popular \u2014 book 6+ months ahead, no restaurant on site, compact cabins',cite:'https://www.eliassenrorbuer.no'},
+    {tier:'Premium',name:'Hamn\u00f8y Rorbuer',price:'$300/night',pros:'Most photographed rorbuer in Lofoten, right on water, modern interiors, private terrace with fjord view, restaurant on site',cons:'Extremely expensive, books out months ahead, limited availability',cite:'https://www.lofoten-rorbuer.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Self-cater rorbu kitchen or bakery in Reine',lunch:'Bacalao Restaurant (Reine) \u2014 traditional dried and salted cod dish (bacalao), Norway\'s national seafood',dinner:'Self-cater at rorbu or Lofoten Food Studio \u2014 New Nordic tasting menu with locally sourced Arctic ingredients'},lat:67.9333,lng:13.0833,poi:[{name:'Reinebringen',lat:67.9333,lng:13.0667,note:'Hike summit'},{name:'Hamn\u00f8y',lat:67.9500,lng:13.1000,note:'Red rorbuer village'},{name:'\u00c5 i Lofoten',lat:67.8833,lng:12.9833,note:'Fishing village museum'}]},
+  {day:9,date:new Date(2027,5,5),base:'Lofoten',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-ship',text:'Henningsv\u00e6r fishing village',price:'Free',time:'1-2 hr',desc:'The "Venice of Lofoten" \u2014 90% of sources recommend. Fishing village built on a cluster of islands. Galleries, caf\u00e9s, harbor views'},
+    {icon:'fa-water',text:'Haukland & Uttakleiv beaches',price:'Free',time:'1-2 hr',desc:'White sand + turquoise water + Arctic mountains \u2014 looks like the Caribbean in the Arctic. 80% of sources recommend. Surreal rock formations at Uttakleiv'},
+    {icon:'fa-church',text:'Nusfjord fishing village',price:'$5-10 entry',time:'1 hr',desc:'UNESCO-protected fishing village. 70% of sources recommend. One of Norway\'s best-preserved fishing villages',cite:'https://www.nusfjord.no'},
+    {icon:'fa-calendar-alt',text:'Flex / weather day',price:'Free',time:'Variable',desc:'Every Lofoten author says build in a flex day. More kayaking, another hike, rorbu downtime, or Lofoten Viking Museum at Borg (40 min north). Weather changes constantly \u2014 adjust based on conditions'}
+  ],groupNotes:'Lofoten flex day. OPTION A: Drive north \u2014 Henningsv\u00e6r (the "Venice of Lofoten"), Haukland Beach (white sand + turquoise water + Arctic mountains \u2014 looks like the Caribbean in the Arctic), Uttakleiv Beach (surreal rock formations). OPTION B: Relax day \u2014 stay near Reine. More kayaking, another hike, rorbu downtime. OPTION C: Museum day \u2014 Lofoten Viking Museum at Borg (40 min north). The weather changes constantly in Lofoten \u2014 adjust based on conditions.',lodging:[
+    {tier:'Budget',name:'Reine Rorbuer',price:'$95/night',pros:'Authentic fisherman cabins, affordable, prime Reine location, fjord views from most cabins, free parking',cons:'Shared facilities in budget options, basic amenities, no restaurant on site',cite:'https://www.reinerorbuer.no'},
+    {tier:'Mid',name:'Eliassen Rorbuer',price:'$165/night',pros:'Iconic red rorbuer on the water, kitchenette in each cabin, epic Hamn\u00f8y views, free parking, modern interiors',cons:'Very popular \u2014 book 6+ months ahead, no restaurant on site, compact cabins',cite:'https://www.eliassenrorbuer.no'},
+    {tier:'Premium',name:'Hamn\u00f8y Rorbuer',price:'$300/night',pros:'Most photographed rorbuer in Lofoten, right on water, modern interiors, private terrace with fjord view, restaurant on site',cons:'Extremely expensive, books out months ahead, limited availability',cite:'https://www.lofoten-rorbuer.no'}
+  ],lodgingDetail:'',meals:{breakfast:'Self-cater rorbu',lunch:'Henningsv\u00e6r Brygge \u2014 fish soup with fresh Arctic cod in a historic wharf building',dinner:'Fiskekrogen \u2014 fine dining seafood in Reine. Tasting menu featuring local Lofoten catches. Or self-cater at rorbu with groceries from Coop Reine.'},lat:67.9333,lng:13.0833,poi:[{name:'Henningsv\u00e6r',lat:68.1500,lng:14.2000,note:'Venice of Lofoten'},{name:'Haukland Beach',lat:68.2333,lng:13.4833,note:'White sand + Arctic views'},{name:'Nusfjord',lat:68.0333,lng:13.3500,note:'UNESCO fishing village'}]},
+  {day:10,date:new Date(2027,5,6),base:'Depart',drive:null,driveTime:null,stops:[],activities:[
+    {icon:'fa-walking',text:'Morning hike: Ryten (Kvalvika Beach view)',price:'Free',time:'2-3 hr',desc:'Moderate hike (543m elevation). The view of Kvalvika Beach from the summit is epic. 60% of sources recommend this as a departure-day hike'},
+    {icon:'fa-plane-departure',text:'Fly home from Leknes (LKN)',price:'\u2014',time:'7-8 hr flight (with connections)',desc:'LKN \u2192 BOO \u2192 OSL \u2192 US or LKN \u2192 OSL \u2192 US. Aim for late morning / early afternoon departure to avoid tight connections'},
+    {icon:'fa-shopping-bag',text:'Duty-free shopping',price:'Variable',time:'30 min',desc:'Norwegian wool, brunost, peppermakkels, aquavit at Leknes or Bod\u00f8 airport'}
+  ],groupNotes:'Departure day from Leknes (LKN). Fly LKN \u2192 BOO \u2192 OSL \u2192 US or LKN \u2192 OSL \u2192 US. Morning hike: Ryten (the Kvalvika Beach view is epic, 2-3h round trip, moderate). Or last beach walk. Aim for late morning/early afternoon departure to avoid tight connections.',lodging:'\u2014',lodgingDetail:'',meals:{breakfast:'Self-cater rorbu \u2014 last Norwegian breakfast',lunch:'Leknes Airport or Bod\u00f8 Airport \u2014 last salmon wrap',dinner:'In flight'},lat:67.9333,lng:13.0833,poi:[{name:'Ryten',lat:68.2000,lng:13.4000,note:'Hike with Kvalvika view'},{name:'Leknes Airport',lat:68.1500,lng:13.6167,note:'LKN departure'}]}
+];
+
+// ---------- Timeline ----------
+const container = document.getElementById('timelineContainer');
+const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+data.forEach((d, idx) => {
+  const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
+  const dayName = dayNames[d.date.getDay()];
+  const driveHtml = d.drive ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive} &middot; ${d.driveTime}</span>` : '';
+  const directionsHtml = d.directions ? `<h3 style="margin-top:0.75rem"><i class="fas fa-route"></i> Directions</h3><div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">${d.directions.map(dir => '<div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.25rem 0"><span style="color:var(--accent);font-size:0.75rem;margin-top:0.2em;flex-shrink:0"><i class="fas fa-arrow-right"></i></span><span>'+dir+'</span></div>').join('')}</div>` : '';
+  const citeHtml = url => url ? ' <a href="'+url+'" target="_blank" rel="noopener" style="color:var(--muted);font-size:0.7rem;text-decoration:none;white-space:nowrap"><i class="fas fa-external-link-alt"></i></a>' : '';
+  const stopsHtml = d.stops.length ? `<h3 style="margin-top:0.75rem"><i class="fas fa-stop-circle"></i> Stops Along the Way</h3><div class="stop-grid">${d.stops.map(function(s){const name=s.name||s.text||'';const pb=s.price?'<span class="badge badge-price">'+s.price+'</span>':'';const tb=s.time?'<span class="badge badge-time"><i class="far fa-clock"></i> '+s.time+'</span>':'';const dh=s.desc?'<div class="stop-desc">'+s.desc+citeHtml(s.cite)+'</div>':'';return '<div class="stop-card"><div class="stop-card-top">'+pb+tb+'</div><div class="stop-card-name">'+name+citeHtml(s.cite)+'</div>'+dh+'</div>';}).join('')}</div>` : '';
+  const activitiesHtml = d.activities.map(function(a){return '<li><i class="fas '+a.icon+'"></i><div class="activity-content"><span class="activity-text">'+a.text+citeHtml(a.cite)+'</span><span class="activity-meta">'+(a.price?'<span class="badge badge-price">'+a.price+'</span>':'')+(a.time?'<span class="badge badge-time"><i class="far fa-clock"></i> '+a.time+'</span>':'')+'</span>'+(a.desc?'<span class="activity-desc">'+a.desc+citeHtml(a.cite)+'</span>':'')+'</div></li>';}).join('');
+  const groupNotesHtml = d.groupNotes ? '<div class="group-notes"><i class="fas fa-users"></i> '+d.groupNotes+'</div>' : '';
+  const mealsHtml = d.meals ? '<h3><i class="fas fa-utensils"></i> Meals</h3><div class="meals-grid"><div class="meal-item"><span class="meal-label"><i class="fas fa-sun"></i> Breakfast</span><span class="meal-text">'+(d.meals.breakfast||'Hotel buffet included')+'</span></div><div class="meal-item"><span class="meal-label"><i class="fas fa-bread-slice"></i> Lunch</span><span class="meal-text">'+d.meals.lunch+'</span></div><div class="meal-item"><span class="meal-label"><i class="fas fa-moon"></i> Dinner</span><span class="meal-text">'+d.meals.dinner+'</span></div></div>' : '';
+  const hotelHtml = Array.isArray(d.lodging) ? '<div class="hotel-section">'+d.lodging.map(function(l){return '<div class="lodging-tier"><div class="lodging-tier-header"><span class="lodging-tier-badge" style="background:'+(l.tier==='Budget'?'var(--accent)':l.tier==='Mid'?'#8b5cf6':'#f59e0b')+'">'+l.tier+'</span><strong>'+l.name+'</strong><span class="lodging-tier-price">'+l.price+'</span></div><div class="lodging-tier-details"><span class="lodging-pros"><strong>Pros:</strong> '+l.pros+'</span><span class="lodging-cons"><strong>Cons:</strong> '+l.cons+'</span>'+(l.cite?'<a href="'+l.cite+'" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Book / Details</a>':'')+'</div></div>';}).join('')+'</div>' : d.lodging === '\u2014' ? '' : '<div class="hotel-section"><div class="hotel-label"><i class="fas fa-moon"></i> '+d.lodging+'</div><p>'+d.lodgingDetail+'</p></div>';
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.id = 'day-'+d.day;
+  card.innerHTML = '<div class="day-number"></div><div class="day-header" data-day="'+idx+'"><div class="day-header-left"><div class="day-label"><span class="day-num">Day '+d.day+' &middot; '+dayName+'</span><span class="day-date">'+dateStr+' &mdash; '+d.base+'</span></div>'+driveHtml+'</div><i class="fas fa-chevron-down toggle-icon"></i></div><div class="day-body">'+groupNotesHtml+'<h3><i class="fas fa-mountain"></i> Activities</h3><ul class="activity-list">'+activitiesHtml+'</ul>'+mealsHtml+directionsHtml+stopsHtml+hotelHtml+'</div>';
+  container.appendChild(card);
+  card.querySelector('.day-header').addEventListener('click',function(){card.classList.toggle('open');});
+});
+
+// ---------- At a Glance strip ----------
+const glanceIcons = {'Oslo':'fa-city','Fl\u00e5m':'fa-train','Bergen':'fa-ship','Lofoten (Reine)':'fa-water','Lofoten':'fa-water','Depart':'fa-plane-departure'};
+const glanceStrip = document.getElementById('glanceStrip');
+data.forEach((d, idx) => {
+  const icon = glanceIcons[d.base] || 'fa-map-pin';
+  const item = document.createElement('a');
+  item.className = 'glance-item';
+  item.href = '#day-'+d.day;
+  item.style.borderTopColor = colors[idx];
+  item.style.borderTopWidth = '3px';
+  item.innerHTML = '<div class="glance-day">Day '+d.day+'</div><i class="fas '+icon+' glance-icon" style="color:'+colors[idx]+'"></i><div class="glance-base">'+d.base+'</div>'+(d.drive?'<div class="glance-drive"><i class="fas fa-car"></i> '+d.driveTime.replace(' (','<br>(')+'</div>':'');
+  item.addEventListener('click',function(e){e.preventDefault();const t=document.getElementById('day-'+d.day);if(t){t.scrollIntoView({behavior:'smooth',block:'start'});if(!t.classList.contains('open'))t.classList.add('open');}});
+  glanceStrip.appendChild(item);
+});
+
+// ---------- Scroll tracking ----------
+const dayJumps = document.querySelectorAll('.sticky-nav .day-jump');
+const observer = new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){const dn=entry.target.id.replace('day-','');dayJumps.forEach(function(j){j.classList.remove('active');});const aj=document.querySelector('.sticky-nav .day-jump[title*="Day '+dn+' "]');if(aj)aj.classList.add('active');}});},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('.day-card').forEach(function(card){observer.observe(card);});
+dayJumps.forEach(function(jump){jump.addEventListener('click',function(e){e.preventDefault();const href=jump.getAttribute('href');const target=document.querySelector(href);if(target){target.scrollIntoView({behavior:'smooth',block:'start'});if(!target.classList.contains('open'))target.classList.add('open');}});});
+
+// ---------- Map ----------
+const map = L.map('map',{zoomControl:true,scrollWheelZoom:true}).setView([64.5,10.5],5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
+const routePoints = [[59.9139,10.7522],[59.9139,10.7522],[60.8626,7.1142],[60.8626,7.1142],[60.3913,5.3221],[60.3913,5.3221],[67.9333,13.0833],[67.9333,13.0833],[67.9333,13.0833],[67.9333,13.0833]];
+L.polyline(routePoints,{color:'#2d6a4f',weight:4,opacity:0.7,dashArray:'12,8'}).addTo(map);
+data.forEach((d, idx) => {
+  const color = colors[idx];
+  const dateStr = d.date.getDate()+' '+d.date.toLocaleString('en',{month:'short'});
+  const markerIcon = L.divIcon({html:'<div style="background:'+color+';width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;font-weight:700">'+d.day+'</div>',className:'',iconSize:[20,20],iconAnchor:[10,10]});
+  const popupHtml = '<strong>Day '+d.day+' &mdash; '+d.base+'</strong><br>'+dateStr+(d.drive?'<br><em>'+d.drive+' '+d.driveTime+'</em><br>':'')+'<a href="#days" onclick="document.querySelector(\'.day-card:nth-child('+d.day+') .day-header\').click();return false;">View details \u2192</a>';
+  L.marker([d.lat,d.lng],{icon:markerIcon}).addTo(map).bindPopup(popupHtml);
+  const labelIcon = L.divIcon({html:'<div style="background:rgba(0,0,0,0.6);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;white-space:nowrap">'+d.base+'</div>',className:'',iconSize:[0,0],iconAnchor:[0,-15]});
+  L.marker([d.lat,d.lng],{icon:labelIcon,interactive:false}).addTo(map);
+  if (d.poi) {d.poi.forEach(function(p){L.circleMarker([p.lat,p.lng],{radius:6,fillColor:color,color:'#fff',weight:2,opacity:1,fillOpacity:0.8}).addTo(map).bindPopup('<strong>'+p.name+'</strong><br>'+(p.note||''));});}
+});
+
+// ---------- Theme ----------
+const toggle = document.getElementById('themeToggle');
+const icon = toggle.querySelector('i');
+const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+if (prefersDark) {document.body.classList.add('dark');icon.className = 'fas fa-sun';}
+toggle.addEventListener('click',function(){document.body.classList.toggle('dark');document.body.classList.contains('dark')?icon.className='fas fa-sun':icon.className='fas fa-moon';});
+
+// ---------- Fit map to bounds ----------
+const allCoords = routePoints.slice();
+data.forEach(function(d){if(d.poi)d.poi.forEach(function(p){allCoords.push([p.lat,p.lng]);});});
+map.fitBounds(allCoords,{padding:[50,50]});
+
+// ---------- Open first day ----------
+document.querySelector('.day-card:first-child').classList.add('open');
+
+// ---------- Collapsible ----------
+function toggleCollapse(id,btn){const el=document.getElementById(id);const isOpen=el.classList.toggle('open');btn.classList.toggle('open');btn.childNodes[btn.childNodes.length-1].textContent=isOpen?' Hide details':' Show full playbook';}
+
+// ---------- Export JSON ----------
+function exportJSON(){var cd=data.map(function(d){var o={};for(var k in d){if(k==='date'){o[k]=d.date instanceof Date?d.date.toISOString().split('T')[0]:d.date;}else{o[k]=d[k];}}return o;});var blob=new Blob([JSON.stringify(cd,null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='norway-route5-lofoten-fjords.json';a.click();URL.revokeObjectURL(url);}
+
+// ---------- Export CSV ----------
+function exportCSV(){function esc(v){if(v===null||v===undefined)return '';var s=String(v).replace(/\n/g,' ').replace(/\r/g,'');return s.indexOf(',')>=0||s.indexOf('"')>=0?'"'+s.replace(/"/g,'""')+'"':s;}function fmtL(l){if(!l)return '';if(Array.isArray(l))return l.map(function(x){return x.tier+': '+x.name+' ('+x.price+')';}).join(' | ');return String(l);}function fmtA(acts){if(!acts||!acts.length)return '';return acts.map(function(a){return a.text+(a.desc?': '+a.desc:'');}).join('; ');}function fmtS(stops){if(!stops||!stops.length)return '';return stops.map(function(s){return s.name+(s.desc?': '+s.desc:'');}).join('; ');}function fmtP(poi){if(!poi||!poi.length)return '';return poi.map(function(p){return p.name;}).join('; ');}function fmtD(dirs){if(!dirs||!dirs.length)return '';return dirs.join(' \u2192 ');}var cols=['Day','Date','Base','Drive','Drive Time','Directions','Breakfast','Lunch','Dinner','Stops','Activities','Group Notes','Lodging','Latitude','Longitude','Points of Interest'];var rows=data.map(function(d){return [d.day,d.date instanceof Date?d.date.toISOString().split('T')[0]:d.date,d.base,d.drive,d.driveTime, fmtD(d.directions),d.meals?d.meals.breakfast:'',d.meals?d.meals.lunch:'',d.meals?d.meals.dinner:'',fmtS(d.stops),fmtA(d.activities),d.groupNotes,fmtL(d.lodging),d.lat,d.lng,fmtP(d.poi)].map(esc).join(',');});var csv='\ufeff'+cols.join(',')+'\n'+rows.join('\n');var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='norway-route5-lofoten-fjords.csv';a.click();URL.revokeObjectURL(url);}
+
+// ---------- References ----------
+const citeUrls = new Set();
+data.forEach(function(d){(d.activities||[]).forEach(function(a){if(a.cite)citeUrls.add(a.cite);});(d.stops||[]).forEach(function(s){if(s.cite)citeUrls.add(s.cite);});});
+const refContainer = document.getElementById('referencesContainer');
+if (refContainer && citeUrls.size) {const items=[...citeUrls].sort().map(function(url){const label=url.replace(/https?:\/\/(www\.)?/,'').replace(/\/$/,'');return '<li style="break-inside:avoid;margin-bottom:0.5rem"><a href="'+url+'" target="_blank" rel="noopener" style="font-size:0.85rem">'+label+'</a></li>';}).join('');refContainer.innerHTML='<div class="info-card"><h3><i class="fas fa-link"></i> Sources ('+citeUrls.size+')</h3><ul style="column-count:2;column-gap:2rem;list-style:none;padding:0">'+items+'</ul></div>';}
+</script>
+</body>
+</html>
