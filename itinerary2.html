@@ -173,6 +173,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .checklist li:last-child{border-bottom:none}
 .checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
 .checklist li strong{color:var(--text)}
+.checklist li{cursor:pointer;transition:background 0.15s}
+.checklist li:hover{background:var(--bg);border-radius:6px}
+.checklist li i{margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center;color:var(--muted)}
+.checklist li.done span{text-decoration:line-through;opacity:0.5}
+.checklist li.done i{color:var(--accent)!important}
+.checklist-cat{margin-bottom:0.5rem}
+.checklist-cat h4{font-size:0.88rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0.5rem;margin:0.75rem 0 0.25rem 0;border-radius:8px;background:var(--bg);cursor:pointer;user-select:none;transition:var(--transition)}
+.checklist-cat h4:hover{opacity:0.85}
+.checklist-cat h4 i{color:var(--accent);width:1.1rem;text-align:center}
+.checklist-cat h4 .cat-arrow{font-size:0.6rem;color:var(--muted);margin-left:auto;transition:transform 0.3s}
+.checklist-cat h4.open .cat-arrow{transform:rotate(180deg)}
+.checklist-cat .cat-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.checklist-cat .cat-body.open{max-height:2000px}
+.cat-counter{font-size:0.72rem;color:var(--muted);margin-left:0.35rem;font-weight:400}
+.collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
+.collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
 
 /* Footer */
 footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
@@ -327,6 +343,84 @@ footer a{color:var(--accent);text-decoration:none}
   <div id="timelineContainer"></div>
 </section>
 
+<section class="info-section" id="booking-checklist">
+  <div class="section-header">
+    <h2><i class="fas fa-tasks"></i> Booking Checklist</h2>
+    <p>Click each item to mark it done. Categories collapse via header click. Items specific to this route.</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3><i class="fas fa-tasks"></i> Pre-Trip Bookings <span style="font-size:0.72rem;color:var(--muted);font-weight:400"> - click to check off</span></h3>
+
+      <div class="checklist-cat" id="cat2-transport">
+        <h4 onclick="toggleCat('cat2-transport')"><i class="fas fa-car"></i> Transportation <span class="cat-counter" id="counter2-transport">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body2-transport">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book flights</strong> PIT/MGW &rarr; OSL (round trip) ~$800-1,200/person</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book flights</strong> SVG &rarr; US (return from Stavanger)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book rental cars</strong> (2 cars, 10 days) - mid-size SUV or station wagon</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Purchase AutoPASS</strong> for tolls and ferries</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Research ferry crossings</strong> (2x along route) - AutoPASS covers</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>International Driving Permit (IDP)</strong> - AAA $30+ per driver</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat2-lodging">
+        <h4 onclick="toggleCat('cat2-lodging')"><i class="fas fa-bed"></i> Lodging <span class="cat-counter" id="counter2-lodging">0/8</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body2-lodging">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo hotel</strong> (Day 1) - Citybox $95 / Radisson RED $118 / Grand $285 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m hotel</strong> (Days 2-3) - Fl&aring;m Marina $260 / Fl&aring;msbrygga $235 / Fretheim $248 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Bergen hotel</strong> (Days 4-5) - Citybox $110 / Zander K $150 / Hotel Norge $300 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hardanger hotel</strong> (Days 6-7) - Eidfjord Gjestehus $120 / Ullensvang $220 / Hotel Ulvik $350 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Stavanger hotel</strong> (Days 8-9) - Stavanger B&B $100 / Thon Maritim $107 / Clarion $280 per night</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat2-activities">
+        <h4 onclick="toggleCat('cat2-activities')"><i class="fas fa-mountain"></i> Activities <span class="cat-counter" id="counter2-activities">0/12</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body2-activities">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo Fjord sightseeing cruise</strong> (Day 1) - $30-50 (300-500 NOK)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Borgund Stave Church</strong> (Day 2) - $15 (150 NOK)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m Railway round trip</strong> (Day 3) - $68 (730 NOK) - BOOKS OUT</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Aurlandsfjord kayak</strong> (Day 3) - $90-110 guided</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Voss Whitewater Rafting</strong> (Day 4) - $95-120</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&oslash;ibanen funicular</strong> (Day 5) - $20 (200 NOK) round trip</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Mt. Ulriken cable car</strong> (Day 5) - $25 (250 NOK) round trip</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Bondhusbreen Glacier hike</strong> (Day 6-7) - free, check conditions</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hardangerfjord cruise</strong> (Day 6-7) - $45-65</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hardanger Fruit Farm tour</strong> (Day 7) - $10-15 tasting</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Preikestolen hike</strong> (Day 9) - free (parking $15), no guide needed</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lysefjord cruise</strong> (Day 9) - $45-65</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat2-dining">
+        <h4 onclick="toggleCat('cat2-dining')"><i class="fas fa-utensils"></i> Dining Reservations <span class="cat-counter" id="counter2-dining">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body2-dining">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>&AElig;gir Gastropub</strong> (Fl&aring;m) - Viking-themed, very popular, book ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Bryggen Tracteursted</strong> (Bergen) - historic 1710 Hanseatic wharf</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Bare Vestland or Pingvinen</strong> (Bergen) - modern Norwegian or traditional pub</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Ullensvang Hotel restaurant</strong> (Hardanger) - historic, reserve for fjord views</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hotel Ulvik Restaurant</strong> (Hardanger) - fine dining with fjord panorama</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fisketorget or M&oslash;lleren</strong> (Stavanger) - farewell dinner</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:0.5rem;display:flex;gap:0.5rem;flex-wrap:wrap">
+        <button class="collapse-toggle" onclick="expandAllCats2()" style="font-size:0.72rem"><i class="fas fa-expand"></i> Expand all</button>
+        <button class="collapse-toggle" onclick="collapseAllCats2()" style="font-size:0.72rem"><i class="fas fa-compress"></i> Collapse all</button>
+        <button class="collapse-toggle" onclick="resetChecklist2()" style="font-size:0.72rem;color:#ef4444;border-color:#ef4444"><i class="fas fa-undo"></i> Reset all</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <p>Norway Road Trip  -  May 28 &ndash; Jun 6, 2027  -  EDT &rarr; CEST (+6h)  -  Built with </p>
@@ -1133,6 +1227,14 @@ if (refContainer && citeUrls.size) {
   }).join('');
   refContainer.innerHTML = `<div class="info-card"><h3><i class="fas fa-link"></i> Sources (${citeUrls.size})</h3><ul style="column-count:2;column-gap:2rem;list-style:none;padding:0">${items}</ul></div>`;
 }
+
+// ---------- Booking Checklist ----------
+function toggleItem(el){var ic=el.querySelector('i');if(ic.classList.contains('fa-circle')){ic.className='fas fa-check-circle';el.classList.add('done')}else{ic.className='far fa-circle';el.classList.remove('done')}updateCounters2()}
+function updateCounters2(){document.querySelectorAll('.checklist-cat').forEach(function(cat){var items=cat.querySelectorAll('.checklist li');var done=cat.querySelectorAll('.checklist li.done');var counter=cat.querySelector('.cat-counter');if(counter)counter.textContent=done.length+'/'+items.length})}
+function toggleCat(id){var body=document.getElementById('body-'+id);var h4=document.getElementById(id).querySelector('h4');if(body){body.classList.toggle('open');h4.classList.toggle('open')}}
+function expandAllCats2(){document.querySelectorAll('.cat-body').forEach(function(b){b.classList.add('open')});document.querySelectorAll('.checklist-cat h4').forEach(function(h){h.classList.add('open')})}
+function collapseAllCats2(){document.querySelectorAll('.cat-body').forEach(function(b){b.classList.remove('open')});document.querySelectorAll('.checklist-cat h4').forEach(function(h){h.classList.remove('open')})}
+function resetChecklist2(){document.querySelectorAll('.checklist li').forEach(function(el){var ic=el.querySelector('i');if(ic){ic.className='far fa-circle'}el.classList.remove('done')});updateCounters2()}
 </script>
 </body>
 </html>
