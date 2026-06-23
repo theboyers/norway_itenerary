@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Norway 2027 — Geiranger & Northwest</title>
+<title>Norway 2027 - Geiranger & Northwest</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
@@ -251,7 +251,7 @@ footer a{color:var(--accent);text-decoration:none}
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><i class="fas fa-plane"></i> May 28 &mdash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h)</div>
+    <div class="hero-badge"><i class="fas fa-plane"></i> May 28  -  Jun 6, 2027  -  EDT &rarr; CEST (+6h)</div>
     <h1>Norway <span>Road Trip</span></h1>
     <p class="subtitle">Oslo &rarr; Geiranger &rarr; &Aring;lesund &rarr; Atlantic Road &rarr; Trondheim</p>
     <div class="hero-stats">
@@ -283,16 +283,16 @@ footer a{color:var(--accent);text-decoration:none}
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
   <span class="nav-divider"></span>
-  <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
-  <a href="#day-2" class="day-jump" title="Day 2 — Lom">2</a>
-  <a href="#day-3" class="day-jump" title="Day 3 — Geiranger">3</a>
-  <a href="#day-4" class="day-jump" title="Day 4 — Geiranger">4</a>
-  <a href="#day-5" class="day-jump" title="Day 5 — Ålesund">5</a>
-  <a href="#day-6" class="day-jump" title="Day 6 — Ålesund">6</a>
-  <a href="#day-7" class="day-jump" title="Day 7 — Molde">7</a>
-  <a href="#day-8" class="day-jump" title="Day 8 — Trondheim">8</a>
-  <a href="#day-9" class="day-jump" title="Day 9 — Trondheim">9</a>
-  <a href="#day-10" class="day-jump" title="Day 10 — Depart">10</a>
+  <a href="#day-1" class="day-jump" title="Day 1 - Oslo">1</a>
+  <a href="#day-2" class="day-jump" title="Day 2 - Lom">2</a>
+  <a href="#day-3" class="day-jump" title="Day 3 - Geiranger">3</a>
+  <a href="#day-4" class="day-jump" title="Day 4 - Geiranger">4</a>
+  <a href="#day-5" class="day-jump" title="Day 5 - Ålesund">5</a>
+  <a href="#day-6" class="day-jump" title="Day 6 - Ålesund">6</a>
+  <a href="#day-7" class="day-jump" title="Day 7 - Molde">7</a>
+  <a href="#day-8" class="day-jump" title="Day 8 - Trondheim">8</a>
+  <a href="#day-9" class="day-jump" title="Day 9 - Trondheim">9</a>
+  <a href="#day-10" class="day-jump" title="Day 10 - Depart">10</a>
   <span class="nav-divider"></span>
   <a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV (Google Sheets compatible)"><i class="fas fa-file-csv"></i> CSV</a>
 </nav>
@@ -316,7 +316,7 @@ footer a{color:var(--accent);text-decoration:none}
 <section class="timeline" id="days">
   <div class="section-header">
     <h2><i class="fas fa-calendar-alt"></i> Day-by-Day Itinerary</h2>
-    <p>Click each day to expand details &mdash; drive routes, activities, and lodging for every stop.</p>
+    <p>Click each day to expand details  -  drive routes, activities, and lodging for every stop.</p>
   </div>
   <div class="glance-strip" id="glanceStrip"></div>
   <div id="timelineContainer"></div>
@@ -324,7 +324,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 
 <footer>
-  <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Geiranger &amp; Northwest Route</p>
+  <p>Norway Road Trip  -  May 28 &ndash; Jun 6, 2027  -  EDT &rarr; CEST (+6h)  -  Geiranger &amp; Northwest Route</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -339,16 +339,16 @@ const data = [
       {icon:'fa-walking', text:'Walk the city center', price:'Free', time:'Flexible', desc:'Karl Johans gate, Royal Palace, Akershus Fortress'},
       {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for iconic city + fjord views', cite:'https://www.operaen.no/en'},
       {icon:'fa-tree', text:'Ekebergparken Sculpture Park', price:'Free', time:'1-2 hr', desc:'Modern art + forest trails with panoramic Oslo Fjord views. Light hike', cite:'https://ekebergparken.com/en'},
-      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri — craft beer for the adults'}
+      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri - craft beer for the adults'}
     ],
-    groupNotes: 'Arrive in Oslo. Keep Day 1 light — see Jet Lag Playbook. The National Museum (The Scream) and Opera House roof are must-dos. Activities during the day help power through jet lag.',
+    groupNotes: 'Arrive in Oslo. Keep Day 1 light - see Jet Lag Playbook. The National Museum (The Scream) and Opera House roof are must-dos. Activities during the day help power through jet lag.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi', cons:'No breakfast, no daily housekeeping, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern design, excellent breakfast bar, great location near Opera House and waterfront', cons:'Standard chain feel, no pool, can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
       {tier:'Premium', name:'Grand Hotel Oslo', price:'$285/night', pros:'Historic 1874 property, Nobel Peace Prize venue, rooftop terrace, exceptional breakfast, prime location', cons:'Very expensive, some dated rooms, tourist crowds', cite:'https://www.grand.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Included hotel buffet', lunch:'Godt Brød coffee shop (skolebrød) or Mathallen Oslo food hall', dinner:'Den Glade Gris — Norwegian pork-focused gastropub (try the ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Fuglen — a vintage Norwegian café-bar for a nightcap' },
+    meals: { breakfast:'Included hotel buffet', lunch:'Godt Brød coffee shop (skolebrød) or Mathallen Oslo food hall', dinner:'Den Glade Gris - Norwegian pork-focused gastropub (try the ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Fuglen - a vintage Norwegian café-bar for a nightcap' },
     lat: 59.9139, lng: 10.7522, poi: [
       {name:'Aker Brygge', lat:59.9100, lng:10.7300, note:'Harbor promenade'},
       {name:'Opera House', lat:59.9075, lng:10.7531, note:'Sloping marble roof walk'},
@@ -364,31 +364,31 @@ const data = [
       {name:'Ringebu Stave Church', price:'$10 (100 NOK)', time:'20-30 min', desc:'Built c.1220 in Gudbrandsdalen valley. Medieval interior with original furnishings', cite:'https://www.ringebustavkirke.no', lat:61.5333, lng:10.1333},
       {name:'Sjoa River rafting', price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'11 km gentle rafting on Sjoa River. Guide, wetsuit, gear included. Class 1-2 rapids', cite:'https://www.sjoarafting.no', lat:61.6833, lng:9.5333},
       {name:'Lom Stave Church', price:'$12 (120 NOK)', time:'20-30 min', desc:'Built c.1158. One of Norway\'s largest stave churches. Open May–Sep', cite:'https://www.lomstavechurch.no', lat:61.8378, lng:8.5683},
-      {name:'Fossheim Bakeri', price:'$5-10', time:'30 min', desc:'Norway\'s best bakery — famous kanelboller and bread', cite:'https://fossheim-bakeri.no', lat:61.8378, lng:8.5667}
+      {name:'Fossheim Bakeri', price:'$5-10', time:'30 min', desc:'Norway\'s best bakery - famous kanelboller and bread', cite:'https://fossheim-bakeri.no', lat:61.8378, lng:8.5667}
     ],
     activities: [
       {icon:'fa-church', text:'Ringebu Stave Church', price:'$10', time:'20-30 min', cite:'https://www.ringebustavkirke.no'},
-      {icon:'fa-water', text:'Sjoa River rafting', price:'$111 half-day', time:'3 hr', desc:'Mild whitewater on Sjoa River. Guide, wetsuit included. Class 1-2 rapids — suitable for beginners', cite:'https://www.sjoarafting.no'},
+      {icon:'fa-water', text:'Sjoa River rafting', price:'$111 half-day', time:'3 hr', desc:'Mild whitewater on Sjoa River. Guide, wetsuit included. Class 1-2 rapids - suitable for beginners', cite:'https://www.sjoarafting.no'},
       {icon:'fa-church', text:'Lom Stave Church', price:'$12', time:'20-30 min', cite:'https://www.lomstavechurch.no'},
-      {icon:'fa-bread-slice', text:'Fossheim Bakeri', price:'$5-10', time:'30 min', desc:'Norway\'s best bakery — famous kanelboller and bread', cite:'https://fossheim-bakeri.no'},
+      {icon:'fa-bread-slice', text:'Fossheim Bakeri', price:'$5-10', time:'30 min', desc:'Norway\'s best bakery - famous kanelboller and bread', cite:'https://fossheim-bakeri.no'},
       {icon:'fa-hiking', text:'Lom village walk', price:'Free', time:'30-45 min', desc:'Charming mountain village. Walk along the Bøvra River and explore the historic center'},
       {icon:'fa-bullseye', text:'Medalen Disc Golf (18 holes)', price:'Free', time:'1.5-2 hr', desc:'Flat course right in Lom village. Quick round for disc golf enthusiasts', cite:'https://www.pdga.com/course/medalen-frisbeegolf'}
     ],
-    groupNotes: 'Longest drive day but broken up with stops along the Gudbrandsdalen valley. Ringebu Stave Church is a quick detour off E6. The Sjoa River rafting center offers class 1-2 trips. Arrive Lom in the afternoon; Medalen Disc Golf is a free flat course right in the village. Fossheim Bakeri has Norway\'s best kanelboller — a great spot for pastries and coffee.',
+    groupNotes: 'Longest drive day but broken up with stops along the Gudbrandsdalen valley. Ringebu Stave Church is a quick detour off E6. The Sjoa River rafting center offers class 1-2 trips. Arrive Lom in the afternoon; Medalen Disc Golf is a free flat course right in the village. Fossheim Bakeri has Norway\'s best kanelboller - a great spot for pastries and coffee.',
     lodging: [
       {tier:'Budget', name:'Nordal Turistsenter', price:'$90/night', pros:'Affordable cabin-style lodging, kitchen facilities, central Lom location near church, family-friendly', cons:'Basic amenities, no restaurant on site, older cabins, thin walls', cite:'https://www.nordalturistsenter.no'},
       {tier:'Mid', name:'Fossheim Hotel', price:'$140/night', pros:'Historic hotel right in Lom center, cozy atmosphere, good restaurant with local lamb, across from Lom Stave Church', cons:'No pool or spa, limited parking, older building with some small rooms', cite:'https://www.fossheimhotel.no'},
       {tier:'Premium', name:'Røisheim Hotel', price:'$250/night', pros:'Historic 1800s timber manor, exceptional Norwegian farm-to-table restaurant, unique traditional decor, serene setting', cons:'Very expensive for the area, limited availability, no modern amenities like pool', cite:'https://www.roisheim.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Sjoa Rafting Center cafe — burgers, coffee, and Kvikk Lunsj for the road, or pack from Matkroken in Otta', dinner:'Fossheim Hotel restaurant — traditional Gudbrandsdalen lamb stew and local beer in a cozy 1830s timber building. After dinner, walk across the street to see Lom Stave Church lit up at night' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Sjoa Rafting Center cafe - burgers, coffee, and Kvikk Lunsj for the road, or pack from Matkroken in Otta', dinner:'Fossheim Hotel restaurant - traditional Gudbrandsdalen lamb stew and local beer in a cozy 1830s timber building. After dinner, walk across the street to see Lom Stave Church lit up at night' },
     lat: 61.8378, lng: 8.5683, poi: [{name:'Ringebu Stave Church', lat:61.5333, lng:10.1333, note:'Historic stave church'},{name:'Sjoa River', lat:61.6833, lng:9.5333, note:'Family rafting on Sjoa'},{name:'Lom Stave Church', lat:61.8378, lng:8.5683, note:'Stave church in Lom'}]
   },
   {
     day: 3, date: new Date(2027, 4, 30), base: 'Geiranger', drive: 'Lom → Geirangerfjord', driveTime: '~2 hr',
-    directions: ['Take RV15 from Lom heading northwest','Turn onto RV63 at Grotli towards Geiranger','Stop at Dalsnibba Skywalk (toll road, 1500m) before descending','Descend Ørnevegen (Eagle Road) into Geiranger village — 11 hairpin turns'],
+    directions: ['Take RV15 from Lom heading northwest','Turn onto RV63 at Grotli towards Geiranger','Stop at Dalsnibba Skywalk (toll road, 1500m) before descending','Descend Ørnevegen (Eagle Road) into Geiranger village - 11 hairpin turns'],
     stops: [
-      {name:'Sognefjellet Scenic Route', price:'Free', time:'30 min', desc:'Mountain pass at 1,434m — Norway\'s highest mountain road, stunning Arctic landscape', lat:61.5667, lng:8.2833},
+      {name:'Sognefjellet Scenic Route', price:'Free', time:'30 min', desc:'Mountain pass at 1,434m - Norway\'s highest mountain road, stunning Arctic landscape', lat:61.5667, lng:8.2833},
       {name:'Dalsnibba Skywalk', price:'$8 (80 NOK) toll', time:'20-30 min', desc:'1,500m viewpoint over Geirangerfjord. Europe\'s highest fjord view by road', cite:'https://www.dalsnibba.no', lat:62.0500, lng:7.2500},
       {name:'Flydalsjuvet viewpoint', price:'Free', time:'15 min', desc:'Iconic photo spot looking down Geirangerfjord. The classic postcard view', lat:62.1000, lng:7.2000}
     ],
@@ -398,14 +398,14 @@ const data = [
       {icon:'fa-ship', text:'Geirangerfjord cruise', price:'$40-55 (400-550 NOK)', time:'1.5-2 hr', desc:'UNESCO World Heritage fjord. The Seven Sisters and Friaren waterfalls. Lunch on board', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-geirangerfjord/'},
       {icon:'fa-hiking', text:'Storseterfossen waterfall walk', price:'Free', time:'1.5-2 hr', desc:'Walk BEHIND a waterfall. Easy-moderate trail from Geiranger'}
     ],
-    groupNotes: 'Epic drive day — Dalsnibba and Flydalsjuvet are quick photo stops. The fjord cruise is the highlight. Evening: explore Geiranger village.',
+    groupNotes: 'Epic drive day - Dalsnibba and Flydalsjuvet are quick photo stops. The fjord cruise is the highlight. Evening: explore Geiranger village.',
     lodging: [
       {tier:'Budget', name:'Grande Fjord Hotel', price:'$180/night', pros:'More affordable Geiranger option, quieter location 5 min from center, fjord views from many rooms, free parking', cons:'No elevator, older building, less well-known than other Geiranger hotels, basic breakfast', cite:'https://www.grandefjordhotel.com'},
       {tier:'Mid', name:'Hotel Geiranger', price:'$240/night', pros:'Classic Norwegian fjord hotel, panoramic dining room, central Geiranger location, excellent breakfast and dinner buffet', cons:'Limited parking, peak season crowds, no pool or spa', cite:'https://www.hotelgeiranger.no'},
       {tier:'Premium', name:'Hotel Union Geiranger', price:'$320/night', pros:'Historic 1891 property with full spa, indoor/outdoor pools, stunning fjord panorama, award-winning breakfast, gardens', cons:'Very expensive, large hotel, some rooms need renovation', cite:'https://www.union.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Café onboard the fjord cruise — salmon wrap', dinner:'Brasserie Posten at Hotel Union — Norwegian seafood platter, reindeer fillet, cloudberries for dessert with panoramic Geirangerfjord views. After dinner, use the Hotel Union spa (pools, sauna) or sit on the terrace with a nightcap' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Café onboard the fjord cruise - salmon wrap', dinner:'Brasserie Posten at Hotel Union - Norwegian seafood platter, reindeer fillet, cloudberries for dessert with panoramic Geirangerfjord views. After dinner, use the Hotel Union spa (pools, sauna) or sit on the terrace with a nightcap' },
     lat: 62.1000, lng: 7.2000, poi: [{name:'Dalsnibba', lat:62.0486, lng:7.2681, note:'1,500m viewpoint'},{name:'Flydalsjuvet', lat:62.0917, lng:7.2167, note:'Fjord viewpoint'},{name:'Storseterfossen', lat:62.0833, lng:7.2167, note:'Walk-behind waterfall'}]
   },
   {
@@ -424,7 +424,7 @@ const data = [
       {tier:'Premium', name:'Hotel Union Geiranger', price:'$320/night', pros:'Historic 1891 property with full spa, indoor/outdoor pools, stunning fjord panorama, award-winning breakfast, gardens', cons:'Very expensive, large hotel, some rooms need renovation', cite:'https://www.union.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Westerås Farm café — local goat cheese waffles and berry jam with fjord views', dinner:'Naustkroa Café in the village — traditional Norwegian fish soup and local craft beer by the Geiranger waterfront. After dinner, walk down to the fjord shore for sunset photos' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Westerås Farm café - local goat cheese waffles and berry jam with fjord views', dinner:'Naustkroa Café in the village - traditional Norwegian fish soup and local craft beer by the Geiranger waterfront. After dinner, walk down to the fjord shore for sunset photos' },
     lat: 62.1000, lng: 7.2000, poi: [
       {name:'Geirangerfjord Cruise Pier', lat:62.1000, lng:7.2000, note:'UNESCO fjord cruise'},
       {name:'Storseterfossen Hike', lat:62.0833, lng:7.2167, note:'Walk behind waterfall'},
@@ -434,7 +434,7 @@ const data = [
   },
   {
     day: 5, date: new Date(2027, 5, 1), base: 'Ålesund', drive: 'Geiranger → Ålesund (via Trollstigen)', driveTime: '~2h 30 min',
-    directions: ['Take Ørnevegen (RV63) up from Geiranger','Continue RV63 north through Valldal valley (famous for strawberries)','Cross Trollstigen mountain pass (check if open — late May borderline)','If Trollstigen closed: take E136 via Åndalsnes (adds 30 min)','Continue to Ålesund via E136 + E39'],
+    directions: ['Take Ørnevegen (RV63) up from Geiranger','Continue RV63 north through Valldal valley (famous for strawberries)','Cross Trollstigen mountain pass (check if open - late May borderline)','If Trollstigen closed: take E136 via Åndalsnes (adds 30 min)','Continue to Ålesund via E136 + E39'],
     stops: [
       {name:'Trollstigen Viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic viewing platform cantilevered over the mountain. 11 hairpin turns below', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/geiranger-and-trollstigen/'},
       {name:'Gudbrandsjuvet Gorge', price:'Free', time:'15-20 min', desc:'Spectacular river gorge with metal walkways over the churning water'}
@@ -445,14 +445,14 @@ const data = [
       {icon:'fa-mountain', text:'Aksla viewpoint', price:'Free', time:'30-45 min', desc:'Climb 418 steps to Ålesund\'s panoramic city viewpoint. Sweeping views over the archipelago'},
       {icon:'fa-landmark', text:'Art Nouveau architecture walk', price:'Free', time:'1-1.5 hr', desc:'Self-guided walk through Europe\'s most complete Art Nouveau city center'}
     ],
-    groupNotes: 'The Trollstigen drive is a bucket-list experience. Drive the pass at your own pace — cars can stagger by 10 minutes. If Trollstigen is closed due to snow, the E136 alternative through Åndalsnes is still scenic. Evening: walk up Aksla — 418 steps to the city viewpoint.',
+    groupNotes: 'The Trollstigen drive is a bucket-list experience. Drive the pass at your own pace - cars can stagger by 10 minutes. If Trollstigen is closed due to snow, the E136 alternative through Åndalsnes is still scenic. Evening: walk up Aksla - 418 steps to the city viewpoint.',
     lodging: [
-      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$140/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
+      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$236/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
       {tier:'Mid', name:'Quality Hotel Ålesund', price:'$170/night', pros:'Modern waterfront hotel, spacious rooms, good breakfast, harbor views, near Art Nouveau center', cons:'Slightly out of the old town, can feel corporate, no pool', cite:'https://www.qualityhotelalesund.no'},
       {tier:'Premium', name:'Hotel Brosundet', price:'$220/night', pros:'Stunning waterfront boutique hotel in historic Art Nouveau building, exceptional restaurant, cozy atmosphere, harbor views', cons:'Pricey, limited parking, no pool or spa, some rooms small', cite:'https://www.brosundet.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Valldal strawberry farm café — fresh strawberry cake (late May)', dinner:'XL Diner — classic Norwegian seafood. Try the bacalao (dried salted cod stew — an Ålesund specialty since the Portuguese trade days), or the fresh catch of the day. After dinner, climb the 418 steps to Aksla viewpoint for the midnight panorama' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Valldal strawberry farm café - fresh strawberry cake (late May)', dinner:'XL Diner - classic Norwegian seafood. Try the bacalao (dried salted cod stew - an Ålesund specialty since the Portuguese trade days), or the fresh catch of the day. After dinner, climb the 418 steps to Aksla viewpoint for the midnight panorama' },
     lat: 62.4722, lng: 6.1543, poi: [
       {name:'Atlantic Sea Park', lat:62.4667, lng:6.1500, note:'Northern Europe\'s largest aquarium'},
       {name:'Aksla Viewpoint', lat:62.4667, lng:6.1500, note:'418 steps to panoramic view'},
@@ -462,7 +462,7 @@ const data = [
   {
     day: 6, date: new Date(2027, 5, 2), base: 'Ålesund', drive: null, driveTime: null, stops: [],
     activities: [
-      {icon:'fa-fish', text:'Atlanterhavsparken (Atlantic Sea Park)', price:'$22 (220 NOK)', time:'2-3 hr', desc:'One of Scandinavia\'s largest aquariums. Huge ocean tank, penguins, seals', cite:'https://www.atlanterhavsparken.no'},
+      {icon:'fa-fish', text:'Atlanterhavsparken (Atlantic Sea Park)', price:'$26 (275 NOK)', time:'2-3 hr', desc:'One of Scandinavia\'s largest aquariums. Huge ocean tank, penguins, seals', cite:'https://www.atlanterhavsparken.no'},
       {icon:'fa-water', text:'Kayak Brosundet canal', price:'$50-70 rental', time:'2 hr', desc:'Paddle Ålesund\'s inner canals right through the city center. Stillwater'},
       {icon:'fa-hiking', text:'Sukkertoppen hike', price:'Free', time:'1.5-2 hr', desc:'Short but steep hike to a granite peak (314m). 360° views over Ålesund and the Atlantic'},
       {icon:'fa-monument', text:'Alnes Lighthouse', price:'Free (toll bridge)', time:'1 hr', desc:'Drive to Godøya island. Climb the lighthouse. Rugged Atlantic coast views'},
@@ -470,21 +470,21 @@ const data = [
     ],
     groupNotes: 'Flex day in Ålesund. Morning: Atlantic Sea Park. Afternoon: choose between kayaking the canals or hiking Sukkertoppen. Late afternoon: Alnes Lighthouse. Evening: Molo Brew taproom.',
     lodging: [
-      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$140/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
+      {tier:'Budget', name:'Thon Hotel Ålesund', price:'$236/night', pros:'Reliable chain, excellent breakfast included, central Ålesund location near harbor, free Wi-Fi', cons:'Basic rooms, chain hotel character, no unique features', cite:'https://www.thonhotels.com/hotels/norway/alesund/thon-hotel-alesund/'},
       {tier:'Mid', name:'Quality Hotel Ålesund', price:'$170/night', pros:'Modern waterfront hotel, spacious rooms, good breakfast, harbor views, near Art Nouveau center', cons:'Slightly out of the old town, can feel corporate, no pool', cite:'https://www.qualityhotelalesund.no'},
       {tier:'Premium', name:'Hotel Brosundet', price:'$220/night', pros:'Stunning waterfront boutique hotel in historic Art Nouveau building, exceptional restaurant, cozy atmosphere, harbor views', cons:'Pricey, limited parking, no pool or spa, some rooms small', cite:'https://www.brosundet.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Café at Atlanterhavsparken — fish and chips with Atlantic views', dinner:'Apotekergata No. 5 — modern Norwegian shared plates in a historic Art Nouveau building. Great cocktails and local craft beer. After dinner, take a twilight stroll through the Art Nouveau streets to admire the spire-lit skyline' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Café at Atlanterhavsparken - fish and chips with Atlantic views', dinner:'Apotekergata No. 5 - modern Norwegian shared plates in a historic Art Nouveau building. Great cocktails and local craft beer. After dinner, take a twilight stroll through the Art Nouveau streets to admire the spire-lit skyline' },
     lat: 62.4722, lng: 6.1543, poi: [{name:'Atlanterhavsparken', lat:62.4611, lng:6.1000, note:'Aquarium'},{name:'Alnes', lat:62.4833, lng:6.0000, note:'Lighthouse on Godøya'}]
   },
   {
     day: 7, date: new Date(2027, 5, 3), base: 'Molde', drive: 'Ålesund → Atlantic Road → Molde', driveTime: '~3 hr',
-    directions: ['Take E136 east from Ålesund','Turn onto RV64 — drive the Atlantic Ocean Road','Cross 8 bridges between small islands — stop at viewpoints','Continue to the fishing village of Bud','Follow coastal road to Molde'],
+    directions: ['Take E136 east from Ålesund','Turn onto RV64 - drive the Atlantic Ocean Road','Cross 8 bridges between small islands - stop at viewpoints','Continue to the fishing village of Bud','Follow coastal road to Molde'],
     stops: [
       {name:'Atlantic Ocean Road viewpoints', price:'Free', time:'30-45 min', desc:'8 stunning bridges connecting islands over the open Atlantic. Norway\'s most scenic drive', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/northwest/atlantic-road/', lat:62.8000, lng:6.9833},
       {name:'Bud fishing village', price:'Free', time:'30 min', desc:'Authentic Norwegian fishing village. Coastal fortifications from WWII'},
-      {name:'Molde panorama viewpoint', price:'Free', time:'30 min', desc:'Varden — 407m overlooking 222 mountain peaks across the Moldefjord', lat:62.7333, lng:7.1500}
+      {name:'Molde panorama viewpoint', price:'Free', time:'30 min', desc:'Varden - 407m overlooking 222 mountain peaks across the Moldefjord', lat:62.7333, lng:7.1500}
     ],
     activities: [
       {icon:'fa-car', text:'Atlantic Ocean Road', price:'Free', time:'1 hr', desc:'One of the world\'s most scenic drives. 8.3 km across islands with dramatic bridges', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/northwest/atlantic-road/'},
@@ -498,7 +498,7 @@ const data = [
       {tier:'Premium', name:'Scandic Seilet Hotel', price:'$200/night', pros:'Iconic sail-shaped tower dominating Molde skyline, stunning 360-degree views from upper floors, modern rooms, excellent breakfast', cons:'A bit out of the old town, large conference hotel, windy location', cite:'https://www.scandichotels.com/seilet'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Bryggjen Restaurant in Bud — freshest fish soup and crab sandwiches', dinner:'Glass Restaurant at Scandic Seilet — floor-to-ceiling Moldefjord views. Try the bacalao or pan-seared halibut. After dinner, check the view from the Molde panorama terrace (222 peaks visible on clear evenings)' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Bryggjen Restaurant in Bud - freshest fish soup and crab sandwiches', dinner:'Glass Restaurant at Scandic Seilet - floor-to-ceiling Moldefjord views. Try the bacalao or pan-seared halibut. After dinner, check the view from the Molde panorama terrace (222 peaks visible on clear evenings)' },
     lat: 62.7375, lng: 7.1591, poi: [{name:'Atlantic Road', lat:63.0167, lng:7.3500, note:'Atlanterhavsvegen'},{name:'Varden Molde', lat:62.7458, lng:7.2000, note:'222-peak panorama'}]
   },
   {
@@ -514,14 +514,14 @@ const data = [
       {icon:'fa-landmark', text:'Nidaros Cathedral exterior', price:'Free (exterior)', time:'30 min', desc:'Scandinavia\'s largest medieval building. Evening exterior sighting', cite:'https://www.nidarosdomen.no'},
       {icon:'fa-walking', text:'Evening walk Bakklandet', price:'Free', time:'45-60 min', desc:'Trondheim\'s most charming neighborhood. Colorful wooden houses, cobblestone streets'}
     ],
-    groupNotes: 'Longest drive day but last big push. Break it up with Kvernes Stave Church and coffee stops. Arrive Trondheim late afternoon. Evening: walk through Bakklandet — Gamle Bybro (Old Town Bridge) is especially photogenic.',
+    groupNotes: 'Longest drive day but last big push. Break it up with Kvernes Stave Church and coffee stops. Arrive Trondheim late afternoon. Evening: walk through Bakklandet - Gamle Bybro (Old Town Bridge) is especially photogenic.',
     lodging: [
       {tier:'Budget', name:'City Living Schøller Hotel', price:'$110/night', pros:'Self-catering apartments with kitchenette, central Trondheim location near Bakklandet, affordable for groups', cons:'No restaurant, no daily housekeeping, basic facilities, check-in at separate location', cite:'https://www.cityliving.no'},
       {tier:'Mid', name:'Clarion Hotel Trondheim', price:'$150/night', pros:'Modern harborfront hotel, excellent breakfast, rooftop bar with views, close to Nidaros Cathedral and Bakklandet', cons:'Parking expensive, busy with business travelers on weekdays', cite:'https://www.clarionhoteltrondheim.no'},
       {tier:'Premium', name:'Radisson Blu Royal Garden', price:'$180/night', pros:'Central Trondheim location, large comfortable rooms, indoor pool and sauna, extensive breakfast buffet, attached to shopping center', cons:'Large chain hotel, impersonal feel, some rooms face interior atrium', cite:'https://www.radissonhotels.com/royal-garden-trondheim'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Coffee stop in Kyrksæterøra — traditional lefse and coffee', dinner:'Bakklandet Skydsstation — cozy historic inn on Bakklandet cobblestone street. Reindeer stew with lingonberry jam, fresh salmon, or fårikål when available. After dinner, walk across the Old Town Bridge for a Nidaros Cathedral night view' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Coffee stop in Kyrksæterøra - traditional lefse and coffee', dinner:'Bakklandet Skydsstation - cozy historic inn on Bakklandet cobblestone street. Reindeer stew with lingonberry jam, fresh salmon, or fårikål when available. After dinner, walk across the Old Town Bridge for a Nidaros Cathedral night view' },
     lat: 63.4305, lng: 10.3951, poi: [
       {name:'Kvernes Stave Church', lat:63.0000, lng:7.7333, note:'14th-century stave church'},
       {name:'Nidaros Cathedral', lat:63.4267, lng:10.3967, note:'Northernmost medieval cathedral'},
@@ -532,20 +532,20 @@ const data = [
   {
     day: 9, date: new Date(2027, 5, 5), base: 'Trondheim', drive: null, driveTime: null, stops: [],
     activities: [
-      {icon:'fa-church', text:'Nidaros Cathedral interior tour', price:'$15 (150 NOK)', time:'1-1.5 hr', desc:'Crown jewels, rose window, crypt', cite:'https://www.nidarosdomen.no'},
+      {icon:'fa-church', text:'Nidaros Cathedral interior tour', price:'$13 (140 NOK)', time:'1-1.5 hr', desc:'Crown jewels, rose window, crypt', cite:'https://www.nidarosdomen.no'},
       {icon:'fa-monument', text:'Kristiansten Fortress', price:'Free (grounds)', time:'45 min', desc:'17th-century fortress. Cannons, city views, Resistance Museum'},
-      {icon:'fa-music', text:'Rockheim — National Museum of Pop Music', price:'$18 (180 NOK)', time:'1.5-2 hr', desc:'Interactive music museum. Hands-on exhibits, recording studios', cite:'https://www.rockheim.no'},
+      {icon:'fa-music', text:'Rockheim - National Museum of Pop Music', price:'$18 (180 NOK)', time:'1.5-2 hr', desc:'Interactive music museum. Hands-on exhibits, recording studios', cite:'https://www.rockheim.no'},
       {icon:'fa-walking', text:'Bakklandet & Gamle Bybro', price:'Free', time:'1 hr', desc:'Shopping and coffee in Trondheim\'s most photogenic neighborhood'},
       {icon:'fa-shopping-bag', text:'Last-minute Norwegian souvenirs', price:'Variable', time:'1 hr', desc:'Trondheim Torg and independent boutiques in Bakklandet'}
     ],
-    groupNotes: 'Full city day in Trondheim. Morning: Nidaros Cathedral. Mid-day: Rockheim museum — interactive music exhibits. Afternoon: choose between exploring Kristiansten Fortress or shopping in Bakklandet. Evening: farewell dinner.',
+    groupNotes: 'Full city day in Trondheim. Morning: Nidaros Cathedral. Mid-day: Rockheim museum - interactive music exhibits. Afternoon: choose between exploring Kristiansten Fortress or shopping in Bakklandet. Evening: farewell dinner.',
     lodging: [
       {tier:'Budget', name:'City Living Schøller Hotel', price:'$110/night', pros:'Self-catering apartments with kitchenette, central Trondheim location near Bakklandet, affordable for groups', cons:'No restaurant, no daily housekeeping, basic facilities, check-in at separate location', cite:'https://www.cityliving.no'},
       {tier:'Mid', name:'Clarion Hotel Trondheim', price:'$150/night', pros:'Modern harborfront hotel, excellent breakfast, rooftop bar with views, close to Nidaros Cathedral and Bakklandet', cons:'Parking expensive, busy with business travelers on weekdays', cite:'https://www.clarionhoteltrondheim.no'},
       {tier:'Premium', name:'Radisson Blu Royal Garden', price:'$180/night', pros:'Central Trondheim location, large comfortable rooms, indoor pool and sauna, extensive breakfast buffet, attached to shopping center', cons:'Large chain hotel, impersonal feel, some rooms face interior atrium', cite:'https://www.radissonhotels.com/royal-garden-trondheim'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Kaffebrenneriet Bakklandet — best coffee and fresh pastries on the cobblestone street', dinner:'Farewell dinner at Credo (Michelin-starred new Nordic tasting menu) or Bula Neobistro (relaxed modern Norwegian, great wine list). End the trip at Trondheim Mikrobryggeri for a final Norwegian craft beer' },
+    meals: { breakfast:'Hotel buffet included', lunch:'Kaffebrenneriet Bakklandet - best coffee and fresh pastries on the cobblestone street', dinner:'Farewell dinner at Credo (Michelin-starred new Nordic tasting menu) or Bula Neobistro (relaxed modern Norwegian, great wine list). End the trip at Trondheim Mikrobryggeri for a final Norwegian craft beer' },
     lat: 63.4305, lng: 10.3951, poi: [
       {name:'Rockheim', lat:63.4392, lng:10.4000, note:'Pop music museum'},
       {name:'Kristiansten', lat:63.4306, lng:10.4083, note:'Fortress'},
@@ -556,12 +556,12 @@ const data = [
   {
     day: 10, date: new Date(2027, 5, 6), base: 'Depart Trondheim', drive: null, driveTime: null, stops: [],
     activities: [
-      {icon:'fa-plane-departure', text:'Fly home from Trondheim Airport (TRD)', price:'—', time:'7-8 hr flight (with connections)', desc:'CEST → EDT (-6h). Connect via Amsterdam (AMS), Copenhagen (CPH), or Oslo (OSL). KLM, SAS, Norwegian. Return to PIT or MGW'},
+      {icon:'fa-plane-departure', text:'Fly home from Trondheim Airport (TRD)', price:'-', time:'7-8 hr flight (with connections)', desc:'CEST → EDT (-6h). Connect via Amsterdam (AMS), Copenhagen (CPH), or Oslo (OSL). KLM, SAS, Norwegian. Return to PIT or MGW'},
       {icon:'fa-sun', text:'Morning in Trondheim (if late flight)', price:'Free', time:'1-3 hr', desc:'Last walk through Bakklandet, coffee at Kaffebrenneriet, or Ringve Music Museum'},
       {icon:'fa-shopping-bag', text:'Duty-free at TRD', price:'Variable', time:'30 min', desc:'Aquavit, brunost, Norwegian wool'}
     ],
     groupNotes: 'Departure day from Trondheim (TRD). Most US connections route through Amsterdam or Copenhagen. Plan flights to coordinate connections through AMS if possible.',
-    lodging: '—', lodgingDetail: '',
+    lodging: '-', lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Airport lounge or grab sandwiches for the plane', dinner:'In flight' },
     lat: 63.4543, lng: 10.9155, poi: [
       {name:'Trondheim Airport (TRD)', lat:63.4575, lng:10.9250, note:'Departure to US'}
@@ -582,7 +582,7 @@ data.forEach((d, idx) => {
   const dayName = dayNames[d.date.getDay()];
 
   const driveHtml = d.drive
-    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive} &middot; ${d.driveTime}</span>`
+    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive}  -  ${d.driveTime}</span>`
     : '';
 
   const directionsHtml = d.directions
@@ -649,7 +649,7 @@ data.forEach((d, idx) => {
         </div>
       </div>
     `).join('')}
-  </div>` : d.lodging === '—' ? '' : `<div class="hotel-section">
+  </div>` : d.lodging === '-' ? '' : `<div class="hotel-section">
     <div class="hotel-label"><i class="fas fa-moon"></i> ${d.lodging}</div>
     <p>${d.lodgingDetail}</p>
   </div>`;
@@ -662,8 +662,8 @@ data.forEach((d, idx) => {
     <div class="day-header" data-day="${idx}">
       <div class="day-header-left">
         <div class="day-label">
-          <span class="day-num">Day ${d.day} &middot; ${dayName}</span>
-          <span class="day-date">${dateStr} &mdash; ${d.base}</span>
+          <span class="day-num">Day ${d.day}  -  ${dayName}</span>
+          <span class="day-date">${dateStr}  -  ${d.base}</span>
         </div>
         ${driveHtml}
       </div>
@@ -796,7 +796,7 @@ data.forEach((d, idx) => {
   });
 
   const popupHtml = `
-    <strong>Day ${d.day} &mdash; ${d.base}</strong><br>
+    <strong>Day ${d.day}  -  ${d.base}</strong><br>
     ${dateStr}<br>
     ${d.drive ? `<em>${d.drive} ${d.driveTime}</em><br>` : ''}
     <a href="#days" onclick="document.querySelector('.day-card:nth-child(${d.day}) .day-header').click();return false;">View details →</a>
@@ -944,7 +944,7 @@ function initPerDayMap(dayNum) {
     className: '', iconSize: [22, 22], iconAnchor: [11, 11]
   });
   L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
-    .bindPopup(`<strong>Day ${d.day} &mdash; ${d.base}</strong>`);
+    .bindPopup(`<strong>Day ${d.day}  -  ${d.base}</strong>`);
   const coords = [[d.lat, d.lng]];
   if (d.stops) {
     d.stops.forEach(s => {

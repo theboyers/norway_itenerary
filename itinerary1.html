@@ -252,9 +252,9 @@ footer a{color:var(--accent);text-decoration:none}
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><i class="fas fa-plane"></i> May 28 &mdash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h)</div>
+    <div class="hero-badge"><i class="fas fa-plane"></i> May 28 - Jun 6, 2027  -  EDT &rarr; CEST (+6h)</div>
     <h1>Norway <span>Road Trip</span></h1>
-    <p class="subtitle">Oslo &rarr; Fjords &rarr; Glaciers &rarr; Mountains &rarr; Home &middot; EDT +6h = CEST</p>
+    <p class="subtitle">Oslo &rarr; Fjords &rarr; Glaciers &rarr; Mountains &rarr; Home  -  EDT +6h = CEST</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="num">10</span>
@@ -284,16 +284,16 @@ footer a{color:var(--accent);text-decoration:none}
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
   <span class="nav-divider"></span>
-  <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
-  <a href="#day-2" class="day-jump" title="Day 2 — Flåm">2</a>
-  <a href="#day-3" class="day-jump" title="Day 3 — Flåm">3</a>
-  <a href="#day-4" class="day-jump" title="Day 4 — Flåm">4</a>
-  <a href="#day-5" class="day-jump" title="Day 5 — Loen">5</a>
-  <a href="#day-6" class="day-jump" title="Day 6 — Loen">6</a>
-  <a href="#day-7" class="day-jump" title="Day 7 — Jotunheimen">7</a>
-  <a href="#day-8" class="day-jump" title="Day 8 — Lillehammer">8</a>
-  <a href="#day-9" class="day-jump" title="Day 9 — Oslo">9</a>
-  <a href="#day-10" class="day-jump" title="Day 10 — Depart">10</a>
+  <a href="#day-1" class="day-jump" title="Day 1 - Oslo">1</a>
+  <a href="#day-2" class="day-jump" title="Day 2 - Flåm">2</a>
+  <a href="#day-3" class="day-jump" title="Day 3 - Flåm">3</a>
+  <a href="#day-4" class="day-jump" title="Day 4 - Flåm">4</a>
+  <a href="#day-5" class="day-jump" title="Day 5 - Loen">5</a>
+  <a href="#day-6" class="day-jump" title="Day 6 - Loen">6</a>
+  <a href="#day-7" class="day-jump" title="Day 7 - Jotunheimen">7</a>
+  <a href="#day-8" class="day-jump" title="Day 8 - Lillehammer">8</a>
+  <a href="#day-9" class="day-jump" title="Day 9 - Oslo">9</a>
+  <a href="#day-10" class="day-jump" title="Day 10 - Depart">10</a>
   <span class="nav-divider"></span>
   <a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV (Google Sheets compatible)"><i class="fas fa-file-csv"></i> CSV</a>
 </nav>
@@ -318,7 +318,7 @@ footer a{color:var(--accent);text-decoration:none}
 <section class="timeline" id="days">
   <div class="section-header">
     <h2><i class="fas fa-calendar-alt"></i> Day-by-Day Itinerary</h2>
-    <p>Click each day to expand details &mdash; drive routes, activities, and lodging for every stop.</p>
+    <p>Click each day to expand details - drive routes, activities, and lodging for every stop.</p>
   </div>
   <div class="glance-strip" id="glanceStrip"></div>
   <div id="timelineContainer"></div>
@@ -326,7 +326,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 
 <footer>
-  <p>Norway Road Trip &middot; May 28 &ndash; Jun 6, 2027 &middot; EDT &rarr; CEST (+6h) &middot; Built with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
+  <p>Norway Road Trip  -  May 28 &ndash; Jun 6, 2027  -  EDT &rarr; CEST (+6h)  -  Built with</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -341,17 +341,17 @@ const data = [
     activities: [
       {icon:'fa-plane-arrival', text:'Fly into Oslo Airport (OSL)', price:'~$800-1,200 round trip', time:'7-8 hr flight', desc:'Depart from Pittsburgh (PIT) or Morgantown (MGW). EDT → CEST (+6h). Families can be on same or separate flights', cite:'https://www.google.com/travel/flights'},
       {icon:'fa-ship', text:'Explore Aker Brygge waterfront', price:'Free', time:'1-2 hr', desc:'Stroll the harbor promenade with shops, restaurants, and marina views. Great jet-lag walk', cite:'https://www.visitnorway.com'},
-      {icon:'fa-monument', text:'National Museum', price:'$20 (200 NOK)', time:'1.5-2 hr', desc:'Munch\'s The Scream, Viking gold, and Norwegian art. Indoor, central, jet-lag-friendly — right near Opera House', cite:'https://www.nasjonalmuseet.no'},
+      {icon:'fa-monument', text:'National Museum', price:'$20 (200 NOK)', time:'1.5-2 hr', desc:'Munch\'s The Scream, Viking gold, and Norwegian art. Indoor, central, jet-lag-friendly - right near Opera House', cite:'https://www.nasjonalmuseet.no'},
       {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for iconic city + fjord views. The architecture alone is worth it', cite:'https://www.operaen.no/en'},
       {icon:'fa-tree', text:'Vigeland Sculpture Park', price:'Free', time:'1-2 hr', desc:'200+ granite and bronze sculptures by Gustav Vigeland in Frogner Park. Oslo\'s top free attraction', cite:'https://www.vigeland.museum.no'},
       {icon:'fa-walking', text:'Karl Johans Gate & Royal Palace walk', price:'Free', time:'45-60 min', desc:'Oslo\'s main boulevard from Central Station to the Royal Palace. Street musicians, cafes, shops'},
       {icon:'fa-monument', text:'Historical Museum (Viking artifacts)', price:'$12 (120 NOK)', time:'1-1.5 hr', desc:'Viking artifacts, medieval church art, Miðgarðr Viking exhibition. Great substitute while Viking Ship Museum is closed', cite:'https://www.historiskmuseum.no'},
       {icon:'fa-tree', text:'Ekebergparken Sculpture Park', price:'Free', time:'1-2 hr', desc:'Modern art scattered through forest trails with panoramic Oslo Fjord views. Quieter than Vigeland', cite:'https://ekebergparken.com/en'},
       {icon:'fa-water', text:'Sørenga seaside sauna & swim', price:'$12-20', time:'1-1.5 hr', desc:'Floating sauna with a plunge into Oslo Fjord. Perfect jet-lag refreshment. Book ahead', cite:'https://www.sørenga.no'},
-      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Schouskjelleren, Amundsen Bryggeri — craft beer walk through Oslo\'s hip district'},
+      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Schouskjelleren, Amundsen Bryggeri - craft beer walk through Oslo\'s hip district'},
       {icon:'fa-shopping-bag', text:'Mathallen Food Hall', price:'$$', time:'1-1.5 hr', desc:'Indoor food market with Norwegian specialties, international stalls, and craft beer bar. Great for dinner', cite:'https://www.mathallenoslo.no'}
     ],
-    groupNotes: 'Keep Day 1 light — see Jet Lag Playbook. National Museum (The Scream) and the Opera House roof walk are central and easy-paced. Vigeland Park is a lovely open-air option. Sørenga floating sauna is a unique wake-up experience.',
+    groupNotes: 'Keep Day 1 light - see Jet Lag Playbook. National Museum (The Scream) and the Opera House roof walk are central and easy-paced. Vigeland Park is a lovely open-air option. Sørenga floating sauna is a unique wake-up experience.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central location near Oslo Central Station, modern minimalist rooms, free Wi-Fi', cons:'No breakfast or restaurant, no daily housekeeping by default, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern Scandinavian design, excellent breakfast bar, great location near Opera House and waterfront, co-working lounge', cons:'Standard chain feel, no pool, lower floors can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
@@ -359,9 +359,9 @@ const data = [
     ],
     lodgingDetail: '',
     meals: {
-      breakfast: 'Included hotel buffet or Godt Brød — skolebrød (custard bun), kanelboller, open-faced sandwiches',
-      lunch: 'Mathallen Oslo food hall (Vulkan) — seafood soup at Vulkanfisk, tacos, Asian street food. Or grab smørbrød at a local bakery',
-      dinner: 'Den Glade Gris — Norwegian pork-focused gastropub (try ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Himkok for a craft aquavit cocktail or Schouskjelleren for a nightcap'
+      breakfast: 'Included hotel buffet or Godt Brød - skolebrød (custard bun), kanelboller, open-faced sandwiches',
+      lunch: 'Mathallen Oslo food hall (Vulkan) - seafood soup at Vulkanfisk, tacos, Asian street food. Or grab smørbrød at a local bakery',
+      dinner: 'Den Glade Gris - Norwegian pork-focused gastropub (try ribbe or nakkekoteletter). Or RIB for slow-cooked beef ribs. After dinner, walk to Himkok for a craft aquavit cocktail or Schouskjelleren for a nightcap'
     },
     lat: 59.9139, lng: 10.7522,
     poi: [
@@ -391,7 +391,7 @@ const data = [
       {name:'Norefjell Scenic Viewpoint', lat:60.1700, lng:9.5100, price:'Free', time:'20-30 min', desc:'Mountain panorama overlooking Lake Krøderen. Marked viewpoint with parking', cite:'https://www.visitnorway.com'},
       {name:'Borgund Stave Church', lat:61.0467, lng:7.8125, price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church in Norway, built 1150. Guided tours available. A must-see', cite:'https://www.stavechurch.com/en/borgund/'},
       {name:'Midtødegården Cheese Farm', lat:61.0500, lng:7.8000, price:'Free to browse', time:'20-30 min', desc:'Family-run goat and cow dairy near Borgund. Try the local brunost and geitost', cite:'https://www.visitnorway.com'},
-      {name:'Rjukandefossen Waterfall', lat:61.0333, lng:7.8000, price:'Free', time:'15-30 min', desc:'Roadside waterfall along Rv52 — quick photo stop and leg stretch', cite:'https://www.visitnorway.com'},
+      {name:'Rjukandefossen Waterfall', lat:61.0333, lng:7.8000, price:'Free', time:'15-30 min', desc:'Roadside waterfall along Rv52 - quick photo stop and leg stretch', cite:'https://www.visitnorway.com'},
       {name:'Lærdalstunnelen', lat:61.0000, lng:7.5500, price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Illuminated with blue and yellow color zones every 6 km (mimicking sunrise)'},
       {name:'Lærdal Town historic walk', lat:61.1000, lng:7.4833, price:'Free', time:'30-45 min', desc:'Best-preserved 18th century wooden houses in Norway. The old town is charming and quick to explore', cite:'https://www.visitnorway.com'},
       {name:'Aurland Shoe Factory & Museum', lat:60.9061, lng:7.1881, price:'$10 (100 NOK)', time:'30-45 min', desc:'Historic shoe factory turned museum. See how traditional Norwegian shoes were made', cite:'https://www.visitflam.com'}
@@ -417,8 +417,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Kiwi or Rema 1000 in Oslo before departing, or Borgund cafeteria (waffles & coffee) — pack bread, Norvegia cheese, Sylte pork roll, Kvikk Lunsj chocolate for a car picnic',
-      dinner: 'Ægir Gastropub — Viking-themed brewpub in Flåm. Order braised lamb shank or reindeer stew with their award-winning Ægir IPA. Afterwards, walk the Flåm waterfront under the midnight sun'
+      lunch: 'Kiwi or Rema 1000 in Oslo before departing, or Borgund cafeteria (waffles & coffee) - pack bread, Norvegia cheese, Sylte pork roll, Kvikk Lunsj chocolate for a car picnic',
+      dinner: 'Ægir Gastropub - Viking-themed brewpub in Flåm. Order braised lamb shank or reindeer stew with their award-winning Ægir IPA. Afterwards, walk the Flåm waterfront under the midnight sun'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
@@ -443,7 +443,7 @@ const data = [
       {icon:'fa-ship', text:'FjordSafari RIB boat tour', price:'$85 (850 NOK)', time:'1.5 hr', desc:'High-speed RIB boat into the narrow fjord arms. Thrilling ride, close-up waterfall views', cite:'https://www.visitflam.com'},
       {icon:'fa-beer', text:'Ægir BrewPub dinner & tasting flight', price:'$25-40 meal+drink', time:'1.5-2 hr', desc:'Viking-themed brewpub with award-winning beers. Try the Ægir IPA, Sumbel Porter, or the seasonal stout. Food pairings available', cite:'https://www.aegirbryggeri.no'}
     ],
-    groupNotes: 'Flåm Railway to Myrdal is the morning centerpiece — bike down via Rallarvegen or ride the train back. Stegastein viewpoint at sunset. Afternoon options: Flåm Zipline (teens love it) or Njord Kayak on the fjord. Dinner at Ægir.',
+    groupNotes: 'Flåm Railway to Myrdal is the morning centerpiece - bike down via Rallarvegen or ride the train back. Stegastein viewpoint at sunset. Afternoon options: Flåm Zipline (teens love it) or Njord Kayak on the fjord. Dinner at Ægir.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms good for families', cons:'No breakfast or restaurant, 15-min walk from Flåm center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast included', cons:'No pool or spa, limited parking, busy during cruise ship arrivals', cite:'https://www.flamsbrygga.no'},
@@ -452,8 +452,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Flåm Bakery — skillingsboller (cinnamon rolls), sourdough bread with brunost (brown cheese), or sandwiches to eat by the fjord after kayaking',
-      dinner: 'Flamstova Restaurant for traditional Norwegian home-cooking (fårikål — the national dish, or kjøttkaker with lingonberry jam) or Flåm Marina Terrace for seafood with fjord views. End the evening at Ægir brewpub for a nightcap flight'
+      lunch: 'Flåm Bakery - skillingsboller (cinnamon rolls), sourdough bread with brunost (brown cheese), or sandwiches to eat by the fjord after kayaking',
+      dinner: 'Flamstova Restaurant for traditional Norwegian home-cooking (fårikål - the national dish, or kjøttkaker with lingonberry jam) or Flåm Marina Terrace for seafood with fjord views. End the evening at Ægir brewpub for a nightcap flight'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
@@ -475,12 +475,12 @@ const data = [
       {icon:'fa-ship', text:'Nærøyfjord UNESCO cruise (morning)', price:'$64 (640 NOK)', time:'2.5 hr', desc:'Electric catamaran from Flåm pier through the narrowest fjord in Europe. Silent, emission-free, café onboard. 1,400m cliff walls, waterfalls cascading', cite:'https://www.visitnorway.com'},
       {icon:'fa-ship', text:'Fjord cruise to Undredal', price:'$64 (640 NOK) round trip', time:'2 hr', desc:'Alternative: cruise to the cutest fjord village. Undredal has only 100 residents, a tiny stave church, and famous goat cheese', cite:'https://www.visitnorway.com'},
       {icon:'fa-church', text:'Undredal Stave Church', price:'Free (donation)', time:'15-20 min', desc:'One of Norway\'s smallest stave churches (12th century). Charming white wooden interior', cite:'https://www.visitnorway.com'},
-      {icon:'fa-cheese', text:'Undredal goat cheese dairy tasting', price:'$5-10', time:'20-30 min', desc:'Try the legendary Undredal Geitost (brown goat cheese) — Norway\'s most famous local cheese. Buy some to take home', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/undredal/'},
+      {icon:'fa-cheese', text:'Undredal goat cheese dairy tasting', price:'$5-10', time:'20-30 min', desc:'Try the legendary Undredal Geitost (brown goat cheese) - Norway\'s most famous local cheese. Buy some to take home', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/undredal/'},
       {icon:'fa-helmet-safety', text:'Viking Valley Njardarheimr (Gudvangen)', price:'$26 (260 NOK)', time:'2-3 hr', desc:'Living Viking village with costumed interpreters, weapon demos, archery, Viking ships. 20 min from Flåm. Teens love it', cite:'https://www.norwaysbest.com'},
       {icon:'fa-hiking', text:'Aurlandsdalen Valley hike', price:'Free', time:'2-4 hr', desc:'One of Norway\'s most beautiful valleys. Marked trail from Aurland village into the mountains. Waterfalls, green hills, panoramic fjord views'},
       {icon:'fa-bullseye', text:'Kaupanger Disc Golf (18 holes)', price:'Free', time:'2-3 hr', desc:'35 min from Flåm. Scenic wooded course right by the Sognefjord. Rated 4.5 on PDGA. Rent discs or bring your own', cite:'https://www.pdga.com/course/kaupanger-frisbeegolf'},
       {icon:'fa-road', text:'Aurlandsfjellet (Snow Road) scenic drive', price:'Free', time:'2 hr', desc:'47 km mountain pass road from Flåm to Lærdal. Snow fences, lunar landscapes, fjord views. Open June-Oct', cite:'https://www.visitnorway.com'},
-      {icon:'fa-train', text:'Flåm Railway (bad weather backup)', price:'$68 (730 NOK) round trip', time:'2 hr', desc:'Always a solid choice if the weather turns — the train runs year-round, rain or shine', cite:'https://www.visitflam.com/flam-railway/'},
+      {icon:'fa-train', text:'Flåm Railway (bad weather backup)', price:'$68 (730 NOK) round trip', time:'2 hr', desc:'Always a solid choice if the weather turns - the train runs year-round, rain or shine', cite:'https://www.visitflam.com/flam-railway/'},
       {icon:'fa-beer', text:'Ægir BrewPub farewell dinner', price:'$25-40', time:'1.5-2 hr', desc:'Last night in Flåm. Sample the full Ægir beer flight and order the braised lamb shank or reindeer stew. End the evening walking the Flåm marina', cite:'https://www.aegirbryggeri.no'}
     ],
     groupNotes: 'Morning: Nærøyfjord UNESCO cruise is the highlight. Afternoon options: Viking Valley in Gudvangen (teens love the interactive village), Aurlandsdalen hike, or Kaupanger disc golf. The Snow Road (Aurlandsfjellet) is a spectacular drive if the weather is clear.',
@@ -492,8 +492,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Pack from Kiwi in Flåm — bread, cheese, cured meats — and enjoy a picnic at Undredal. Buy Undredal Geitost (famous local goat cheese) from the dairy shop',
-      dinner: 'Fretheim Hotel\'s Arven Restaurant — upscale local ingredients (lamb, fjord seafood, Sognefjord-inspired cloudberry dessert). Or Ægir brewpub. After dinner, walk down to the Flåm marina for stargazing'
+      lunch: 'Pack from Kiwi in Flåm - bread, cheese, cured meats - and enjoy a picnic at Undredal. Buy Undredal Geitost (famous local goat cheese) from the dairy shop',
+      dinner: 'Fretheim Hotel\'s Arven Restaurant - upscale local ingredients (lamb, fjord seafood, Sognefjord-inspired cloudberry dessert). Or Ægir brewpub. After dinner, walk down to the Flåm marina for stargazing'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
@@ -521,14 +521,14 @@ const data = [
       {name:'Urnes Stave Church (UNESCO)', lat:61.3000, lng:7.0333, price:'$12 (120 NOK)', time:'45-60 min', desc:'Oldest stave church in Norway (1130). UNESCO World Heritage site. Short ferry from Solvorn, then 2 km walk uphill', cite:'https://www.stavechurch.com/en/urnes/'},
       {name:'Bøyabreen Glacier', lat:61.4917, lng:6.7650, price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking to viewpoint. Parking on Rv5', cite:'https://www.visitnorway.com'},
       {name:'Norwegian Glacier Museum', lat:61.4067, lng:6.7550, price:'$19 (180 NOK)', time:'1-1.5 hr', desc:'Interactive exhibits, panorama film, ice experiments, climate change exhibit. In Fjærland', cite:'https://www.norskbre.museum.no'},
-      {name:'Feigumfossen Waterfall', lat:61.3500, lng:7.0000, price:'Free', time:'15-20 min', desc:'218m waterfall — one of Norway\'s tallest. Visible from Rv5, use the marked pull-off', cite:'https://www.visitnorway.com'},
+      {name:'Feigumfossen Waterfall', lat:61.3500, lng:7.0000, price:'Free', time:'15-20 min', desc:'218m waterfall - one of Norway\'s tallest. Visible from Rv5, use the marked pull-off', cite:'https://www.visitnorway.com'},
       {name:'Lovatnet Lake viewpoint', lat:61.8667, lng:6.8667, price:'Free', time:'15-20 min', desc:'Turquoise glacier lake just south of Loen. The color is surreal. Pull over for photos', cite:'https://www.visitnorway.com'},
       {name:'Loen Skylift', lat:61.8767, lng:6.8592, price:'$70 (695 NOK) round trip', time:'1-2 hr', desc:'Cable car 1,011m to Mt. Hoven top. Restaurant, panoramic fjord views. Do it at sunset', cite:'https://www.loenskylift.com'}
     ],
     activities: [
-      {icon:'fa-ship', text:'Mannheller-Fodnes ferry crossing', price:'~$13 car+driver', time:'15 min', desc:'Ferry across the Sognefjord — stay in the car. Part of the regular road network', cite:'https://www.vegvesen.no/en/ferry'},
+      {icon:'fa-ship', text:'Mannheller-Fodnes ferry crossing', price:'~$13 car+driver', time:'15 min', desc:'Ferry across the Sognefjord - stay in the car. Part of the regular road network', cite:'https://www.vegvesen.no/en/ferry'},
       {icon:'fa-church', text:'Urnes Stave Church (UNESCO) detour', price:'$12', time:'45-60 min', desc:'Norway\'s oldest stave church (1130). Take the Solvorn ferry + 2 km walk. Worth the detour for history buffs', cite:'https://www.stavechurch.com/en/urnes/'},
-      {icon:'fa-mountain', text:'Bøyabreen Glacier viewpoint', price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking. Touch the ice — an easy intro to glaciers', cite:'https://www.visitnorway.com'},
+      {icon:'fa-mountain', text:'Bøyabreen Glacier viewpoint', price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking. Touch the ice - an easy intro to glaciers', cite:'https://www.visitnorway.com'},
       {icon:'fa-flask', text:'Norwegian Glacier Museum', price:'$19', time:'1-1.5 hr', desc:'Interactive exhibits, ice experiments, climate change, panorama film. Fascinating for teens and adults', cite:'https://www.norskbre.museum.no'},
       {icon:'fa-tint', text:'Feigumfossen Waterfall', price:'Free', time:'15-20 min', desc:'218m free-falling waterfall visible from the road. Quick pull-off on Rv5', cite:'https://www.visitnorway.com'},
       {icon:'fa-mountain', text:'Jostedalsbreen viewpoint (Nigardsbreen)', price:'Free', time:'30-45 min', desc:'Short detour to the most accessible arm of Jostedalsbreen. Glacier lake, blue ice, summer ski center nearby', cite:'https://www.visitnorway.com'},
@@ -543,8 +543,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Glacier Museum cafe in Fjærland — warm fish soup, homemade cakes, waffles with brown cheese. Or Bøyabreen kiosk for pølse i lompe (hot dog)',
-      dinner: 'Hotel Alexandra\'s legendary dinner buffet (seafood-focused spread with fjord views) or Låge Restaurant at Loen Skylift top for 360° mountain views — order local lamb or Nordfjord fish soup. Relax in Hotel Alexandra\'s spa or outdoor hot tub overlooking the fjord'
+      lunch: 'Glacier Museum cafe in Fjærland - warm fish soup, homemade cakes, waffles with brown cheese. Or Bøyabreen kiosk for pølse i lompe (hot dog)',
+      dinner: 'Hotel Alexandra\'s legendary dinner buffet (seafood-focused spread with fjord views) or Låge Restaurant at Loen Skylift top for 360° mountain views - order local lamb or Nordfjord fish soup. Relax in Hotel Alexandra\'s spa or outdoor hot tub overlooking the fjord'
     },
     lat: 61.8786, lng: 6.8700,
     poi: [
@@ -579,7 +579,7 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Pack from Coop Mega in Stryn — bread, makrell i tomat (mackerel in tomato sauce), yogurt, fruit. Eat at a scenic spot along Lake Lovatnet or Briksdal parking area kiosk',
+      lunch: 'Pack from Coop Mega in Stryn - bread, makrell i tomat (mackerel in tomato sauce), yogurt, fruit. Eat at a scenic spot along Lake Lovatnet or Briksdal parking area kiosk',
       dinner: 'Hotel Alexandra Brasserie for pizza & burgers, Stryn Vertshus (15 min drive), or Restaurant Låge at Skylift top. Cap the evening with a sauna at Hotel Alexandra or a drink by the fireplace lounge'
     },
     lat: 61.8786, lng: 6.8700,
@@ -605,16 +605,16 @@ const data = [
     ],
     activities: [
       {icon:'fa-road', text:'Sognefjellet Scenic Route (highest pass)', price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe at 1,434m. Drive through Jotunheimen with glaciers, turquoise lakes, and lunar landscapes. Norway\'s most scenic drive', cite:'https://www.visitnorway.com'},
-      {icon:'fa-church', text:'Lom Stave Church & Fossheim Bakeri', price:'$12+food', time:'30-45 min', desc:'One of Norway\'s largest stave churches (c.1158). Next door: Fossheim Bakeri — famous world-class kanelboller', cite:'https://www.lomstavechurch.no'},
+      {icon:'fa-church', text:'Lom Stave Church & Fossheim Bakeri', price:'$12+food', time:'30-45 min', desc:'One of Norway\'s largest stave churches (c.1158). Next door: Fossheim Bakeri - famous world-class kanelboller', cite:'https://www.lomstavechurch.no'},
       {icon:'fa-hiking', text:'Utladalen Valley hike', price:'Free', time:'2-4 hr', desc:'Marked trail into one of Norway\'s deepest valleys. Dramatic mountain scenery between Hurrungane peaks', cite:'https://www.visitnorway.com'},
       {icon:'fa-water', text:'Sjoa River family rafting (half-day)', price:'$111 half-day', time:'3 hr', desc:'Class 2 rapids on the Sjoa River. Guide, wetsuit, and gear included. Ages 6+. One of Norway\'s best rafting rivers', cite:'https://www.sjoarafting.no'},
       {icon:'fa-water', text:'Mad Goats rafting + river sauna', price:'$90 (895 NOK)', time:'2.5 hr', desc:'Family chill rafting on Lågen River Grade 2. Includes access to a floating river sauna. Unique combo!', cite:'https://www.madgoats.no'},
       {icon:'fa-hiking', text:'Besseggen Ridge viewpoint', price:'Free', time:'Quick stop', desc:'Norway\'s most famous hike starts from Gjendesheim. Even just viewing the ridge from the lake is spectacular. Photo stop at Gjende lake'},
-      {icon:'fa-mountain', text:'Galdhøpiggen viewpoint (Norway\'s highest)', price:'Free', time:'30 min', desc:'2489m — Norway\'s highest peak. Even if you don\'t hike it, the Juvasshytta area has glacier views', cite:'https://www.visitnorway.com'},
+      {icon:'fa-mountain', text:'Galdhøpiggen viewpoint (Norway\'s highest)', price:'Free', time:'30 min', desc:'2489m - Norway\'s highest peak. Even if you don\'t hike it, the Juvasshytta area has glacier views', cite:'https://www.visitnorway.com'},
       {icon:'fa-bullseye', text:'Medalen Disc Golf (18 holes, Lom)', price:'Free', time:'1.5-2 hr', desc:'Flat, free 18-hole course right in Lom village. Quick round with mountain views. Bring your own discs', cite:'https://www.pdga.com/course/medalen-frisbeegolf'},
-      {icon:'fa-bread-slice', text:'Fossheim Bakeri — best bakery in Norway', price:'$5-10', time:'30 min', desc:'Internationally famous bakery. Their kanelboller, cardamom bread, and skillingsboller are legendary. Don\'t leave without a pastry box for the road', cite:'https://fossheim-bakeri.no'}
+      {icon:'fa-bread-slice', text:'Fossheim Bakeri - best bakery in Norway', price:'$5-10', time:'30 min', desc:'Internationally famous bakery. Their kanelboller, cardamom bread, and skillingsboller are legendary. Don\'t leave without a pastry box for the road', cite:'https://fossheim-bakeri.no'}
     ],
-    groupNotes: 'The Sognefjellet Scenic Route over the highest pass in northern Europe is the drive centerpiece — allow 2-3 hours just for the drive with photo stops. Sjoa River rafting (Class 2 family-friendly) or Utladalen hike for the active group. Lom Bakery is a mandatory food stop.',
+    groupNotes: 'The Sognefjellet Scenic Route over the highest pass in northern Europe is the drive centerpiece - allow 2-3 hours just for the drive with photo stops. Sjoa River rafting (Class 2 family-friendly) or Utladalen hike for the active group. Lom Bakery is a mandatory food stop.',
     lodging: [
       {tier:'Mid', name:'Hotel Loenfjord', price:'$257/night', pros:'Excellent fjord views from most rooms, outdoor seating area, free parking, more affordable than Alexandra, quiet location', cons:'3-star, no spa facilities, restaurant is basic, older building', cite:'https://www.loenfjord.no'},
       {tier:'Premium', name:'Hotel Alexandra', price:'$380/night', pros:'Legendary breakfast buffet (rated best in Norway), full spa with indoor/outdoor pools, 4-star service, grand fjord-view rooms, multiple restaurants and bars', cons:'Very expensive, large hotel with many guests, some feel it lacks coziness', cite:'https://www.alexandra.no'}
@@ -622,7 +622,7 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Fossheim Bakeri / Lom Bakery — world-class kanelboller, cardamom bread, and sandwiches. Eat at the outdoor tables by Lom Stave Church',
+      lunch: 'Fossheim Bakeri / Lom Bakery - world-class kanelboller, cardamom bread, and sandwiches. Eat at the outdoor tables by Lom Stave Church',
       dinner: 'Return to Loen: Hotel Alexandra legendary dinner buffet (seafood focus, grilled meats, local cheeses). Or Stryn Vertshus for cozy traditional fare. Nightcap at Hotel Alexandra\'s fireplace lounge overlooking the Nordfjord'
     },
     lat: 61.8378, lng: 8.5683,
@@ -672,8 +672,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet in Loen before departing',
-      lunch: 'Sjoa Rafting Center cafe (burgers & coffee after rafting) or Kiwi in Otta — fresh bread, Norwegian cheeses, eplemost (apple juice). For Valdresflye route: pack a mountain picnic',
-      dinner: 'LYNG mat & bar in Lillehammer — #1 rated on TripAdvisor, seasonal Norwegian menu, reindeer with lingonberry, local craft beer selection. For Arctic Dome: bring groceries for a DIY BBQ at the dome. After dinner, use the Arctic Dome hot tub under the stars'
+      lunch: 'Sjoa Rafting Center cafe (burgers & coffee after rafting) or Kiwi in Otta - fresh bread, Norwegian cheeses, eplemost (apple juice). For Valdresflye route: pack a mountain picnic',
+      dinner: 'LYNG mat & bar in Lillehammer - #1 rated on TripAdvisor, seasonal Norwegian menu, reindeer with lingonberry, local craft beer selection. For Arctic Dome: bring groceries for a DIY BBQ at the dome. After dinner, use the Arctic Dome hot tub under the stars'
     },
     lat: 61.1153, lng: 10.4663,
     poi: [
@@ -692,7 +692,7 @@ const data = [
     driveTime: '2 hr 7 min (185 km)',
     directions: [
       'Get on E6 from Mesnadalsvegen (4 min, 1.8 km)',
-      'Follow E6 to Dronning Mauds gate in Sentrum, Oslo — take exit 5 from E18 (2 hr 2 min, 183 km)',
+      'Follow E6 to Dronning Mauds gate in Sentrum, Oslo - take exit 5 from E18 (2 hr 2 min, 183 km)',
       'Turn right onto Dronning Mauds gate (27 sec, 150 m)'
     ],
     stops: [
@@ -719,9 +719,9 @@ const data = [
     ],
     lodgingDetail: '',
     meals: {
-      breakfast: 'Bakeriet på Lillehammer / Bakgården Bakeri & Kaffebar — exceptional pastries and coffee before departing south',
+      breakfast: 'Bakeriet på Lillehammer / Bakgården Bakeri & Kaffebar - exceptional pastries and coffee before departing south',
       lunch: 'Kiwi or Rema 1000 for drive-back sandwiches, or stop at Eidsvoll Manor café for Norwegian waffles with brunost',
-      dinner: 'Restaurant Schrøder — classic Norwegian home-cooking since 1910 (fårikål, kjøttkaker with lingonberry jam, torsk with melted butter). Or Maaemo — three Michelin-star new Nordic tasting menu. For casual: pizza at Villa Paradiso Grünerløkka. Finish the trip with a nightcap at the Grand Hotel rooftop bar overlooking Karl Johans gate'
+      dinner: 'Restaurant Schrøder - classic Norwegian home-cooking since 1910 (fårikål, kjøttkaker with lingonberry jam, torsk with melted butter). Or Maaemo - three Michelin-star new Nordic tasting menu. For casual: pizza at Villa Paradiso Grünerløkka. Finish the trip with a nightcap at the Grand Hotel rooftop bar overlooking Karl Johans gate'
     },
     lat: 59.9139, lng: 10.7522,
     poi: [
@@ -739,18 +739,18 @@ const data = [
     driveTime: null,
     stops: [],
     activities: [
-      {icon:'fa-plane-departure', text:'Fly home from Oslo Airport (OSL)', price:'—', time:'7-8 hr flight', desc:'CEST → EDT (-6h). Return to Pittsburgh (PIT) or Morgantown (MGW). May be same or different flights — coordinate ahead', cite:'https://www.google.com/travel/flights'},
+      {icon:'fa-plane-departure', text:'Fly home from Oslo Airport (OSL)', price:'-', time:'7-8 hr flight', desc:'CEST → EDT (-6h). Return to Pittsburgh (PIT) or Morgantown (MGW). May be same or different flights - coordinate ahead', cite:'https://www.google.com/travel/flights'},
       {icon:'fa-sun', text:'Morning in Oslo (if late flight)', price:'Free', time:'1-3 hr', desc:'Grab a last kanelbolle from Godt Brød, walk the Opera House roof, or Vigeland Sculpture Park for one last dose of Norway'},
       {icon:'fa-shopping-bag', text:'Last souvenirs at Oslo city center', price:'Variable', time:'1-2 hr', desc:'Husfliden (traditional Norwegian crafts), Way Nor (trolls, sweaters), or Freia chocolate shop at Oslo City mall'},
       {icon:'fa-ship', text:'Oslo Fjord ferry (if afternoon flight)', price:'~$10', time:'1 hr', desc:'Ferry from Aker Brygge to Bygdøy or back. One last fjord view before heading home'},
       {icon:'fa-shopping-bag', text:'Duty-free at OSL', price:'Variable', time:'30-60 min', desc:'Brunost, aquavit (Linie, Gammel Opland), Norwegian wool sweaters. Everyone finds something'}
     ],
     groupNotes: 'Departure day. Travel to OSL via Flytoget (50 min from Oslo Central Station). If your flight is afternoon, squeeze in a ferry ride or one last museum. See Jet Lag Playbook for return trip guidance.',
-    lodging: '—',
+    lodging: '-',
     lodgingDetail: '',
     meals: {
       breakfast: 'Hotel buffet or Baker Hansen at Oslo Central Station before the Flytoget',
-      lunch: 'Airport or on the plane — grab a last kanelbolle at Godt Brød in the terminal',
+      lunch: 'Airport or on the plane - grab a last kanelbolle at Godt Brød in the terminal',
       dinner: 'On the plane or at home'
     },
     lat: 59.9139, lng: 10.7522,
@@ -773,7 +773,7 @@ data.forEach((d, idx) => {
   const dayName = dayNames[d.date.getDay()];
 
   const driveHtml = d.drive
-    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive} &middot; ${d.driveTime}</span>`
+    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive}  -  ${d.driveTime}</span>`
     : '';
 
   const directionsHtml = d.directions
@@ -840,7 +840,7 @@ data.forEach((d, idx) => {
         </div>
       </div>
     `).join('')}
-  </div>` : d.lodging === '—' ? '' : `<div class="hotel-section">
+  </div>` : d.lodging === '-' ? '' : `<div class="hotel-section">
     <div class="hotel-label"><i class="fas fa-moon"></i> ${d.lodging}</div>
     <p>${d.lodgingDetail}</p>
   </div>`;
@@ -853,8 +853,8 @@ data.forEach((d, idx) => {
     <div class="day-header" data-day="${idx}">
       <div class="day-header-left">
         <div class="day-label">
-          <span class="day-num">Day ${d.day} &middot; ${dayName}</span>
-          <span class="day-date">${dateStr} &mdash; ${d.base}</span>
+          <span class="day-num">Day ${d.day}  -  ${dayName}</span>
+          <span class="day-date">${dateStr} - ${d.base}</span>
         </div>
         ${driveHtml}
       </div>
@@ -979,7 +979,7 @@ data.forEach((d, idx) => {
   });
 
   const popupHtml = `
-    <strong>Day ${d.day} &mdash; ${d.base}</strong><br>
+    <strong>Day ${d.day} - ${d.base}</strong><br>
     ${dateStr}<br>
     ${d.drive ? `<em>${d.drive} ${d.driveTime}</em><br>` : ''}
     <a href="#days" onclick="document.querySelector('.day-card:nth-child(${d.day}) .day-header').click();return false;">View details →</a>
@@ -1071,7 +1071,7 @@ function initPerDayMap(dayNum) {
     className: '', iconSize: [22, 22], iconAnchor: [11, 11]
   });
   L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
-    .bindPopup(`<strong>Day ${d.day} &mdash; ${d.base}</strong><br>${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`);
+    .bindPopup(`<strong>Day ${d.day} - ${d.base}</strong><br>${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`);
   const coords = [[d.lat, d.lng]];
   // Stop markers (white square with colored border)
   if (d.stops) {
@@ -1095,7 +1095,7 @@ function initPerDayMap(dayNum) {
         .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
     });
   }
-  // Driving route polyline — fetch real road path from OSRM
+  // Driving route polyline - fetch real road path from OSRM
   if (d.drive) {
     const waypoints = [];
     // Previous day base as start point
