@@ -99,10 +99,22 @@ footer a{color:var(--accent);text-decoration:none}
 .collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
 .collapse-content.open{max-height:2000px}
 .checklist{list-style:none;margin-top:0.5rem}
-.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.3rem 0.4rem;font-size:0.85rem;color:var(--muted);border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
+.checklist li:hover{background:var(--bg);border-radius:6px}
 .checklist li:last-child{border-bottom:none}
-.checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
+.checklist li i{margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center;color:var(--muted)}
+.checklist li.done span{text-decoration:line-through;opacity:0.5}
+.checklist li.done i{color:var(--accent)!important}
 .checklist li strong{color:var(--text)}
+.checklist-cat{margin-bottom:0.5rem}
+.checklist-cat h4{font-size:0.88rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0.5rem;margin:0.75rem 0 0.25rem 0;border-radius:8px;background:var(--bg);cursor:pointer;user-select:none;transition:var(--transition)}
+.checklist-cat h4:hover{opacity:0.85}
+.checklist-cat h4 i{color:var(--accent);width:1.1rem;text-align:center}
+.checklist-cat h4 .cat-arrow{font-size:0.6rem;color:var(--muted);margin-left:auto;transition:transform 0.3s}
+.checklist-cat h4.open .cat-arrow{transform:rotate(180deg)}
+.checklist-cat .cat-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.checklist-cat .cat-body.open{max-height:2000px}
+.cat-counter{font-size:0.72rem;color:var(--muted);margin-left:0.35rem;font-weight:400}
 .info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
 @media print{ .collapse-toggle{display:none!important} .collapse-content{max-height:none!important} }
 
@@ -583,7 +595,7 @@ footer a{color:var(--accent);text-decoration:none}
       </div>
       <div class="info-card">
         <h3><i class="fas fa-car"></i> Driving</h3>
-        <p>Rental car for the full trip (except Route 5 which uses train + flight + rental in Lofoten). Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common  -  <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Toll roads are common - AutoPASS covers all tolls automatically. Ferries are part of the normal road network. Norwegian Scenic Routes (Sognefjellet, Aurlandsfjellet, Valdresflye, Trollstigen) are highlights of many routes.</p>
+        <p>Rental car for the full trip (except Route 5 which uses train + flight + rental in Lofoten). Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common  -  <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network. Norwegian Scenic Routes (Sognefjellet, Aurlandsfjellet, Valdresflye, Trollstigen) are highlights of many routes.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
@@ -649,15 +661,140 @@ footer a{color:var(--accent);text-decoration:none}
         <p><strong>Tip:</strong> Set calendar reminders for each booking window. Check hotel websites directly for member rates.</p>
       </div>
       <div class="info-card">
-        <h3><i class="fas fa-tasks"></i> Planning Checklist</h3>
-        <ul class="checklist">
-          <li><i class="fas fa-check-circle"></i> <span><strong>Now:</strong> Set Google Flights alerts for your chosen route's airports</span></li>
-          <li><i class="fas fa-check-circle"></i> <span><strong>Dec 2026:</strong> Book competitive hotels (rorbuer in Lofoten, Fretheim, Alexandra, Arctic Dome)</span></li>
-          <li><i class="fas fa-check-circle"></i> <span><strong>Jan 2027:</strong> Book flights, travel insurance with CFAR</span></li>
-          <li><i class="fas fa-check-circle"></i> <span><strong>Feb&ndash;Mar 2027:</strong> Book activities (fjord cruises, glacier guides, Via Ferrata, rafting, Flåm Railway)</span></li>
-          <li><i class="fas fa-check-circle"></i> <span><strong>Mar&ndash;Apr 2027:</strong> Book rental cars (both families)</span></li>
-          <li><i class="fas fa-check-circle"></i> <span><strong>May 2027:</strong> Install eSIMs, download offline maps, pack rain gear and layers, shift sleep schedule</span></li>
-        </ul>
+        <h3><i class="fas fa-tasks"></i> Pre-Trip Planning Checklist</h3>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.5rem">Click each item to mark it done. Categories collapse via header click.</p>
+
+        <div class="checklist-cat" id="cat-docs">
+          <h4 onclick="toggleCat('cat-docs')"><i class="fas fa-id-card"></i> Documents &amp; Identity <span class="cat-counter" id="counter-docs">0/7</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-docs">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Passports:</strong> All passports valid &amp; expire at least 6 months after trip (Nov 2027)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Passport copies:</strong> Scan all passports  -  save to phone + leave paper copy at home</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>International Driving Permit (IDP):</strong> <a href="https://www.aaa.com/vacation/idpf.html" target="_blank" rel="noopener">Apply at AAA</a>  -  $30+ per driver. Not legally required in Norway, but rental car companies may require it and it helps with police/traffic stops</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Travel insurance:</strong> Purchase CFAR policy within 14–21 days of first deposit</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Print confirmations:</strong> Flights, hotels, car rental, activity bookings (paper backup)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hotel loyalty numbers:</strong> Add to Booking.com / hotel accounts before booking</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Emergency contact list:</strong> Each family saves each other's flight info, hotel addresses, phone numbers</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-transport">
+          <h4 onclick="toggleCat('cat-transport')"><i class="fas fa-car"></i> Transportation <span class="cat-counter" id="counter-transport">0/8</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-transport">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Purchase AutoPASS</strong>  -  Norwegian toll payment system <a href="https://www.autopass.no" target="_blank" rel="noopener">autopass.no</a></span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book rental cars</strong> (both families)  -  mid-size SUV or station wagon, free cancellation</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Research EV vs petrol</strong>  -  check charging infrastructure along your route</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Download offline Google Maps</strong> for entire route + backup OsmAnd app</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Research ferry routes &amp; schedules</strong>  -  book in advance where possible</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Set Google Flights alerts</strong> for PIT/MGW/IAD → OSL and return</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Compare PIT vs MGW vs IAD</strong>  -  factor drive time vs flight cost vs convenience</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book flights</strong> (Jan–Feb 2027)  -  aim for Economy Plus, select seats together</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-connect">
+          <h4 onclick="toggleCat('cat-connect')"><i class="fas fa-mobile-alt"></i> Connectivity &amp; Tech <span class="cat-counter" id="counter-connect">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-connect">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Research eSIM:</strong> Airalo or Holafly Norway eSIM  -  unlimited data 10 days ~$20–40</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Purchase eSIM</strong> before departure  -  install on all 6 phones</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Or plan physical SIM:</strong> Telia/Telenor prepaid at Oslo Airport arrivals</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Test hotspot sharing</strong>  -  one data plan per car, everyone connects</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Download entertainment</strong>  -  Netflix, Spotify, audiobooks for flights &amp; drives</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Portable power bank</strong>  -  20,000mAh+ for long days out</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-bookings">
+          <h4 onclick="toggleCat('cat-bookings')"><i class="fas fa-calendar-check"></i> Activities &amp; Bookings <span class="cat-counter" id="counter-bookings">0/9</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-bookings">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book competitive hotels</strong> (Dec 2026)  -  Fretheim, Alexandra, Arctic Dome, rorbuer book early</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book all hotels</strong> (Jan 2027)  -  9 nights, free cancellation on Booking.com</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book fjord cruises</strong>  -  Undredal catamaran, Geirangerfjord, Nærøyfjord, Lysefjord etc.</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book glacier hike / walk</strong>  -  Briksdal, Bondhusbreen, Folgefonna, Kjenndalen</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book guided activities</strong>  -  Via Ferrata, kayaking, rafting, Loen Skylift</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book Flåm Railway</strong>  -  popular train sells out, book at least 2 months ahead</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check disc golf courses</strong> along route  -  pack discs if bringing your own</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Restaurant reservations</strong>  -  Ægir BrewPub, Lysverket, Michelin spots need booking</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Set calendar reminders</strong> for every booking window  -  don't miss competitive rooms</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-health">
+          <h4 onclick="toggleCat('cat-health')"><i class="fas fa-medkit"></i> Health &amp; Safety <span class="cat-counter" id="counter-health">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-health">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Prescriptions:</strong> Enough medication for trip + 3 extra days  -  pack in carry-on</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check vaccinations:</strong> Routine vaccines up to date  -  no Norway-specific required</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>First aid kit:</strong> Bandages, antiseptic, blister care, pain reliever, antihistamine, Imodium</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Adventure sports coverage</strong>  -  verify Via Ferrata, glacier, rafting are not excluded</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Credit card CDW</strong>  -  check if your card covers rental car collision in Norway</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Emergency numbers:</strong> 112 (police), 113 (ambulance), 110 (fire)  -  save in all phones</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-finance">
+          <h4 onclick="toggleCat('cat-finance')"><i class="fas fa-wallet"></i> Financial <span class="cat-counter" id="counter-finance">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-finance">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Notify banks</strong> of travel dates (May 28 – Jun 6)  -  avoid fraud blocks</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check foreign transaction fees</strong>  -  use cards with 0% FTF (Chase Sapphire, Capital One, etc.)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Set/confirm PIN</strong> for all credit cards  -  Norway uses chip + PIN everywhere</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Get Norwegian kroner (NOK)</strong>  -  ~$200–300 cash per family for small purchases</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check ATM withdrawal limits</strong>  -  increase daily limit if needed</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Add Apple Pay / Google Pay</strong>  -  widely accepted in Norway</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-packing">
+          <h4 onclick="toggleCat('cat-packing')"><i class="fas fa-suitcase"></i> Packing <span class="cat-counter" id="counter-packing">0/12</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-packing">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Rain gear</strong>  -  waterproof jacket + pants (essential, fjord weather changes fast)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Layers</strong>  -  base layer (merino), fleece/mid layer, waterproof outer</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hiking boots</strong>  -  broken in, waterproof, good ankle support</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Power adapter</strong>  -  European Type C/F, 230V (US devices need converter for high-wattage)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Quick-dry towel</strong>  -  for glacier hikes, kayaking, or spontaneous swims</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Reusable water bottle</strong>  -  Norway tap water is excellent everywhere</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Daypack</strong>  -  20–30L for hikes and day trips</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Sunglasses + sunscreen</strong>  -  long daylight hours, glacier glare is intense</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Swimwear</strong>  -  hotel pools, hot tubs, saunas, fjord dips</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Binoculars</strong>  -  fjord cruises, wildlife (seals, eagles, reindeer)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Dry bags</strong>  -  for kayaking, boat cruises, wet gear separation</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Travel laundry kit</strong>  -  sink stopper, travel soap, clothesline</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="checklist-cat" id="cat-predepart">
+          <h4 onclick="toggleCat('cat-predepart')"><i class="fas fa-plane-departure"></i> Pre-Departure (Last Week) <span class="cat-counter" id="counter-predepart">0/8</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+          <div class="cat-body open" id="body-predepart">
+            <ul class="checklist">
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Shift sleep schedule</strong>  -  go to bed 1h earlier each night for 3 nights before</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Download offline maps</strong>  -  entire route in Google Maps + OsmAnd backup</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Install travel apps</strong>  -  Airalo, ferry/express bus apps, Entur (public transport Norway)</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Charge all devices</strong>  -  phones, tablets, power banks, camera batteries</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Arrange home</strong>  -  pet sitter, plant watering, mail hold, trash out</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check in online</strong>  -  24 hours before departure, select seats together</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Pack carry-on</strong>  -  change of clothes, meds, charger, earplugs, eye mask, snacks</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Final passport check</strong>  -  everyone has passport + wallet + phone before leaving for airport</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap">
+          <button class="collapse-toggle" onclick="expandAllCats()" style="font-size:0.72rem"><i class="fas fa-expand"></i> Expand all</button>
+          <button class="collapse-toggle" onclick="collapseAllCats()" style="font-size:0.72rem"><i class="fas fa-compress"></i> Collapse all</button>
+          <button class="collapse-toggle" onclick="resetChecklist()" style="font-size:0.72rem;color:#ef4444;border-color:#ef4444"><i class="fas fa-undo"></i> Reset all</button>
+        </div>
       </div>
     </div>
   </section>
@@ -787,6 +924,53 @@ document.querySelectorAll('.itinerary-card .card-top').forEach(el => {
   const c = shuffle(['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#14b8a6','#f43f5e']);
   el.style.background = 'linear-gradient(90deg,' + c.join(',') + ')';
 });
+
+// ---------- Interactive Checklist ----------
+function toggleItem(el) {
+  el.classList.toggle('done');
+  const icon = el.querySelector('i');
+  if (el.classList.contains('done')) {
+    icon.className = 'fas fa-check-circle';
+  } else {
+    icon.className = 'far fa-circle';
+  }
+  updateCounters();
+}
+
+function updateCounters() {
+  document.querySelectorAll('.checklist-cat').forEach(cat => {
+    const items = cat.querySelectorAll('.checklist li');
+    const done = cat.querySelectorAll('.checklist li.done');
+    const counter = document.getElementById('counter-' + cat.id.replace('cat-', ''));
+    if (counter) counter.textContent = done.length + '/' + items.length;
+  });
+}
+
+function toggleCat(id) {
+  const body = document.getElementById('body-' + id.replace('cat-', ''));
+  const h4 = document.querySelector('#' + id + ' h4');
+  body.classList.toggle('open');
+  h4.classList.toggle('open');
+}
+
+function expandAllCats() {
+  document.querySelectorAll('.checklist-cat .cat-body').forEach(b => b.classList.add('open'));
+  document.querySelectorAll('.checklist-cat h4').forEach(h => h.classList.add('open'));
+}
+
+function collapseAllCats() {
+  document.querySelectorAll('.checklist-cat .cat-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.checklist-cat h4').forEach(h => h.classList.remove('open'));
+}
+
+function resetChecklist() {
+  if (!confirm('Reset all checklist items?')) return;
+  document.querySelectorAll('.checklist li').forEach(li => {
+    li.classList.remove('done');
+    li.querySelector('i').className = 'far fa-circle';
+  });
+  updateCounters();
+}
 </script>
 </body>
 </html>

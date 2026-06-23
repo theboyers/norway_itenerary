@@ -288,16 +288,16 @@ footer a{color:var(--accent);text-decoration:none}
   <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
   <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
   <span class="nav-divider"></span>
-  <a href="#day-1" class="day-jump" title="Day 1 — Oslo">1</a>
-  <a href="#day-2" class="day-jump" title="Day 2 — Flåm">2</a>
-  <a href="#day-3" class="day-jump" title="Day 3 — Flåm">3</a>
-  <a href="#day-4" class="day-jump" title="Day 4 — Bergen">4</a>
-  <a href="#day-5" class="day-jump" title="Day 5 — Bergen">5</a>
-  <a href="#day-6" class="day-jump" title="Day 6 — Hardanger">6</a>
-  <a href="#day-7" class="day-jump" title="Day 7 — Hardanger">7</a>
-  <a href="#day-8" class="day-jump" title="Day 8 — Stavanger">8</a>
-  <a href="#day-9" class="day-jump" title="Day 9 — Stavanger">9</a>
-  <a href="#day-10" class="day-jump" title="Day 10 — Depart">10</a>
+  <a href="#day-1" class="day-jump" title="Day 1  -  Oslo">1</a>
+  <a href="#day-2" class="day-jump" title="Day 2  -  Flåm">2</a>
+  <a href="#day-3" class="day-jump" title="Day 3  -  Flåm">3</a>
+  <a href="#day-4" class="day-jump" title="Day 4  -  Bergen">4</a>
+  <a href="#day-5" class="day-jump" title="Day 5  -  Bergen">5</a>
+  <a href="#day-6" class="day-jump" title="Day 6  -  Hardanger">6</a>
+  <a href="#day-7" class="day-jump" title="Day 7  -  Hardanger">7</a>
+  <a href="#day-8" class="day-jump" title="Day 8  -  Stavanger">8</a>
+  <a href="#day-9" class="day-jump" title="Day 9  -  Stavanger">9</a>
+  <a href="#day-10" class="day-jump" title="Day 10  -  Depart">10</a>
   <span class="nav-divider"></span>
   <a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV (Google Sheets compatible)"><i class="fas fa-file-csv"></i> CSV</a>
 </nav>
@@ -346,9 +346,9 @@ const data = [
       {icon:'fa-water', text:'Oslo Fjord sightseeing cruise', price:'$30-50 (300-500 NOK)', time:'1.5-2 hr', desc:'Harbor cruise under bridges, past islands, and through the narrow straits. Low-energy activity that\'s jet-lag-friendly', cite:'https://www.visitnorway.com'},
       {icon:'fa-tree', text:'Vigeland Sculpture Park', price:'Free', time:'1-2 hr', desc:'200+ bronze, granite, and iron sculptures in Frogner Park. The Angry Baby and Monolith are iconic photo stops'},
       {icon:'fa-walking', text:'Karl Johans gate & Royal Palace', price:'Free', time:'1 hr', desc:'Oslo\'s main boulevard from Central Station to the Palace. Cafés, shops, and street performers'},      {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for panoramic city + fjord views. Iconic photo stop', cite:'https://www.operaen.no/en'},
-      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri — craft beer for the adults'}
+      {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri  -  craft beer for the adults'}
     ],
-    groupNotes: 'Arrive in Oslo on Day 1. Keep Day 1 light — see Jet Lag Playbook. The fjord cruise is a low-energy introduction to Oslo. Vigeland Park is an easy walk with lots of visual interest. The Opera House roof offers panoramic city views. Dinner and drinks in Grünerløkka.',
+    groupNotes: 'Arrive in Oslo on Day 1. Keep Day 1 light  -  see Jet Lag Playbook. The fjord cruise is a low-energy introduction to Oslo. Vigeland Park is an easy walk with lots of visual interest. The Opera House roof offers panoramic city views. Dinner and drinks in Grünerløkka.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi', cons:'No breakfast or restaurant, no daily housekeeping, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern Scandinavian design, excellent breakfast bar, great location near Opera House and waterfront', cons:'Standard chain feel, no pool, lower floors can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
@@ -357,8 +357,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Kaffistova (traditional Norwegian cafeteria — fårikål, kjøttkaker) or Mathallen Oslo food hall',
-      dinner: 'Restaurant Schrøder — classic Norwegian home-cooking since 1910 (fårikål, kjøttkaker with lingonberry jam). Or Smakverket for modern Norwegian share plates. After dinner, grab a craft beer at Crowbar in Grünerløkka'
+      lunch: 'Kaffistova (traditional Norwegian cafeteria  -  fårikål, kjøttkaker) or Mathallen Oslo food hall',
+      dinner: 'Restaurant Schrøder  -  classic Norwegian home-cooking since 1910 (fårikål, kjøttkaker with lingonberry jam). Or Smakverket for modern Norwegian share plates. After dinner, grab a craft beer at Crowbar in Grünerløkka'
     },
     lat: 59.9139, lng: 10.7522,
     poi: [
@@ -378,25 +378,25 @@ const data = [
     driveTime: '4 hr 29 min (310 km)',
     directions: [
       'Take E16, Rv7, Hallingdalsvegen, Rv52, and E16 to Fv245 in Aurland',
-      'Follow E16 through Hemsedal mountain pass — stunning alpine scenery',
+      'Follow E16 through Hemsedal mountain pass  -  stunning alpine scenery',
       'Take Nedre Fretheim to your destination in Flåm (2 min, 1 km)'
     ],
     stops: [
       {name:'Hønefossen Waterfall', price:'Free', time:'15-20 min', desc:'Scenic waterfall right off E16 near Hønefoss', lat:60.1658, lng:10.3025},
       {name:'Norefjell Scenic Viewpoint', price:'Free', time:'15-20 min', desc:'Panoramic mountain views along Rv7', lat:60.1700, lng:9.5100},
       {name:'Borgund Stave Church', price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church, built 1150. Guided tours available', cite:'https://www.stavechurch.com/en/borgund/', lat:61.0467, lng:7.8125},
-      {name:'Midtødegården Cheese Farm', price:'Free to visit', time:'20-30 min', desc:'Traditional Norwegian goat cheese farm — sample fresh geitost and brunost', lat:61.0500, lng:7.8000},
+      {name:'Midtødegården Cheese Farm', price:'Free to visit', time:'20-30 min', desc:'Traditional Norwegian goat cheese farm  -  sample fresh geitost and brunost', lat:61.0500, lng:7.8000},
       {name:'Rjukandefossen Waterfall', price:'Free', time:'15-20 min', desc:'Roadside waterfall near Borgund', lat:61.0333, lng:7.8000},
       {name:'Lærdalstunnelen', price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Blue light zones keep you alert', cite:'https://www.vegvesen.no', lat:61.0000, lng:7.5500},
-      {name:'Lærdal Town', price:'Free', time:'30 min', desc:'Charming village at the end of the tunnel — Old Lærdalsøyri wooden houses', lat:61.1000, lng:7.4833},
-      {name:'Aurland Shoe Factory', price:'Free to browse', time:'15-20 min', desc:'Historic shoe factory turned souvenir shop — a quirky stop before Flåm', lat:60.9061, lng:7.1881}
+      {name:'Lærdal Town', price:'Free', time:'30 min', desc:'Charming village at the end of the tunnel  -  Old Lærdalsøyri wooden houses', lat:61.1000, lng:7.4833},
+      {name:'Aurland Shoe Factory', price:'Free to browse', time:'15-20 min', desc:'Historic shoe factory turned souvenir shop  -  a quirky stop before Flåm', lat:60.9061, lng:7.1881}
     ],
     activities: [
       {icon:'fa-church', text:'Borgund Stave Church', price:'$15', time:'30-45 min', cite:'https://www.stavechurch.com/en/borgund/'},
       {icon:'fa-mountain', text:'Hemsedal mountain pass', price:'Free', time:'Photo stop'},
       {icon:'fa-car', text:'Lærdalstunnelen', price:'Toll', time:'20 min drive', cite:'https://www.vegvesen.no'}
     ],
-    groupNotes: 'Drive in separate cars. Meet at Borgund Stave Church and the Hemsedal viewpoint — both are quick, scenic stops. The tunnel is a fun driving experience. Dinner in Flåm.',
+    groupNotes: 'Drive in separate cars. Meet at Borgund Stave Church and the Hemsedal viewpoint  -  both are quick, scenic stops. The tunnel is a fun driving experience. Dinner in Flåm.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms', cons:'No breakfast or restaurant, 15-min walk from center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast', cons:'No pool or spa, limited parking, busy during cruise arrivals', cite:'https://www.flamsbrygga.no'},
@@ -405,8 +405,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Kiwi in Oslo before departing, or Gol/Borgund cafeteria (waffles & coffee) — classic car picnic with bread, Norvegia cheese, Sylte pork roll, Kvikk Lunsj',
-      dinner: 'Flåm Marina Restaurant — seafood with Aurlandsfjord views. Grilled salmon, fish soup, or traditional fårikål when in season. Afterwards, walk the waterfront path under the midnight sun'
+      lunch: 'Kiwi in Oslo before departing, or Gol/Borgund cafeteria (waffles & coffee)  -  classic car picnic with bread, Norvegia cheese, Sylte pork roll, Kvikk Lunsj',
+      dinner: 'Flåm Marina Restaurant  -  seafood with Aurlandsfjord views. Grilled salmon, fish soup, or traditional fårikål when in season. Afterwards, walk the waterfront path under the midnight sun'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
@@ -427,7 +427,7 @@ const data = [
       {icon:'fa-hiking', text:'Brekkefossen hike', price:'Free', time:'1-1.5 hr', desc:'Short steep hike from Flåm village up to a waterfall viewpoint. Panorama over Flåm and the fjord', cite:'https://www.visitflam.com'},
       {icon:'fa-bicycle', text:'Electric bike Aurland', price:'~$60 rental', time:'2-3 hr', desc:'E-bike around the Aurland area. Gentle grades, scenic roads, less strenuous than Rallarvegen', cite:'https://www.visitflam.com'}
     ],
-    groupNotes: 'Morning: take the Flåm Railway (weather-independent). Afternoon: Stegastein viewpoint — panoramic fjord views. Add the Brekkefossen hike for more activity. Dinner in Flåm.',
+    groupNotes: 'Morning: take the Flåm Railway (weather-independent). Afternoon: Stegastein viewpoint  -  panoramic fjord views. Add the Brekkefossen hike for more activity. Dinner in Flåm.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms', cons:'No breakfast or restaurant, 15-min walk from center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast', cons:'No pool or spa, limited parking, busy during cruise arrivals', cite:'https://www.flamsbrygga.no'},
@@ -436,8 +436,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Flåm Bakery — skillingsboller (cinnamon rolls), sourdough bread with brunost (brown cheese), sandwiches for the viewpoint',
-      dinner: 'Fretheim Hotel\'s Arven Restaurant — upscale local ingredients (lamb, fjord seafood). Or Flåm Marina Terrace for casual fjordside dining. End the evening at Ægir Gastropub for a flight of Viking-inspired ales'
+      lunch: 'Flåm Bakery  -  skillingsboller (cinnamon rolls), sourdough bread with brunost (brown cheese), sandwiches for the viewpoint',
+      dinner: 'Fretheim Hotel\'s Arven Restaurant  -  upscale local ingredients (lamb, fjord seafood). Or Flåm Marina Terrace for casual fjordside dining. End the evening at Ægir Gastropub for a flight of Viking-inspired ales'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
@@ -460,10 +460,10 @@ const data = [
       'Fantoft Disc Golf course near Bergen city center'
     ],
     stops: [
-      {name:'Stegastein Viewpoint', price:'Free', time:'20-30 min', desc:'Wooden viewing platform 650m above Aurlandsfjord — one of Norway\'s best views', lat:60.9028, lng:7.1736, cite:'https://www.visitflam.com/stegastein/'},
-      {name:'Aurlandsfjellet Snow Road', price:'Free', time:'Drive through', desc:'High mountain road with snow walls in late May — dramatic alpine scenery', lat:60.9333, lng:7.3833},
+      {name:'Stegastein Viewpoint', price:'Free', time:'20-30 min', desc:'Wooden viewing platform 650m above Aurlandsfjord  -  one of Norway\'s best views', lat:60.9028, lng:7.1736, cite:'https://www.visitflam.com/stegastein/'},
+      {name:'Aurlandsfjellet Snow Road', price:'Free', time:'Drive through', desc:'High mountain road with snow walls in late May  -  dramatic alpine scenery', lat:60.9333, lng:7.3833},
       {name:'Tvindefossen Waterfall', price:'Free', time:'15-20 min', desc:'Beautiful roadside waterfall near Voss. Easy photo stop right off E16', cite:'https://www.visitnorway.com', lat:60.6500, lng:6.5000},
-      {name:'Fantoft Stave Church', price:'$8 (80 NOK)', time:'20-30 min', desc:'Reconstructed stave church near Bergen — quick stop before the city', lat:60.3500, lng:5.3500, cite:'https://www.fantoftstavkirke.no'}
+      {name:'Fantoft Stave Church', price:'$8 (80 NOK)', time:'20-30 min', desc:'Reconstructed stave church near Bergen  -  quick stop before the city', lat:60.3500, lng:5.3500, cite:'https://www.fantoftstavkirke.no'}
     ],
     activities: [
       {icon:'fa-tint', text:'Tvindefossen waterfall', price:'Free', time:'15-20 min', cite:'https://www.visitnorway.com'},
@@ -471,7 +471,7 @@ const data = [
       {icon:'fa-bullseye', text:'Fantoft Disc Golf (18 holes)', price:'Free', time:'1.5-2 hr', desc:'Wooded course near Fantoft Stave Church. 10 min from Bergen city center. Quick round after rafting', cite:'https://www.pdga.com/course/fantoft-frisbeegolf'},
       {icon:'fa-ship', text:'Evening walk at Bryggen', price:'Free', time:'1-2 hr', desc:'Arrive Bergen by late afternoon. Explore the Hanseatic wharf\'s colorful wooden buildings and harbor lights', cite:'https://www.visitbergen.com'}
     ],
-    groupNotes: 'Drive Flåm → Voss. Stop at Tvindefossen waterfall en route. In Voss, the rafting center offers class 2-3 trips on the Raundalselva. Afternoon arrival in Bergen — plenty of time for Fantoft Disc Golf (free 18-hole course, 10 min from city center). Dinner and evening Bryggen walk. With 18+ hours of daylight in late May, there\'s flexibility to choose activities.',
+    groupNotes: 'Drive Flåm → Voss. Stop at Tvindefossen waterfall en route. In Voss, the rafting center offers class 2-3 trips on the Raundalselva. Afternoon arrival in Bergen  -  plenty of time for Fantoft Disc Golf (free 18-hole course, 10 min from city center). Dinner and evening Bryggen walk. With 18+ hours of daylight in late May, there\'s flexibility to choose activities.',
     lodging: [
       {tier:'Budget', name:'Citybox Bergen', price:'$110/night', pros:'Self-check-in 24/7, near Bergen Station, clean modern rooms, free Wi-Fi, great value', cons:'No breakfast, small rooms, basic no-frills, no daily housekeeping by default', cite:'https://www.citybox.no/en/bergen/'},
       {tier:'Mid', name:'Zander K Hotel', price:'$150/night', pros:'Design-forward boutique hotel, excellent breakfast, central Bergen location near train station, cool lobby lounge', cons:'Some rooms small, no pool, bar closes early', cite:'https://www.zanderk.no'},
@@ -480,8 +480,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Voss Kafé or Voss Rafting Center cafe — burgers, waffles, and coffee after rafting',
-      dinner: 'Bryggen Tracteursted — historic restaurant in the Hanseatic wharf (1710). Bergen fish soup, cured salmon, and pinnekjøtt when in season. After dinner, walk the UNESCO Bryggen wharf by lamplight to the Tower Cellar for a nightcap'
+      lunch: 'Voss Kafé or Voss Rafting Center cafe  -  burgers, waffles, and coffee after rafting',
+      dinner: 'Bryggen Tracteursted  -  historic restaurant in the Hanseatic wharf (1710). Bergen fish soup, cured salmon, and pinnekjøtt when in season. After dinner, walk the UNESCO Bryggen wharf by lamplight to the Tower Cellar for a nightcap'
     },
     lat: 60.3913, lng: 5.3221,
     poi: [
@@ -501,7 +501,7 @@ const data = [
       {icon:'fa-train', text:'Fløibanen funicular to Mt. Fløyen', price:'$20 (200 NOK) round trip', time:'1-2 hr', desc:'Cable car 320m up for panoramic Bergen views. Walking trails and playground at the top. Steep 26-degree incline ride.', cite:'https://www.floyen.no'},
       {icon:'fa-ship', text:'Bergen Fish Market', price:'Free to browse', time:'45-60 min', desc:'World-famous indoor/outdoor market. Fresh seafood, local specialties. Grab a shrimp sandwich', cite:'https://www.fisketorgetibergen.no'},
       {icon:'fa-church', text:'Bryggen & Hanseatic Museum', price:'$15 (150 NOK)', time:'1-1.5 hr', desc:'UNESCO wharf and museum about German Hanseatic merchants in the 14th-16th centuries', cite:'https://www.visitbergen.com'},
-      {icon:'fa-mountain', text:'Mt. Ulriken cable car', price:'$25 (250 NOK) round trip', time:'1-2 hr', desc:'Bergen\'s highest mountain (643m). Restaurant at top with 360° views — even better than Fløyen', cite:'https://www.ulriken.no'},
+      {icon:'fa-mountain', text:'Mt. Ulriken cable car', price:'$25 (250 NOK) round trip', time:'1-2 hr', desc:'Bergen\'s highest mountain (643m). Restaurant at top with 360° views  -  even better than Fløyen', cite:'https://www.ulriken.no'},
       {icon:'fa-water', text:'Bergen Fjord cruise to Mostraumen', price:'$40-60 (400-600 NOK)', time:'2 hr', desc:'Sightseeing cruise through narrow straits to the open sea. Dramatic fjord scenery right from the harbor', cite:'https://www.visitnorway.com'}
     ],
     groupNotes: 'Full Bergen day. Morning: take Fløyen funicular (short ride, iconic view). Explore Bryggen and the Fish Market around lunchtime. Afternoon options: fjord cruise to Mostraumen or Ulriken cable car. Dinner in Bergen. Bergen on a sunny day is magic.',
@@ -513,8 +513,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Fish Market outdoor stalls — fresh shrimp, crab legs, Bergen fish soup. Eat at harborside tables with Bock & Holst craft beer',
-      dinner: 'Bare Vestland — modern Norwegian with locally-sourced seasonal ingredients (reindeer tartare, pickled herring, cloudberry dessert). Or Pingvinen — cozy basement pub for traditional raspeballer (potato dumplings with lamb) and local Hansa beer. End the night at No Stress wine bar with a fireplace'
+      lunch: 'Fish Market outdoor stalls  -  fresh shrimp, crab legs, Bergen fish soup. Eat at harborside tables with Bock & Holst craft beer',
+      dinner: 'Bare Vestland  -  modern Norwegian with locally-sourced seasonal ingredients (reindeer tartare, pickled herring, cloudberry dessert). Or Pingvinen  -  cozy basement pub for traditional raspeballer (potato dumplings with lamb) and local Hansa beer. End the night at No Stress wine bar with a fireplace'
     },
     lat: 60.3913, lng: 5.3221,
     poi: [
@@ -547,7 +547,7 @@ const data = [
       {icon:'fa-mountain', text:'Vøringsfossen waterfall', price:'Free', time:'30-45 min', desc:'182m waterfall plunge. New cliff-side viewing platforms are spectacular', cite:'https://www.visitnorway.com'},
       {icon:'fa-car', text:'Hardanger scenic drive', price:'Toll roads', time:'2-3 hr', desc:'Drive through the fruit orchard region with snow-capped peaks above the fjord'}
     ],
-    groupNotes: 'Short scenic drive day. Stop at Steinsdalsfossen — walk behind the waterfall. Then Vøringsfossen with its brand new viewing platforms. Arrive Eidfjord early enough for an afternoon walk along the fjord or a swim. Hardanger is Norway\'s fruit bowl — stop at a roadside kiosk for apples and cider.',
+    groupNotes: 'Short scenic drive day. Stop at Steinsdalsfossen  -  walk behind the waterfall. Then Vøringsfossen with its brand new viewing platforms. Arrive Eidfjord early enough for an afternoon walk along the fjord or a swim. Hardanger is Norway\'s fruit bowl  -  stop at a roadside kiosk for apples and cider.',
     lodging: [
       {tier:'Budget', name:'Eidfjord Gjestehus', price:'$120/night', pros:'Historic inn, Norwegian charm, affordable, central Eidfjord location, shared kitchen facilities', cons:'Shared bathrooms in some rooms, older building, limited restaurant hours, basic breakfast', cite:'https://www.eidfjordgjestehus.no'},
       {tier:'Mid', name:'Ullensvang Hotel', price:'$220/night', pros:'Historic 1846 property on the fjord, beautiful gardens, large rooms, excellent breakfast, pool', cons:'Some areas feel dated, quiet location requires car for exploring, limited dinner options', cite:'https://www.ullensvang-hotel.no'},
@@ -556,8 +556,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Bergen hotel buffet before departing',
-      lunch: 'Øystese Bakery near Steinsdalsfossen — Norwegian pastries and sandwiches. Or car picnic by the fjord (buy at Kiwi in Norheimsund)',
-      dinner: 'Ullensvang Hotel restaurant — historic 1846 hotel right on the fjord. Local Hardanger lamb, fresh trout from the fjord, Hardanger apple juice or cider. After dinner, enjoy the hotel gardens overlooking the fjord at sunset'
+      lunch: 'Øystese Bakery near Steinsdalsfossen  -  Norwegian pastries and sandwiches. Or car picnic by the fjord (buy at Kiwi in Norheimsund)',
+      dinner: 'Ullensvang Hotel restaurant  -  historic 1846 hotel right on the fjord. Local Hardanger lamb, fresh trout from the fjord, Hardanger apple juice or cider. After dinner, enjoy the hotel gardens overlooking the fjord at sunset'
     },
     lat: 60.4667, lng: 7.0833,
     poi: [
@@ -578,7 +578,7 @@ const data = [
       {icon:'fa-ship', text:'Hardangerfjord cruise', price:'$45-65', time:'2-3 hr', desc:'Scenic cruise through the fjord. Waterfalls, glaciers, and fruit farms seen from the water', cite:'https://www.visitnorway.com'},
       {icon:'fa-hiking', text:'Trolltunga hike (optional, full day)', price:'Free (guide ~$100)', time:'10-12 hr', desc:'Full-day guided hike to the Troll\'s Tongue rock formation. ONLY for very fit, experienced hikers. Book guide in advance', cite:'https://www.trolltunga.com'}
     ],
-    groupNotes: 'A day in the Hardangerfjord area. Morning: hike to Bondhusbreen glacier (easy trail, stunning blue ice). Afternoon: visit a nearby fruit farm for tastings, then kayak or cruise on the fjord. Hardanger is famous for its apples, plums, and ciders — the fruit farm stop is a unique highlight. For super-fit hikers: Trolltunga (10-12h hike, book a guide, start at 6am).',
+    groupNotes: 'A day in the Hardangerfjord area. Morning: hike to Bondhusbreen glacier (easy trail, stunning blue ice). Afternoon: visit a nearby fruit farm for tastings, then kayak or cruise on the fjord. Hardanger is famous for its apples, plums, and ciders  -  the fruit farm stop is a unique highlight. For super-fit hikers: Trolltunga (10-12h hike, book a guide, start at 6am).',
     lodging: [
       {tier:'Budget', name:'Eidfjord Gjestehus', price:'$120/night', pros:'Historic inn, Norwegian charm, affordable, central Eidfjord location, shared kitchen facilities', cons:'Shared bathrooms in some rooms, older building, limited restaurant hours, basic breakfast', cite:'https://www.eidfjordgjestehus.no'},
       {tier:'Mid', name:'Ullensvang Hotel', price:'$220/night', pros:'Historic 1846 property on the fjord, beautiful gardens, large rooms, excellent breakfast, pool', cons:'Some areas feel dated, quiet location requires car for exploring, limited dinner options', cite:'https://www.ullensvang-hotel.no'},
@@ -587,8 +587,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Pack lunch for the glacier hike — bread, Hardanger geitost (local goat cheese), fruit from the farm. Or kiosk at the Bondhusbrea parking lot',
-      dinner: 'Hotel Ulvik Restaurant — fine dining with floor-to-ceiling fjord panoramas. Wild salmon cured in-house, local lamb with mountain herbs. After dinner, unwind on the hotel pier with a nightcap'
+      lunch: 'Pack lunch for the glacier hike  -  bread, Hardanger geitost (local goat cheese), fruit from the farm. Or kiosk at the Bondhusbrea parking lot',
+      dinner: 'Hotel Ulvik Restaurant  -  fine dining with floor-to-ceiling fjord panoramas. Wild salmon cured in-house, local lamb with mountain herbs. After dinner, unwind on the hotel pier with a nightcap'
     },
     lat: 60.5675, lng: 6.9167,
     poi: [
@@ -605,23 +605,23 @@ const data = [
     driveTime: '4 hr 15 min (290 km)',
     directions: [
       'Take Rv13 from Hardanger south toward Odda',
-      'Follow Rv13 through Åkrafjorden — one of Norway\'s most dramatic drives',
+      'Follow Rv13 through Åkrafjorden  -  one of Norway\'s most dramatic drives',
       'Cross ferry Utåker–Ranavik (free with AutoPASS)',
       'Take E134 to ferry Mortavika–Arsvågen (free with AutoPASS)',
       'Follow E39 into Stavanger'
     ],
     stops: [
-      {name:'Åkrafjorden viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic narrow fjord along Rv13. Towering cliffs on both sides — stop at the viewing platform', cite:'https://www.visitnorway.com', lat:59.7667, lng:6.1000},
-      {name:'Langfossen Waterfall', price:'Free', time:'15-20 min', desc:'Powerful 612m cascade right off E134 — one of Norway\'s tallest waterfalls', lat:59.7500, lng:6.0833, cite:'https://www.visitnorway.com'},
-      {name:'Lauvvik-Oanes Ferry', price:'Free (AutoPASS)', time:'15 min', desc:'Scenic ferry crossing across the Høgsfjord — part of the drive route', lat:58.8833, lng:5.9833},
-      {name:'Preikestolen hike', price:'Free (parking $15)', time:'4-5 hr', desc:'Legendary 604m cliff over Lysefjord — Norway\'s most famous day hike', lat:58.9833, lng:6.1833, cite:'https://www.preikestolen.no'}
+      {name:'Åkrafjorden viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic narrow fjord along Rv13. Towering cliffs on both sides  -  stop at the viewing platform', cite:'https://www.visitnorway.com', lat:59.7667, lng:6.1000},
+      {name:'Langfossen Waterfall', price:'Free', time:'15-20 min', desc:'Powerful 612m cascade right off E134  -  one of Norway\'s tallest waterfalls', lat:59.7500, lng:6.0833, cite:'https://www.visitnorway.com'},
+      {name:'Lauvvik-Oanes Ferry', price:'Free (AutoPASS)', time:'15 min', desc:'Scenic ferry crossing across the Høgsfjord  -  part of the drive route', lat:58.8833, lng:5.9833},
+      {name:'Preikestolen hike', price:'Free (parking $15)', time:'4-5 hr', desc:'Legendary 604m cliff over Lysefjord  -  Norway\'s most famous day hike', lat:58.9833, lng:6.1833, cite:'https://www.preikestolen.no'}
     ],
     activities: [
       {icon:'fa-mountain', text:'Åkrafjord drive', price:'Free', time:'Stop as desired', desc:'One of the most scenic road stretches in Norway. Cliffside highway through a narrow fjord', cite:'https://www.visitnorway.com'},
       {icon:'fa-tint', text:'Svandalsfossen', price:'Free', time:'15-20 min'},
       {icon:'fa-ship', text:'Ferry crossings', price:'AutoPASS', time:'30 min', desc:'Two vehicle ferries break up the drive.', cite:'https://www.autopass.no'}
     ],
-    groupNotes: 'Longer drive day (~4h15min) but incredibly scenic. The Rv13 through Åkrafjorden is stunning — towering cliffs rising straight from the road. Two ferry crossings make natural rest stops. Arrive Stavanger late afternoon. Evening: stroll through Gamle Stavanger (old town) with cobblestone streets and white wooden houses.',
+    groupNotes: 'Longer drive day (~4h15min) but incredibly scenic. The Rv13 through Åkrafjorden is stunning  -  towering cliffs rising straight from the road. Two ferry crossings make natural rest stops. Arrive Stavanger late afternoon. Evening: stroll through Gamle Stavanger (old town) with cobblestone streets and white wooden houses.',
     lodging: [
       {tier:'Budget', name:'Stavanger B&B', price:'$100/night', pros:'Cozy homestay with Norwegian hospitality, homemade breakfast included, central location, free parking', cons:'Shared bathroom in some rooms, limited availability, early breakfast hours', cite:'https://www.stavangerbedandbreakfast.no'},
       {tier:'Mid', name:'Thon Hotel Maritim', price:'$107/night', pros:'Reliable chain with consistent quality, excellent breakfast buffet, central location near harbor and old town, free Wi-Fi', cons:'Basic rooms, chain hotel feel, no unique character', cite:'https://www.thonhotels.com/hotels/norway/stavanger/thon-hotel-maritim/'},
@@ -630,8 +630,8 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet in Hardanger before departing',
-      lunch: 'Car picnic at Åkrafjorden viewpoint (buy from Kiwi in Odda) — bread, Norwegian salmon spread, Kvikk Lunsj chocolate bars',
-      dinner: 'Fisketorget Stavanger — indoor food market at the harbor. Try Norwegian fish soup or a reindeer burger alongside fresh seafood. Or Tango Bar & Kjøkken for modern Nordic. After dinner, walk the harbor to explore Stavanger\'s street art scene'
+      lunch: 'Car picnic at Åkrafjorden viewpoint (buy from Kiwi in Odda)  -  bread, Norwegian salmon spread, Kvikk Lunsj chocolate bars',
+      dinner: 'Fisketorget Stavanger  -  indoor food market at the harbor. Try Norwegian fish soup or a reindeer burger alongside fresh seafood. Or Tango Bar & Kjøkken for modern Nordic. After dinner, walk the harbor to explore Stavanger\'s street art scene'
     },
     lat: 58.9700, lng: 5.7333,
     poi: [
@@ -646,13 +646,13 @@ const data = [
     driveTime: '45 min + 4 hr hike',
     stops: [],
     activities: [
-      {icon:'fa-mountain', text:'Preikestolen (Pulpit Rock) hike', price:'Free (parking $15)', time:'4-5 hr', desc:'Legendary 604m cliff over Lysefjord — Norway\'s most famous hike. 8 km round trip. Moderate difficulty.', cite:'https://www.preikestolen.no'},
+      {icon:'fa-mountain', text:'Preikestolen (Pulpit Rock) hike', price:'Free (parking $15)', time:'4-5 hr', desc:'Legendary 604m cliff over Lysefjord  -  Norway\'s most famous hike. 8 km round trip. Moderate difficulty.', cite:'https://www.preikestolen.no'},
       {icon:'fa-ship', text:'Lysefjord cruise', price:'$45-65', time:'2 hr', desc:'Cruise from Stavanger into narrow Lysefjord. See Preikestolen from below and the Kjerag boulder perched between cliffs', cite:'https://www.visitnorway.com'},
       {icon:'fa-monument', text:'Sverd i Fjell monument', price:'Free', time:'15-20 min', desc:'Three giant bronze swords at Hafrsfjord marking the 872 battle that unified Norway. Quick photo stop', cite:'https://www.visitnorway.com'},
       {icon:'fa-bread-slice', text:'Østervåg harbor food walk', price:'$20-30', time:'1-2 hr', desc:'Explore the old fishing harbor. Try komler (potato dumplings) or fresh fish soup'},
       {icon:'fa-bullseye', text:'Stokka Disc Golf (18 holes)', price:'Free', time:'1.5-2 hr', desc:'Park-style course near Stokka lake, 10 min from city center. Flat terrain.', cite:'https://www.pdga.com/course/stokka-frisbeegolf'}
     ],
-    groupNotes: 'Morning: hike Preikestolen — the #1 attraction in the Stavanger area. Back by early afternoon. Afternoon: Lysefjord cruise (see the rock from below) or explore Gamle Stavanger. Farewell dinner in Stavanger.',
+    groupNotes: 'Morning: hike Preikestolen  -  the #1 attraction in the Stavanger area. Back by early afternoon. Afternoon: Lysefjord cruise (see the rock from below) or explore Gamle Stavanger. Farewell dinner in Stavanger.',
     lodging: [
       {tier:'Budget', name:'Stavanger B&B', price:'$100/night', pros:'Cozy homestay with Norwegian hospitality, homemade breakfast included, central location, free parking', cons:'Shared bathroom in some rooms, limited availability, early breakfast hours', cite:'https://www.stavangerbedandbreakfast.no'},
       {tier:'Mid', name:'Thon Hotel Maritim', price:'$107/night', pros:'Reliable chain with consistent quality, excellent breakfast buffet, central location near harbor and old town, free Wi-Fi', cons:'Basic rooms, chain hotel feel, no unique character', cite:'https://www.thonhotels.com/hotels/norway/stavanger/thon-hotel-maritim/'},
@@ -660,9 +660,9 @@ const data = [
     ],
     lodgingDetail: '',
     meals: {
-      breakfast: 'Included hotel buffet (early start for Preikestolen — beat the crowds)',
-      lunch: 'Pack sandwiches from Kiwi — eat at the Preikestolen summit overlooking Lysefjord. One of the world\'s best picnic spots',
-      dinner: 'Farewell dinner at Fisketorget for a final seafood feast, or Mølleren — historic 1800s tavern serving local lamb and fresh fish. Order aquavit for a proper Norwegian send-off. Take a final evening stroll through Øvre Holmegate — Stavanger\'s colorful old town'
+      breakfast: 'Included hotel buffet (early start for Preikestolen  -  beat the crowds)',
+      lunch: 'Pack sandwiches from Kiwi  -  eat at the Preikestolen summit overlooking Lysefjord. One of the world\'s best picnic spots',
+      dinner: 'Farewell dinner at Fisketorget for a final seafood feast, or Mølleren  -  historic 1800s tavern serving local lamb and fresh fish. Order aquavit for a proper Norwegian send-off. Take a final evening stroll through Øvre Holmegate  -  Stavanger\'s colorful old town'
     },
     lat: 58.9867, lng: 6.1867,
     poi: [
@@ -688,7 +688,7 @@ const data = [
     lodging: '-',
     lodgingDetail: '',
     meals: {
-      breakfast: 'Godt Brød Stavanger — best kanelboller and coffee in town. Right near the harbor',
+      breakfast: 'Godt Brød Stavanger  -  best kanelboller and coffee in town. Right near the harbor',
       lunch: 'Airport or on the plane',
       dinner: 'On the plane or at home'
     },
