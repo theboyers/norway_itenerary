@@ -85,7 +85,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .day-card.open .toggle-icon{transform:rotate(180deg)}
 
 .day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
-.day-card.open .day-body{max-height:2000px;padding:0 2rem 1.5rem}
+.day-card.open .day-body{max-height:10000px;padding:0 2rem 1.5rem}
 
 .day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
 .day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
@@ -177,6 +177,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 /* Footer */
 footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
 footer a{color:var(--accent);text-decoration:none}
+
+.day-map { height: 220px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; z-index: 1; }
+@media(max-width:768px) { .day-map { height: 180px; } }
+@media print { .day-map { display: none; } }
 
 /* Leaflet overrides */
 .leaflet-popup-content-wrapper{border-radius:12px!important;font-family:inherit!important}
@@ -346,7 +350,13 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Included hotel buffet', lunch:'Godt Brød coffee shop (skolebrød) or Mathallen Oslo food hall', dinner:'Mathallen Oslo food hall — each person picks their own vendor. Vulkanfisk for seafood soup, Bjørns for fårikål, or Høst for Norwegian small plates. Afterwards, walk along the Akerselva river or grab a drink at Hallen Cocktailbar' },
-    lat: 59.9139, lng: 10.7522, poi: [{name:'Vigeland Park', lat:59.9227, lng:10.7011, note:'Sculpture park'},{name:'Opera House', lat:59.9073, lng:10.7527, note:'Marble roof walk'}]
+    lat: 59.9139, lng: 10.7522, poi: [
+      {name:'Aker Brygge', lat:59.9100, lng:10.7300, note:'Harbor promenade'},
+      {name:'Opera House', lat:59.9075, lng:10.7531, note:'Marble roof walk'},
+      {name:'Vigeland Park', lat:59.9267, lng:10.7097, note:'Sculpture park'},
+      {name:'National Museum', lat:59.9167, lng:10.7361, note:'The Scream'},
+      {name:'Mathallen', lat:59.9217, lng:10.7567, note:'Food hall'}
+    ]
   },
   {
     day: 2, date: new Date(2027, 4, 29), base: 'Oslo', drive: null, driveTime: null, stops: [],
@@ -364,13 +374,21 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Fram Museum café — waffles and brown cheese with fjord views', dinner:'Restaurant Schrøder — historic 1910 Norwegian tavern. Kjøttkaker (meatballs with lingonberry jam), fårikål (lamb and cabbage stew — Norway\'s national dish), and rice cream for dessert. After dinner, walk through the palace gardens or enjoy a nightcap at the Grand Hotel rooftop bar' },
-    lat: 59.9139, lng: 10.7522, poi: [{name:'Fram Museum', lat:59.9033, lng:10.6981, note:'Polar ship museum'},{name:'Akershus Fortress', lat:59.9075, lng:10.7358, note:'Medieval castle'}]
+    lat: 59.9139, lng: 10.7522, poi: [
+      {name:'Fram Museum', lat:59.9033, lng:10.6981, note:'Polar ship museum'},
+      {name:'Akershus Fortress', lat:59.9075, lng:10.7358, note:'Medieval castle'},
+      {name:'Grünerløkka', lat:59.9200, lng:10.7600, note:'Craft beer district'},
+      {name:'Ekebergparken', lat:59.8967, lng:10.7683, note:'Sculpture park'},
+      {name:'Sørenga Sauna', lat:59.9000, lng:10.7550, note:'Floating sauna'}
+    ]
   },
   {
     day: 3, date: new Date(2027, 4, 30), base: 'Rjukan', drive: 'Oslo → Rjukan (via Telemark)', driveTime: '~2h 30 min',
     directions: ['Take E18 southwest from Oslo','Exit onto E134 at Drammen towards Notodden','Continue on E134 through the Telemark valley to Rjukan','Brief detour to Heddal Stave Church near Notodden'],
     stops: [
-      {name:'Heddal Stave Church', price:'$12 (120 NOK)', time:'30-45 min', desc:'Norway\'s LARGEST stave church, built c.1250. Triple nave design. The most impressive stave church on the route', cite:'https://www.heddalstavkirke.no'}
+      {name:'Kongsberg Silver Mines', price:'$15 (150 NOK)', time:'1.5 hr', desc:'Historic silver mines with underground train tour', lat:59.6667, lng:9.6500},
+      {name:'Heddal Stave Church', price:'$12 (120 NOK)', time:'30-45 min', desc:'Norway\'s LARGEST stave church, built c.1250. Triple nave design. The most impressive stave church on the route', cite:'https://www.heddalstavkirke.no', lat:59.5833, lng:9.1667},
+      {name:'Vemork Heavy Water Museum', price:'$14 (140 NOK)', time:'1.5-2 hr', desc:'WWII heavy water museum — the Heroes of Telemark story', lat:59.8667, lng:8.4833}
     ],
     activities: [
       {icon:'fa-church', text:'Heddal Stave Church', price:'$12', time:'30-45 min', desc:'Norway\'s largest stave church. Triple nave, built 1250. More impressive than Borgund for sheer size', cite:'https://www.heddalstavkirke.no'},
@@ -403,14 +421,21 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet or self-catering', lunch:'Vemork Museum café — soup and sandwiches in a historic power station', dinner:'Gaustablikk Høyfjellshotell restaurant — mountain lodge dining with panoramic views. Reindeer fillet with lingonberry sauce, mountain trout, or traditional sodd (mutton soup with meatballs). After dinner, relax by the fireplace' },
-    lat: 59.8833, lng: 8.5833, poi: [{name:'Vemork Museum', lat:59.8700, lng:8.5000, note:'Heavy water museum'},{name:'Gaustabanen', lat:59.8667, lng:8.6500, note:'Mountain tram base'}]
+    lat: 59.8833, lng: 8.5833, poi: [
+      {name:'Vemork Museum', lat:59.8700, lng:8.5000, note:'Heavy water museum'},
+      {name:'Gaustabanen', lat:59.8667, lng:8.6500, note:'Mountain tram base'},
+      {name:'Gaustabanen Funicular', lat:59.8500, lng:8.6500, note:'Mountain tram inside Gausta'},
+      {name:'Gaustatoppen summit', lat:59.8500, lng:8.6500, note:'Panoramic mountain view'}
+    ]
   },
   {
     day: 5, date: new Date(2027, 5, 1), base: 'Eidfjord (Hardanger)', drive: 'Rjukan → Hardangervidda → Eidfjord', driveTime: '~3 hr',
     directions: ['Take RV37 north from Rjukan onto Hardangervidda plateau','Cross Hardangervidda — Europe\'s largest mountain plateau at 1,200m+','Stop at Hardangervidda National Park visitor center','Descend Måbødalen valley into Hardangerfjord','Arrive at Eidfjord on the Hardangerfjord'],
     stops: [
-      {name:'Hardangervidda National Park', price:'Free', time:'30-45 min', desc:'Norway\'s largest national park. Wild reindeer herds, vast plateau at 1,250m. A vast, otherworldly landscape', cite:'https://www.visitnorway.com/places-to-go/eastern-norway/the-hardangervidda/'},
-      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Norway\'s most famous waterfall — 182m free-fall. New cliff-side viewing platforms built into the rock', cite:'https://www.visitnorway.com'}
+      {name:'Hardangervidda Plateau viewpoint', price:'Free', time:'30-45 min', desc:'Norway\'s largest national park. Wild reindeer herds, vast plateau at 1,250m', lat:60.0167, lng:7.5000},
+      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Norway\'s most famous waterfall — 182m free-fall. New cliff-side viewing platforms built into the rock', cite:'https://www.visitnorway.com', lat:60.3833, lng:7.2167},
+      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Walk behind the cascading water', lat:60.3667, lng:6.1000},
+      {name:'Hardanger Cider Farm (Ulvik)', price:'$10-15', time:'45 min', desc:'Hardanger cider farm tour with apple and pear cider tasting', lat:60.5667, lng:6.9167}
     ],
     activities: [
       {icon:'fa-mountain', text:'Hardangervidda crossing', price:'Free', time:'1.5 hr', desc:'Drive across Europe\'s largest mountain plateau. Reindeer sightings likely. The vast, otherworldly landscape is unforgettable', cite:'https://www.visitnorway.com/places-to-go/eastern-norway/the-hardangervidda/'},
@@ -443,14 +468,22 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Fruit farm café — Hardanger apple cake with a view over the fjord', dinner:'Eidfjord Gjestehus restaurant — traditional Norwegian lamb shank with Hardanger apple compote, or fresh trout from the fjord. Local cider is a must. After dinner, relax at the hotel with a board game in the common lounge' },
-    lat: 60.4667, lng: 7.0667, poi: [{name:'Bondhusbreen', lat:60.0333, lng:6.3333, note:'Glacier arm of Folgefonna'},{name:'Hardanger Fruit Route', lat:60.3667, lng:6.5000, note:'Fruit orchard region'}]
+    lat: 60.4667, lng: 7.0667, poi: [
+      {name:'Bondhusbreen', lat:60.0333, lng:6.3333, note:'Glacier arm of Folgefonna'},
+      {name:'Hardanger Fruit Route', lat:60.3667, lng:6.5000, note:'Fruit orchard region'},
+      {name:'Bondhusbreen Glacier', lat:60.0500, lng:6.5000, note:'Glacier arm walk'},
+      {name:'Trolltunga trailhead', lat:60.1333, lng:6.7500, note:'Epic cliff hike'},
+      {name:'Eidfjord', lat:60.4667, lng:7.0667, note:'Fjord village'}
+    ]
   },
   {
     day: 7, date: new Date(2027, 5, 3), base: 'Bergen', drive: 'Eidfjord → Voss → Bergen', driveTime: '~4h driving (with activity stops)',
     directions: ['Take RV7 west from Eidfjord along Hardangerfjord','Stop at Steinsdalsfossen — walk behind the cascade','Detour to Voss via Fv7/Fv48 — rafting on the Raundalselva','Continue E16 from Voss to Bergen','Fantoft Disc Golf near Bergen city center'],
     stops: [
-      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous waterfall you can walk BEHIND. Right off RV7. Walk behind the cascading water', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/'},
-      {name:'Voss Rafting Center', price:'$95-120 (950-1,200 NOK)', time:'2-3 hr', desc:'Class 2-3 rapids on Raundalselva River. Guide, wetsuit, gear included. Minimum age 8', cite:'https://www.vossrafting.no'}
+      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous waterfall you can walk BEHIND. Right off RV7. Walk behind the cascading water', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/', lat:60.3667, lng:6.1000},
+      {name:'Voss Rafting Center', price:'$95-120 (950-1,200 NOK)', time:'2-3 hr', desc:'Class 2-3 rapids on Raundalselva River. Guide, wetsuit, gear included. Minimum age 8', cite:'https://www.vossrafting.no', lat:60.6244, lng:6.4433},
+      {name:'Fantoft Stave Church', price:'Free', time:'30-45 min', desc:'Reconstructed stave church near Bergen', lat:60.3500, lng:5.3500},
+      {name:'Bergen city center', price:'Free', time:'1-2 hr', desc:'Explore the vibrant city center', lat:60.3917, lng:5.3250}
     ],
     activities: [
       {icon:'fa-tint', text:'Walk behind Steinsdalsfossen', price:'Free', time:'20-30 min', desc:'Walk the path behind the cascading water', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/'},
@@ -485,7 +518,13 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Fish Market — fresh shrimp sandwich, fish soup, or a whale sausage for the adventurous', dinner:'Pingvinen — Bergen\'s best traditional pub. Raspeballer (potato dumplings — a Norwegian West Coast classic) with lamb and gravy, local Hansa beer on tap. After dinner, explore the bars on Nygårdsgaten or relax at the hotel' },
-    lat: 60.3913, lng: 5.3221, poi: [{name:'Mt. Fløyen', lat:60.3967, lng:5.3467, note:'Funicular'},{name:'Mt. Ulriken', lat:60.3700, lng:5.3600, note:'Cable car'}]
+    lat: 60.3913, lng: 5.3221, poi: [
+      {name:'Bryggen Wharf', lat:60.3975, lng:5.3233, note:'UNESCO wharf'},
+      {name:'Fløyen Funicular', lat:60.3950, lng:5.3300, note:'Mount Fløyen'},
+      {name:'Bergen Fish Market', lat:60.3950, lng:5.3150, note:'Seafood market'},
+      {name:'Ulriken Cable Car', lat:60.3817, lng:5.3200, note:'Highest peak near Bergen'},
+      {name:'KODE Art Museum', lat:60.3933, lng:5.3233, note:'Art and design museum'}
+    ]
   },
   {
     day: 9, date: new Date(2027, 5, 5), base: 'Bergen', drive: null, driveTime: null, stops: [],
@@ -503,7 +542,11 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Godt Brød Bergen — skolebrød (custard-filled cardamom buns) and open-faced sandwiches', dinner:'Farewell dinner at Bryggen Tracteursted — candlelit dining in a 1708 Hanseatic merchant building. Reindeer stew, fresh salmon, and a final aquavit toast. Perfect finale to the trip' },
-    lat: 60.3913, lng: 5.3221, poi: [{name:'Mostraumen', lat:60.4500, lng:5.4000, note:'Narrow fjord cruise'}]
+    lat: 60.3913, lng: 5.3221, poi: [
+      {name:'Mostraumen', lat:60.4500, lng:5.4000, note:'Narrow fjord cruise'},
+      {name:'Fantoft Stave Church', lat:60.3500, lng:5.3500, note:'Reconstructed stave church'},
+      {name:'Lysverket Restaurant', lat:60.3933, lng:5.3233, note:'New Nordic cuisine'}
+    ]
   },
   {
     day: 10, date: new Date(2027, 5, 6), base: 'Depart Bergen', drive: null, driveTime: null, stops: [],
@@ -515,7 +558,10 @@ const data = [
     groupNotes: 'Departure day from Bergen (BGO). Good connections to European hubs. If on similar flights, arrange a shared transfer.',
     lodging: '—', lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Bergen Airport — last salmon grab or sandwiches for the plane', dinner:'In flight' },
-    lat: 60.2936, lng: 5.2181, poi: [{name:'Bergen Airport', lat:60.2936, lng:5.2181, note:'BGO'}]
+    lat: 60.2936, lng: 5.2181, poi: [
+      {name:'Bergen Airport', lat:60.2936, lng:5.2181, note:'BGO'},
+      {name:'Bergen Airport (BGO)', lat:60.2925, lng:5.2181, note:'Departure airport'}
+    ]
   }
 ];
 
@@ -617,6 +663,7 @@ data.forEach((d, idx) => {
       <i class="fas fa-chevron-down toggle-icon"></i>
     </div>
     <div class="day-body">
+      <div id="day-map-${d.day}" class="day-map"></div>
       ${groupNotesHtml}
       <h3><i class="fas fa-mountain"></i> Activities</h3>
       <ul class="activity-list">${activitiesHtml}</ul>
@@ -630,6 +677,7 @@ data.forEach((d, idx) => {
 
   card.querySelector('.day-header').addEventListener('click', () => {
     card.classList.toggle('open');
+    if (card.classList.contains('open')) initPerDayMap(d.day);
   });
 });
 
@@ -662,6 +710,7 @@ data.forEach((d, idx) => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
+      initPerDayMap(d.day);
     }
   });
   glanceStrip.appendChild(item);
@@ -691,6 +740,8 @@ dayJumps.forEach(jump => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
+      const dayNum = parseInt(href.replace('#day-', ''));
+      if (dayNum) initPerDayMap(dayNum);
     }
   });
 });
@@ -794,6 +845,7 @@ map.fitBounds(allCoords, { padding: [50, 50] });
 
 // ---------- Open first day by default ----------
 document.querySelector('.day-card:first-child').classList.add('open');
+initPerDayMap(1);
 
 
 
@@ -859,6 +911,70 @@ function exportCSV() {
   a.download = 'norway-route4-telemark-hardanger.csv';
   a.click();
   URL.revokeObjectURL(url);
+}
+
+// ---------- Per-Day Mini Maps ----------
+function initPerDayMap(dayNum) {
+  const mapId = `day-map-${dayNum}`;
+  const el = document.getElementById(mapId);
+  if (!el) return;
+  if (el._leaflet_map) {
+    setTimeout(() => el._leaflet_map.invalidateSize(), 150);
+    return;
+  }
+  const d = data[dayNum - 1];
+  if (!d) return;
+  const color = colors[dayNum - 1];
+  const dm = L.map(mapId, { zoomControl: false, scrollWheelZoom: false, dragging: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>', maxZoom: 18
+  }).addTo(dm);
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700">${d.day}</div>`,
+    className: '', iconSize: [22, 22], iconAnchor: [11, 11]
+  });
+  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
+    .bindPopup(`<strong>Day ${d.day} &mdash; ${d.base}</strong>`);
+  const coords = [[d.lat, d.lng]];
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        coords.push([s.lat, s.lng]);
+        const stopIcon = L.divIcon({
+          html: `<div style="width:12px;height:12px;background:#fff;border:2.5px solid ${color};border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [12, 12], iconAnchor: [6, 6]
+        });
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm)
+          .bindPopup(`<strong>${s.name}</strong><br>${s.desc || ''}`);
+      }
+    });
+  }
+  if (d.poi) {
+    d.poi.forEach(p => {
+      coords.push([p.lat, p.lng]);
+      L.circleMarker([p.lat, p.lng], { radius: 6, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.8 })
+        .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+  if (d.drive) {
+    const waypoints = [];
+    if (dayNum > 1) { const prev = data[dayNum - 2]; waypoints.push({ lat: prev.lat, lng: prev.lng }); }
+    if (d.stops) { d.stops.forEach(s => { if (s.lat && s.lng) waypoints.push({ lat: s.lat, lng: s.lng }); }); }
+    waypoints.push({ lat: d.lat, lng: d.lng });
+    if (waypoints.length > 1) {
+      const coordStr = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+      fetch(url).then(r => r.json()).then(res => {
+        if (res.code === 'Ok' && res.routes && res.routes[0]) {
+          const coordsGeo = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+          L.polyline(coordsGeo, { color: '#2d6a4f', weight: 4, opacity: 0.7 }).addTo(dm);
+        }
+      }).catch(() => {});
+    }
+  }
+  if (coords.length > 0) dm.fitBounds(coords, { padding: [40, 40], maxZoom: 11 });
+  el._leaflet_map = dm;
+  setTimeout(() => dm.invalidateSize(), 200);
 }
 
 // ---------- References ----------

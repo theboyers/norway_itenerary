@@ -85,7 +85,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .day-card.open .toggle-icon{transform:rotate(180deg)}
 
 .day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
-.day-card.open .day-body{max-height:2000px;padding:0 2rem 1.5rem}
+.day-card.open .day-body{max-height:10000px;padding:0 2rem 1.5rem}
 
 .day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
 .day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
@@ -340,7 +340,7 @@ const data = [
       {icon:'fa-plane-arrival', text:'Fly into Oslo Airport (OSL)', price:'~$800-1,200 round trip', time:'7-8 hr flight', desc:'Depart from Pittsburgh (PIT) or Morgantown (MGW). EDT → CEST (+6h). Each family books their own flights', cite:'https://www.google.com/travel/flights'},
       {icon:'fa-water', text:'Oslo Fjord sightseeing cruise', price:'$30-50 (300-500 NOK)', time:'1.5-2 hr', desc:'Harbor cruise under bridges, past islands, and through the narrow straits. Low-energy activity that\'s jet-lag-friendly', cite:'https://www.visitnorway.com'},
       {icon:'fa-tree', text:'Vigeland Sculpture Park', price:'Free', time:'1-2 hr', desc:'200+ bronze, granite, and iron sculptures in Frogner Park. The Angry Baby and Monolith are iconic photo stops'},
-      {icon:'fa-walking', text:'Karl Johans gate & Royal Palace', price:'Free', time:'1 hr', desc:'Oslo\'s main boulevard from Central Station to the Palace. Cafés, shops, and street performers'},      {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for panoramic city + fjord views. Iconic photo spot', cite:'https://www.operaen.no/en'},
+      {icon:'fa-walking', text:'Karl Johans gate & Royal Palace', price:'Free', time:'1 hr', desc:'Oslo\'s main boulevard from Central Station to the Palace. Cafés, shops, and street performers'},      {icon:'fa-landmark', text:'Oslo Opera House roof walk', price:'Free', time:'20-30 min', desc:'Walk the sloping marble roof for panoramic city + fjord views. Iconic photo stop', cite:'https://www.operaen.no/en'},
       {icon:'fa-beer', text:'Grünerløkka brewery crawl', price:'$8-12/pint', time:'1-2 hr', desc:'Oslo Mikrobryggeri, Klosteret, Det Lille Bryggeri — craft beer for the adults'}
     ],
     groupNotes: 'Arrive in Oslo on Day 1. Keep Day 1 light — see Jet Lag Playbook. The fjord cruise is a low-energy introduction to Oslo. Vigeland Park is an easy walk with lots of visual interest. The Opera House roof offers panoramic city views. Dinner and drinks in Grünerløkka.',
@@ -358,7 +358,12 @@ const data = [
     lat: 59.9139, lng: 10.7522,
     poi: [
       {name:'Vigeland Park', lat:59.9227, lng:10.7011, note:'Sculpture park in Frogner'},
-      {name:'Opera House', lat:59.9073, lng:10.7527, note:'Marble roof walk'}
+      {name:'Opera House', lat:59.9073, lng:10.7527, note:'Marble roof walk'},
+      {name:'Aker Brygge', lat:59.9100, lng:10.7300, note:'Harbor promenade'},
+      {name:'Karl Johans Gate', lat:59.9139, lng:10.7400, note:'Main boulevard'},
+      {name:'National Museum', lat:59.9167, lng:10.7361, note:'The Scream'},
+      {name:'Grünerløkka', lat:59.9200, lng:10.7600, note:'Food and beer district'},
+      {name:'Mathallen', lat:59.9217, lng:10.7567, note:'Indoor food hall'}
     ]
   },
   {
@@ -372,9 +377,14 @@ const data = [
       'Take Nedre Fretheim to your destination in Flåm (2 min, 1 km)'
     ],
     stops: [
-      {name:'Borgund Stave Church', price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church, built 1150. Guided tours available', cite:'https://www.stavechurch.com/en/borgund/'},
-      {name:'Hemsedal mountain pass', price:'Free', time:'Photo stop', desc:'Scenic alpine pass on Rv52. Pull over at the viewpoint for postcard photos'},
-      {name:'Lærdalstunnelen', price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Blue light zones keep you alert', cite:'https://www.vegvesen.no'}
+      {name:'Hønefossen Waterfall', price:'Free', time:'15-20 min', desc:'Scenic waterfall right off E16 near Hønefoss', lat:60.1658, lng:10.3025},
+      {name:'Norefjell Scenic Viewpoint', price:'Free', time:'15-20 min', desc:'Panoramic mountain views along Rv7', lat:60.1700, lng:9.5100},
+      {name:'Borgund Stave Church', price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church, built 1150. Guided tours available', cite:'https://www.stavechurch.com/en/borgund/', lat:61.0467, lng:7.8125},
+      {name:'Midtødegården Cheese Farm', price:'Free to visit', time:'20-30 min', desc:'Traditional Norwegian goat cheese farm — sample fresh geitost and brunost', lat:61.0500, lng:7.8000},
+      {name:'Rjukandefossen Waterfall', price:'Free', time:'15-20 min', desc:'Roadside waterfall near Borgund', lat:61.0333, lng:7.8000},
+      {name:'Lærdalstunnelen', price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Blue light zones keep you alert', cite:'https://www.vegvesen.no', lat:61.0000, lng:7.5500},
+      {name:'Lærdal Town', price:'Free', time:'30 min', desc:'Charming village at the end of the tunnel — Old Lærdalsøyri wooden houses', lat:61.1000, lng:7.4833},
+      {name:'Aurland Shoe Factory', price:'Free to browse', time:'15-20 min', desc:'Historic shoe factory turned souvenir shop — a quirky stop before Flåm', lat:60.9061, lng:7.1881}
     ],
     activities: [
       {icon:'fa-church', text:'Borgund Stave Church', price:'$15', time:'30-45 min', cite:'https://www.stavechurch.com/en/borgund/'},
@@ -427,7 +437,10 @@ const data = [
     lat: 60.8622, lng: 7.1141,
     poi: [
       {name:'Stegastein', lat:60.9028, lng:7.1736, note:'Viewpoint above Aurlandsfjord'},
-      {name:'Brekkefossen', lat:60.8583, lng:7.1333, note:'Hike from Flåm village'}
+      {name:'Brekkefossen', lat:60.8583, lng:7.1333, note:'Hike from Flåm village'},
+      {name:'Flåm Railway (Myrdal)', lat:60.7333, lng:7.1167, note:'World\'s steepest railway'},
+      {name:'Nærøyfjord pier', lat:60.8833, lng:6.8333, note:'UNESCO fjord cruise'},
+      {name:'Flåmsdalen', lat:60.8500, lng:7.1200, note:'Valley hike trail'}
     ]
   },
   {
@@ -442,8 +455,10 @@ const data = [
       'Fantoft Disc Golf course near Bergen city center'
     ],
     stops: [
-      {name:'Tvindefossen Waterfall', price:'Free', time:'15-20 min', desc:'Beautiful roadside waterfall near Voss. Easy photo stop right off E16', cite:'https://www.visitnorway.com'},
-      {name:'Voss Rafting Center', price:'$95-120 (950-1,200 NOK)', time:'2-3 hr', desc:'Class 2-3 rapids on Raundalselva River. Guide, wetsuit, gear included. Minimum age 8.', cite:'https://www.vossrafting.no'}
+      {name:'Stegastein Viewpoint', price:'Free', time:'20-30 min', desc:'Wooden viewing platform 650m above Aurlandsfjord — one of Norway\'s best views', lat:60.9028, lng:7.1736, cite:'https://www.visitflam.com/stegastein/'},
+      {name:'Aurlandsfjellet Snow Road', price:'Free', time:'Drive through', desc:'High mountain road with snow walls in late May — dramatic alpine scenery', lat:60.9333, lng:7.3833},
+      {name:'Tvindefossen Waterfall', price:'Free', time:'15-20 min', desc:'Beautiful roadside waterfall near Voss. Easy photo stop right off E16', cite:'https://www.visitnorway.com', lat:60.6500, lng:6.5000},
+      {name:'Fantoft Stave Church', price:'$8 (80 NOK)', time:'20-30 min', desc:'Reconstructed stave church near Bergen — quick stop before the city', lat:60.3500, lng:5.3500, cite:'https://www.fantoftstavkirke.no'}
     ],
     activities: [
       {icon:'fa-tint', text:'Tvindefossen waterfall', price:'Free', time:'15-20 min', cite:'https://www.visitnorway.com'},
@@ -499,7 +514,10 @@ const data = [
     lat: 60.3913, lng: 5.3221,
     poi: [
       {name:'Mt. Fløyen', lat:60.3967, lng:5.3467, note:'Funicular viewpoint'},
-      {name:'Mt. Ulriken', lat:60.3700, lng:5.3600, note:'Cable car summit'}
+      {name:'Mt. Ulriken', lat:60.3700, lng:5.3600, note:'Cable car summit'},
+      {name:'Bryggen Wharf', lat:60.3975, lng:5.3233, note:'UNESCO Hanseatic wharf'},
+      {name:'Fløyen funicular', lat:60.3950, lng:5.3300, note:'Mount Fløyen viewpoint'},
+      {name:'Bergen Fish Market', lat:60.3950, lng:5.3150, note:'Fresh seafood market'}
     ]
   },
   {
@@ -514,9 +532,10 @@ const data = [
       'Descend into the Eidfjord valley'
     ],
     stops: [
-      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous waterfall you can walk BEHIND. Right off Rv7.', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/'},
-      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Massive 182m waterfall. New viewing platforms built into the cliff edge', cite:'https://www.visitnorway.com'},
-      {name:'Hardanger Bridge', price:'Toll', time:'Drive across', desc:'Suspension bridge across Hardangerfjord. Quick photo from the viewpoint', cite:'https://www.visitnorway.com'}
+      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous waterfall you can walk BEHIND. Right off Rv7.', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/', lat:60.3667, lng:6.1000},
+      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Massive 182m waterfall. New viewing platforms built into the cliff edge', cite:'https://www.visitnorway.com', lat:60.3833, lng:7.2167},
+      {name:'Bondhusbreen Glacier', price:'Free', time:'2-3 hr', desc:'Stunning blue glacier arm of Folgefonna. Easy hike from the parking lot', lat:60.0500, lng:6.5000, cite:'https://www.visitnorway.com'},
+      {name:'Hardanger Cider Farm (Ulvik)', price:'Free to visit', time:'30-45 min', desc:'Taste farm-made apple cider and local fruit brandies. Norway\'s fruit bowl region', lat:60.5667, lng:6.9167}
     ],
     activities: [
       {icon:'fa-tint', text:'Walk behind Steinsdalsfossen', price:'Free', time:'20-30 min', desc:'Walk the path behind the cascading water.', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/'},
@@ -569,7 +588,9 @@ const data = [
     lat: 60.5675, lng: 6.9167,
     poi: [
       {name:'Bondhusbreen', lat:60.0333, lng:6.3333, note:'Glacier arm of Folgefonna'},
-      {name:'Trolltunga', lat:60.1250, lng:6.7333, note:'Rock formation (long, hard hike)'}
+      {name:'Trolltunga', lat:60.1250, lng:6.7333, note:'Rock formation (long, hard hike)'},
+      {name:'Trolltunga trailhead', lat:60.1333, lng:6.7500, note:'Epic cliff hike'},
+      {name:'Eidfjord', lat:60.4667, lng:7.0667, note:'Fjord village'}
     ]
   },
   {
@@ -585,9 +606,10 @@ const data = [
       'Follow E39 into Stavanger'
     ],
     stops: [
-      {name:'Åkrafjorden viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic narrow fjord along Rv13. Towering cliffs on both sides — stop at the viewing platform', cite:'https://www.visitnorway.com'},
-      {name:'Svandalsfossen Waterfall', price:'Free', time:'15-20 min', desc:'Multi-tier roadside waterfall. Quick photo stop', cite:'https://www.visitnorway.com'},
-      {name:'Ferry crossings × 2', price:'Free (AutoPASS)', time:'30 min total', desc:'Two vehicle ferries as part of the normal road network.', cite:'https://www.autopass.no'}
+      {name:'Åkrafjorden viewpoint', price:'Free', time:'20-30 min', desc:'Dramatic narrow fjord along Rv13. Towering cliffs on both sides — stop at the viewing platform', cite:'https://www.visitnorway.com', lat:59.7667, lng:6.1000},
+      {name:'Langfossen Waterfall', price:'Free', time:'15-20 min', desc:'Powerful 612m cascade right off E134 — one of Norway\'s tallest waterfalls', lat:59.7500, lng:6.0833, cite:'https://www.visitnorway.com'},
+      {name:'Lauvvik-Oanes Ferry', price:'Free (AutoPASS)', time:'15 min', desc:'Scenic ferry crossing across the Høgsfjord — part of the drive route', lat:58.8833, lng:5.9833},
+      {name:'Preikestolen hike', price:'Free (parking $15)', time:'4-5 hr', desc:'Legendary 604m cliff over Lysefjord — Norway\'s most famous day hike', lat:58.9833, lng:6.1833, cite:'https://www.preikestolen.no'}
     ],
     activities: [
       {icon:'fa-mountain', text:'Åkrafjord drive', price:'Free', time:'Stop as desired', desc:'One of the most scenic road stretches in Norway. Cliffside highway through a narrow fjord', cite:'https://www.visitnorway.com'},
@@ -641,7 +663,9 @@ const data = [
     poi: [
       {name:'Preikestolen', lat:58.9867, lng:6.1867, note:'Pulpit Rock (hiking)'},
       {name:'Lysefjord', lat:59.0000, lng:6.3000, note:'Fjord cruise'},
-      {name:'Sverd i Fjell', lat:58.8833, lng:5.5833, note:'Swords monument'}
+      {name:'Sverd i Fjell', lat:58.8833, lng:5.5833, note:'Swords monument'},
+      {name:'Høye Ullandhaug', lat:58.9500, lng:5.7000, note:'Iron Age farm'},
+      {name:'Lervig Brewery', lat:58.9667, lng:5.7333, note:'Craft brewery'}
     ]
   },
   {
@@ -664,7 +688,9 @@ const data = [
       dinner: 'On the plane or at home'
     },
     lat: 58.8767, lng: 5.6378,
-    poi: []
+    poi: [
+      {name:'Stavanger Airport (SVG)', lat:58.8767, lng:5.6369, note:'Departure to US'}
+    ]
   }
 ];
 
@@ -783,6 +809,7 @@ data.forEach((d, idx) => {
 
   card.querySelector('.day-header').addEventListener('click', () => {
     card.classList.toggle('open');
+    if (card.classList.contains('open')) initPerDayMap(d.day);
   });
 });
 
@@ -817,6 +844,7 @@ data.forEach((d, idx) => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
+      initPerDayMap(d.day);
     }
   });
   glanceStrip.appendChild(item);
@@ -846,6 +874,8 @@ dayJumps.forEach(jump => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (!target.classList.contains('open')) target.classList.add('open');
+      const dayNum = parseInt(target.id.replace('day-', ''));
+      initPerDayMap(dayNum);
     }
   });
 });
@@ -944,6 +974,7 @@ map.fitBounds(allCoords, { padding: [50, 50] });
 
 // ---------- Open first day by default ----------
 document.querySelector('.day-card:first-child').classList.add('open');
+initPerDayMap(1);
 
 
 
@@ -1009,6 +1040,78 @@ function exportCSV() {
   a.download = 'norway-route2-southern-loop.csv';
   a.click();
   URL.revokeObjectURL(url);
+}
+
+// Per-day maps
+function initPerDayMap(dayNum) {
+  const mapId = `day-map-${dayNum}`;
+  const el = document.getElementById(mapId);
+  if (!el) return;
+  if (el._leaflet_map) {
+    setTimeout(() => el._leaflet_map.invalidateSize(), 150);
+    return;
+  }
+  const d = data[dayNum - 1];
+  if (!d) return;
+  const color = colors[dayNum - 1];
+  const dm = L.map(mapId, { zoomControl: false, scrollWheelZoom: false, dragging: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OSM</a>', maxZoom: 18
+  }).addTo(dm);
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700">${d.day}</div>`,
+    className: '', iconSize: [22, 22], iconAnchor: [11, 11]
+  });
+  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
+    .bindPopup(`<strong>Day ${d.day} &mdash; ${d.base}</strong>`);
+  const coords = [[d.lat, d.lng]];
+  // Stop markers (white square with colored border)
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        coords.push([s.lat, s.lng]);
+        const stopIcon = L.divIcon({
+          html: `<div style="width:12px;height:12px;background:#fff;border:2.5px solid ${color};border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [12, 12], iconAnchor: [6, 6]
+        });
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm)
+          .bindPopup(`<strong>${s.name}</strong><br>${s.desc || ''}`);
+      }
+    });
+  }
+  // POI markers (solid colored circles)
+  if (d.poi) {
+    d.poi.forEach(p => {
+      coords.push([p.lat, p.lng]);
+      L.circleMarker([p.lat, p.lng], { radius: 6, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.8 })
+        .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+  // Driving route polyline from OSRM
+  if (d.drive) {
+    const waypoints = [];
+    if (dayNum > 1) {
+      const prev = data[dayNum - 2];
+      waypoints.push({ lat: prev.lat, lng: prev.lng });
+    }
+    if (d.stops) {
+      d.stops.forEach(s => { if (s.lat && s.lng) waypoints.push({ lat: s.lat, lng: s.lng }); });
+    }
+    waypoints.push({ lat: d.lat, lng: d.lng });
+    if (waypoints.length > 1) {
+      const coordStr = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+      fetch(url).then(r => r.json()).then(res => {
+        if (res.code === 'Ok' && res.routes && res.routes[0]) {
+          const coordsGeo = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+          L.polyline(coordsGeo, { color: '#2d6a4f', weight: 4, opacity: 0.7 }).addTo(dm);
+        }
+      }).catch(() => {});
+    }
+  }
+  if (coords.length > 0) dm.fitBounds(coords, { padding: [40, 40], maxZoom: 11 });
+  el._leaflet_map = dm;
+  setTimeout(() => dm.invalidateSize(), 200);
 }
 
 // ---------- References ----------
