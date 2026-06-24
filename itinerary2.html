@@ -310,7 +310,6 @@ footer a{color:var(--accent);text-decoration:none}
   <a href="#day-9" class="day-jump" title="Day 9  -  Stavanger">9</a>
   <a href="#day-10" class="day-jump" title="Day 10  -  Depart">10</a>
   <span class="nav-divider"></span>
-  <a href="#" class="export-btn" onclick="exportCSV();return false" title="Export as CSV (Google Sheets compatible)"><i class="fas fa-file-csv"></i> CSV</a>
 </nav>
 
 <!-- Map -->
@@ -701,9 +700,9 @@ const data = [
     ],
     groupNotes: 'Ferry contradictions and Preikestolen duplication completely removed from today. Run clear west through Aksdal to hit E39 south to the automated Mortavika ferry line. Check into Stavanger city hotels late afternoon.',
     lodging: [
-      {tier:'Budget', name:'Stavanger B&B', price:'$100/night', pros:'Homestyle family run hospitality context, freshly baked breakfast products included, simple parking options', cons:'Select floor configurations use shared bathrooms', cite:'https://www.stavangerbedandbreakfast.no'},
-      {tier:'Mid', name:'Thon Hotel Maritim', price:'$107/night', pros:'Highly reliable service standards, centrally positioned overlooking city lake park, top tier breakfast structures', cons:'Standard contemporary corporate pattern layout templates', cite:'https://www.thonhotels.com'},
-      {tier:'Premium', name:'Clarion Hotel Stavanger', price:'$280/night', pros:'Waterfront proximity layout, rooftop viewing platform options, full service kitchen staff', cons:'Premium pricing scales on higher view tiers', cite:'https://www.choice.no'}
+      {tier:'Budget', name:'Stavanger B&B', price:'$100/night', pros:'Warm guest treatment templates, quick access walk to commercial lanes', cons:'Shared facility segments on budget lines', cite:'https://www.stavangerbedandbreakfast.no'},
+      {tier:'Mid', name:'Thon Hotel Maritim', price:'$107/night', pros:'Excellent urban access values, consistently praised morning food presentation arrays', cons:'Standard uniform architectural feel', cite:'https://www.thonhotels.com'},
+      {tier:'Premium', name:'Clarion Hotel Stavanger', price:'$280/night', pros:'Top tier interior detailing, refined common spaces', cons:'Premium parking fees', cite:'https://www.choice.no'}
     ],
     lodgingDetail: '',
     meals: {
@@ -757,10 +756,10 @@ const data = [
     driveTime: null,
     stops: [],
     activities: [
-      {icon:'fa-plane-departure', text:'Transatlantic transit out from Stavanger Airport (SVG)', price:'-', time:'Variable connection', desc:'Connect via Oslo (OSL), Copenhagen (CPH), Amsterdam (AMS), or London (LHR) to clear European customs and complete flights home to the US.'},
+      {icon:'fa-plane-departure', text:'Transatlantic transit out from Stavanger Airport (SVG)', price:'-', time:'Variable connection', desc:'Connect via OSL, CPH, AMS, or LHR to clear European customs and complete flights home to the US.'},
       {icon:'fa-sun', text:'Morning Harbor Walk', price:'Free', time:'1-2 hr', desc:'Grab fresh skillingsboller at a town bakery block before heading to terminal lines.'}
     ],
-    groupNotes: 'Fictional direct United flight layout removed. Coordinate rental car returns directly at the SVG airport terminal sorting depot. See Jet Lag Playbook protocols for west-bound return adjustments.',
+    groupNotes: 'Fictional direct United flight layout removed. Coordinate rental car returns directly at the SVG airport terminal sorting depot.',
     lodging: '-',
     lodgingDetail: '',
     meals: {
@@ -970,25 +969,54 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 
-// FIX: Build full polyline containing sequential intermediate stopping layers alongside bases
+// Build complete, sequential list of coordinate nodes mapping bases + intermediary stops
 const masterRouteCoords = [];
-data.forEach(d => {
-  if (d.stops) {
-    d.stops.forEach(s => {
-      if (s.lat && s.lng) masterRouteCoords.push([s.lat, s.lng]);
-    });
+data.forEach((d, idx) => {
+  if (idx === 0) {
+    masterRouteCoords.push([d.lat, d.lng]);
+  } else {
+    if (d.stops) {
+      d.stops.forEach(s => {
+        if (s.lat && s.lng) masterRouteCoords.push([s.lat, s.lng]);
+      });
+    }
+    masterRouteCoords.push([d.lat, d.lng]);
   }
-  masterRouteCoords.push([d.lat, d.lng]);
 });
 
-L.polyline(masterRouteCoords, {
-  color: '#2d6a4f',
-  weight: 4,
-  opacity: 0.7,
-  dashArray: '12,8'
-}).addTo(map);
+// Filter out structural duplicate coordinates from routing sequence to maintain engine stability
+const uniqueRouteCoords = masterRouteCoords.filter((coord, index, self) => 
+  index === 0 || coord[0] !== self[index-1][0] || coord[1] !== self[index-1][1]
+);
 
-// Plot base nodes and incorporate a loop rendering intermediate stops seamlessly onto overview
+// Call OSRM Engine to render full, accurate road topology lines instead of standard straight paths
+if (uniqueRouteCoords.length > 1) {
+  const coordStr = uniqueRouteCoords.map(p => `${p[1]},${p[0]}`).join(';');
+  const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+  
+  fetch(osrmUrl)
+    .then(r => r.json())
+    .then(res => {
+      if (res.code === 'Ok' && res.routes && res.routes[0]) {
+        const actualRoadGeometry = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+        L.polyline(actualRoadGeometry, {
+          color: '#2d6a4f',
+          weight: 5,
+          opacity: 0.8
+        }).addTo(map);
+        map.fitBounds(actualRoadGeometry, { padding: [40, 40] });
+      } else {
+        throw new Error('OSRM mapping layout dropped');
+      }
+    })
+    .catch(() => {
+      // Clean fallback line array if network context drops out
+      L.polyline(uniqueRouteCoords, { color: '#2d6a4f', weight: 4, opacity: 0.7, dashArray: '12,8' }).addTo(map);
+      map.fitBounds(uniqueRouteCoords, { padding: [50, 50] });
+    });
+}
+
+// Plot base nodes and pass individual stop layers onto map visualization matrix
 data.forEach((d, idx) => {
   const color = colors[idx];
   const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
@@ -1013,7 +1041,6 @@ data.forEach((d, idx) => {
   });
   L.marker([d.lat, d.lng], { icon: labelIcon, interactive: false }).addTo(map);
 
-  // FIX: Explicitly project data stops arrays down onto overview rendering matrix
   if (d.stops) {
     d.stops.forEach(s => {
       if (s.lat && s.lng) {
@@ -1058,52 +1085,8 @@ toggle.addEventListener('click', () => {
   icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
 });
 
-map.fitBounds(masterRouteCoords, { padding: [50, 50] });
-
 document.querySelector('.day-card:first-child').classList.add('open');
 initPerDayMap(1);
-
-// ---------- Export CSV ----------
-function exportCSV() {
-  function esc(v) {
-    if (v === null || v === undefined) return '';
-    var s = String(v).replace(/\n/g, ' ').replace(/\r/g, '');
-    return s.indexOf(',') >= 0 || s.indexOf('"') >= 0 ? '"' + s.replace(/"/g, '""') + '"' : s;
-  }
-  function fmtLodging(l) {
-    if (!l) return '';
-    if (Array.isArray(l)) return l.map(function(x) { return x.tier + ': ' + x.name + ' (' + x.price + ')'; }).join(' | ');
-    return String(l);
-  }
-  function fmtActivities(acts) {
-    if (!acts || !acts.length) return '';
-    return acts.map(function(a) { return a.text + (a.desc ? ': ' + a.desc : ''); }).join('; ');
-  }
-  function fmtStops(stops) {
-    if (!stops || !stops.length) return '';
-    return stops.map(function(s) { return s.name + (s.desc ? ': ' + s.desc : ''); }).join('; ');
-  }
-  function fmtPOI(poi) {
-    if (!poi || !poi.length) return '';
-    return poi.map(function(p) { return p.name; }).join('; ');
-  }
-  function fmtDirs(dirs) {
-    if (!dirs || !dirs.length) return '';
-    return dirs.join(' \u2192 ');
-  }
-  var cols = ['Day','Date','Base','Drive','Drive Time','Directions','Breakfast','Lunch','Dinner','Stops','Activities','Group Notes','Lodging','Latitude','Longitude','Points of Interest'];
-  var rows = data.map(function(d) {
-    return [d.day, d.date instanceof Date ? d.date.toISOString().split('T')[0] : d.date, d.base, d.drive, d.driveTime, fmtDirs(d.directions), d.meals ? d.meals.breakfast : '', d.meals ? d.meals.lunch : '', d.meals ? d.meals.dinner : '', fmtStops(d.stops), fmtActivities(d.activities), d.groupNotes, fmtLodging(d.lodging), d.lat, d.lng, fmtPOI(d.poi)].map(esc).join(',');
-  });
-  var csv = '\uFEFF' + cols.join(',') + '\n' + rows.join('\n');
-  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'norway-route2-southern-loop.csv';
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 // ---------- Per-day maps ----------
 function initPerDayMap(dayNum) {
@@ -1125,7 +1108,7 @@ function initPerDayMap(dayNum) {
     html: `<div style="background:${color};width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700">${d.day}</div>`,
     className: '', iconSize: [22, 22], iconAnchor: [11, 11]
   });
-  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm).bindPopup(`<strong>Day ${d.day}  -  ${d.base}</strong>`);
+  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm).bindPopup("<strong>Day " + d.day + "  -  " + d.base + "</strong>");
   
   const coords = [[d.lat, d.lng]];
   if (d.stops) {
@@ -1136,7 +1119,7 @@ function initPerDayMap(dayNum) {
           html: `<div style="width:12px;height:12px;background:#fff;border:2.5px solid ${color};border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
           className: '', iconSize: [12, 12], iconAnchor: [6, 6]
         });
-        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm).bindPopup(`<strong>${s.name}</strong><br>${s.desc || ''}`);
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm).bindPopup("<strong>" + s.name + "</strong><br>" + (s.desc || ''));
       }
     });
   }
@@ -1144,7 +1127,7 @@ function initPerDayMap(dayNum) {
     d.poi.forEach(p => {
       coords.push([p.lat, p.lng]);
       L.circleMarker([p.lat, p.lng], { radius: 6, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.8 })
-        .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+        .addTo(dm).bindPopup("<strong>" + p.name + "</strong><br>" + (p.note || ''));
     });
   }
   
