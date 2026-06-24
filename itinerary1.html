@@ -449,7 +449,7 @@ const data = [
       {icon:'fa-mountain', text:'Vettakollen Sunset Hike', price:'Free', time:'1 hr', desc:'15 min metro + 20 min hike. The local sunset spot with panoramic Oslofjord views from a rocky ridge. Far less crowded than Holmenkollen. Bring a blanket and thermos', cite:'https://www.visitoslo.com/en/product/?tlp=3086273&name=Hike-to-Vettakollen'},
       {icon:'fa-mountain', text:'Grefsenkollen Viewpoint', price:'Free', time:'30-45 min', desc:'20 min bus #56. Restaurant with a free viewpoint above it. Golden hour fjord views that stretch forever in late May', cite:'https://www.visitnorway.com/listings/hike-to-grefsenkollen/182186/'},
       {icon:'fa-utensils', text:'Smalhans Restaurant', price:'~$55 (550 NOK)', time:'1.5-2 hr', desc:'Michelin Bib Gourmand in St. Hanshaugen. Family-style sharing plates rooted in Norwegian terroir. The Sunday roast concept is a local institution. Reserve ahead', cite:'https://www.smalhans.no/english'},
-      {icon:'fa-utensils', text:'Elias Mat & Sånt', price:'$25-35', time:'1-1.5 hr', desc:'Centrally located in Sentrum near the Palace Park. Cozy, sustainable restaurant serving excellent traditional Norwegian comfort food like reindeer stew and local fish soup', cite:'https://www.cafeelias.no/en/'},
+      {icon:'fa-utensils', text:'Eias Mat & Sånt', price:'$25-35', time:'1-1.5 hr', desc:'Centrally located in Sentrum near the Palace Park. Cozy, sustainable restaurant serving excellent traditional Norwegian comfort food like reindeer stew and local fish soup', cite:'https://www.cafeelias.no/en/'},
       {icon:'fa-beer', text:'Grünerløkka Brygghus', price:'$10/pint', time:'1-2 hr', desc:'22 house and guest taps of great Norwegian-style IPAs, sours, and solid porters. Hearty English pub and European rustic food menu. Back room has board games', cite:'https://www.visitoslo.com/en/product/?tlp=2994013&name=Grunerlokka-Brygghus'},
       {icon:'fa-beer', text:'Oslo Mekaniske Verksted', price:'$8-12/pint', time:'1-2 hr', desc:'25 taps of Norwegian microbrews in a renovated mechanics workshop near the bus station. Laid back and cozy. Note: No food menu, but you are welcome to bring outside food or order delivery straight to your table!', cite:'http://www.oslomekaniskeverksted.no/'},
       {icon:'fa-mug-hot', text:'Tim Wendelboe Coffee', price:'$5-8', time:'30-45 min', desc:'Located in Grünerløkka. World-famous barista and coffee roaster. Single-origin espresso and filter only. No WiFi, no laptops. The real deal', cite:'https://timwendelboe.no/'},
@@ -465,7 +465,11 @@ const data = [
       {icon:'fa-utensils', text:'Restaurant Schrøder', price:'$$', time:'1-1.5 hr', desc:'Classic 19th-century "brown cafe" in St. Hanshaugen with wood booths and old-school vibes. Known for traditional home-cooked Norwegian kjøttkaker (meatballs)', cite:'http://www.restaurant-schroder.no/'},
       {icon:'fa-utensils', text:'Rorbua Aker Brygge', price:'$$$', time:'1.5-2 hr', desc:'Seaside restaurant built out like a rustic timber fisherman\'s cabin. Offers a large open fireplace and traditional coastal Arctic stews, fish soups, and venison', cite:'http://www.rorbua.as/'},
       {icon:'fa-utensils', text:'Trattoria Popolare', price:'$$', time:'1.5-2 hr', desc:'Bustling, comforting traditional Italian trattoria in a beautiful brick building at Schous plass. Renowned for spectacular fresh, house-made oxtail ragu ravioli', cite:'http://www.popolare.no/'},
-      {icon:'fa-utensils', text:'Døgnvill Burger Vulkan', price:'$$', time:'1 hr', desc:'Modern diner with comfortable leather booths and low ambient lighting right next to Mathallen. Premium gourmet burgers, thick microbrews, and spiked milkshakes', cite:'https://www.dognvillburger.no/'}
+      {icon:'fa-utensils', text:'Døgnvill Burger Vulkan', price:'$$', time:'1 hr', desc:'Modern diner with comfortable leather booths and low ambient lighting right next to Mathallen. Premium gourmet burgers, thick microbrews, and spiked milkshakes', cite:'https://www.dognvillburger.no/'},
+      {icon:'fa-bread-slice', text:'Dægens Sourdough Studio', price:'$6-12', time:'45-60 min', desc:'Tiny, artisanal one-man bakery along the river in Lilliborg. The premier spot for a classic Norwegian BMO (sourdough roll with thick butter and caramelized brown cheese)', cite:'https://www.instagram.com/daegens/'},
+      {icon:'fa-coffee', text:'Kafeteria August', price:'$$', time:'1 hr', desc:'Informal, art-filled all-day spot in Sentrum. Go early for an authentic Scandi breakfast of boiled eggs, artisanal cheese, warm bread, berries, and premium filter coffee', cite:'https://www.kafeteriaaugust.no/'},
+      {icon:'fa-egg', text:'Babbo Collective', price:'$$', time:'1-1.5 hr', desc:'Warm neighborhood cafe in upper Grünerløkka known for its relaxed vibes, exceptional sourdough bakes, and signature thick "fat pancakes" with seasonal compote', cite:'https://www.instagram.com/babbocollective/'},
+      {icon:'fa-croissant', text:'Åpent Bakeri (Inkognito Terrasse)', price:'$5-10', time:'45-60 min', desc:'Peaceful, historic bakery hidden in a quiet courtyard behind the Palace Park. Outstanding traditional Norwegian skoleboller and artisan hand-laminated pastries', cite:'https://www.apentbakeri.no/'}
     ],
     groupNotes: 'Keep Day 1 light - see Jet Lag Playbook. National Museum (The Scream) and the Opera House roof walk are central and easy-paced. Vigeland Park is a lovely open-air option. For sunset, take the metro to Vettakollen for panoramic fjord views.',
     lodging: [
@@ -509,41 +513,41 @@ const data = [
       {name:'Restaurant Schrøder', lat:59.9271, lng:10.7411, note:'Classic old-school brown cafe for traditional meatballs'},
       {name:'Rorbua Aker Brygge', lat:59.9079, lng:10.7224, note:'Fisherman\'s cabin aesthetic with open indoor fireplace'},
       {name:'Trattoria Popolare', lat:59.9206, lng:10.7603, note:'Comforting fresh pasta at Schous plass entrance'},
-      {name:'Døgnvill Burger Vulkan', lat:59.9221, lng:10.7518, note:'Premium burger lounge directly next to Mathallen'}
+      {name:'Døgnvill Burger Vulkan', lat:59.9221, lng:10.7518, note:'Premium burger lounge directly next to Mathallen'},
+      {name:'Dægens Sourdough Studio', lat:59.9315, lng:10.7618, note:'One-man bakery along the river for legendary cardamom buns and BMOs'},
+      {name:'Kafeteria August', lat:59.9160, lng:10.7362, note:'Art-filled all-day cafe in Sentrum serving authentic Scandi breakfast'},
+      {name:'Babbo Collective', lat:59.9275, lng:10.7565, note:'Warm neighborhood breakfast spot known for signature thick fat pancakes'},
+      {name:'Åpent Bakeri (Inkognito Terrasse)', lat:59.9144, lng:10.7228, note:'Traditional bakery in a quiet courtyard behind the Palace Park'}
     ]
   },
   {
     day: 2, date: new Date(2027, 4, 29),
     base: 'Flåm',
-    drive: 'Oslo → Flåm',
-    driveTime: '4 hr 29 min (310 km)',
-    directions: [
-      'Take E16, Rv7, Hallingdalsvegen, Rv52, and E16 to Fv245 in Aurland',
-      'Take Nedre Fretheim to your destination in Flåm (2 min, 1 km)'
-    ],
+    drive: 'Oslo → Flåm via Hemsedalsfjellet',
+    driveTime: '4 hr 45 min (315 km)',
     stops: [
-      {name:'Hønefossen Waterfall', lat:60.1658, lng:10.3025, price:'Free', time:'15-20 min', desc:'Powerful waterfall right in the center of Hønefoss town. Quick leg-stretch stop', cite:'https://www.visitnorway.com'},
-      {name:'Norefjell Scenic Viewpoint', lat:60.1700, lng:9.5100, price:'Free', time:'20-30 min', desc:'Mountain panorama overlooking Lake Krøderen. Marked viewpoint with parking', cite:'https://www.visitnorway.com'},
-      {name:'Borgund Stave Church', lat:61.0467, lng:7.8125, price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church in Norway, built 1150. Guided tours available. A must-see', cite:'https://www.stavechurch.com/en/borgund/'},
-      {name:'Midtødegården Cheese Farm', lat:61.0500, lng:7.8000, price:'Free to browse', time:'20-30 min', desc:'Family-run goat and cow dairy near Borgund. Try the local brunost and geitost', cite:'https://www.visitnorway.com'},
-      {name:'Rjukandefossen Waterfall', lat:61.0333, lng:7.8000, price:'Free', time:'15-30 min', desc:'Roadside waterfall along Rv52 - quick photo stop and leg stretch', cite:'https://www.visitnorway.com'},
-      {name:'Lærdalstunnelen', lat:61.0000, lng:7.5500, price:'Free (toll)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Illuminated with blue and yellow color zones every 6 km (mimicking sunrise)'},
-      {name:'Lærdal Town historic walk', lat:61.1000, lng:7.4833, price:'Free', time:'30-45 min', desc:'Best-preserved 18th century wooden houses in Norway. The old town is charming and quick to explore', cite:'https://www.visitnorway.com'},
-      {name:'Aurland Shoe Factory & Museum', lat:60.9061, lng:7.1881, price:'$10 (100 NOK)', time:'30-45 min', desc:'Historic shoe factory turned museum. See how traditional Norwegian shoes were made', cite:'https://www.visitflam.com'}
+      {name:'Hønefossen Waterfall', lat:60.1658, lng:10.3025, price:'Free', time:'15-20 min', desc:'Powerful waterfall right in the center of Hønefoss town. Quick first leg-stretch stop', cite:'https://www.visitnorway.com'},
+      {name:'Norefjell Scenic Viewpoint', lat:60.1472, lng:9.6108, price:'Free', time:'20-30 min', desc:'Beautiful mountain panorama overlooking the southern banks of Lake Krøderen along Rv7', cite:'https://www.visitnorway.com'},
+      {name:'Rjukandefossen Waterfall', lat:60.8753, lng:8.4642, price:'Free', time:'15-30 min', desc:'Impressive double waterfall dropping into a narrow ravine in Hemsedal along Rv52. Short walk from the parking lot', cite:'https://hemsedal.com/en/articles/rjukandefossen'},
+      {name:'Borgund Stave Church', lat:61.0471, lng:7.8122, price:'$15 (150 NOK)', time:'30-45 min', desc:'Best preserved stave church in Norway, built around 1150. Incredible dragon-head gables and historic visitor center', cite:'https://www.stavechurch.com/en/borgund/'},
+      {name:'Lærdal Town historic walk', lat:61.0989, lng:7.4792, price:'Free', time:'30-45 min', desc:'Charming stroll through Lærdalsøyri, featuring over 160 incredibly well-preserved 18th-century wooden houses', cite:'https://www.visitnorway.com'},
+      {name:'Lærdalstunnelen', lat:61.0645, lng:7.5020, price:'Free (Toll included in auto-pass)', time:'~20 min drive', desc:'World\'s longest road tunnel (24.5 km). Features brilliant blue and yellow lighting chambers every 6 km to mimic sunrise and keep drivers awake'},
+      {name:'Aurland Shoe Factory & Museum', lat:60.9061, lng:7.1881, price:'$10 (100 NOK)', time:'30-45 min', desc:'Historic factory turned museum in Aurlandsvangen. See where the original \"Penny Loafer\" style was born', cite:'https://www.visitflam.com'},
+      {name:'Undredal Stølsysteri', lat:60.8791, lng:7.1024, price:'Free to browse / tasting costs vary', time:'30-45 min', desc:'Tiny fjord village famous for traditional brown and white goat cheese. Located just 10 mins past Flåm, perfect detour before or after check-in', cite:'https://en.sognefjord.no/'}
     ],
     activities: [
-      {icon:'fa-car', text:'Scenic drive Oslo → Flåm via Hallingdal', price:'Toll road', time:'4.5 hr', desc:'Rv7 through Hallingdal valley is Norway\'s most scenic alternative to E16. Mountain passes, lakes, waterfalls'},
-      {icon:'fa-church', text:'Borgund Stave Church', price:'$15', time:'30-45 min', desc:'One of Norway\'s oldest and best-preserved stave churches (1150). Admire the dragon heads and Viking-Norse fusion', cite:'https://www.stavechurch.com/en/borgund/'},
-      {icon:'fa-tint', text:'Rjukandefossen waterfall stop', price:'Free', time:'15-30 min', desc:'Roaring waterfall cascading right beside the road. Great photo opportunity', cite:'https://www.visitnorway.com'},
-      {icon:'fa-tint', text:'Hønefossen waterfall (Hønefoss)', price:'Free', time:'15-20 min', desc:'Strong waterfall in downtown Hønefoss. Perfect first leg stretch', cite:'https://www.visitnorway.com'},
-      {icon:'fa-mountain', text:'Norefjell viewpoint & Krøderen Lake', price:'Free', time:'20-30 min', desc:'Panoramic pull-off over the turquoise Lake Krøderen. Quick detour from Rv7'},
-      {icon:'fa-cheese', text:'Midtødegården cheese farm', price:'Free to browse', time:'20-30 min', desc:'Family dairy with goat and cow cheese. Buy fresh brunost for the road', cite:'https://www.visitnorway.com'},
-      {icon:'fa-road', text:'Lærdalstunnelen (24.5 km)', price:'Toll included', time:'20 min', desc:'World\'s longest road tunnel. Blue lights create a sunrise effect every 6 km. Don\'t miss the cave-like rest areas'},
-      {icon:'fa-walking', text:'Lærdal old town walk', price:'Free', time:'30-45 min', desc:'Charming 18th-century wooden houses, narrow lanes, and a peaceful river walk. Quick loop', cite:'https://www.visitnorway.com'},
-      {icon:'fa-museum', text:'Aurland Shoe Factory Museum', price:'$10', time:'30-45 min', desc:'Housed in a 1920s shoe factory. Audioguide tells the story of Norwegian footwear craftsmanship', cite:'https://www.visitflam.com'},
-      {icon:'fa-ship', text:'Aurland Fjord evening walk', price:'Free', time:'30-45 min', desc:'Short walk from Flåm to Aurland along the fjord. Peaceful evening stroll after the drive'}
+      {icon:'fa-car', text:'Scenic drive Oslo → Flåm via Rv7 & Rv52', price:'Toll road', time:'4.75 hr', desc:'Stunning route climbing through the Hallingdal valley, over the high mountain pass of Hemsedalsfjellet, and down into the fjords'},
+      {icon:'fa-tint', text:'Hønefossen waterfall (Hønefoss)', price:'Free', time:'15-20 min', desc:'Strong waterfall in downtown Hønefoss. Perfect first leg stretch'},
+      {icon:'fa-mountain', text:'Norefjell viewpoint & Krøderen Lake', price:'Free', time:'20-30 min', desc:'Panoramic pull-off over the blue-green Lake Krøderen along the Rv7 route'},
+      {icon:'fa-tint', text:'Rjukandefossen waterfall stop', price:'Free', time:'15-30 min', desc:'Roaring double waterfall cascading beside Rv52 in Hemsedal. Features a thrilling suspension bridge'},
+      {icon:'fa-church', text:'Borgund Stave Church', price:'$15', time:'30-45 min', desc:'One of Norway\'s oldest and best-preserved stave churches (1150). Admire the dragon heads and Viking-Norse architectural fusion', cite:'https://www.stavechurch.com/en/borgund/'},
+      {icon:'fa-walking', text:'Lærdal old town walk', price:'Free', time:'30-45 min', desc:'Charming 18th-century wooden houses and narrow lanes at the edge of the Sognefjord. Beautiful flat walk before entering the tunnel'},
+      {icon:'fa-road', text:'Lærdalstunnelen (24.5 km)', price:'Toll included', time:'20 min', desc:'Drive through the world\'s longest road tunnel. Blue lights create an otherworldly atmospheric sunrise effect inside the mountain'},
+      {icon:'fa-museum', text:'Aurland Shoe Factory Museum', price:'$10', time:'30-45 min', desc:'Housed in a 1920s shoe factory. Tells the story of classic Norwegian footwear craftsmanship right at the tunnel exit'},
+      {icon:'fa-cheese', text:'Undredal Goat Cheese Tasting', price:'Free to browse', time:'30-45 min', desc:'Detour to a tiny village where goats outnumber people to buy authentic, artisanal brown geitost straight from the source'},
+      {icon:'fa-ship', text:'Aurland Fjord evening walk', price:'Free', time:'30-45 min', desc:'Peaceful evening stroll along the Flåm waterfront pathway under the endless late-May twilight'}
     ],
-    groupNotes: 'Rv7 through Hallingdal valley is more scenic than the direct E16. Borgund Stave Church, Rjukandefossen, and Lærdalstunnelen are essential stops. Lærdal town is worth a brief detour. Dinner at Ægir in Flåm. Check into hotel, then evening fjord walk.',
+    groupNotes: 'Take E16 out of Oslo, transition to Rv7 past Hønefoss, then pick up Rv52 at Gol to head over Hemsedalsfjellet. Rjukandefossen, Borgund Stave Church, and Lærdal old town are the essential sequential stops before the big tunnel. Dinner at Ægir in Flåm. Check into hotel, then peaceful evening fjord walk.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms good for families', cons:'No breakfast or restaurant, 15-min walk from Flåm center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast included', cons:'No pool or spa, limited parking, busy during cruise ship arrivals', cite:'https://www.flamsbrygga.no'},
@@ -557,8 +561,15 @@ const data = [
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
-      {name:'Borgund Stave Church', lat:61.0467, lng:7.8125, note:'Stave church stop'},
-      {name:'Rjukandefossen', lat:61.0333, lng:7.8000, note:'Waterfall stop'}
+      {name:'Hønefossen Waterfall', lat:60.1658, lng:10.3025, note:'Leg stretch stop in town center'},
+      {name:'Norefjell Viewpoint', lat:60.1472, lng:9.6108, note:'Lake Krøderen scenic overlook'},
+      {name:'Rjukandefossen', lat:60.8753, lng:8.4642, note:'Double waterfall stop in Hemsedal'},
+      {name:'Borgund Stave Church', lat:61.0471, lng:7.8122, note:'12th-century stave church'},
+      {name:'Lærdal Historic Old Town', lat:61.0989, lng:7.4792, note:'18th-century preserved wooden houses'},
+      {name:'Lærdalstunnelen (East Entrance)', lat:61.0645, lng:7.5020, note:'Start of the 24.5 km tunnel drive'},
+      {name:'Aurland Shoe Factory', lat:60.9061, lng:7.1881, note:'Traditional loafer museum'},
+      {name:'Undredal Village', lat:60.8791, lng:7.1024, note:'Artisan goat cheese detour'},
+      {name:'Flåm (Base Base)', lat:60.8622, lng:7.1141, note:'Final destination and lodging location'}
     ]
   },
   {
@@ -569,29 +580,27 @@ const data = [
     stops: [],
     activities: [
       {icon:'fa-train', text:'Flåm Railway (morning centerpiece)', price:'$68 (730 NOK) round trip', time:'2 hr', desc:'20 km from Flåm to Myrdal, steepest standard-gauge railway in the world (867m elevation). Drops you at Kjosfossen waterfall for a 5-min photo stop', cite:'https://www.visitflam.com/flam-railway/'},
-      {icon:'fa-bicycle', text:'Rallarvegen bike descent', price:'~$50 bike rental', time:'3-4 hr', desc:'Bike from Myrdal down to Flåm (20 km, 1,000m descent). Easy gravel road, family-friendly. Bike rental at Flåm station, take train up, bike down', cite:'https://www.visitflam.com/rallarvegen/'},
-      {icon:'fa-eye', text:'Stegastein Viewpoint (self-drive)', price:'Free (parking fee)', time:'45-60 min', desc:'Cantilevered wooden platform 650m above Aurlandsfjord. 30-min drive from Flåm. Panoramic fjord views. Sunset is spectacular', cite:'https://www.visitflam.com/stegastein/'},
+      {icon:'fa-bicycle', text:'Rallarvegen bike descent', price:'~$50 bike rental', time:'3-4 hr', desc:'Bike from Myrdal down to Flåm (20 km). Note: The upper Myrdalsberget hairpins are incredibly steep loose gravel; casual riders should walk this initial drop before it levels into the valley path', cite:'https://www.visitflam.com/rallarvegen/'},
+      {icon:'fa-eye', text:'Stegastein Viewpoint (self-drive)', price:'Free (parking fee)', time:'45-60 min', desc:'Cantilevered wooden platform 650m above Aurlandsfjord. 30-min drive from Flåm on switchback roads. End of the winter road maintenance line in May', cite:'https://www.visitflam.com/stegastein/'},
       {icon:'fa-water', text:'Njord Kayak on Aurlandsfjord', price:'$115 (1,235 NOK)', time:'3 hr', desc:'Guided stillwater kayak. Stable double kayaks, beginner-friendly. Paddle past waterfalls and seal colonies', cite:'https://www.njordkayak.no'},
-      {icon:'fa-child', text:'Flåm Zipline (Northern Europe\'s longest)', price:'$79 (850 NOK)', time:'2 hr', desc:'1,381m zipline from the mountainside down to Flåm valley. Reach speeds of 80-100 km/h. Min age 10 years', cite:'https://www.visitflam.com/activities/flam-zipline/'},
+      {icon:'fa-child', text:'Flåm Zipline (Northern Europe\'s longest)', price:'$79 (850 NOK)', time:'2 hr', desc:'1,381m zipline starting at Vatnahalsen and landing at Kårdal farm. Reaches 100 km/h. Requires a 15km bike/walk down the valley to return to Flåm base', cite:'https://www.visitflam.com/activities/flam-zipline/'},
       {icon:'fa-ship', text:'Nærøyfjord UNESCO cruise', price:'$64 (640 NOK)', time:'2.5 hr', desc:'Silent electric catamaran through the narrowest fjord in Europe. 1,400m cliff walls, waterfalls cascading down. Unforgettable', cite:'https://www.visitnorway.com'},
       {icon:'fa-hiking', text:'Flåmsdalen Valley hike', price:'Free', time:'1.5-2.5 hr', desc:'Follow the river up Flåmsdalen. Waterfalls, wooden bridges, and mountain panoramas. Good for all levels'},
       {icon:'fa-ship', text:'FjordSafari RIB boat tour', price:'$85 (850 NOK)', time:'1.5 hr', desc:'High-speed RIB boat into the narrow fjord arms. Thrilling ride, close-up waterfall views', cite:'https://www.visitflam.com'},
       {icon:'fa-beer', text:'Ægir BrewPub dinner & tasting flight', price:'$25-40 meal+drink', time:'1.5-2 hr', desc:'Viking-themed brewpub with award-winning beers. Try the Ægir IPA, Sumbel Porter, or the seasonal stout. Food pairings available', cite:'https://www.aegirbryggeri.no'},
-      {icon:'fa-mountain', text:'Vedahaugane Rest Stop', price:'Free', time:'30-45 min', desc:'20 min drive up Aurlandsfjellet. Curved walkway to a cave art installation with high plateau views. Far fewer people than Stegastein. Part of the National Scenic Route', cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet/vedahaugane/'},
-      {icon:'fa-mountain', text:'Flotane Rest Stop (1,308m summit)', price:'Free', time:'45 min', desc:'25 min drive to summit of Aurlandsfjellet. Solar-powered rest area with benches facing endless mountain ridges and glaciers. Award-winning architecture. Incredible at sunset', cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet/flotane/'},
       {icon:'fa-mountain', text:'Hjodna Viewpoint hike', price:'Free', time:'1 hr', desc:'15 min drive to Undredal + 20-30 min easy hike. Bird\'s-eye view of the fjord and village. Quiet alternative to Stegastein', cite:'https://www.lifeinnorway.net/undredal-norway/'},
       {icon:'fa-hiking', text:'Brekkefossen waterfall trail', price:'Free', time:'2-3 hr', desc:'Walkable from Flåm. Steep 5km round trip to a powerful waterfall with views back to the fjord. 155m elevation gain. Much quieter than the Railway route', cite:'https://www.lifeinnorway.net/flam-norway/'},
       {icon:'fa-hot-tub', text:'Fjord Sauna Flåm', price:'~$30-50', time:'1-2 hr', desc:'Floating sauna with a hatch opening directly into Aurlandsfjord for polar plunges. Jump from the roof. Book private for up to 12 people', cite:'https://www.norwaysbest.com/en/flam/things-to-do/fjordsauna-flam'},
       {icon:'fa-water', text:'Undredal kayak rental (self-guided)', price:'~$40-60', time:'2-3 hr', desc:'Rent from Undredal Camping (far quieter than Flåm harbor). Glassy morning water, double kayaks available. No guide needed if experienced'},
-      {icon:'fa-utensils', text:'Kest Tasting Room (Aurland)', price:'~$80-120', time:'2 hr', desc:'10 min drive. 8-course tasting menu using exclusively local fjord and mountain ingredients. Also does Norwegian cider and cheese tasting at 5pm daily. Reserve ahead', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
-      {icon:'fa-cheese', text:'Undredal Stolsysteri (award-winning cheese)', price:'$5-15', time:'30 min', desc:'15 min drive. Award-winning goat cheese dairy. Aged white cheese won Best Cheese at Nordic Cheese Mongers 2023. Buy direct at Undredalsbui store', cite:'https://www.norwaysbest.com/en/flam/things-to-do/the-undredal-experience'},
-      {icon:'fa-wine-glass', text:'Kest cider & cheese tasting', price:'~$25', time:'1 hr', desc:'10 min drive to Aurland. One-hour cider and cheese tasting featuring local Vestland ciders paired with Undredal cheeses. 5pm daily in main season', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
+      {icon:'fa-utensils', text:'Kest Tasting Room (Aurland)', price:'1,595 NOK (~$150)', time:'2 hr', desc:'Located in Hotel Aurlandsfjord. 8-course tasting menu using exclusively local fjord and mountain ingredients. Open Fri-Sun evenings. Reserve far ahead', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
+      {icon:'fa-cheese', text:'Undredal Stølsysteri (award-winning cheese)', price:'$5-15', time:'30 min', desc:'15 min drive. Award-winning goat cheese dairy. Aged white cheese won Best Cheese at Nordic Cheese Mongers. Buy direct at Undredalsbui store', cite:'https://www.norwaysbest.com/en/flam/things-to-do/the-undredal-experience'},
+      {icon:'fa-wine-glass', text:'Kest cider & cheese tasting', price:'545 NOK (~$55)', time:'1 hr', desc:'10 min drive to Aurland. One-hour cider and cheese tasting featuring local Vestland ciders paired with Undredal cheeses. 5pm daily in main season', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
       {icon:'fa-mug-hot', text:'Flåm Bakery specialty coffee', price:'$5-8', time:'30 min', desc:'Artisan sourdough bakery with specialty coffee. Grab a window seat or sit on quayside benches watching the fjord. Cardamom buns are exceptional', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/flam-bakery'},
-      {icon:'fa-mug-hot', text:'Laksen Bakeri (Lærdal)', price:'$5-8', time:'30-45 min', desc:'25 min drive. Overlooks the historic Lærdal harbor on Sognefjord. Outside tables by the water. Legendary skillingsboller. Inside Wild Salmon Centre', cite:'https://www.norwaysbest.com/en/laerdal/food-and-drinks/laksen-bakeri-and-kafe'},
+      {icon:'fa-mug-hot', text:'Laksen Bakeri (Lærdal)', price:'$5-8', time:'30-45 min', desc:'25 min drive through the main tunnel. Overlooks the historic Lærdal harbor on Sognefjord. Outside tables by the water. Inside Wild Salmon Centre', cite:'https://www.norwaysbest.com/en/laerdal/food-and-drinks/laksen-bakeri-and-kafe'},
       {icon:'fa-tree', text:'Undredal pier benches', price:'Free', time:'30 min', desc:'15 min drive. Benches right on the water\'s edge. Buy goat cheese and bread from Undredalsbui, bring a thermos. Village has fewer than 100 residents'},
       {icon:'fa-tree', text:'Aurland Church waterfront', price:'Free', time:'30 min', desc:'10 min drive. Benches facing the fjord with no cruise ship bustle. Aurland River runs through the village center. Peaceful evening stroll'}
     ],
-    groupNotes: 'Flåm Railway to Myrdal is the morning centerpiece - bike down via Rallarvegen or ride the train back. Stegastein viewpoint at sunset, or try Vedahaugane/Flotane for fewer crowds. Afternoon options: Flåm Zipline, Njord Kayak, or Fjord Sauna for polar plunges. Kest in Aurland offers an 8-course tasting menu alternative to Ægir.',
+    groupNotes: 'Flåm Railway to Myrdal is the morning centerpiece - bike down via Rallarvegen or ride the train back. Stegastein viewpoint at sunset is spectacular. Afternoon options: Flåm Zipline (ends at Kårdal), Njord Kayak, or Fjord Sauna for polar plunges. Kest in Aurland offers an 8-course premium tasting menu on weekend nights.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms good for families', cons:'No breakfast or restaurant, 15-min walk from Flåm center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast included', cons:'No pool or spa, limited parking, busy during cruise ship arrivals', cite:'https://www.flamsbrygga.no'},
@@ -601,23 +610,24 @@ const data = [
     meals: {
       breakfast: 'Included hotel buffet',
       lunch: 'Flåm Bakery - skillingsboller (cinnamon rolls), sourdough bread with brunost (brown cheese), or sandwiches to eat by the fjord after kayaking',
-      dinner: 'Flamstova Restaurant for traditional Norwegian home-cooking (fårikål - the national dish, or kjøttkaker with lingonberry jam) or Flåm Marina Terrace for seafood with fjord views. End the evening at Ægir brewpub for a nightcap flight'
+      dinner: 'Flamstova Restaurant for traditional Norwegian home-cooking or Flåm Marina Terrace for seafood with fjord views. End the evening at Ægir brewpub for a nightcap flight'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
-      {name:'Stegastein', lat:60.9028, lng:7.1736, note:'Viewpoint above Aurlandsfjord'},
-      {name:'Njord Kayak', lat:60.8600, lng:7.1150, note:'Kayak launch point'},
-      {name:'Myrdal Station (Flåm Railway)', lat:60.7333, lng:7.1167, note:'Top of the Flåm Railway'},
-      {name:'Gudvangen (Nærøyfjord)', lat:60.8833, lng:6.8333, note:'UNESCO fjord cruise terminal'},
-      {name:'Flåm Zipline', lat:60.8500, lng:7.1167, note:'Northern Europe\'s longest zipline'},
-      {name:'Flåmsdalen Valley', lat:60.8500, lng:7.1200, note:'Hiking trail along the river'},
-      {name:'Vedahaugane', lat:60.9200, lng:7.2500, note:'Scenic route rest stop with cave art'},
-      {name:'Flotane', lat:60.9500, lng:7.3500, note:'Summit rest stop at 1,308m'},
-      {name:'Hjodna', lat:60.9500, lng:7.1000, note:'Viewpoint above Undredal'},
-      {name:'Brekkefossen', lat:60.8400, lng:7.1300, note:'Waterfall trail from Flåm'},
-      {name:'Fjord Sauna', lat:60.8620, lng:7.1100, note:'Floating sauna in Aurlandsfjord'},
-      {name:'Kest Tasting Room', lat:60.9060, lng:7.1900, note:'8-course tasting menu in Aurland'},
-      {name:'Flåm Bakery', lat:60.8630, lng:7.1130, note:'Artisan bakery with specialty coffee'}
+      {name:'Stegastein', lat:60.9081, lng:7.2128, note:'Viewpoint platform high above Aurlandsfjord'},
+      {name:'Njord Kayak', lat:60.8600, lng:7.1150, note:'Kayak beachfront launch point'},
+      {name:'Myrdal Station (Flåm Railway)', lat:60.7358, lng:7.1224, note:'Top alpine terminal of the Flåm Railway'},
+      {name:'Gudvangen (Nærøyfjord)', lat:60.8790, lng:6.8385, note:'UNESCO electric fjord cruise terminal'},
+      {name:'Flåm Zipline (Vatnahalsen Launch)', lat:60.7441, lng:7.1147, note:'Northern Europe\'s longest zipline takeoff'},
+      {name:'Flåmsdalen Valley Trail', lat:60.8120, lng:7.1180, note:'Hiking path and Rallarvegen bike route along river floor'},
+      {name:'Hjodna Viewpoint', lat:60.8850, lng:7.1080, note:'Scenic overlook trail above Undredal village'},
+      {name:'Brekkefossen', lat:60.8515, lng:7.1258, note:'Steep waterfall trail hiking point near Flåm'},
+      {name:'Fjord Sauna', lat:60.8631, lng:7.1171, note:'Floating public hot-box and harbor plunge docks'},
+      {name:'Kest Tasting Room', lat:60.9032, lng:7.1851, note:'Inside Hotel Aurlandsfjord in Aurland village'},
+      {name:'Flåm Bakery', lat:60.8628, lng:7.1152, note:'Artisan bakery on the central harbor docks'},
+      {name:'Ægir Brewpub', lat:60.8629, lng:7.1156, note:'Viking-style stone and log pillar brewpub'},
+      {name:'Undredal Stølsysteri & Shop', lat:60.8791, lng:7.1024, note:'Artisanal geitost cheese shop and pier benches'},
+      {name:'Laksen Bakeri (Lærdal)', lat:61.0982, lng:7.4764, note:'Bakery cafe overlooking Sognefjord waters'}
     ]
   },
   {
@@ -628,28 +638,21 @@ const data = [
     stops: [],
     activities: [
       {icon:'fa-ship', text:'Nærøyfjord UNESCO cruise (morning)', price:'$64 (640 NOK)', time:'2.5 hr', desc:'Electric catamaran from Flåm pier through the narrowest fjord in Europe. Silent, emission-free, café onboard. 1,400m cliff walls, waterfalls cascading', cite:'https://www.visitnorway.com'},
-      {icon:'fa-ship', text:'Fjord cruise to Undredal', price:'$64 (640 NOK) round trip', time:'2 hr', desc:'Alternative: cruise to the cutest fjord village. Undredal has only 100 residents, a tiny stave church, and famous goat cheese', cite:'https://www.visitnorway.com'},
-      {icon:'fa-church', text:'Undredal Stave Church', price:'Free (donation)', time:'15-20 min', desc:'One of Norway\'s smallest stave churches (12th century). Charming white wooden interior', cite:'https://www.visitnorway.com'},
-      {icon:'fa-cheese', text:'Undredal goat cheese dairy tasting', price:'$5-10', time:'20-30 min', desc:'Try the legendary Undredal Geitost (brown goat cheese) - Norway\'s most famous local cheese. Buy some to take home', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/undredal/'},
-      {icon:'fa-helmet-safety', text:'Viking Valley Njardarheimr (Gudvangen)', price:'$26 (260 NOK)', time:'2-3 hr', desc:'Living Viking village with costumed interpreters, weapon demos, archery, Viking ships. 20 min from Flåm. Teens love it', cite:'https://www.norwaysbest.com'},
-      {icon:'fa-hiking', text:'Aurlandsdalen Valley hike', price:'Free', time:'2-4 hr', desc:'One of Norway\'s most beautiful valleys. Marked trail from Aurland village into the mountains. Waterfalls, green hills, panoramic fjord views'},
-      {icon:'fa-bullseye', text:'Kaupanger Disc Golf (18 holes)', price:'Free', time:'2-3 hr', desc:'35 min from Flåm. Scenic wooded course right by the Sognefjord. Rated 4.5 on PDGA. Rent discs or bring your own', cite:'https://www.pdga.com/course/kaupanger-frisbeegolf'},
-      {icon:'fa-road', text:'Aurlandsfjellet (Snow Road) scenic drive', price:'Free', time:'2 hr', desc:'47 km mountain pass road from Flåm to Lærdal. Snow fences, lunar landscapes, fjord views. Open June-Oct', cite:'https://www.visitnorway.com'},
+      {icon:'fa-ship', text:'Fjord cruise to Undredal', price:'$64 (640 NOK) round trip', time:'2 hr', desc:'Alternative: cruise to a quiet fjord village. Undredal has only 100 residents, a tiny stave church, and world-class artisan goat cheese', cite:'https://www.visitnorway.com'},
+      {icon:'fa-church', text:'Undredal Stave Church interior', price:'~80 NOK ($8)', time:'15-20 min', desc:'One of Norway\'s smallest operating stave churches (built 1147). Intimate white wooden interior with historical guided explanation included in entry fee', cite:'https://www.visitnorway.com'},
+      {icon:'fa-cheese', text:'Undredal goat cheese dairy tasting', price:'$5-10', time:'20-30 min', desc:'Try legendary Undredal Geitost (brown goat cheese) straight from the source. Grab artisan wheels to take home at the Undredalsbui local grocery store', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/undredal/'},
+      {icon:'fa-helmet-safety', text:'Viking Valley Njardarheimr (Gudvangen)', price:'$26 (260 NOK)', time:'2-3 hr', desc:'Living Viking village with costumed global interpreters, weapon demonstrations, axe throwing, archery, and replica ships. 20 min from Flåm', cite:'https://www.norwaysbest.com'},
+      {icon:'fa-hiking', text:'Aurlandsdalen Valley classic hike', price:'Free (shuttle bus extra)', time:'5-6 hr', desc:'Norway\'s grand canyon. Take the morning hikers\' bus from Flåm up to Østerbø, then hike the spectacular 20 km wilderness descent down to the Vassbygdi terminal'},
+      {icon:'fa-bullseye', text:'Kaupanger Frisbeepark (22 holes)', price:'Free', time:'2-3 hr', desc:'Ranked the #10 course in Norway on UDisc. Highly technical, hilly forest course with excellent turf tee pads and Blink targets. Requires a 40-min drive and a 15-min car ferry crossing each way', cite:'https://udisc.com/courses/kaupanger-frisbeepark-Tw3Y'},
       {icon:'fa-train', text:'Flåm Railway (bad weather backup)', price:'$68 (730 NOK) round trip', time:'2 hr', desc:'Always a solid choice if the weather turns - the train runs year-round, rain or shine', cite:'https://www.visitflam.com/flam-railway/'},
-      {icon:'fa-beer', text:'Ægir BrewPub farewell dinner', price:'$25-40', time:'1.5-2 hr', desc:'Last night in Flåm. Sample the full Ægir beer flight and order the braised lamb shank or reindeer stew. End the evening walking the Flåm marina', cite:'https://www.aegirbryggeri.no'},
-      {icon:'fa-mountain', text:'Vedahaugane Rest Stop', price:'Free', time:'30-45 min', desc:'20 min drive up Aurlandsfjellet. Curved walkway to cave art installation with high plateau views. Far fewer people than Stegastein', cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet/vedahaugane/'},
-      {icon:'fa-mountain', text:'Flotane Rest Stop (1,308m)', price:'Free', time:'45 min', desc:'25 min drive to Aurlandsfjellet summit. Solar-powered rest area with benches facing endless mountain ridges and glaciers. Incredible for sunset photography', cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet/flotane/'},
-      {icon:'fa-mountain', text:'Sluppen Rest Area', price:'Free', time:'20 min', desc:'18 min drive up Aurlandsfjellet. Perched above Erdalselvi river gorge with views down into the lush valley. Peaceful and nearly empty', cite:'https://www.nasjonaleturistveger.no/en/routes/aurlandsfjellet/sluppen/'},
-      {icon:'fa-hot-tub', text:'Fjord Sauna Flåm', price:'~$30-50', time:'1-2 hr', desc:'Floating sauna with hatch opening directly into Aurlandsfjord for polar plunges. Jump from the roof. Book private for up to 12', cite:'https://www.norwaysbest.com/en/flam/things-to-do/fjordsauna-flam'},
+      {icon:'fa-beer', text:'Ægir BrewPub farewell dinner', price:'$25-40', time:'1.5-2 hr', desc:'Sample the full Ægir beer flight next to the massive slate fireplace. Order the slow-braised lamb shank or wood-fired pub pairings', cite:'https://www.aegirbryggeri.no'},
+      {icon:'fa-hot-tub', text:'Fjord Sauna Flåm', price:'~$30-50', time:'1-2 hr', desc:'Floating sauna with a hatch opening directly into Aurlandsfjord for polar plunges. Jump from the roof. Book private for up to 12', cite:'https://www.norwaysbest.com/en/flam/things-to-do/fjordsauna-flam'},
       {icon:'fa-water', text:'Undredal self-guided kayak', price:'~$40-60', time:'2-3 hr', desc:'Rent from Undredal Camping. Far quieter than Flåm harbor. Glassy morning water, double kayaks available'},
-      {icon:'fa-utensils', text:'Kest Tasting Room (Aurland)', price:'~$80-120', time:'2 hr', desc:'10 min drive. 8-course tasting menu with exclusively local fjord and mountain ingredients. Finest dining in the region. Reserve ahead', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
-      {icon:'fa-cheese', text:'Undredal Stolsysteri', price:'$5-15', time:'30 min', desc:'15 min drive. Award-winning goat cheese. Aged white cheese won Best Cheese at Nordic Cheese Mongers 2023, Gold at World Cheese Awards 2018', cite:'https://www.norwaysbest.com/en/flam/things-to-do/the-undredal-experience'},
-      {icon:'fa-wine-glass', text:'Kest cider & cheese tasting', price:'~$25', time:'1 hr', desc:'10 min drive to Aurland. One-hour tasting of local Vestland ciders paired with Undredal cheeses. 5pm daily', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
-      {icon:'fa-mug-hot', text:'Cafe Rallaren (Myrdal Station)', price:'$5-8', time:'30 min', desc:'At the top of the Flåm Railway. Simple cafe serving coffee and fresh waffles with brunost. Sit by the window watching trains come and go from this tiny mountain station'},
-      {icon:'fa-tree', text:'Undredal pier benches', price:'Free', time:'30 min', desc:'15 min drive. Benches right on the water\'s edge facing the fjord. Buy goat cheese and bread from Undredalsbui, bring a thermos. The quiet is profound'},
-      {icon:'fa-tree', text:'Flotane high mountain benches', price:'Free', time:'30 min', desc:'25 min drive to 1,308m. Bring a thermos and enjoy the silence of the high mountain desert. Road opens late May to early June'}
+      {icon:'fa-utensils', text:'Kest Tasting Room (Aurland)', price:'1,595 NOK (~$150)', time:'2 hr', desc:'Located in Aurland village. Premium 8-course tasting menu utilizing hyper-local fjord and mountain elements. Reserve far ahead', cite:'https://www.norwaysbest.com/en/flam/food-and-drinks/kest'},
+      {icon:'fa-mug-hot', text:'Cafe Rallaren (Myrdal Station)', price:'$5-8', time:'30 min', desc:'At the alpine terminal of the Flåm Railway. Traditional café serving coffee and fresh hot waffles with local brunost and jam cream toppings'},
+      {icon:'fa-tree', text:'Undredal pier benches', price:'Free', time:'30 min', desc:'Benches right on the water\'s edge facing the fjord. Grab a slice of local goat cheese, sit back, and soak in the profound silence of the inner fjord'}
     ],
-    groupNotes: 'Morning: Nærøyfjord UNESCO cruise is the highlight. Afternoon options: Viking Valley in Gudvangen, Aurlandsdalen hike, or Kaupanger disc golf. The Snow Road (Aurlandsfjellet) is a spectacular drive with Vedahaugane, Sluppen, and Flotane rest stops. Fjord Sauna for polar plunges. Kest in Aurland offers upscale 8-course dining.',
+    groupNotes: 'Morning centerpiece: Nærøyfjord UNESCO cruise or the point-to-point hikers\' shuttle to Østerbø for the big Aurlandsdalen trek. Afternoon options: Viking Valley in Gudvangen, or the ferry voyage over to the world-class 22-hole Kaupanger Disc Golf course. Note: The Snow Road remains closed until June 1st. Farewell dinner at Arven Restaurant or Ægir BrewPub.',
     lodging: [
       {tier:'Budget', name:'Flåm Marina Apartments', price:'$260/night', pros:'Self-catering with kitchenette, waterfront Aurlandsfjord location, free parking, separate bedrooms good for families', cons:'No breakfast or restaurant, 15-min walk from Flåm center, basic furnishings', cite:'https://www.flamapartments.no'},
       {tier:'Mid', name:'Flåmsbrygga Hotel', price:'$235/night', pros:'Central harbor location, modern rooms with fjord views, on-site restaurant, free breakfast included', cons:'No pool or spa, limited parking, busy during cruise ship arrivals', cite:'https://www.flamsbrygga.no'},
@@ -658,56 +661,48 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Pack from Kiwi in Flåm - bread, cheese, cured meats - and enjoy a picnic at Undredal. Buy Undredal Geitost (famous local goat cheese) from the dairy shop',
-      dinner: 'Fretheim Hotel\'s Arven Restaurant - upscale local ingredients (lamb, fjord seafood, Sognefjord-inspired cloudberry dessert). Or Ægir brewpub. After dinner, walk down to the Flåm marina for stargazing'
+      lunch: 'Pack a fjord-side car picnic from the local Kiwi market, or stop by the Undredalsbui shop for fresh cheese, cured meats, and local flatbreads',
+      dinner: 'Fretheim Hotel\'s Arven Restaurant - elegant, upscale local ingredients (lamb, fresh trout, and cloudberry desserts) reflecting traditional Sognefjord flavors. Follow with a nightcap craft beer at Ægir.'
     },
     lat: 60.8622, lng: 7.1141,
     poi: [
-      {name:'Undredal', lat:60.9500, lng:7.1000, note:'Charming fjord village, famous for goat cheese'},
-      {name:'Viking Valley Njardarheimr', lat:60.8833, lng:6.8333, note:'Living Viking village in Gudvangen'},
-      {name:'Aurlandsdalen Trail', lat:60.9000, lng:7.1833, note:'One of Norway\'s most beautiful valleys'},
-      {name:'Kaupanger Disc Golf', lat:61.1833, lng:7.2333, note:'18-hole course by Sognefjord'},
-      {name:'Aurlandsfjellet Snow Road', lat:60.9333, lng:7.3833, note:'47 km mountain pass scenic drive'},
-      {name:'Vedahaugane', lat:60.9200, lng:7.2500, note:'Scenic route rest stop with cave art'},
-      {name:'Flotane', lat:60.9500, lng:7.3500, note:'Summit rest stop at 1,308m'},
-      {name:'Sluppen', lat:60.9100, lng:7.2000, note:'Gorge viewpoint rest area'},
-      {name:'Fjord Sauna', lat:60.8620, lng:7.1100, note:'Floating sauna in Aurlandsfjord'},
-      {name:'Kest Tasting Room', lat:60.9060, lng:7.1900, note:'8-course tasting menu in Aurland'},
-      {name:'Cafe Rallaren', lat:60.7333, lng:7.1167, note:'Coffee and waffles at Myrdal station'}
+      {name:'Undredal Stave Church', lat:60.8785, lng:7.1021, note:'Norway\'s smallest stave church'},
+      {name:'Undredalsbui Local Shop & Dairy', lat:60.8791, lng:7.1024, note:'Artisan goat cheese sales and waterfront benches'},
+      {name:'Viking Valley Njardarheimr', lat:60.8790, lng:6.8385, note:'Living historical village in Gudvangen'},
+      {name:'Vassbygdi Trailhead (Aurlandsdalen)', lat:60.8752, lng:7.2858, note:'End point and parking area for the 20km valley hike'},
+      {name:'Fodnes Ferry Terminal', lat:61.1477, lng:7.3822, note:'Ferry port to cross the Sognefjord towards Kaupanger'},
+      {name:'Kaupanger Frisbeepark', lat:61.1986, lng:7.2112, note:'Elite 22-hole technical wooded disc golf course (#10 in Norway)'},
+      {name:'Fjord Sauna', lat:60.8631, lng:7.1171, note:'Floating hot-box docks in Flåm harbor'},
+      {name:'Kest Tasting Room', lat:60.9032, lng:7.1851, note:'Inside Hotel Aurlandsfjord in Aurland village'},
+      {name:'Cafe Rallaren', lat:60.7358, lng:7.1224, note:'Alpine café at Myrdal station plateau'},
+      {name:'Arven Restaurant (Fretheim Hotel)', lat:60.8635, lng:7.1162, note:'Upscale local fjord cuisine dining room'},
+      {name:'Flåm Harbor Terminal', lat:60.8622, lng:7.1141, note:'Base terminal for electric Nærøyfjord catamarans'}
     ]
   },
   {
     day: 5, date: new Date(2027, 5, 1),
     base: 'Loen',
-    drive: 'Flåm → Loen',
-    driveTime: '3 hr 24 min (199 km)',
-    directions: [
-      'Take Nedre Fretheim to Brekkebrua/E16 (2 min, 1 km)',
-      'Follow E16 to Mannheller-Fodnes/Rv5 in Lærdal (43 min, 49.7 km)',
-      'Take the Mannheller-Fodnes/Rv5 ferry across the fjord (27 min, 3.1 km)',
-      'Follow Rv5 and E39 to Fv60 in Byrkjelo (1 hr 25 min, 98.7 km)',
-      'Drive on Fv60 to Loen (46 min, 46.4 km)'
-    ],
+    drive: 'Flåm → Loen via Fjærland (Rv5)',
+    driveTime: '3 hr 45 min baseline (202 km) - excludes ferry waits & detours',
     stops: [
-      {name:'Mannheller-Fodnes Ferry', lat:61.1833, lng:7.2833, price:'~$13 (130 NOK) car+driver', time:'15 min crossing', desc:'RV5 ferry across Sognefjord. Runs 24/7, frequent departures. Free with AutoPASS', cite:'https://www.vegvesen.no/en/ferry'},
-      {name:'Urnes Stave Church (UNESCO)', lat:61.3000, lng:7.0333, price:'$12 (120 NOK)', time:'45-60 min', desc:'Oldest stave church in Norway (1130). UNESCO World Heritage site. Short ferry from Solvorn, then 2 km walk uphill', cite:'https://www.stavechurch.com/en/urnes/'},
-      {name:'Bøyabreen Glacier', lat:61.4917, lng:6.7650, price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking to viewpoint. Parking on Rv5', cite:'https://www.visitnorway.com'},
-      {name:'Norwegian Glacier Museum', lat:61.4067, lng:6.7550, price:'$19 (180 NOK)', time:'1-1.5 hr', desc:'Interactive exhibits, panorama film, ice experiments, climate change exhibit. In Fjærland', cite:'https://www.norskbre.museum.no'},
-      {name:'Feigumfossen Waterfall', lat:61.3500, lng:7.0000, price:'Free', time:'15-20 min', desc:'218m waterfall - one of Norway\'s tallest. Visible from Rv5, use the marked pull-off', cite:'https://www.visitnorway.com'},
-      {name:'Lovatnet Lake viewpoint', lat:61.8667, lng:6.8667, price:'Free', time:'15-20 min', desc:'Turquoise glacier lake just south of Loen. The color is surreal. Pull over for photos', cite:'https://www.visitnorway.com'},
-      {name:'Loen Skylift', lat:61.8767, lng:6.8592, price:'$70 (695 NOK) round trip', time:'1-2 hr', desc:'Cable car 1,011m to Mt. Hoven top. Restaurant, panoramic fjord views. Do it at sunset', cite:'https://www.loenskylift.com'}
+      {name:'Fodnes-Mannheller Ferry', lat:61.1477, lng:7.3822, price:'~$13 (130 NOK) car+driver', time:'15 min crossing', desc:'Rv5 ferry connecting south and north sides of the Sognefjord. Runs continuously 24/7. Automatically billed via AutoPASS split tolling', cite:'https://www.skyss.no/en'},
+      {name:'Urnes Stave Church (UNESCO) Detour', lat:61.2982, lng:7.2431, price:'~120 NOK ($12) entry', time:'1.5-2 hr detour', desc:'Norway\'s oldest stave church (1130). Requires turning off Rv5 at Sogndal to Solvorn, catching the small passenger ferry to Urnes, and walking 2 km uphill', cite:'https://www.stavechurch.com/en/urnes/'},
+      {name:'Feigumfossen Waterfall (Detour View)', lat:61.3932, lng:7.4338, price:'Free', time:'15-20 min', desc:'Spectacular 218m waterfall. Note: Only accessible via the Urnes/Solvorn side along the narrow Fv5516 shore road; completely hidden from the main Rv5 highway'},
+      {name:'Norwegian Glacier Museum', lat:61.4234, lng:6.7612, price:'180 NOK (~$19)', time:'1-1.5 hr', desc:'Brilliant interactive museum in Fjærland designed by Sverre Fehn. Features an immersive climate chamber and a stunning panoramic movie on the ice cap', cite:'https://www.norskbre.museum.no'},
+      {name:'Bøyabreen Glacier', lat:61.4835, lng:6.7422, price:'Free', time:'20-30 min', desc:'Breathtakingly close glacier arm of the Jostedalsbreen ice cap cascading down a cliff face. Easy 5-minute flat paved walk from the main Rv5 parking lot loop'},
+      {name:'Lodalen Valley (Lovatnet Viewpoint)', lat:61.8385, lng:6.9240, price:'Free', time:'30-45 min', desc:'Must-drive side valley road (Fv723) just south of Loen center. Reveals the surreal, intense neon-turquoise color of Lake Lovatnet framed by sheer cliff walls'},
+      {name:'Loen Skylift', lat:61.8694, lng:6.8552, price:'960 NOK (~$92) adult round trip', time:'1-2 hr', desc:'One of the world\'s steepest cable cars, launching from sea level to the 1,011m summit of Mt. Hoven in 5 minutes. Panoramic decks look over the inner Nordfjord', cite:'https://en.loenskylift.no/'}
     ],
     activities: [
-      {icon:'fa-ship', text:'Mannheller-Fodnes ferry crossing', price:'~$13 car+driver', time:'15 min', desc:'Ferry across the Sognefjord - stay in the car. Part of the regular road network', cite:'https://www.vegvesen.no/en/ferry'},
-      {icon:'fa-church', text:'Urnes Stave Church (UNESCO) detour', price:'$12', time:'45-60 min', desc:'Norway\'s oldest stave church (1130). Take the Solvorn ferry + 2 km walk. Worth the detour for history buffs', cite:'https://www.stavechurch.com/en/urnes/'},
-      {icon:'fa-mountain', text:'Bøyabreen Glacier viewpoint', price:'Free', time:'20-30 min', desc:'Glacier arm of Jostedalsbreen. Short paved walk from parking. Touch the ice - an easy intro to glaciers', cite:'https://www.visitnorway.com'},
-      {icon:'fa-flask', text:'Norwegian Glacier Museum', price:'$19', time:'1-1.5 hr', desc:'Interactive exhibits, ice experiments, climate change, panorama film. Fascinating for teens and adults', cite:'https://www.norskbre.museum.no'},
-      {icon:'fa-tint', text:'Feigumfossen Waterfall', price:'Free', time:'15-20 min', desc:'218m free-falling waterfall visible from the road. Quick pull-off on Rv5', cite:'https://www.visitnorway.com'},
-      {icon:'fa-mountain', text:'Jostedalsbreen viewpoint (Nigardsbreen)', price:'Free', time:'30-45 min', desc:'Short detour to the most accessible arm of Jostedalsbreen. Glacier lake, blue ice, summer ski center nearby', cite:'https://www.visitnorway.com'},
-      {icon:'fa-eye', text:'Lovatnet Lake turquoise viewpoint', price:'Free', time:'15-20 min', desc:'Stunning turquoise glacier lake. The color is from glacial silt. Pull over on Fv60 for photos'},
-      {icon:'fa-cloud', text:'Loen Skylift sunset ride', price:'$70 (695 NOK) round trip', time:'1-2 hr', desc:'5-min cable car to 1,011m. Mt. Hoven summit restaurant with 360° fjord views. Sunset at ~10:30pm is magic', cite:'https://www.loenskylift.com'}
+      {icon:'fa-ship', text:'Fodnes-Mannheller ferry crossing', price:'~130 NOK', time:'15 min', desc:'Roll-on car ferry across the inner Sognefjord. Grab a traditional Svele (Norwegian pancake with sweet buttercream) in the lounge if time permits'},
+      {icon:'fa-church', text:'Urnes Stave Church UNESCO detour', price:'$12', time:'1.5 hr', desc:'Fascinating historic detour for spectacular 12th-century wood carvings. Best for architecture fans willing to add ferry and walking steps to the day'},
+      {icon:'fa-flask', text:'Norwegian Glacier Museum visit', price:'$19', time:'1-1.5 hr', desc:'Excellent interactive stop inside Fjærland valley. Great break to stretch your legs and play with real glacial ice experiments'},
+      {icon:'fa-mountain', text:'Bøyabreen Glacier close-up', price:'Free', time:'20-30 min', desc:'Incredible roadside access to a roaring glacier snout hovering above a glassy meltwater lake. Highly scannable and low effort'},
+      {icon:'fa-car', text:'Scenic ridge drive over Utvikfjellet', price:'Free', time:'30 min', desc:'The winding climb on Fv60 that delivers sweeping, dramatic aerial views of the entire Nordfjord system as you descend toward Olden'},
+      {icon:'fa-eye', text:'Lodalen Valley & Lake Lovatnet drive', price:'Free', time:'30-45 min', desc:'A short detour down Fv723 into the inner valley floor to capture photographs of the vivid emerald waters. Crucial photo run before dinner'},
+      {icon:'fa-cloud', text:'Loen Skylift evening ascent', price:'960 NOK', time:'1-2 hr', desc:'Ride the cable car up to Mt. Hoven summit for panoramic views. Open late until 22:00 in June, making it the perfect spot for late twilight vistas'}
     ],
-    groupNotes: 'Scenic drive with ferry crossing, glacier viewpoint, and Glacier Museum en route. Urnes Stave Church (UNESCO) is a worthwhile detour if you have time. Loen Skylift at sunset is essential. Two hotel options: Hotel Alexandra or Hotel Loenfjord.',
+    groupNotes: 'Drive north from Flåm through Lærdalstunnelen to catch the Fodnes ferry across Sognefjord. Main route follows Rv5 through Fjærland (Glacier Museum + Bøyabreen are must-stops right off the highway). Skip the deep Nigardsbreen spur to save energy. Check into Loen lodging, take a quick 10-min drive into Lodalen to see Lake Lovatnet, then take Loen Skylift up Mt. Hoven for late twilight views and dinner.',
     lodging: [
       {tier:'Mid', name:'Hotel Loenfjord', price:'$257/night', pros:'Excellent fjord views from most rooms, outdoor seating area, free parking, more affordable than Alexandra, quiet location', cons:'3-star, no spa facilities, restaurant is basic, older building', cite:'https://www.loenfjord.no'},
       {tier:'Premium', name:'Hotel Alexandra', price:'$380/night', pros:'Legendary breakfast buffet (rated best in Norway), full spa with indoor/outdoor pools, 4-star service, grand fjord-view rooms, multiple restaurants and bars', cons:'Very expensive, large hotel with many guests, some feel it lacks coziness', cite:'https://www.alexandra.no'}
@@ -716,13 +711,21 @@ const data = [
     meals: {
       breakfast: 'Included hotel buffet',
       lunch: 'Glacier Museum cafe in Fjærland - warm fish soup, homemade cakes, waffles with brown cheese. Or Bøyabreen kiosk for pølse i lompe (hot dog)',
-      dinner: 'Hotel Alexandra\'s legendary dinner buffet (seafood-focused spread with fjord views) or Låge Restaurant at Loen Skylift top for 360° mountain views - order local lamb or Nordfjord fish soup. Relax in Hotel Alexandra\'s spa or outdoor hot tub overlooking the fjord'
+      dinner: 'Hotel Alexandra\'s legendary dinner buffet (seafood-focused spread with fjord views) or Hoven Restaurant at Loen Skylift top for 360° mountain views - order local lamb or Nordfjord fish soup. Relax in Hotel Alexandra\'s spa or outdoor hot tub overlooking the fjord'
     },
     lat: 61.8786, lng: 6.8700,
     poi: [
-      {name:'Bøyabreen', lat:61.4917, lng:6.7650, note:'Glacier arm accessible from road'},
-      {name:'Glacier Museum', lat:61.4067, lng:6.7550, note:'Norsk Bremuseum in Fjærland'},
-      {name:'Loen Skylift', lat:61.8767, lng:6.8592, note:'Cable car base station'}
+      {name:'Flåm Departure Terminal', lat:60.8622, lng:7.1141, note:'Starting point of the day\'s journey north'},
+      {name:'Fodnes Ferjekai (South Pier)', lat:61.1477, lng:7.3822, note:'Sognefjord ferry crossing embarkation point'},
+      {name:'Mannheller Ferjekai (North Pier)', lat:61.1601, lng:7.3458, note:'Sognefjord ferry arrival point onto Rv5'},
+      {name:'Solvorn Quay (Urnes Ferry Link)', lat:61.3006, lng:7.2435, note:'Departure dock for the tiny Urnes passenger ferry detour'},
+      {name:'Urnes Stave Church', lat:61.2982, lng:7.2431, note:'UNESCO oldest stave church site'},
+      {name:'Feigumfossen', lat:61.3932, lng:7.4338, note:'218m waterfall visible only from the Urnes Romantic Road line'},
+      {name:'Norwegian Glacier Museum', lat:61.4234, lng:6.7612, note:'Norsk Bremuseum interactive facility in Fjærland'},
+      {name:'Bøyabreen Glacier Overlook', lat:61.4835, lng:6.7422, note:'Jostedalsbreen ice arm visible from Rv5 loop'},
+      {name:'Lake Lovatnet Overlook (Lodalen)', lat:61.8385, lng:6.9240, note:'Vivid emerald glacier lake viewpoint on Fv723'},
+      {name:'Loen Skylift Base Station', lat:61.8694, lng:6.8552, note:'Cable car valley terminal to Mt. Hoven summit'},
+      {name:'Loen Base Center (Alexandra/Loenfjord Hotels)', lat:61.8712, lng:6.8568, note:'Final destination and lodging location'}
     ]
   },
   {
@@ -732,35 +735,26 @@ const data = [
     driveTime: null,
     stops: [],
     activities: [
-      {icon:'fa-mountain', text:'Briksdal Glacier hike (morning)', price:'$31 (300 NOK) troll car rtn', time:'2-2.5 hr', desc:'Troll car ride 900m uphill, then 1.5 km walk to the glacier arm. Touch the blue ice of Jostedalsbreen. Kiosk at the glacier for snacks', cite:'https://www.visitnorway.com'},
-      {icon:'fa-mountain', text:'Via Ferrata Loen (thrilling)', price:'~$165 (1,760 NOK)', time:'5-7 hr', desc:'Guided climbing on Mt. Hoven including Europe\'s longest via ferrata bridge (120m). Min age 12, min weight 40 kg. Extreme routes available', cite:'https://www.loenskylift.com/en/via-ferrata'},
-      {icon:'fa-hiking', text:'Kjenndalen Glacier walk (quiet alternative)', price:'Free', time:'1.5-2 hr', desc:'Less-crowded than Briksdal. Short walk through a dramatic valley to the glacier face. Almost no tourists', cite:'https://www.visitnorway.com'},
-      {icon:'fa-water', text:'Discover Olden fjord kayak with fire lunch', price:'~$100 (970 NOK)', time:'3 hr', desc:'Guided stillwater kayak on the Nordfjord. Small groups, calm waters, and a fire-cooked lunch on the beach. Ages 6+', cite:'https://www.discoverolden.no'},
-      {icon:'fa-cloud', text:'Loen Skylift summit & sunset', price:'$70 (695 NOK) round trip', time:'1-2 hr', desc:'5-min cable car to 1,011m. Mt. Hoven top has a restaurant with panoramic fjord + glacier views. Sunset around 10:30pm', cite:'https://www.loenskylift.com'},
-      {icon:'fa-car', text:'Oldedalen Valley scenic drive', price:'Free', time:'45 min', desc:'Dead-end road to the end of the valley with glacier views at every turn. The photo of Briksdal from the valley is iconic', cite:'https://www.visitnorway.com'},
-      {icon:'fa-hiking', text:'Bødalen Via Ferrata (beginner option)', price:'$85 (850 NOK)', time:'2-3 hr', desc:'Shorter and easier via ferrata in a side valley. Beautiful river and mountain scenery. Ages 10+', cite:'https://www.loenskylift.com'},
-      {icon:'fa-water', text:'Lake Lovatnet kayaking', price:'$95 (920 NOK) guided tour', time:'2 hr', desc:'Stillwater kayaking on a stunning turquoise glacial lake. Mountains reflected in the water. Beginners welcome', cite:'https://www.visitnorway.com'},
-      {icon:'fa-campground', text:'Hotel Alexandra spa & pools (evening)', price:'Included for guests', time:'1-2 hr', desc:'Legendary breakfast buffet and full spa with indoor/outdoor pools, hot tub overlooking the fjord. Perfect evening relaxation', cite:'https://www.alexandra.no'},
-      {icon:'fa-beer', text:'Stryn Vertshus local dinner', price:'$25-40', time:'1.5-2 hr', desc:'15-min drive from Loen. Cozy traditional Norwegian restaurant in Stryn. Try the local game dishes', cite:'https://www.strynvertshus.no'},
-      {icon:'fa-road', text:'Gamle Strynfjellsveien (Old Stryn Mountain Road)', price:'Free', time:'2-3 hr', desc:'20 min drive to start. 27 km National Tourist Road with stone-walled hairpin bends, turquoise glacial lakes, Videfossen waterfall. Open summer only. Feels like traveling back in time', cite:'https://www.nasjonaleturistveger.no/en/routes/gamle-strynefjellsvegen/'},
-      {icon:'fa-hiking', text:'Segestad Farm hike', price:'Free', time:'2-3 hr', desc:'15 min drive to trailhead near Hjelle + 1-1.5 hr uphill hike to abandoned mountain farm. Postcard view over Hjelle and Oppstryn Lake. Rarely crowded', cite:'https://www.visitnorway.com/listings/segestad-farm/211735/'},
-      {icon:'fa-umbrella-beach', text:'Vetvika Bay (Bremanger)', price:'Free', time:'2-3 hr', desc:'40 min drive. White sand beach at the foot of steep cliffs. Turquoise water, often completely empty on weekday mornings', cite:'https://www.fjordnorway.com/en/attractions?region=nordfjord'},
-      {icon:'fa-hiking', text:'Bødalsbreen Glacier Arm hike', price:'Free', time:'2-3 hr', desc:'10 min drive to Bødalseter farm + 1 hr hike to glacier arm. Feels like a Tolkien landscape. Far fewer crowds than Briksdal', cite:'https://www.nordfjord.no/en/vandring'},
-      {icon:'fa-skiing', text:'Stryn Sommerski (glacier skiing)', price:'~$50-70', time:'3-4 hr', desc:'25 min drive. Ski on Tystigbreen Glacier, often in a t-shirt. Open late May-July. Rental gear available. Unique midnight sun skiing experience', cite:'https://strynsommerski.com/'},
-      {icon:'fa-helmet-safety', text:'Hornelen Via Ferrata (Bremanger)', price:'~$100-150', time:'5-6 hr', desc:'40 min drive. Europe\'s highest sea cliff at 860m with via ferrata route. Less crowded than Loen via ferrata, more coastal views', cite:'https://www.nordfjord.no/en/ferrata'},
-      {icon:'fa-water', text:'Hoddevik Beach surfing (Stadlandet)', price:'~$60-80 rental', time:'3-4 hr', desc:'45 min drive. World-class surfing beach with dramatic coastal scenery. Popular with local surfers, very few international tourists', cite:'https://www.fjordnorway.com/en/attractions/stadlandet'},
-      {icon:'fa-utensils', text:'Melkevoll Bretun (Oldedalen)', price:'$20-35', time:'1-1.5 hr', desc:'15 min drive. Restaurant built into a boulder field from a 6,000-year-old avalanche. Glacial views, local food. Unique setting', cite:'https://www.nordfjord.no/en/lokalmat'},
-      {icon:'fa-cheese', text:'Kandal Ysteri (cheese dairy)', price:'$5-15', time:'30-45 min', desc:'30 min drive near Sandane. Small farm dairy making artisanal brunost (brown cheese) and other local cheeses', cite:'https://www.nordfjord.no/en/lokalmat'},
-      {icon:'fa-utensils', text:'Stryn Kaffebar & Vertshus', price:'$15-25', time:'1 hr', desc:'10 min drive. Historic inn from 1873 in Stryn town center. Cozy atmosphere, traditional Norwegian home cooking. Locals\' favorite spot'},
-      {icon:'fa-utensils', text:'Isehaug Kafeteria', price:'$10-15', time:'45 min', desc:'10 min drive in Stryn. Old-school cafeteria. Meatcakes with cabbage stew, fish gratin, waffles with cream cake. Cheap, authentic, filling'},
-      {icon:'fa-beer', text:'Restaurant 34 (Stryn)', price:'$8-12/pint', time:'1-2 hr', desc:'10 min drive. Bar/bistro in Stryn with darts and shuffleboard. Lively atmosphere, international menu, good beer selection'},
-      {icon:'fa-ship', text:'Knutholmen (Kalvåg)', price:'$25-40', time:'2 hr', desc:'40 min drive. Fishing village with restaurant, bar, pub right on the water. Historic setting. Local beer on tap', cite:'https://www.fjordnorway.com/en/eat-and-sleep/knutholmen'},
-      {icon:'fa-mug-hot', text:'Gamlebutikken på Hjelle', price:'$5-8', time:'30-45 min', desc:'15 min drive. Historic shop turned cafe right on Oppstryn Lake. Sit outside with coffee overlooking the lake and mountains. One of the most picturesque coffee stops in Nordfjord', cite:'https://www.nordfjord.no/en/kafe'},
-      {icon:'fa-mug-hot', text:'Stryn Kaffebar coffee', price:'$5-8', time:'30 min', desc:'10 min drive. Local institution for kaffe og bolle in an 1873 inn. Ground floor of historic building'},
-      {icon:'fa-tree', text:'Hjelle / Oppstryn Lake shore', price:'Free', time:'30-45 min', desc:'15 min drive. Benches and grassy spots facing the turquoise lake with Ramnefjell backdrop. Extremely peaceful, especially early morning or evening'},
-      {icon:'fa-tree', text:'Bødalseter (Lodalen)', price:'Free', time:'1 hr', desc:'10 min drive + short walk. Mountain farm at the end of Lodalen valley. Sit by the river with views of Ramnefjell and the glacier. Bring a thermos', cite:'https://www.nordfjord.no/en/vandring'}
+      {icon:'fa-mountain', text:'Briksdal Glacier Viewpoint (morning)', price:'$31 (300 NOK) troll car rtn', time:'2-2.5 hr', desc:'Ride open-air troll cars past roaring waterfalls, followed by an easy 1.5 km flat walk to the glacier lake. Note: Glacial retreat means you look across the lake; safety barriers strictly prevent touching the ice due to rockfall hazards', cite:'https://www.visitnorway.com'},
+      {icon:'fa-mountain', text:'Via Ferrata Loen (thrilling)', price:'~1,760 NOK ($165)', time:'5-7 hr', desc:'Guided vertical climb directly up Mount Hoven, crossing the jaw-dropping 120m Gjølmunnebrua suspension bridge hanging 750m in the air. Returns via the Skylift', cite:'https://www.loenskylift.com/en/via-ferrata'},
+      {icon:'fa-hiking', text:'Kjenndalen Glacier walk (quiet alternative)', price:'Free', time:'1.5-2 hr', desc:'Located at the absolute end of the Lodalen Valley road. A flat, quick 15-minute walk brings you close to the glacier snout. Drastically less crowded than Briksdal', cite:'https://www.visitnorway.com'},
+      {icon:'fa-water', text:'Discover Olden fjord kayak with fire lunch', price:'~970 NOK ($100)', time:'3 hr', desc:'Guided sit-on-top sea kayaking on the glassy inner branches of the Nordfjord. Includes a traditional open-fire wilderness lunch cooked on the shoreline', cite:'https://www.discoverolden.no'},
+      {icon:'fa-cloud', text:'Loen Skylift summit views', price:'960 NOK (~$92) round trip', time:'1-2 hr', desc:'5-minute modern cable car ride to the 1,011m observation decks of Mt. Hoven. Features dramatic viewing platforms over the fjord system', cite:'https://www.loenskylift.com'},
+      {icon:'fa-car', text:'Oldedalen Valley scenic drive', price:'Free', time:'45 min', desc:'Spectacular, narrow valley drive along the turquoise Oldevatnet lake, passing cascading waterfalls and farmsteads framed by overhead ice caps'},
+      {icon:'fa-hiking', text:'Bødalsbreen Glacier Arm hike', price:'Free', time:'2-3 hr', desc:'Drive a narrow dirt toll road to the historic Bødalseter mountain farm, followed by a gorgeous, uncrowded 1-hour hike into a wilderness glacial valley', cite:'https://www.nordfjord.no/en/vandring'},
+      {icon:'fa-campground', text:'Hotel Alexandra spa & pools (evening)', price:'Included for guests / day pass options available', time:'1-2 hr', desc:'Unwind after a long mountain trek in the premium indoor/outdoor heated pools and hot tubs overlooking the fjord waters', cite:'https://www.alexandra.no'},
+      {icon:'fa-hiking', text:'Segestad Farm hike', price:'Free', time:'2-3 hr', desc:'Drive to Hjelle on Oppstryn Lake, then complete a steep 1-hour switchback hike up to a preserved, abandoned historical mountain farm hanging over the lake', cite:'https://www.visitnorway.com/listings/segestad-farm/211735/'},
+      {icon:'fa-utensils', text:'Melkevoll Bretun (Oldedalen)', price:'$20-35', time:'1-1.5 hr', desc:'Incredible restaurant and cafe built directly into an ancient boulder field at the Briksdal trailhead. Serves local venison burgers and traditional sour cream waffles', cite:'https://www.melkevoll.no'},
+      {icon:'fa-utensils', text:'Stryn Kaffebar & Vertshus', price:'$15-25', time:'1 hr', desc:'Cozy, atmospheric historic inn operating since 1873 in Stryn town center. Outstanding traditional Norwegian home cooking like computational meatcakes and local trout'},
+      {icon:'fa-utensils', text:'Isehaug Kafeteria', price:'$10-15', time:'45 min', desc:'No-frills, highly authentic old-school Norwegian cafeteria in Stryn. The spot for traditional fish gratin or local cabbage stews at excellent prices'},
+      {icon:'fa-mug-hot', text:'Gamlebutikken på Hjelle', price:'$5-8', time:'30-45 min', desc:'An absolute must-visit 1882 general store turned lakeside cafe at the edge of Oppstryn Lake. Exceptional local cakes and coffee with postcards views', cite:'https://www.hjellehotel.no/en/gamlebutikken'},
+      {icon:'fa-tree', text:'Bødalseter Alpine Meadows', price:'Free', time:'1 hr', desc:'Pack a thermos and head to this high valley mountain pasture surrounded by roaring rivers and towering rock amphitheaters'},
+      {icon:'fa-road', text:'Gamle Strynfjellsveien (Snow Road Warning)', price:'Free', time:'2-3 hr', desc:'NOTE: This historic 27 km gravel National Scenic Pass typically remains CLOSED by snow walls until mid-June. Access to the pass and the Stryn Sommerski center will likely be blocked on June 2nd'},
+      {icon:'fa-umbrella-beach', text:'Vetvika Bay Beach (Outer Coast Excursion)', price:'Free', time:'Full Day Epic', desc:'WARNING: Not a 40-min drive. Requires a 2.5-hour drive each way from Loen to Bremanger, followed by a strenuous, remote 4-hour mountain mountain trek to reach the sand'},
+      {icon:'fa-helmet-safety', text:'Hornelen Via Ferrata (Outer Coast Excursion)', price:'~1,400 NOK', time:'Full Day Epic', desc:'WARNING: Located 2.5 hours driving time west of Loen near Måløy. Climbs Europe\'s highest sea cliff (860m) directly out of the ocean waves'},
+      {icon:'fa-water', text:'Hoddevik Beach Surfing (Outer Coast Excursion)', price:'~$70 rental', time:'Full Day Epic', desc:'WARNING: Located nearly 3 hours drive west of Loen on the wild Stad peninsula. World-renowned cold-water surf break tucked inside giant headlands'}
     ],
-    groupNotes: 'Briksdal Glacier in the morning. Afternoon options: Via Ferrata Loen, Kjenndalen Glacier walk, or Olden fjord kayaking. For something different: Gamle Strynfjellsveien scenic drive, Stryn Sommerski glacier skiing, or Segestad Farm hike. Melkevoll Bretun offers unique boulder-field dining. Hotel Alexandra spa for evening relaxation.',
+    groupNotes: 'Morning: Head up Oldedalen Valley for the Briksdal Glacier Viewpoint or choose Lodalen for the remote Bødalsbreen wilderness trek. Lunch at Melkevoll Bretun or Stryn Kaffebar. Afternoon: Take the Loen Skylift or hike up to Segestad Farm over Oppstryn Lake. Avoid the outer coast beaches (Hoddevik/Vetvika) unless you want to spend 5-6 hours inside the car today. Gamle Strynefjellsvegen is likely closed for snow.',
     lodging: [
       {tier:'Mid', name:'Hotel Loenfjord', price:'$257/night', pros:'Excellent fjord views from most rooms, outdoor seating area, free parking, more affordable than Alexandra, quiet location', cons:'3-star, no spa facilities, restaurant is basic, older building', cite:'https://www.loenfjord.no'},
       {tier:'Premium', name:'Hotel Alexandra', price:'$380/night', pros:'Legendary breakfast buffet (rated best in Norway), full spa with indoor/outdoor pools, 4-star service, grand fjord-view rooms, multiple restaurants and bars', cons:'Very expensive, large hotel with many guests, some feel it lacks coziness', cite:'https://www.alexandra.no'}
@@ -768,54 +762,45 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Pack from Coop Mega in Stryn - bread, makrell i tomat (mackerel in tomato sauce), yogurt, fruit. Eat at a scenic spot along Lake Lovatnet or Briksdal parking area kiosk',
-      dinner: 'Hotel Alexandra Brasserie for pizza & burgers, Stryn Vertshus (15 min drive), or Restaurant Låge at Skylift top. Cap the evening with a sauna at Hotel Alexandra or a drink by the fireplace lounge'
+      lunch: 'Melkevoll Bretun boulder cafe at the foot of Briksdal, or grab a fresh sourdough sandwich from Stryn Kaffebar to eat along the shores of Oppstryn Lake',
+      dinner: 'Hoven Restaurant at the top of the Loen Skylift for high-altitude dining, or check out the old-school comfort foods at Isehaug Kafeteria in Stryn center.'
     },
     lat: 61.8786, lng: 6.8700,
     poi: [
-      {name:'Briksdal Glacier', lat:61.6753, lng:6.8583, note:'Glacier arm of Jostedalsbreen'},
-      {name:'Lake Lovatnet', lat:61.8800, lng:6.8700, note:'Kayaking on glacial lake'},
-      {name:'Kjenndalen Glacier', lat:61.8833, lng:7.1333, note:'Quiet glacier walk alternative'},
-      {name:'Olden Kayak Launch', lat:61.8333, lng:6.8000, note:'Stillwater kayak on Nordfjord'},
-      {name:'Stryn', lat:61.9167, lng:6.7333, note:'Cozy traditional Norwegian restaurant'},
-      {name:'Bødalen Via Ferrata', lat:61.8667, lng:6.9000, note:'Beginner via ferrata option'},
-      {name:'Gamle Strynfjellsveien', lat:61.9500, lng:7.0000, note:'Historic mountain road scenic route'},
-      {name:'Segestad Farm', lat:61.9000, lng:6.9500, note:'Abandoned mountain farm with views'},
-      {name:'Bødalsbreen', lat:61.8900, lng:7.0500, note:'Quiet glacier arm alternative'},
-      {name:'Stryn Sommerski', lat:61.9800, lng:7.1500, note:'Glacier skiing in summer'},
-      {name:'Melkevoll Bretun', lat:61.8500, lng:6.8500, note:'Restaurant in boulder field'},
-      {name:'Gamlebutikken Hjelle', lat:61.9000, lng:6.9000, note:'Historic cafe on Oppstryn Lake'},
-      {name:'Bødalseter', lat:61.8800, lng:7.1000, note:'Mountain farm at end of Lodalen'}
+      {name:'Briksdal Glacier Troll Car Station', lat:61.6634, lng:6.8213, note:'Base terminal for Briksdal glacier viewing access'},
+      {name:'Melkevoll Bretun Boulder Cafe', lat:61.6636, lng:6.8162, note:'Unique dining venue built into valley avalanche boulders'},
+      {name:'Kjenndalen Glacier Parking', lat:61.7651, lng:6.9930, note:'Quiet glacier snout trailhead at end of Lodalen'},
+      {name:'Bødalseter Mountain Farm Trailhead', lat:61.8175, lng:6.9632, note:'Starting point for uncrowded Bødalsbreen wilderness hike'},
+      {name:'Loen Skylift Base & Mt. Hoven', lat:61.8694, lng:6.8552, note:'Cable car terminal and via ferrata staging ground'},
+      {name:'Olden Kayak Launch Point', lat:61.8365, lng:6.8165, note:'Fjord sea kayaking base along the shoreline'},
+      {name:'Stryn Town Center Hub (Kaffebar / Isehaug)', lat:61.9042, lng:6.7215, note:'Main local shopping and traditional dining hub'},
+      {name:'Gamlebutikken på Hjelle Cafe', lat:61.9142, lng:6.9748, note:'Historic 1882 general store cafe on Oppstryn Lake'},
+      {name:'Segestad Farm Trailhead', lat:61.9161, lng:6.9635, note:'Uphill historical farm hike departure point near Hjelle'},
+      {name:'Hoddevik Surf Beach (Stad)', lat:62.1158, lng:5.1642, note:'Remote surfing bay (2.5-3 hour drive west from Loen)'},
+      {name:'Vetvika Bay Trailhead', lat:61.8322, lng:4.9458, note:'Remote wilderness beach hike point (2.5 hour drive west)'}
     ]
   },
   {
     day: 7, date: new Date(2027, 5, 3),
     base: 'Loen',
-    drive: 'Loen → Jotunheimen area',
-    driveTime: '~3 h',
+    drive: 'Loen → Lom → Sognefjellet Day Trip',
+    driveTime: '4 hr 30 min round-trip baseline (340 km) - route focuses on the high pass',
     stops: [
-      {name:'Sognefjellet Scenic Route (1434m pass)', lat:61.5667, lng:8.2833, price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe. Spectacular views over Jotunheimen, glaciers, turquoise lakes. The drive itself is the attraction', cite:'https://www.visitnorway.com'},
-      {name:'Lom Stave Church', lat:61.8378, lng:8.5683, price:'$12 (120 NOK)', time:'20-30 min', desc:'Built c.1158. One of largest stave churches. Rune inscriptions inside', cite:'https://www.lomstavechurch.no'},
-      {name:'Utladalen Valley hike', lat:61.3833, lng:7.9333, price:'Free', time:'2-4 hr', desc:'Marked trails near Øvre Årdal in Jotunheimen. Dramatic valley between Hurrungane peaks', cite:'https://www.visitnorway.com'},
-      {name:'Sjoa River rafting', lat:61.6833, lng:9.5333, price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'11 km on Sjoa River. Guide, wetsuit, gear included. Full day $155', cite:'https://www.sjoarafting.no'}
+      {name:'Lom Stave Church', lat:61.8378, lng:8.5683, price:'$12 (120 NOK)', time:'20-30 min', desc:'Built around 1158. One of the largest and most striking stave churches in Norway, featuring original dragon heads and structural rune inscriptions inside', cite:'https://www.visitnorway.com'},
+      {name:'Bakeriet i Lom', lat:61.8373, lng:8.5671, price:'$5-10', time:'30 min', desc:'World-famous artisanal bakery in Lom village center. Their wood-fired kanelboller (cinnamon buns) and crusty sourdough sandwiches are legendary local institutions', cite:'https://www.visitnorway.com'},
+      {name:'Medalen Diskgolfbane', lat:61.7682, lng:8.4246, price:'Free', time:'1.5-2 hr', desc:'A beautiful 18-hole, Par 63 mountain course situated just off the Rv55. Flat, scenic layout with technical fairways bordered by the rushing Bøvre river', cite:'https://udisc.com/courses/medalen-diskgolfbane-nYVD'},
+      {name:'Sognefjellet Scenic Route (Mefjellet Viewpoint)', lat:61.5642, lng:7.9967, price:'Free', time:'2-3 hr drive', desc:'The highest mountain pass road in Northern Europe (1,434m). The Rv55 cuts directly through towering glaciers, turquoise snowmelt lakes, and harsh, beautiful alpine terrain', cite:'https://www.nasjonaleturistveger.no/en/routes/sognefjellet/'},
+      {name:'Galdhøpiggen Viewpoint (Juvasshytta Detour)', lat:61.6745, lng:8.3712, price:'Free (Toll road)', time:'1 hr detour', desc:'Alternative side drive up Northern Europe\'s highest public road to 1,841m, offering dramatic close-up views of the glacier fields leading up to Norway\'s highest peak'}
     ],
     activities: [
-      {icon:'fa-road', text:'Sognefjellet Scenic Route (highest pass)', price:'Free', time:'2-3 hr', desc:'Highest mountain pass in northern Europe at 1,434m. Drive through Jotunheimen with glaciers, turquoise lakes, and lunar landscapes. Norway\'s most scenic drive', cite:'https://www.visitnorway.com'},
-      {icon:'fa-church', text:'Lom Stave Church & Fossheim Bakeri', price:'$12+food', time:'30-45 min', desc:'One of Norway\'s largest stave churches (c.1158). Next door: Fossheim Bakeri - famous world-class kanelboller', cite:'https://www.lomstavechurch.no'},
-      {icon:'fa-hiking', text:'Utladalen Valley hike', price:'Free', time:'2-4 hr', desc:'Marked trail into one of Norway\'s deepest valleys. Dramatic mountain scenery between Hurrungane peaks', cite:'https://www.visitnorway.com'},
-      {icon:'fa-water', text:'Sjoa River family rafting (half-day)', price:'$111 half-day', time:'3 hr', desc:'Class 2 rapids on the Sjoa River. Guide, wetsuit, and gear included. Ages 6+. One of Norway\'s best rafting rivers', cite:'https://www.sjoarafting.no'},
-      {icon:'fa-water', text:'Mad Goats rafting + river sauna', price:'$90 (895 NOK)', time:'2.5 hr', desc:'Family chill rafting on Lågen River Grade 2. Includes access to a floating river sauna. Unique combo!', cite:'https://www.madgoats.no'},
-      {icon:'fa-hiking', text:'Besseggen Ridge viewpoint', price:'Free', time:'Quick stop', desc:'Norway\'s most famous hike starts from Gjendesheim. Even just viewing the ridge from the lake is spectacular. Photo stop at Gjende lake'},
-      {icon:'fa-mountain', text:'Galdhøpiggen viewpoint (Norway\'s highest)', price:'Free', time:'30 min', desc:'2489m - Norway\'s highest peak. Even if you don\'t hike it, the Juvasshytta area has glacier views', cite:'https://www.visitnorway.com'},
-      {icon:'fa-bullseye', text:'Medalen Disc Golf (18 holes, Lom)', price:'Free', time:'1.5-2 hr', desc:'Flat, free 18-hole course right in Lom village. Quick round with mountain views. Bring your own discs', cite:'https://www.pdga.com/course/medalen-frisbeegolf'},
-      {icon:'fa-bread-slice', text:'Fossheim Bakeri - best bakery in Norway', price:'$5-10', time:'30 min', desc:'Internationally famous bakery. Their kanelboller, cardamom bread, and skillingsboller are legendary. Don\'t leave without a pastry box for the road', cite:'https://fossheim-bakeri.no'},
-      {icon:'fa-road', text:'Gamle Strynfjellsveien (Old Stryn Mountain Road)', price:'Free', time:'2-3 hr', desc:'20 min drive from Loen. 27 km National Tourist Road with stone-walled hairpin bends, turquoise glacial lakes, Videfossen waterfall. Open summer only', cite:'https://www.nasjonaleturistveger.no/en/routes/gamle-strynefjellsvegen/'},
-      {icon:'fa-skiing', text:'Stryn Sommerski (glacier skiing)', price:'~$50-70', time:'3-4 hr', desc:'25 min drive from Loen. Ski on Tystigbreen Glacier in a t-shirt. Open late May-July. Rental gear available. Midnight sun skiing', cite:'https://strynsommerski.com/'},
-      {icon:'fa-utensils', text:'Melkevoll Bretun (Oldedalen)', price:'$20-35', time:'1-1.5 hr', desc:'15 min drive from Loen. Restaurant built into a boulder field from a 6,000-year-old avalanche. Glacial views, local food', cite:'https://www.nordfjord.no/en/lokalmat'},
-      {icon:'fa-mug-hot', text:'Gamlebutikken på Hjelle', price:'$5-8', time:'30-45 min', desc:'15 min drive from Loen. Historic shop turned cafe on Oppstryn Lake. Sit outside with coffee overlooking the lake and mountains', cite:'https://www.nordfjord.no/en/kafe'},
-      {icon:'fa-tree', text:'Hjelle / Oppstryn Lake shore', price:'Free', time:'30-45 min', desc:'15 min drive from Loen. Benches and grassy spots facing the turquoise lake with Ramnefjell backdrop. Extremely peaceful at dawn or dusk'}
+      {icon:'fa-church', text:'Lom Stave Church Architecture', price:'$12', time:'30-45 min', desc:'Explore the historic timbers and towering dragon gables of this massive 12th-century cathedral in the heart of the valley'},
+      {icon:'fa-bread-slice', text:'Bakeriet i Lom pastry run', price:'$5-10', time:'30 min', desc:'Grab a box of fresh cardamom buns and skillingsboller straight from the wood-fired ovens to fuel your mountain drive'},
+      {icon:'fa-bullseye', text:'Medalen Disc Golf Round', price:'Free', time:'1.5-2 hr', desc:'Play a technical 18 holes framed by mountain peaks. Mind the river on the right side of the fairways!'},
+      {icon:'fa-road', text:'Sognefjellet Alpine Plateau Drive', price:'Free', time:'2-3 hr', desc:'Drive up the dramatic mountain wall of Rv55 to cruise along the snow-covered rooftop of Jotunheimen National Park'},
+      {icon:'fa-mountain', text:'Mefjellet Viewpoint Stop', price:'Free', time:'20 min', desc:'Stop at the famous Knut Wold stone sculpture installation on the high plateau for panoramic views of the Smørstabbtindene peaks'},
+      {icon:'fa-car', text:'Juvasshytta High-Altitude Ridge Line', price:'~100 NOK toll', time:'1 hr', desc:'Climb the steep, winding mountain switchbacks of Galdhøpiggvegen for an optional moonscape detour surrounded by permanent ice walls'}
     ],
-    groupNotes: 'The Sognefjellet Scenic Route over the highest pass in northern Europe is the drive centerpiece - allow 2-3 hours just for the drive with photo stops. Sjoa River rafting (Class 2 family-friendly) or Utladalen hike for the active group. Lom Bakery is a mandatory food stop. Back in Loen: Gamle Strynfjellsveien or Gamlebutikken på Hjelle for a peaceful coffee by the lake.',
+    groupNotes: 'Focus the day trip entirely on the Loen-Lom-Sognefjellet corridor. Drop Sjoa, Besseggen, and Utladalen to avoid a dangerous 10+ hour driving crunch. Spend the midday hub in Lom for the Stave Church, Bakeriet i Lom, and 18 holes at Medalen Disc Golf. Spend the afternoon climbing the breathtaking Rv55 Sognefjellet pass to the summit snow lines before driving back to Loen for the Alexandra dinner buffet.',
     lodging: [
       {tier:'Mid', name:'Hotel Loenfjord', price:'$257/night', pros:'Excellent fjord views from most rooms, outdoor seating area, free parking, more affordable than Alexandra, quiet location', cons:'3-star, no spa facilities, restaurant is basic, older building', cite:'https://www.loenfjord.no'},
       {tier:'Premium', name:'Hotel Alexandra', price:'$380/night', pros:'Legendary breakfast buffet (rated best in Norway), full spa with indoor/outdoor pools, 4-star service, grand fjord-view rooms, multiple restaurants and bars', cons:'Very expensive, large hotel with many guests, some feel it lacks coziness', cite:'https://www.alexandra.no'}
@@ -823,66 +808,50 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet',
-      lunch: 'Fossheim Bakeri / Lom Bakery - world-class kanelboller, cardamom bread, and sandwiches. Eat at the outdoor tables by Lom Stave Church',
-      dinner: 'Return to Loen: Hotel Alexandra legendary dinner buffet (seafood focus, grilled meats, local cheeses). Or Stryn Vertshus for cozy traditional fare. Nightcap at Hotel Alexandra\'s fireplace lounge overlooking the Nordfjord'
+      lunch: 'Bakeriet i Lom - grab artisan wood-fired sandwiches, savory cured-meat tarts, and fresh sweet buns to enjoy at the outdoor picnic benches by the river crossing',
+      dinner: 'Return to Loen: Indulge in the Hotel Alexandra\'s famous evening dinner buffet, heavily focused on fresh coastal seafood, local venison, and premium Nordfjord cheeses.'
     },
-    lat: 61.8378, lng: 8.5683,
+    lat: 61.8712, lng: 6.8568,
     poi: [
-      {name:'Sognefjellet Scenic Route', lat:61.5667, lng:8.2833, note:'Highest mountain pass in northern Europe'},
-      {name:'Lom Stave Church', lat:61.8378, lng:8.5683, note:'Historic church in Lom village'},
-      {name:'Utladalen Valley', lat:61.3833, lng:7.9333, note:'Hiking valley near Jotunheimen'},
-      {name:'Sjoa River', lat:61.6833, lng:9.5333, note:'Rafting location'},
-      {name:'Besseggen Ridge', lat:61.5083, lng:8.7167, note:'Norway\'s most famous hike viewpoint'}
+      {name:'Loen Departure Base', lat:61.8712, lng:6.8568, note:'Starting point for the mountain day trip'},
+      {name:'Lom Stave Church', lat:61.8378, lng:8.5683, note:'12th-century cathedral in Lom center'},
+      {name:'Bakeriet i Lom', lat:61.8373, lng:8.5671, note:'Famous wood-fired bakery on the river banks'},
+      {name:'Medalen Diskgolfbane', lat:61.7682, lng:8.4246, note:'18-hole mountain disc golf course along Rv55'},
+      {name:'Galdhøpiggvegen Toll Gate (Juvasshytta)', lat:61.6745, lng:8.3712, note:'Start of the ultra-high altitude mountain ridge drive'},
+      {name:'Sognefjellet High Summit Lookout', lat:61.5642, lng:7.9967, note:'Highest mountain road pass lookout point (1,434m)'}
     ]
   },
   {
     day: 8, date: new Date(2027, 5, 4),
     base: 'Lillehammer',
-    drive: 'Loen → Lillehammer',
-    driveTime: '4 hr 18 min (303 km)',
+    drive: 'Loen → Lillehammer via Gudbrandsdalen (E6)',
+    driveTime: '4 hr 20 min baseline (303 km) - excludes stops or Valdresflye detour',
     directions: [
-      'Take Fv60 to Tonningsgata/Rv15 in Stryn (10 min, 10.5 km)',
-      'Follow Rv15, Ottadalsvegen and E6 to Lillehammer (3 hr 56 min, 286 km)',
-      'Take Hovearmen, Gudbrandsdalsvegen and Fv213 to Jernbanegata (11 min, 6 km)'
+      'Take Fv60 north out of Loen to merge onto Rv15 in Stryn (10 min, 11 km)',
+      'Follow Rv15 east through the Strynefjellet tunnels and Ottadalsvegen to the E6 junction at Otta (2 hr 15 min, 162 km)',
+      'Merge south onto E6 and follow the Gudbrandsdalen river valley down through Ringebu to Lillehammer (1 hr 45 min, 124 km)',
+      'Take the Lillehammer north exit onto Fv213 towards the town center and Jernbanegata (5 min, 6 km)'
     ],
     stops: [
-      {name:'Sjoa River rafting (if not Day 7)', lat:61.6833, lng:9.5333, price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'Second-chance rafting. Morning session before heading east', cite:'https://www.sjoarafting.no'},
-      {name:'Valdresflye Scenic Route (1389m)', lat:61.2833, lng:9.1167, price:'Free', time:'1-2 hr', desc:'Alternative mountain route over a plateau at 1,389m. Views toward Jotunheimen. Shorter than going via Otta', cite:'https://www.visitnorway.com'},
-      {name:'Slogen Mountain viewpoint', lat:62.2167, lng:6.6667, price:'Free', time:'20-30 min', desc:'Spectacular viewpoint over the fjord and surrounding peaks. Photo stop on Rv15', cite:'https://www.visitnorway.com'},
-      {name:'Ringebu Stave Church', lat:61.5333, lng:10.1333, price:'$10 (100 NOK)', time:'20-30 min', desc:'Built c.1220 in Gudbrandsdalen valley. Medieval interior with original furnishings', cite:'https://www.ringebustavkirke.no'},
-      {name:'Arctic Dome Sjusjøen', lat:61.1667, lng:10.6833, price:'$333-476/night', time:'Overnight', desc:'Glamping geodesic dome. Self-catering, no restaurant. Book ahead', cite:'https://www.arcticdome.no'}
+      {name:'Sjoa River Rafting Hub', lat:61.6841, lng:9.5435, price:'$111 (1,075 NOK) half-day', time:'3 hr', desc:'Excellent Class 2-3 whitewater rafting run in the Heidal valley. A perfect high-energy midday stop right off the main driving route', cite:'https://www.sjoarafting.no'},
+      {name:'Valdresflye Scenic Route Detour (Fv51)', lat:61.4300, lng:8.8100, price:'Free', time:'1.5-2 hr detour', desc:'NOTE: A spectacularly beautiful high mountain plateau drive at 1,389m with wild reindeer vistas. Breaks off at Vågåmo and runs south past Beitostølen, adding about 75km and 1.5 hours of driving to the day', cite:'https://www.visitnorway.com'},
+      {name:'Ringebu Stave Church', lat:61.5306, lng:10.1722, price:'$10 (100 NOK)', time:'20-30 min', desc:'Built around 1220. A gorgeous vertical stave church standing proudly above the Gudbrandsdalen valley floor, featuring its iconic post-Reformation red tower and original medieval interiors', cite:'https://www.ringebustavkirke.no'},
+      {name:'Annis Spisested (Ringebu)', lat:61.5312, lng:10.1415, price:'$20-35', time:'1 hr', desc:'Outstanding casual lunch stop directly next to a legendary traditional butcher shop. Famous for specialty sausage platters, local venison, and premium cured burgers', cite:'https://en.lillehammer.com/food-and-drink/annis-spisested-p1046993'},
+      {name:'Sygard Grytting Historic Farm', lat:61.5516, lng:9.9871, price:'$50-80', time:'2 hr', desc:'A stunningly preserved 1600s historic mountain estate in Sør-Fron. Offers unique, traditional multi-course family dinners utilizing ancient recipes inside turf-roofed timber halls. Advance reservations mandatory', cite:'https://www.grytting.com'}
     ],
     activities: [
-      {icon:'fa-car', text:'Scenic drive Loen → Lillehammer', price:'Toll road', time:'4.5 hr', desc:'Take Rv15 over the mountains past Slogen viewpoint, then E6 through the Gudbrandsdalen valley. One of Norway\'s great cross-country drives'},
-      {icon:'fa-road', text:'Valdresflye Scenic Route detour', price:'Free', time:'1-2 hr', desc:'High mountain plateau at 1,389m with panoramic Jotunheimen views. Wild reindeer grazing. Open June-Oct', cite:'https://www.visitnorway.com'},
-      {icon:'fa-mountain', text:'Slogen viewpoint photo stop', price:'Free', time:'20-30 min', desc:'Iconic viewpoint overlooking Hjørundfjorden. Snow-capped peaks reflected in the fjord below. Unforgettable photo', cite:'https://www.visitnorway.com'},
-      {icon:'fa-water', text:'Sjoa River rafting (morning session)', price:'$111 half-day', time:'3 hr', desc:'Class 2-3 rafting on Sjoa. Guide, wetsuit, gear included. Do this if you skipped Day 7 rafting', cite:'https://www.sjoarafting.no'},
-      {icon:'fa-church', text:'Ringebu Stave Church', price:'$10', time:'20-30 min', desc:'Built c.1220. One of the few stave churches with original medieval furnishings intact', cite:'https://www.ringebustavkirke.no'},
-      {icon:'fa-landmark', text:'Maihaugen Open-Air Museum', price:'$18 (180 NOK)', time:'1.5-2 hr', desc:'200+ historic buildings from all over Norway. Indoor exhibitions on folk art, costumes, and daily life. One of Norway\'s best museums', cite:'https://www.maihaugen.no'},
-      {icon:'fa-skiing', text:'Lysgårdsbakken Olympic Ski Jump', price:'Free to view', time:'30-45 min', desc:'1994 Winter Olympics ski jump. Walk to the top for a panoramic view of Lillehammer and Lake Mjøsa', cite:'https://www.lillehammer.com'},
-      {icon:'fa-bullseye', text:'Skogen Disc Golf (18 holes)', price:'Free', time:'2-3 hr', desc:'Highly-rated wooded course with mountain views, 10 min from Lillehammer. Rated 4.7 on PDGA. Free to play', cite:'https://www.pdga.com/course/skogen-frisbeegolf'},
-      {icon:'fa-hiking', text:'Sjusjøen evening forest walk', price:'Free', time:'1-2 hr', desc:'Forest trails around Lake Sjusjøen. Easy terrain, peaceful atmosphere. Perfect evening activity before glamping', cite:'https://www.sjusjoen.com'},
-      {icon:'fa-campground', text:'Arctic Dome glamping experience', price:'$333-476/night', time:'Overnight', desc:'Geodesic dome with skylight for stargazing. Private hot tub. Self-catering. Each family gets their own dome', cite:'https://www.arcticdome.no'},
-      {icon:'fa-mountain', text:'Neveltoppen sunset viewpoint', price:'Free', time:'30-45 min', desc:'10 min drive from Lillehammer center to the top. Best sunset viewpoint over Lillehammer, Mjøsa lake, and surrounding mountains. Locals come here for golden hour', cite:'https://en.lillehammer.com/things-to-do/activities/hiking'},
-      {icon:'fa-mountain', text:'Balbergkampen sunrise hike', price:'Free', time:'1.5 hr', desc:'15 min drive + 30 min easy hike from parking. Lesser-known cliff summit with sweeping views over Gudbrandsdalen river valley. Excellent for sunrise'},
-      {icon:'fa-road', text:'Gausdal Vestfjell Panorama Route (Fv 255)', price:'Free', time:'2-3 hr', desc:'25 min drive west. Stunning mountain road through Gausdal Vestfjell plateau. Pull-offs with picnic tables overlooking valleys and distant peaks. Virtually no tourist traffic'},
-      {icon:'fa-bicycle', text:'Hafjell Bike Park downhill', price:'~$50-70', time:'2-3 hr', desc:'15 min drive. World-class downhill mountain biking. Rent e-bikes, take chairlift up. Flowy singletrack through birch forest. Green and blue trails for families'},
-      {icon:'fa-helmet-safety', text:'Lillehammer Klatrepark', price:'~$40', time:'2-3 hr', desc:'15 min drive at Hafjell. Treetop climbing park with ziplines and obstacle courses. Less known than Hunderfossen but beloved by locals'},
-      {icon:'fa-helmet-safety', text:'Kvitfjell summer activities', price:'~$30-50', time:'2-3 hr', desc:'35 min drive north. Summer tubing, zipline over the Olympic ski slope, hiking trails. Way less crowd than Hafjell'},
-      {icon:'fa-utensils', text:'Sygard Grytting (historic farm dinner)', price:'~$50-80', time:'2 hr', desc:'40 min drive to Sør-Fron. Historic 1600s mountain farm restaurant. Rømmegrøt, rakfisk (fermented trout), game meats. Dine in turf-roof wooden building with valley views. Reserve required', cite:'https://en.lillehammer.com/food-and-drink/dining-at-sygard-grytting-p633693'},
-      {icon:'fa-utensils', text:'Annis Spisested (Ringebu)', price:'$20-35', time:'1-1.5 hr', desc:'35 min drive north. Family-run restaurant next to traditional sausage factory. Incredible sausage platter and reindeer steak. Very affordable', cite:'https://en.lillehammer.com/food-and-drink/annis-spisested-p1046993'},
-      {icon:'fa-utensils', text:'Pellestova Restaurant (Øyerfjellet)', price:'$30-50', time:'1.5-2 hr', desc:'20 min drive. Mountain restaurant high on Øyerfjellet with extraordinary views. Try local trout and cloudberry dessert'},
-      {icon:'fa-utensils', text:'Harpefoss Hotel & Country Store', price:'$10-25', time:'1 hr', desc:'40 min drive to Sør-Fron. Historic 1870s hotel with cafe and country store. Coffee, waffles with brunost, artisan food shop', cite:'https://en.lillehammer.com/food-and-drink/harpefoss-hotel-and-country-store-p629503'},
-      {icon:'fa-beer', text:'Lillehammer Bryggeri', price:'$8-12/pint', time:'1-2 hr', desc:'In town. Reopened in 2006 by local enthusiasts. Pale ales, stouts, seasonal specialties. Cozy taproom', cite:'https://en.lillehammer.com/food-and-drink/lillehammer-bryggeri-p630373'},
-      {icon:'fa-beer', text:'Det Lille Lokale', price:'$8-12/pint', time:'1-2 hr', desc:'In town. Craft beer bar with rotating taps from Norwegian microbreweries. Try aquavit alongside local beers'},
-      {icon:'fa-wine-glass', text:'Gaasebruket Brenneri (cloudberry liqueur)', price:'~$20-30 tasting', time:'1 hr', desc:'35 min drive toward Kvitfjell. Artisan fruit wines, ciders, and liqueurs using local berries. Cloudberry liqueur makes an incredible souvenir. Tastings by appointment'},
-      {icon:'fa-mug-hot', text:'Bakeriet i Lillehammer', price:'$5-8', time:'30 min', desc:'In town. Artisan bakery with incredible kanelboller and cardamom buns. Grab coffee and pastry to-go, walk 2 min to lakeside park bench with Mjøsa view'},
-      {icon:'fa-mug-hot', text:'Stasjonen Cafe (train station)', price:'$5-8', time:'30 min', desc:'In town. Housed in the historic railway station building. High ceilings, old-world charm. Solid coffee, building itself is worth seeing', cite:'https://en.lillehammer.com/food-and-drink/stasjonen-cafe-and-restaurant-p630993'},
-      {icon:'fa-tree', text:'Lillehammer Brygge (lakeside pier)', price:'Free', time:'30-45 min', desc:'5 min walk from center. Wooden pier jutting into Lake Mjøsa with benches. Quiet in the morning. Bring coffee from Bakeriet, watch boats and swans. Magical at sunrise'},
-      {icon:'fa-mountain', text:'Nordseter Fjellstue', price:'Free', time:'1-2 hr', desc:'20 min drive up to 800m elevation. Mountain lodge with deck overlooking forested mountains. Grab coffee at lodge cafe. Extremely peaceful. The drive up alone is worth it'},
-      {icon:'fa-tree', text:'Fakkelparken at dusk', price:'Free', time:'30 min', desc:'In town. Benches at the top of pedestrian Storgata. Late evening light hitting the brick buildings. Almost empty after shops close'}
+      {icon:'fa-car', text:'Cross-Country Transit via Rv15 & E6', price:'Toll road', time:'4.5 hr', desc:'Drive out of the western fjords, over the raw interior mountain passes, and down into the wide, agricultural Gudbrandsdalen river valley system'},
+      {icon:'fa-road', text:'Valdresflye High Plateau Bypass', price:'Free', time:'1.5 hr extra', desc:'An optional, wild mountain detour over the roof of Jotunheimen if the weather is perfectly clear and you don\'t mind extended technical driving'},
+      {icon:'fa-water', text:'Sjoa River Whitewater Session', price:'$111 half-day', time:'3 hr', desc:'Crash through pristine glacier-fed rapids with expert international guides. Wetsuits and safety gear provided'},
+      {icon:'fa-church', text:'Ringebu Stave Church Tour', price:'$10', time:'30 min', desc:'Stroll the ancient cemetery grounds and admire the masterfully preserved vertical pine staves of this 13th-century monument'},
+      {icon:'fa-landmark', text:'Maihaugen Open-Air Museum', price:'180 NOK', time:'1.5-2 hr', desc:'One of Norway\'s premier cultural venues. Wander among 200+ historic timber homes transported from all over the country, including an intact 1200 Garmo Stave Church', cite:'https://www.maihaugen.no'},
+      {icon:'fa-skiing', text:'Lysgårdsbakken Olympic Ski Jump', price:'Free to view', time:'30-45 min', desc:'Stand at the base of the iconic 1994 Winter Olympics ski jump. Ride the chairlift or climb the 936 stone steps to the peak gate for aerial views of Lillehammer and Lake Mjøsa', cite:'https://www.olympiaparken.no'},
+      {icon:'fa-bullseye', text:'Skogen Frisbeegolfbane (18 holes)', price:'Free', time:'2-3 hr', desc:'A fantastic, highly technical wooded disc golf layout weaving up and down mountain terrain just 10 minutes from the town center. Excellent turf pads'},
+      {icon:'fa-campground', text:'Arctic Dome Glamping (Sjusjøen)', price:'$333-476/night', time:'Overnight', desc:'Check into a premium geodesic dome hidden in the pine forest canopy. Features wide clear skylights for evening sky vistas and private wooden hot tubs'},
+      {icon:'fa-mountain', text:'Neveltoppen Summit Hike', price:'Free', time:'1.5 hr', desc:'Drive 20 minutes from town to the Nordseter Fjellstue lodge parking area, then complete an easy 45-minute mountain trail walk to a panoramic summit overlook'},
+      {icon:'fa-tree', text:'Lillehammer Brygge Lakeside Pier', price:'Free', time:'30 min', desc:'Grab a fresh filter coffee and sit on the edge of the wooden docks along the western waterfront to watch the sunset colors bounce off Lake Mjøsa'}
     ],
-    groupNotes: 'Drive from Loen to Lillehammer (~4.5h) with epic mountain scenery. Valdresflye is a fantastic detour if weather is clear. Sjoa rafting available in the morning if not done Day 7. Maihaugen Museum in the afternoon. For sunset: Neveltoppen is a 10-min drive with panoramic views. Sygard Grytting offers a unique historic farm dining experience. Arctic Dome glamping for the night.',
+    groupNotes: 'Drive from Loen to Lillehammer via Rv15 and E6. Keep the route tight along the valley floor to save energy, or divert over the high Valdresflye plateau if you want maximum mountain views. Stop at Ringebu for the Stave Church and lunch at Annis Spisested. Afternoon features Maihaugen or the Olympic Ski Jump in town, before heading up the mountain pass to Sjusjøen for the Arctic Dome glamping experience.',
     lodging: [
       {tier:'Budget', name:'Sjusjøen Cabins (self-catering)', price:'$150/night', pros:'Private log cabin, full kitchen, forest setting, ski-in/ski-out access, affordable for groups', cons:'Must bring own food, no housekeeping, 15 min from Lillehammer center, basic amenities', cite:'https://www.sjusjoen.no'},
       {tier:'Mid', name:'Arctic Dome Sjusjøen', price:'$333/night', pros:'Unique glamping geodesic dome with skylight, private hot tub, forest location near Lillehammer, Instagram-worthy experience', cons:'Self-catering with no restaurant on site, expensive for the amenities offered, no breakfast, must book well in advance', cite:'https://www.arcticdome.no'},
@@ -891,69 +860,56 @@ const data = [
     lodgingDetail: '',
     meals: {
       breakfast: 'Included hotel buffet in Loen before departing',
-      lunch: 'Sjoa Rafting Center cafe (burgers & coffee after rafting) or Kiwi in Otta - fresh bread, Norwegian cheeses, eplemost (apple juice). For Valdresflye route: pack a mountain picnic',
-      dinner: 'LYNG mat & bar in Lillehammer - #1 rated on TripAdvisor, seasonal Norwegian menu, reindeer with lingonberry, local craft beer selection. For Arctic Dome: bring groceries for a DIY BBQ at the dome. After dinner, use the Arctic Dome hot tub under the stars'
+      lunch: 'Annis Spisested in Ringebu for premium local sausage platters and burgers, or a riverside car picnic packed from the Kiwi store in Otta',
+      dinner: 'LYNG mat & bar in Lillehammer for highly rated, modern seasonal Norwegian cuisine (reindeer fillets, wild fish, and local cloudberry purees), or grab groceries in town to execute a rustic grill session directly out on your Arctic Dome patio deck.'
     },
     lat: 61.1153, lng: 10.4663,
     poi: [
-      {name:'Valdresflye Scenic Route', lat:61.2833, lng:9.1167, note:'High mountain plateau at 1,389m'},
-      {name:'Slogen viewpoint', lat:62.2167, lng:6.6667, note:'Fjord viewpoint on Rv15'},
-      {name:'Ringebu Stave Church', lat:61.5333, lng:10.1333, note:'Historic stave church'},
-      {name:'Maihaugen Museum', lat:61.1167, lng:10.4667, note:'Open-air museum in Lillehammer'},
-      {name:'Lysgårdsbakken', lat:61.1250, lng:10.4800, note:'Olympic ski jump viewpoint'},
-      {name:'Sjusjøen', lat:61.1667, lng:10.6833, note:'Glamping at Arctic Dome'},
-      {name:'Neveltoppen', lat:61.1300, lng:10.4500, note:'Best sunset viewpoint over Lillehammer'},
-      {name:'Hafjell Bike Park', lat:61.1500, lng:10.5000, note:'Downhill mountain biking'},
-      {name:'Sygard Grytting', lat:61.4000, lng:10.3000, note:'Historic 1600s farm restaurant'},
-      {name:'Annis Spisested', lat:61.5300, lng:10.1500, note:'Family-run restaurant in Ringebu'},
-      {name:'Lillehammer Bryggeri', lat:61.1150, lng:10.4650, note:'Craft brewery taproom in town'},
-      {name:'Bakeriet i Lillehammer', lat:61.1150, lng:10.4700, note:'Artisan bakery with lakeside bench'},
-      {name:'Nordseter Fjellstue', lat:61.2000, lng:10.5500, note:'Mountain lodge at 800m elevation'},
-      {name:'Lillehammer Brygge', lat:61.1100, lng:10.4800, note:'Lakeside pier with Mjøsa views'}
+      {name:'Loen Departure Base', lat:61.8712, lng:6.8568, note:'Starting point of the cross-country drive'},
+      {name:'Sjoa Rafting Center (Heidal)', lat:61.6841, lng:9.5435, note:'Whitewater rafting launch point near Otta'},
+      {name:'Valdresflye High Plateau Center', lat:61.4300, lng:8.8100, note:'Highest point of the optional alpine highway detour (Fv51)'},
+      {name:'Sygard Grytting Estate', lat:61.5516, lng:9.9871, note:'Historic 1600s traditional farm restaurant in Sør-Fron'},
+      {name:'Ringebu Stave Church', lat:61.5306, lng:10.1722, note:'13th-century stave church site off E6'},
+      {name:'Annis Spisested & Butcher', lat:61.5312, lng:10.1415, note:'Premium local meat restaurant and sausage shop in Ringebu'},
+      {name:'Maihaugen Open-Air Museum', lat:61.1125, lng:10.4781, note:'Cultural historic timber village park in Lillehammer'},
+      {name:'Lysgårdsbakken Olympic Ski Jump', lat:61.1251, lng:10.4872, note:'1994 Winter Olympic jump structures and scenic lookout'},
+      {name:'Skogen Frisbeegolfbane', lat:61.1242, lng:10.5112, note:'Elite technical 18-hole wooded disc golf course'},
+      {name:'Lillehammer Lakeside Pier (Brygge)', lat:61.1122, lng:10.4425, note:'Waterfront viewing benches on the edge of Lake Mjøsa'},
+      {name:'Nordseter Fjellstue (Neveltoppen Trailhead)', lat:61.1785, lng:10.5842, note:'Mountain lodge base checkpoint to begin the Neveltoppen hike'},
+      {name:'Neveltoppen Mountain Peak', lat:61.1914, lng:10.6015, note:'Panoramic mountain summit overview past Nordseter'},
+      {name:'Arctic Dome Base (Sjusjøen)', lat:61.1541, lng:10.7011, note:'Forest glamping geodesic dome site and overnight base'}
     ]
   },
   {
     day: 9, date: new Date(2027, 5, 5),
     base: 'Oslo',
-    drive: 'Lillehammer → Oslo',
-    driveTime: '2 hr 7 min (185 km)',
+    drive: 'Lillehammer → Oslo via E6',
+    driveTime: '2 hr 10 min baseline (185 km) - smooth multi-lane highway',
     directions: [
-      'Get on E6 from Mesnadalsvegen (4 min, 1.8 km)',
-      'Follow E6 to Dronning Mauds gate in Sentrum, Oslo - take exit 5 from E18 (2 hr 2 min, 183 km)',
-      'Turn right onto Dronning Mauds gate (27 sec, 150 m)'
+      'Get on E6 south from Mesnadalsvegen out of Lillehammer (4 min, 1.8 km)',
+      'Follow E6 south along Lake Mjøsa past Hamar and Eidsvoll to Oslo (2 hr, 180 km)',
+      'Take the Sentrum exit onto E18, dropping into the Opera tunnel system toward Dronning Mauds gate (3 min, 3.2 km)'
     ],
     stops: [
-      {name:'Eidsvoll Manor (Constitution of Norway)', lat:60.3167, lng:11.2500, price:'$12 (120 NOK)', time:'45-60 min', desc:'Where Norway\'s constitution was signed in 1814. Beautiful neoclassical manor house. Quick detour off E6', cite:'https://www.eidsvoll1814.no'},
-      {name:'Mjøsa Lake viewpoint & Minneparken', lat:60.8000, lng:11.0667, price:'Free', time:'15-20 min', desc:'Norway\'s largest lake. Quick scenic stop at the E6 viewpoint near Hamar', cite:'https://www.visitnorway.com'},
-      {name:'Holmenkollen Ski Jump & Museum', lat:59.9633, lng:10.6678, price:'$18 (180 NOK)', time:'1-1.5 hr', desc:'Iconic Oslo ski jump. Museum, tower view, zipline option. 20 min from city center', cite:'https://www.holmenkollen.com'}
+      {name:'Domkirkeodden Glass Cathedral (Hamar)', lat:60.7922, lng:11.0392, price:'Free to browse grounds / ~140 NOK museum', time:'30-45 min', desc:'Spectacular lakeside stop featuring a world-renowned modern glass and steel double-arch protective structure built over 12th-century medieval cathedral ruins', cite:'https://domkirkeodden.no'},
+      {name:'Eidsvoll Manor (Constitution of Norway)', lat:60.3008, lng:11.1611, price:'$12 (120 NOK)', time:'45-60 min', desc:'Where Norway\'s independent constitution was drafted and signed in 1814. Beautiful neoclassical estate grounds with an excellent visitor cafe, located right off the E6 highway route', cite:'https://www.eidsvoll1814.no'},
+      {name:'Holmenkollen Ski Jump & Museum', lat:59.9641, lng:10.6676, price:'$18 (180 NOK)', time:'1-1.5 hr', desc:'Oslo\'s legendary structural steel ski jump. The museum tucked inside the base covers 4,000 years of polar and alpine history; panoramic elevator deck offers incredible views over the city bowl', cite:'https://www.holmenkollen.com'}
     ],
     activities: [
-      {icon:'fa-car', text:'Drive Lillehammer → Oslo via E6', price:'Toll road', time:'2 hr', desc:'E6 south along Lake Mjøsa, past Hamar and Eidsvoll. Quick highway drive with separate cars'},
-      {icon:'fa-monument', text:'Eidsvoll 1814 Manor stop', price:'$12', time:'45-60 min', desc:'Where Norway\'s constitution was signed. Beautiful manor with guided tours. Quick history lesson en route', cite:'https://www.eidsvoll1814.no'},
-      {icon:'fa-skiing', text:'Holmenkollen Ski Jump & Museum', price:'$18', time:'1-1.5 hr', desc:'Iconic ski jump with panoramic Oslo views. Museum covers 4,000 years of skiing history. Zipline option from the top', cite:'https://www.holmenkollen.com'},
-      {icon:'fa-monument', text:'Fram Museum (polar exploration ships)', price:'$15 (150 NOK)', time:'1.5-2 hr', desc:'Board the real Fram and Gjøa ships. Arctic and Antarctic exploration history. On Bygdøy', cite:'https://frammuseum.no'},
-      {icon:'fa-landmark', text:'Akershus Fortress & Castle', price:'Free', time:'45-60 min', desc:'Medieval castle and fortress from the 1290s. Guided tours available. Overlooks Oslo Fjord', cite:'https://www.visitnorway.com'},
-      {icon:'fa-shopping-bag', text:'Last-minute shopping & souvenirs', price:'Variable', time:'1-2 hr', desc:'Bygdøy area or Karl Johans gate. Husfliden for traditional crafts, Way Nor for trolls and sweaters'},
-      {icon:'fa-tree', text:'Vigeland Sculpture Park (if missed Day 1)', price:'Free', time:'1-2 hr', desc:'200+ bronze/granite sculptures in Frogner Park. Oslo\'s most-visited attraction', cite:'https://www.vigeland.museum.no'},
-      {icon:'fa-beer', text:'Akershus Bryggeri tasting', price:'$8-12/pint', time:'1-2 hr', desc:'Local craft brewery near the fortress. Try their seasonal beers and enjoy the harbor views', cite:'https://www.akershusbryggeri.no'},
-      {icon:'fa-utensils', text:'Farewell dinner', price:'$30-60', time:'1.5-2 hr', desc:'Choose your final flavor of Norway'},
-      {icon:'fa-mountain', text:'Vettakollen sunset hike', price:'Free', time:'1 hr', desc:'15 min metro + 20 min hike. The local sunset spot with panoramic Oslofjord views from a rocky ridge. Far less crowded than Holmenkollen', cite:'https://www.ut.no/tur/3.9340/'},
-      {icon:'fa-mountain', text:'Kolsåstoppen panoramic hike', price:'Free', time:'2 hr', desc:'30 min metro to Kolsås + 40 min hike. On clear days you can see all the way to Jotunheimen mountains. Far less crowded than traditional views', cite:'https://www.ut.no/tur/2.3963/'},
-      {icon:'fa-ship', text:'Hovedøya Island sunset', price:'~$5 (Ruter ferry)', time:'1-2 hr', desc:'5 min ferry from Aker Brygge. Monastery ruins at sunset with city skyline behind. South shore has a secluded beach'},
-      {icon:'fa-sleigh', text:'Korketrekkeren summer toboggan', price:'~$20 (200 NOK)', time:'1-2 hr', desc:'30 min metro to Frognerseteren. 2km bobsled-style track on wheels. Ride at your own speed, take metro back up and repeat', cite:'https://www.visitoslo.com/en/product/?tlp=35814'},
-      {icon:'fa-water', text:'Oslo Kajakk fjord kayaking', price:'~$50 (500 NOK)', time:'2-3 hr', desc:'Rent kayaks on Hovedøya. Paddle calm inner fjord channels between islands. Class 1 stillwater, perfect for beginners', cite:'https://www.oslovk.no/'},
-      {icon:'fa-utensils', text:'Smalhans restaurant', price:'~$55 (550 NOK)', time:'1.5-2 hr', desc:'Michelin Bib Gourmand in Grünerløkka. Family-style Norwegian sharing plates. The Sunday roast concept is legendary. Reserve ahead', cite:'https://www.smalhans.no/'},
-      {icon:'fa-utensils', text:'Kaffistova traditional', price:'~$15 (150 NOK)', time:'1 hr', desc:'Old-school Norwegian canteen behind Karl Johans gate. Fårikål, rømmegrøt (sour cream porridge), krumkake. Touristy but locals still come'},
-      {icon:'fa-beer', text:'Grünerløkka Brygghus', price:'$10/pint', time:'1-2 hr', desc:'8 house taps of Norwegian-style IPAs and solid porter. Back room has board games', cite:'https://www.grunerlokkabrygghus.no/'},
-      {icon:'fa-beer', text:'Oslo Mekaniske Verksted', price:'$8-12/pint', time:'1-2 hr', desc:'25 taps of Norwegian microbrews in a renovated mechanics workshop. Next to Opera House but not touristy'},
-      {icon:'fa-wine-glass', text:'Gra Rossa aquavit flight', price:'~$20 (200 NOK)', time:'45 min', desc:'Near the Cathedral. Guided aquavit flight with 5 samples of small-batch Norwegian aquavits you won\'t find elsewhere'},
-      {icon:'fa-mug-hot', text:'Tim Wendelboe coffee', price:'$5-8', time:'30-45 min', desc:'World-famous barista in Grünerløkka. Single-origin espresso only. No WiFi, no laptops. The real deal for coffee nerds', cite:'https://timwendelboe.no/'},
-      {icon:'fa-mug-hot', text:'Fuglen Coffee Roasters', price:'$5-8', time:'30-45 min', desc:'Vintage 1950s interior near Palace Park. Pour-over by day, award-winning cocktail bar at night. Hidden back courtyard', cite:'https://fuglen.no/'},
-      {icon:'fa-tree', text:'Sognsvann Lake north shore', price:'Free', time:'1 hr', desc:'20 min metro + 10 min walk. Wooden benches facing the water with forest behind. Completely quiet except birds'},
-      {icon:'fa-ship', text:'Gressholmen Island', price:'~$5 (ferry)', time:'1-2 hr', desc:'15 min ferry. Least visited fjord island. Eastern jetty has a single bench facing the fjord. No cafes, no crowds'},
-      {icon:'fa-tree', text:'Botanical Garden Japanese section', price:'Free', time:'45 min', desc:'10 min tram to Tøyen. Tucked-away Japanese garden corner with tiny pond, stone lanterns, and a bench. Almost nobody goes here'}
+      {icon:'fa-car', text:'Southbound E6 Expressway Run', price:'Toll road', time:'2.1 hr', desc:'Smooth cross-country drive heading south along Norway\'s largest lake systems, passing through historic industrial and agricultural valleys'},
+      {icon:'fa-landmark', text:'Domkirkeodden Ruins Walk', price:'Free to browse', time:'30 min', desc:'Stroll the rolling lakeside green lawns to photograph the jaw-dropping medieval cathedral ruins preserved inside their soaring glass pavilion'},
+      {icon:'fa-monument', text:'Eidsvoll 1814 Manor Grounds', price:'$12', time:'45-60 min', desc:'Walk the manicured neoclassical grounds and visit the historic assembly hall where modern democratic Norway was born'},
+      {icon:'fa-skiing', text:'Holmenkollen High Summit Deck', price:'$18', time:'1 hr', desc:'Stand at the top of the world-famous ski jump run to soak in sweeping, unrestricted aerial views across the entire Oslofjord basin'},
+      {icon:'fa-anchor', text:'The Fram Museum (Polar Ships)', price:'$15', time:'1.5-2 hr', desc:'Located out on the Bygdøy peninsula. Step on board the massive, fully intact 1892 polar exploration ship Fram and explore the authentic crew cabins below deck'},
+      {icon:'fa-landmark', text:'Akershus Fortress Historic Stroll', price:'Free', time:'45-60 min', desc:'Walk the medieval stone ramparts and green battlements built in the 1290s. Delivers majestic views over the commercial harbor docks'},
+      {icon:'fa-beer', text:'Amundsen Bryggeri Tasting Session', price:'$9-12/pint', time:'1-2 hr', desc:'Excellent microbrewery and gastropub right behind City Hall. Highly recognized local stouts, sours, and crisp seasonal IPAs on tap next to the brewing tanks'},
+      {icon:'fa-wine-glass', text:'Himkok Artisanal Aquavit Experience', price:'~$20-25 flight', time:'1-1.5 hr', desc:'World-class cocktail lounge near the cathedral featuring an in-house distillery. Order a custom flight of home-distilled Norwegian aquavits paired with local berries'},
+      {icon:'fa-utensils', text:'Smalhans Michelin Bib Farewell Dinner', price:'~$55', time:'1.5-2 hr', desc:'Head to St. Hanshaugen for their renowned seasonal family-style sharing plates celebrating pure Norwegian terroir and wild-caught game'},
+      {icon:'fa-mountain', text:'Vettakollen Sunset Ridge Hike', price:'Free', time:'1 hr', desc:'Take the T-bane metro to Vettakollen station, followed by an easy 20-minute pine-forest trail walk to a rugged rocky ridge for the absolute best twilight views over Oslo'},
+      {icon:'fa-tree', text:'Sognsvann Lake North Shore Walk', price:'Free', time:'1 hr', desc:'A perfectly quiet forest lake at the terminus of Metro Line 5. Flat gravel loop trail with lakeside benches to unwind after days of cross-country driving'},
+      {icon:'fa-road', text:'Korketrekkeren Toboggan Note (WINTER ONLY)', price:'Closed', time:'0 min', desc:'WARNING: This is strictly a winter snow-sledding route. It does not possess summer wheels or rails and is entirely closed in June'}
     ],
-    groupNotes: 'Eidsvoll 1814 Manor is a worthwhile en-route stop. Arrive Oslo by early afternoon. Last chance shopping and farewell dinner. For sunset, Vettakollen offers panoramic fjord views with a short hike. Smalhans is a Michelin Bib Gourmand option for the farewell dinner.',
+    groupNotes: 'Drive south from Lillehammer via E6. Stop at Domkirkeodden in Hamar and Eidsvoll Manor en route for history and leg stretches. Scale the Holmenkollen ridge before city check-in for grand overview photos. Farewell dinner options range from traditional meatballs at Restaurant Schrøder to casual sourdough pies at Villa Paradiso or premium tasting flights at Himkok and Smalhans.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist, free Wi-Fi', cons:'No breakfast, no housekeeping by default, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern design, breakfast bar, near Opera House', cons:'Standard chain feel, can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
@@ -961,24 +917,24 @@ const data = [
     ],
     lodgingDetail: '',
     meals: {
-      breakfast: 'Bakeriet på Lillehammer / Bakgården Bakeri & Kaffebar - exceptional pastries and coffee before departing south',
-      lunch: 'Kiwi or Rema 1000 for drive-back sandwiches, or stop at Eidsvoll Manor café for Norwegian waffles with brunost',
-      dinner: 'Restaurant Schrøder - classic Norwegian home-cooking since 1910 (fårikål, kjøttkaker with lingonberry jam, torsk with melted butter). Or Maaemo - three Michelin-star new Nordic tasting menu. For casual: pizza at Villa Paradiso Grünerløkka. Finish the trip with a nightcap at the Grand Hotel rooftop bar overlooking Karl Johans gate'
+      breakfast: 'Bakgården Bakeri & Kaffebar in Lillehammer for fresh brioche and espresso before rolling out',
+      lunch: 'Eidsvoll Manor visitor cafe for hot Norwegian waffles slathered in sour cream and sweet raspberry jam',
+      dinner: 'Smalhans in St. Hanshaugen for their family sharing concepts, or Restaurant Schrøder for a cozy final round of house-made kjøttkaker brown gravy platters. Cap the epic trip with high-altitude rooftop craft cocktails over Karl Johans gate at the Grand Hotel Eight bar.'
     },
     lat: 59.9139, lng: 10.7522,
     poi: [
-      {name:'Eidsvoll Manor', lat:60.3167, lng:11.2500, note:'Constitution of Norway 1814'},
-      {name:'Holmenkollen', lat:59.9633, lng:10.6678, note:'Ski jump & museum'},
-      {name:'Fram Museum', lat:59.9033, lng:10.6989, note:'Polar ship museum on Bygdøy'},
-      {name:'Akershus Fortress', lat:59.9000, lng:10.7333, note:'Medieval castle from the 1290s'},
-      {name:'Akershus Bryggeri', lat:59.9083, lng:10.7400, note:'Craft brewery near the fortress'},
-      {name:'Vettakollen', lat:59.9550, lng:10.6550, note:'Best local sunset viewpoint'},
-      {name:'Kolsåstoppen', lat:59.9350, lng:10.5500, note:'Panoramic western viewpoint'},
-      {name:'Hovedøya', lat:59.8950, lng:10.7250, note:'Island with monastery ruins'},
-      {name:'Smalhans', lat:59.9250, lng:10.7600, note:'Michelin Bib Gourmand restaurant'},
-      {name:'Tim Wendelboe', lat:59.9250, lng:10.7600, note:'World-famous coffee roaster'},
-      {name:'Fuglen', lat:59.9180, lng:10.7350, note:'Vintage coffee and cocktail bar'},
-      {name:'Botanical Garden', lat:59.9200, lng:10.7800, note:'Japanese garden hidden corner'}
+      {name:'Lillehammer Departure Base', lat:61.1122, lng:10.4425, note:'Starting point of the southbound E6 run from Mjøsa shores'},
+      {name:'Domkirkeodden (Hamar Cathedral Ruins)', lat:60.7922, lng:11.0392, note:'Lakeside glass-enclosed 12th-century ruins stop'},
+      {name:'Eidsvoll 1814 Manor House', lat:60.3008, lng:11.1611, note:'Historic Constitutional signing estate grounds'},
+      {name:'Holmenkollen Ski Jump Structures', lat:59.9641, lng:10.6676, note:'Towering landmark jump over the northern ridge line'},
+      {name:'The Fram Polar Ship Museum', lat:59.9036, lng:10.6990, note:'Bygdøy peninsula historic maritime exhibit'},
+      {name:'Akershus Fortress medieval castle', lat:59.9070, lng:10.7370, note:'13th-century stone fortifications overlooking harbor waters'},
+      {name:'Amundsen Bryggeri & Gastropub', lat:59.9136, lng:10.7344, note:'Premium harbor-adjacent craft beer brewery lounge'},
+      {name:'Himkok Distillery & Speakeasy Bar', lat:59.9152, lng:10.7490, note:'Elite artisanal aquavit flight venue near the Cathedral'},
+      {name:'Smalhans Restaurant Base', lat:59.9256, lng:10.7512, note:'Michelin Bib Gourmand dining hub in St. Hanshaugen'},
+      {name:'Vettakollen Ridge Trailhead', lat:59.9599, lng:10.6959, note:'T-bane metro connection point for sunset hiking lookouts'},
+      {name:'Sognsvann Lake Loop Entrance', lat:59.9682, lng:10.7335, note:'Tranquil woodland lake park terminal'},
+      {name:'Oslo Central Terminal Area (Lodging Hub)', lat:59.9110, lng:10.7499, note:'Final city arrival coordinates for Citybox / Grand Hotel'}
     ]
   },
   {
@@ -988,23 +944,28 @@ const data = [
     driveTime: null,
     stops: [],
     activities: [
-      {icon:'fa-plane-departure', text:'Fly home from Oslo Airport (OSL)', price:'-', time:'7-8 hr flight', desc:'CEST → EDT (-6h). Return to Pittsburgh (PIT) or Morgantown (MGW). May be same or different flights - coordinate ahead', cite:'https://www.google.com/travel/flights'},
-      {icon:'fa-sun', text:'Morning in Oslo (if late flight)', price:'Free', time:'1-3 hr', desc:'Grab a last kanelbolle from Godt Brød, walk the Opera House roof, or Vigeland Sculpture Park for one last dose of Norway'},
-      {icon:'fa-shopping-bag', text:'Last souvenirs at Oslo city center', price:'Variable', time:'1-2 hr', desc:'Husfliden (traditional Norwegian crafts), Way Nor (trolls, sweaters), or Freia chocolate shop at Oslo City mall'},
-      {icon:'fa-ship', text:'Oslo Fjord ferry (if afternoon flight)', price:'~$10', time:'1 hr', desc:'Ferry from Aker Brygge to Bygdøy or back. One last fjord view before heading home'},
-      {icon:'fa-shopping-bag', text:'Duty-free at OSL', price:'Variable', time:'30-60 min', desc:'Brunost, aquavit (Linie, Gammel Opland), Norwegian wool sweaters. Everyone finds something'}
+      {icon:'fa-plane-departure', text:'Fly home from Oslo Airport (OSL)', price:'-', time:'11-13+ hr flight (1+ stops)', desc:'CEST → EDT (-6h). Return flight to Pittsburgh (PIT) or Morgantown (MGW). Shortest routing typically transits via Reykjavik, London, or Frankfurt. Families coordinate ahead', cite:'https://www.google.com/travel/flights'},
+      {icon:'fa-sun', text:'Morning in Oslo (if late flight)', price:'Free', time:'1-3 hr', desc:'Grab a final morning coffee, take a peaceful farewell stroll across the sloping marble roof of the Opera House, or loop the Palace Park grounds'},
+      {icon:'fa-shopping-bag', text:'Last souvenirs at Oslo city center', price:'Variable', time:'1-2 hr', desc:'Visit Heimen Husfliden for authentic traditional Norwegian woolens and crafts, or swing by the historic, flagship Freia Boutique on Karl Johans gate for premium chocolates'},
+      {icon:'fa-ship', text:'Oslo Fjord ferry views', price:'Included in transit pass (~$4)', time:'1 hr', desc:'If you possess an afternoon flight departure, spend an hour riding the public Ruter ferry line from Aker Brygge out across the harbor channels for one last look at the cityscape from the water'},
+      {icon:'fa-shopping-bag', text:'Duty-free sweep at OSL', price:'Variable', time:'30-60 min', desc:'Stock up on wheels of local Brunost (brown cheese), premium local aquavit bottles (like Linie or Gammel Opland), and tax-free Norwegian knitwear inside the international terminal departure gates'}
     ],
-    groupNotes: 'Departure day. Travel to OSL via Flytoget (50 min from Oslo Central Station). If your flight is afternoon, squeeze in a ferry ride or one last museum. See Jet Lag Playbook for return trip guidance.',
+    groupNotes: 'Departure day. Walk or transit to Oslo Central Station (Oslo S) to catch the high-speed Flytoget Airport Express train, which takes exactly 19-22 minutes to reach the OSL terminal gates. If your flight leaves in the late afternoon, bundle bags at the station lockers to sneak in a final city-center loop or a chocolate run to Karl Johans gate.',
     lodging: '-',
     lodgingDetail: '',
     meals: {
-      breakfast: 'Hotel buffet or Baker Hansen at Oslo Central Station before the Flytoget',
-      lunch: 'Airport or on the plane - grab a last kanelbolle at Godt Brød in the terminal',
-      dinner: 'On the plane or at home'
+      breakfast: 'Enjoy your final included hotel breakfast buffet, or grab fresh pastries and premium filter coffee at the classic Baker Hansen branch right inside the Oslo S terminal building before boarding the train',
+      lunch: 'Grab a quick bite inside the airport terminal loop before clearing international security—there is an excellent Godt Brød bakery branch located right inside the departure gates for fresh sourdough sandwiches',
+      dinner: 'Served in-flight or upon safe arrival back home in the US'
     },
-    lat: 59.9139, lng: 10.7522,
+    lat: 59.9110, lng: 10.7524,
     poi: [
-      {name:'Oslo Airport (OSL)', lat:60.1939, lng:11.1004, note:'Departure point back to the US'}
+      {name:'Oslo Central Station (Oslo S Hub)', lat:59.9110, lng:10.7524, note:'Departure terminal for the 20-minute Flytoget Airport Express train'},
+      {name:'Heimen Husfliden Souvenirs', lat:59.9131, lng:10.7412, note:'Traditional artisanal Norwegian craft and wool shop'},
+      {name:'Freia Flagship Boutique', lat:59.9136, lng:10.7397, note:'Historic premier chocolate shop on Karl Johans gate'},
+      {name:'Oslo Opera House Roof Walk', lat:59.9069, lng:10.7530, note:'Final central harbor panoramic walking point'},
+      {name:'Aker Brygge Ferry Piers', lat:59.9102, lng:10.7281, note:'Waterfront public transit boat departure point'},
+      {name:'Oslo Airport (OSL Terminal)', lat:60.1932, lng:11.0989, note:'Final departure airport point back to the United States'}
     ]
   }
 ];
