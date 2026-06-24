@@ -355,27 +355,26 @@ footer a{color:var(--accent);text-decoration:none}
       <h3><i class="fas fa-tasks"></i> Pre-Trip Bookings <span style="font-size:0.72rem;color:var(--muted);font-weight:400"> - click to check off</span></h3>
 
       <div class="checklist-cat" id="cat1-transport">
-        <h4 onclick="toggleCat('cat1-transport')"><i class="fas fa-car"></i> Transportation <span class="cat-counter" id="counter1-transport">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <h4 onclick="toggleCat('cat1-transport')"><i class="fas fa-car"></i> Transportation <span class="cat-counter" id="counter1-transport">0/5</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
         <div class="cat-body open" id="body1-transport">
           <ul class="checklist">
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book flights</strong> PIT/MGW &rarr; OSL (round trip) ~$800-1,200/person</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book return flights</strong> OSL &rarr; US (open-jaw or round trip)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book outbound flights</strong> PIT/MGW &rarr; OSL (1+ stops, 10-11+ hrs) ~$800-1,200/person</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book return flights</strong> OSL &rarr; US (11-13+ hours transit time)</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book rental cars</strong> (2 cars, 10 days) - mid-size SUV or station wagon</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Purchase AutoPASS</strong> for tolls and ferries</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book Mannheller-Fodnes ferry</strong> (Day 5) ~$13 per car</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>International Driving Permit (IDP)</strong> - AAA $30+ per driver</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Register AutoPASS &amp; FerryPay</strong> links vehicle tag for automated toll and fjord ferry billing</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>International Driving Permit (IDP)</strong> - Obtain via AAA $30+ per driver</span></li>
           </ul>
         </div>
       </div>
 
       <div class="checklist-cat" id="cat1-lodging">
-        <h4 onclick="toggleCat('cat1-lodging')"><i class="fas fa-bed"></i> Lodging <span class="cat-counter" id="counter1-lodging">0/8</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <h4 onclick="toggleCat('cat1-lodging')"><i class="fas fa-bed"></i> Lodging <span class="cat-counter" id="counter1-lodging">0/4</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
         <div class="cat-body open" id="body1-lodging">
           <ul class="checklist">
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo hotel</strong> (Days 1, 9) - Citybox $95 / Radisson RED $118 / Grand $285 per night</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m hotel</strong> (Days 2-4) - Fl&aring;m Marina $260 / Fl&aring;msbrygga $235 / Fretheim $248 per night</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen hotel</strong> (Days 5-7) - Hotel Loenfjord $257 / Hotel Alexandra $380 per night</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lillehammer area</strong> (Day 8) - Sjusj&oslash;en Cabins $150 / Arctic Dome $333 / Scandic $220 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo hotel center</strong> (Days 1, 9) - Citybox $95 / Radisson RED $118 / Grand $285 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m base lodging</strong> (Days 2-4) - Fl&aring;m Marina $260 / Fl&aring;msbrygga $235 / Fretheim $248 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen fjord lodging</strong> (Days 5-7) - Hotel Loenfjord $257 / Hotel Alexandra $380 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lillehammer mountain camp</strong> (Day 8) - Sjusj&oslash;en Cabins $150 / Arctic Dome $333 / Scandic $220 per night</span></li>
           </ul>
         </div>
       </div>
@@ -384,31 +383,32 @@ footer a{color:var(--accent);text-decoration:none}
         <h4 onclick="toggleCat('cat1-activities')"><i class="fas fa-mountain"></i> Activities <span class="cat-counter" id="counter1-activities">0/12</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
         <div class="cat-body open" id="body1-activities">
           <ul class="checklist">
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>National Museum Oslo</strong> (Day 1) - $20 (200 NOK)</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Borgund Stave Church</strong> (Day 2) - $15 (150 NOK)</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m Railway round trip</strong> (Day 3) - $68 (730 NOK) - BOOKS OUT, book 2+ months ahead</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>N&aelig;r&oslash;yfjord UNESCO cruise</strong> (Day 3 or 4) - $64 (640 NOK)</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Njord Kayak on Aurlandsfjord</strong> (Day 3) - $115 (1,235 NOK) guided</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen Skylift</strong> (Day 5-6) - $70 (695 NOK) round trip</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Briksdal Glacier hike / troll car</strong> (Day 6) - $31 (300 NOK) troll car</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Via Ferrata Loen</strong> (Day 6) - ~$165 (1,760 NOK) - limited capacity, book ahead</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lom Stave Church</strong> (Day 7) - $12 (120 NOK)</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Sjoa River family rafting</strong> (Day 7-8) - $111 (1,075 NOK) half-day</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Maihaugen Open-Air Museum</strong> (Day 8) - $18 (180 NOK)</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fram Museum or Holmenkollen</strong> (Day 9) - $15-18</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo Waterfront Sauna</strong> (Day 1 or 9) - Oslo Badstuforening public slots - BOOKS 2 WEEKS OUT</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>National Museum Oslo</strong> (Day 1) - $22 (220 NOK) entry tickets</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Borgund Stave Church</strong> (Day 2) - $15 (150 NOK) historical center admission</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&aring;m Railway round trip</strong> (Day 3) - $68 (730 NOK) - HIGH PRIORITY, book 2+ months ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>N&aelig;r&oslash;yfjord UNESCO cruise</strong> (Day 3 or 4) - $64 (640 NOK) silent catamaran slots</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Njord Kayak on Aurlandsfjord</strong> (Day 3) - $115 (1,235 NOK) guided tour</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Aurlandsdalen Hikers' Bus</strong> (Day 4) - Reserve morning shuttle link from Fl&aring;m up to &Oslash;sterb&oslash;</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen Skylift boarding pass</strong> (Day 5-6) - 960 NOK (~$92) adult round trip</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Briksdal Glacier troll car</strong> (Day 6) - 300 NOK (~$31) round trip transport slots</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Via Ferrata Loen Climb</strong> (Day 6) - ~1,760 NOK ($165) - Strict safety caps, book far ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lom Stave Church</strong> (Day 7) - $12 (120 NOK) traditional entry pass</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Maihaugen, Fram, or Holmenkollen Museum</strong> (Days 8-9) - ~140-180 NOK entry options</span></li>
           </ul>
         </div>
       </div>
 
       <div class="checklist-cat" id="cat1-dining">
-        <h4 onclick="toggleCat('cat1-dining')"><i class="fas fa-utensils"></i> Dining Reservations <span class="cat-counter" id="counter1-dining">0/5</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <h4 onclick="toggleCat('cat1-dining')"><i class="fas fa-utensils"></i> Dining Reservations <span class="cat-counter" id="counter1-dining">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
         <div class="cat-body open" id="body1-dining">
           <ul class="checklist">
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>&AElig;gir BrewPub</strong> (Fl&aring;m, Day 2-4) - very popular, reserve ahead</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hotel Alexandra dinner buffet</strong> (Loen, Day 5) - legendary buffet, book ahead</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>LYNG mat &amp; bar</strong> (Lillehammer, Day 8) - #1 rated, reserve</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Den Glade Gris or Himkok</strong> (Oslo, Day 1 or 9) - popular Oslo spots</span></li>
-            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fretheim Hotel Arven Restaurant</strong> (Fl&aring;m, Day 4) - upscale, book ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>&AElig;gir BrewPub</strong> (Fl&aring;m, Days 2-4) - Timber hearth tables fill up, reserve early</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Kest Tasting Room</strong> (Aurland, Day 3 or 4) - 8-course regional menu, weekend slots book early</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hotel Alexandra dinner buffet</strong> (Loen, Day 5 or 6) - Premier local seafood feast spread</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>LYNG mat &amp; bar</strong> (Lillehammer, Day 8) - Highly-rated alpine seasonal kitchen, reserve</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Smalhans or Den Glade Gris</strong> (Oslo, Day 1 or 9) - Essential city sharing plates / pork knuckle slots</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fretheim Hotel Arven Restaurant</strong> (Fl&aring;m, Day 4) - Sognefjord-focused upscale fare</span></li>
           </ul>
         </div>
       </div>
