@@ -382,6 +382,7 @@ footer a{color:var(--accent);text-decoration:none}
         <div class="cat-body open" id="body4-activities">
           <ul class="checklist">
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>National Museum Oslo</strong> (Day 1-2) - $20 (200 NOK)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Krokhol Disc Golf Tee Time</strong> (Day 2 Early Morning) - Book via UDisc app</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fram Museum</strong> (Day 2) - $16.82 (180 NOK)</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Heddal Stave Church</strong> (Day 3) - $12 (120 NOK)</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Vemork Heavy Water Museum</strong> (Day 4) - $14 (140 NOK)</span></li>
@@ -456,12 +457,13 @@ const data = [
   {
     day: 2, date: new Date(2027, 4, 29), base: 'Oslo', drive: null, driveTime: null, stops: [],
     activities: [
+      {icon:'fa-bullseye', text:'Krokhol Disc Golf Course', price:'~$15-20', time:'3-4 hr', desc:'Play an early morning round at Krokhol, consistently ranked as one of the absolute top 2 disc golf courses in the entire world, located just 20 minutes southeast of downtown Oslo.'},
       {icon:'fa-monument', text:'Fram Museum', price:'$16.82 (180 NOK)', time:'1.5 hr', desc:'Polar exploration ship on Bygdøy. Walk inside the actual Fram. Interactive exhibits throughout', cite:'https://frammuseum.no'},
       {icon:'fa-tree', text:'Ekebergparken Sculpture Park', price:'Free', time:'1-2 hr', desc:'Modern art + forest trails with panoramic Oslo Fjord views. Light hike on wooded paths', cite:'https://ekebergparken.com/en'},
       {icon:'fa-shopping-bag', text:'Karl Johans gate & city center', price:'Variable', time:'1-2 hr', desc:'Oslo\'s main street. Shops, cafés, people-watching'},
       {icon:'fa-walking', text:'Akershus Fortress walk', price:'Free', time:'45-60 min', desc:'Medieval castle and fortress overlooking Oslo Fjord. Cannons and ramparts on display'}
     ],
-    groupNotes: 'Full day to explore Oslo before heading into the mountains. Morning: Fram Museum (polar exploration). Afternoon: shop Karl Johans gate or hike Ekebergparken. Evening: Akershus Fortress for sunset views.',
+    groupNotes: 'Full day to explore Oslo. Early Morning: Play a memorable round at Krokhol Disc Golf Course (#1-2 ranked globally). Afternoon: Fram Museum or shop Karl Johans gate. Evening: Akershus Fortress for sunset views.',
     lodging: [
       {tier:'Budget', name:'Citybox Oslo', price:'$95/night', pros:'Self-check-in 24/7, central near Oslo Central Station, modern minimalist rooms, free Wi-Fi', cons:'No breakfast, no daily housekeeping, small rooms', cite:'https://www.citybox.no'},
       {tier:'Mid', name:'Radisson RED Oslo', price:'$118/night', pros:'Modern Scandinavian design, excellent breakfast bar, great location near Opera House and waterfront', cons:'Standard chain feel, no pool, can be noisy', cite:'https://www.radissonhotels.com/en-us/hotels/red-oslo'},
