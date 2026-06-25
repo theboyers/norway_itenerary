@@ -231,7 +231,7 @@ footer a{color:var(--accent);text-decoration:none}
       </div>
 
       <div class="checklist-cat" id="cat5-activities">
-        <h4 onclick="toggleCat('cat5-activities')"><i class="fas fa-mountain"></i> Activities <span class="cat-counter" id="counter5-activities">0/9</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <h4 onclick="toggleCat('cat5-activities')"><i class="fas fa-mountain"></i> Activities <span class="cat-counter" id="counter5-activities">0/11</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
         <div class="cat-body open" id="body5-activities">
           <ul class="checklist">
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fram Museum</strong> (Day 2) - $16.82 (180 NOK)</span></li>
@@ -241,6 +241,8 @@ footer a{color:var(--accent);text-decoration:none}
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>RIB safari N&aelig;r&oslash;yfjord</strong> (Day 3) - $80-120/person</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fl&oslash;ibanen funicular</strong> (Day 5) - $20 (200 NOK) round trip</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Mt. Ulriken cable car</strong> (Day 5) - $41 (435 NOK) round trip</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Voss Whitewater Rafting</strong> (Day 4 Option) - ~$110-140/person</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fantoft Frisbeegolf Course</strong> (Day 5 Option) - Free entry</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Stillwater kayaking Reinefjorden</strong> (Day 7) - $60-90/person</span></li>
             <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Trollfjord RIB Safari</strong> (Day 9) - $95-130/person</span></li>
           </ul>
@@ -314,6 +316,7 @@ const data = [
   
   {day:4,date:new Date(2027,4,31),base:'Bergen',drive:'Fl\u00e5m \u2192 Bergen',driveTime:'~2.5h',directions:['Take E16 west from Fl&aring;m through Gudvanga Tunnel corridor','Optionally check lower segment of Aurlandsfjellet overlook path beforehand','Pass Tvindefossen and transition west down main highway link into Bergen'],stops:[{name:'Tvindefossen Waterfall',price:'Free',time:'15 min photo stop',desc:'Classic multi-tiered waterfall cascading down rock steps.',lat:60.6500,lng:6.5000}],activities:[
     {icon:'fa-car',text:'Scenic road connection into Bergen',price:'Free',time:'~2.5h',desc:'Drive cleanly via the main E16 west corridor skipping back-tracking loops.'},
+    {icon:'fa-water',text:'Voss Whitewater Rafting (Option)',price:'~$110-140',time:'3-4 hr',desc:'Stop in Voss directly along the E16 highway route for an exhilarating whitewater rafting adventure on the Raundalselva or Strandaelva.'},
     {icon:'fa-walking',text:'Evening Bryggen waterfront exploration',price:'Free',time:'1 hr',desc:'Stroll the vibrant wooden alleyways of the Hanseatic wharf at twilight.'}
   ],groupNotes:'Easy driving flow west toward the coast. Drive safely through the major tunnel complexes. Arrive in Bergen by mid-afternoon, allowing plenty of open space for an initial historical walk.',lodging:[
     {tier:'Budget',name:'Citybox Bergen',price:'$137/night',pros:'Self-check-in 24/7, near Bergen Station, clean modern rooms, free Wi-Fi, great value',cons:'No breakfast, small rooms, no daily housekeeping',cite:'https://www.citybox.no/en/bergen/'},
@@ -323,6 +326,7 @@ const data = [
   
   {day:5,date:new Date(2027,5,1),base:'Bergen',drive:null,driveTime:null,stops:[],activities:[
     {icon:'fa-train',text:'Fl\u00f8ibanen funicular to Mt. Fl\u00f8yen',price:'$20 rtn',time:'1-2 hr',desc:'Funicular up for panoramic views. Playground and trails at top.',cite:'https://www.floyen.no'},
+    {icon:'fa-bullseye',text:'Fantoft Frisbeegolf Course (Option)',price:'Free',time:'1.5-2 hr',desc:'Play a round of disc golf at the beautiful 18-hole Fantoft course, located right next to the historic Fantoft Stave Church south of Bergen.'},
     {icon:'fa-ship',text:'Bergen Fish Market browsing',price:'Free',time:'1 hr',desc:'Indoor/outdoor fish harbor market. Fresh catches and local snacks.',cite:'https://www.fisketorgetibergen.no'},
     {icon:'fa-mountain',text:'Mt. Ulriken cable car ride',price:'$41 rtn',time:'1-2 hr',desc:'Bergen\'s highest mountain (643m). 360-degree views over the coastal islands.',cite:'https://www.ulriken.no'}
   ],groupNotes:'Full city day in Bergen. Catch the funicular early to beat the cruise line crowds. Use the afternoon to loop down to the fish market docks or scale Ulriken via the cable car link.',lodging:[
