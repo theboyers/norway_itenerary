@@ -31,6 +31,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .hero h1 span{background:linear-gradient(135deg,#4ade80,#d4a373);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,0.8);margin-bottom:2rem;font-weight:300}
 .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
 .hero-stat{text-align:center;display:flex;flex-direction:column;gap:0.35rem}
 .hero-stat .num{font-size:2rem;font-weight:700;color:#4ade80;display:block}
 .hero-stat .label{font-size:0.8rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
@@ -166,7 +167,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubunt
 .info-card a{color:var(--accent);text-decoration:none;font-weight:500}
 .info-card a:hover{text-decoration:underline}
 
-
 /* Planning checklist */
 .checklist{list-style:none;margin-top:0.5rem}
 .checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
@@ -276,11 +276,11 @@ footer a{color:var(--accent);text-decoration:none}
         <span class="label">Days</span>
       </div>
       <div class="hero-stat">
-        <span class="num">2</span>
+        <span class="num">4</span>
         <span class="label">Bases</span>
       </div>
       <div class="hero-stat">
-        <span class="num">~12h</span>
+        <span class="num">~13h</span>
         <span class="label">Driving</span>
       </div>
       <div class="hero-stat">
@@ -482,8 +482,7 @@ const data = [
     directions: ['Take E18 southwest from Oslo','Exit onto E134 at Drammen towards Notodden','Continue on E134 through the Telemark valley to Rjukan','Brief detour to Heddal Stave Church near Notodden'],
     stops: [
       {name:'Kongsberg Silver Mines', price:'$15 (150 NOK)', time:'1.5 hr', desc:'Historic silver mines with underground train tour', lat:59.6667, lng:9.6500},
-      {name:'Heddal Stave Church', price:'$12 (120 NOK)', time:'30-45 min', desc:'Norway\'s LARGEST stave church, built c.1250. Triple nave design. The most impressive stave church on the route', cite:'https://www.heddalstavkirke.no', lat:59.5833, lng:9.1667},
-      {name:'Vemork Heavy Water Museum', price:'$14 (140 NOK)', time:'1.5-2 hr', desc:'WWII heavy water museum - the Heroes of Telemark story', lat:59.8667, lng:8.4833}
+      {name:'Heddal Stave Church', price:'$12 (120 NOK)', time:'30-45 min', desc:'Norway\'s LARGEST stave church, built c.1250. Triple nave design. The most impressive stave church on the route', cite:'https://www.heddalstavkirke.no', lat:59.5833, lng:9.1667}
     ],
     activities: [
       {icon:'fa-church', text:'Heddal Stave Church', price:'$12', time:'30-45 min', desc:'Norway\'s largest stave church. Triple nave, built 1250. More impressive than Borgund for sheer size', cite:'https://www.heddalstavkirke.no'},
@@ -528,8 +527,7 @@ const data = [
     directions: ['Take RV37 north from Rjukan onto Hardangervidda plateau','Cross Hardangervidda - Europe\'s largest mountain plateau at 1,200m+','Stop at Hardangervidda National Park visitor center','Descend Måbødalen valley into Hardangerfjord','Arrive at Eidfjord on the Hardangerfjord'],
     stops: [
       {name:'Hardangervidda Plateau viewpoint', price:'Free', time:'30-45 min', desc:'Norway\'s largest national park. Wild reindeer herds, vast plateau at 1,250m', lat:60.0167, lng:7.5000},
-      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Norway\'s most famous waterfall - 182m free-fall. New cliff-side viewing platforms built into the rock', cite:'https://www.visitnorway.com', lat:60.3833, lng:7.2167},
-      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Walk behind the cascading water', lat:60.3667, lng:6.1000},
+      {name:'Vøringsfossen Waterfall', price:'Free', time:'30-45 min', desc:'Norway\'s most famous waterfall - 182m free-fall. New cliff-side viewing platforms built into the rock', cite:'https://www.visitnorway.com', lat:60.4283, lng:7.2512},
       {name:'Hardanger Cider Farm (Ulvik)', price:'$10-15', time:'45 min', desc:'Hardanger cider farm tour with apple and pear cider tasting', lat:60.5667, lng:6.9167}
     ],
     activities: [
@@ -545,17 +543,17 @@ const data = [
     ],
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Hardangervidda National Park Center café - hot soup and fresh bread. Best reindeer soup on the plateau', dinner:'Vik Café & Restaurant - on the Eidfjord harbor. Fresh grilled salmon with Hardanger apples, or local lamb shank. Pair with Hardanger cider (traditional fruit wine from local orchards). After dinner, walk the Eidfjord waterfront at golden hour' },
-    lat: 60.4667, lng: 7.0667, poi: [{name:'Vøringsfossen', lat:60.4333, lng:7.2500, note:'182m waterfall'},{name:'Eidfjord', lat:60.4667, lng:7.0667, note:'Hardangerfjord village'}]
+    lat: 60.4667, lng: 7.0667, poi: [{name:'Vøringsfossen', lat:60.4283, lng:7.2512, note:'182m waterfall'},{name:'Eidfjord', lat:60.4667, lng:7.0667, note:'Hardangerfjord village'}]
   },
   {
     day: 6, date: new Date(2027, 5, 2), base: 'Eidfjord (Hardanger)', drive: null, driveTime: null, stops: [],
     activities: [
-      {icon:'fa-mountain', text:'Bondhusbreen Glacier hike', price:'Free', time:'2-3 hr', desc:'Easy-to-moderate hike to a stunning blue glacier arm of Folgefonna. Walk right up to the ice face and touch the glacier', cite:'https://www.visitnorway.com'},
+      {icon:'fa-mountain', text:'Bondhusbreen Glacier hike', price:'Free', time:'2-3 hr', desc:'Easy-to-moderate hike to a stunning blue lake below a glacier arm of Folgefonna. Observe safely from designated view lines; entering active ice hazard zones without certified guides is strictly prohibited.', cite:'https://www.visitnorway.com'},
       {icon:'fa-cheese', text:'Hardanger fruit farm tour & cider tasting', price:'$10-15', time:'45 min', desc:'Visit a local fruit farm. Taste apples, pears, Hardanger apple cider, and fresh-pressed juice', cite:'https://www.visitnorway.com'},
       {icon:'fa-water', text:'Hardangerfjord kayak', price:'$80-100 guided', time:'2-3 hr', desc:'Guided sea kayak through the fruit orchard-lined fjord. Stillwater, suitable for all skill levels'},
       {icon:'fa-car', text:'Hardanger scenic drive', price:'Toll roads', time:'1-2 hr', desc:'Drive through the fruit orchard region. Snow-capped peaks above, apple blossoms below (late May/early June!)'}
     ],
-    groupNotes: 'Full day in Hardangerfjord - one of Norway\'s most beautiful regions. Morning: Bondhusbreen glacier hike. Afternoon: visit a fruit farm for cider tasting or kayak the fjord. The fruit farms are especially lovely in late May/early June with apple blossoms in bloom.',
+    groupNotes: 'Full day in Hardangerfjord - one of Norway\'s most beautiful regions. Morning: Bondhusbreen glacier valley trail. Afternoon: visit a fruit farm for cider tasting or kayak the fjord. The fruit farms are especially lovely in late May/early June with apple blossoms in bloom.',
     lodging: [
       {tier:'Budget', name:'Eidfjord Gjestehus', price:'$100/night', pros:'Historic inn, Norwegian charm, affordable, central Eidfjord, shared kitchen, good budget base', cons:'Shared bathrooms in some rooms, older building, limited restaurant hours', cite:'https://www.eidfjordgjestehus.no'},
       {tier:'Mid', name:'Eidfjord Fjell & Fjord Hotel', price:'$160/night', pros:'Modern mountain-style hotel, panoramic Hardangerfjord views, restaurant with local ingredients, free parking', cons:'Limited dining options nearby, quiet area, no pool', cite:'https://www.eidfjordfjellogfjord.no'},
@@ -564,38 +562,35 @@ const data = [
     lodgingDetail: '',
     meals: { breakfast:'Hotel buffet included', lunch:'Fruit farm café - Hardanger apple cake with a view over the fjord', dinner:'Eidfjord Gjestehus restaurant - traditional Norwegian lamb shank with Hardanger apple compote, or fresh trout from the fjord. Local cider is a must. After dinner, relax at the hotel with a board game in the common lounge' },
     lat: 60.4667, lng: 7.0667, poi: [
-      {name:'Bondhusbreen', lat:60.0333, lng:6.3333, note:'Glacier arm of Folgefonna'},
+      {name:'Bondhusbreen Lake', lat:60.0333, lng:6.3333, note:'Glacier branch hike base'},
       {name:'Hardanger Fruit Route', lat:60.3667, lng:6.5000, note:'Fruit orchard region'},
-      {name:'Bondhusbreen Glacier', lat:60.0500, lng:6.5000, note:'Glacier arm walk'},
       {name:'Trolltunga trailhead', lat:60.1333, lng:6.7500, note:'Epic cliff hike'},
       {name:'Eidfjord', lat:60.4667, lng:7.0667, note:'Fjord village'}
     ]
   },
   {
-    day: 7, date: new Date(2027, 5, 3), base: 'Bergen', drive: 'Eidfjord → Voss → Bergen', driveTime: '~4h driving (with activity stops)',
-    directions: ['Take RV7 west from Eidfjord along Hardangerfjord','Stop at Steinsdalsfossen - walk behind the cascade','Detour to Voss via Fv7/Fv48 - rafting on the Raundalselva','Continue E16 from Voss to Bergen','Fantoft Disc Golf near Bergen city center'],
+    day: 7, date: new Date(2027, 5, 3), base: 'Bergen', drive: 'Eidfjord → Voss → Bergen', driveTime: '~3h driving',
+    directions: ['Cross the Hardanger Bridge heading north','Follow RV13 north to Voss for family white-water rafting','Take the E16 west corridor from Voss directly to Bergen','Fantoft Disc Golf near Bergen city center'],
     stops: [
-      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous waterfall you can walk BEHIND. Right off RV7. Walk behind the cascading water', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/', lat:60.3667, lng:6.1000},
       {name:'Voss Rafting Center', price:'$95-120 (950-1,200 NOK)', time:'2-3 hr', desc:'Class 2-3 rapids on Raundalselva River. Guide, wetsuit, gear included. Minimum age 8', cite:'https://www.vossrafting.no', lat:60.6244, lng:6.4433},
-      {name:'Fantoft Stave Church', price:'Free', time:'30-45 min', desc:'Reconstructed stave church near Bergen', lat:60.3500, lng:5.3500},
-      {name:'Bergen city center', price:'Free', time:'1-2 hr', desc:'Explore the vibrant city center', lat:60.3917, lng:5.3250}
+      {name:'Steinsdalsfossen Waterfall', price:'Free', time:'20-30 min', desc:'Famous walk-behind waterfall located near Norheimsund. Accessible via optional scenic western loop bypass.', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/', lat:60.3667, lng:6.1000},
+      {name:'Fantoft Stave Church', price:'Free', time:'30-45 min', desc:'Reconstructed stave church near Bergen', lat:60.3500, lng:5.3500}
     ],
     activities: [
-      {icon:'fa-tint', text:'Walk behind Steinsdalsfossen', price:'Free', time:'20-30 min', desc:'Walk the path behind the cascading water', cite:'https://www.visitnorway.com/places-to-go/fjord-norway/the-hardangerfjord-area/steinsdalsfossen-waterfall/'},
-      {icon:'fa-car', text:'Scenic Hardanger drive', price:'Toll roads', time:'3 hr', desc:'One of Norway\'s most beautiful drives - fjord, waterfalls, orchards, mountains'},
+      {icon:'fa-car', text:'Scenic Hardanger Bridge Transit', price:'Toll roads', time:'20 min', desc:'Cross one of the longest suspension bridges in the world spanning the inner fjord.'},
       {icon:'fa-water', text:'Voss Whitewater Rafting', price:'$95-120', time:'2-3 hr', desc:'Mild class 2-3 rapids on the Raundalselva. Guide and gear included', cite:'https://www.vossrafting.no'},
       {icon:'fa-bullseye', text:'Fantoft Disc Golf (18 holes)', price:'Free', time:'1.5-2 hr', desc:'Wooded course near Fantoft Stave Church. 10 min from Bergen city center', cite:'https://www.pdga.com/course/fantoft-frisbeegolf'},
       {icon:'fa-walking', text:'Evening Bryggen walk', price:'Free', time:'1 hr', desc:'Arrive Bergen by late afternoon. Walk through the Hanseatic wharf\'s colorful wooden buildings'}
     ],
-    groupNotes: 'Scenic drive day from Eidfjord to Bergen. Walk behind Steinsdalsfossen in the morning. From there, the Voss rafting center (class 2-3 rapids on the Raundalselva) is a short detour, or continue directly to Bergen for an afternoon round at Fantoft Disc Golf. Evening Bryggen walk and dinner.',
+    groupNotes: 'Efficient routing north from Eidfjord over the bridge directly up to Voss for the rafting window. Take the main fast E16 link west to Bergen for a clean afternoon flow. Hit Fantoft Disc Golf before checking into the hotel.',
     lodging: [
       {tier:'Budget', name:'Citybox Bergen', price:'$137/night', pros:'Self-check-in 24/7, near Bergen Station, clean modern rooms, free Wi-Fi, great value', cons:'No breakfast, small rooms, no daily housekeeping', cite:'https://www.citybox.no/en/bergen/'},
       {tier:'Mid', name:'Zander K Hotel', price:'$150/night', pros:'Design boutique hotel, excellent breakfast, central Bergen near train station, cool lobby with bar', cons:'Some rooms small, no pool', cite:'https://www.zanderk.no'},
       {tier:'Premium', name:'Hotel Norge by Scandic', price:'$260/night', pros:'Historic Bergen landmark, rooftop pool with city views, full spa, multiple restaurants, prime location near city park', cons:'Very expensive, large hotel, some rooms feel corporate', cite:'https://www.hotelnorge.no'}
     ],
     lodgingDetail: '',
-    meals: { breakfast:'Hotel buffet included', lunch:'Steinsdalsfossen café - waffles for the early group; Voss Rafting Center cafe - burgers and coffee for the rafters', dinner:'Bare Vestland - modern twist on traditional Norwegian. Pickled herring, reindeer tartare, cloudberry dessert, and the best aquavit list in town. After dinner, walk through the Bryggen wharf lit up at night for photos' },
-    lat: 60.3913, lng: 5.3221, poi: [{name:'Steinsdalsfossen', lat:60.3667, lng:6.1000, note:'Walk-behind waterfall'},{name:'Voss Rafting Center', lat:60.6244, lng:6.4433, note:'Family rafting on Raundalselva'},{name:'Fantoft Disc Golf', lat:60.3472, lng:5.3561, note:'Disc golf course'},{name:'Bryggen', lat:60.3975, lng:5.3167, note:'UNESCO Hanseatic wharf'}]
+    meals: { breakfast:'Hotel buffet included', lunch:'Voss Rafting Center cafe - burgers and coffee for the family', dinner:'Bare Vestland - modern twist on traditional Norwegian. Pickled herring, reindeer tartare, cloudberry dessert, and the best aquavit list in town. After dinner, walk through the Bryggen wharf lit up at night for photos' },
+    lat: 60.3913, lng: 5.3221, poi: [{name:'Voss Rafting Center', lat:60.6244, lng:6.4433, note:'Family rafting on Raundalselva'},{name:'Fantoft Disc Golf', lat:60.3472, lng:5.3561, note:'Disc golf course'},{name:'Bryggen', lat:60.3975, lng:5.3167, note:'UNESCO Hanseatic wharf'}]
   },
   {
     day: 8, date: new Date(2027, 5, 4), base: 'Bergen', drive: null, driveTime: null, stops: [],
@@ -646,7 +641,7 @@ const data = [
   {
     day: 10, date: new Date(2027, 5, 6), base: 'Depart Bergen', drive: null, driveTime: null, stops: [],
     activities: [
-      {icon:'fa-plane-departure', text:'Fly home from Bergen Airport (BGO)', price:'-', time:'7-8 hr flight (with connections)', desc:'CEST → EDT (-6h). Connect via Amsterdam/Copenhagen/Oslo or direct seasonal to US. Return to PIT or MGW'},
+      {icon:'fa-plane-departure', text:'Fly home from Bergen Airport (BGO)', price:'-', time:'7-8 hr flight (with connections)', desc:'CEST → EDT (-6h). Connect via major European hubs. Return to regional destination terminal.'},
       {icon:'fa-sun', text:'Morning in Bergen (if late flight)', price:'Free', time:'1-3 hr', desc:'Last walk through Bryggen. One more kanelbolle at Godt Brød. Or tour Fantoft Stave Church (reconstructed, 15 min from city)'},
       {icon:'fa-shopping-bag', text:'Duty-free at BGO', price:'Variable', time:'30 min', desc:'Norwegian wool, brunost, peppermakkels, aquavit'}
     ],
@@ -727,7 +722,7 @@ data.forEach((d, idx) => {
       <div class="lodging-tier">
         <div class="lodging-tier-header">
           <span class="lodging-tier-badge" style="background:${l.tier==='Budget'?'var(--accent)':l.tier==='Mid'?'#8b5cf6':'#f59e0b'}">${l.tier}</span>
-          <strong>${l.name}</strong>
+          strong>${l.name}</strong>
           <span class="lodging-tier-price">${l.price}</span>
         </div>
         <div class="lodging-tier-details">
@@ -852,21 +847,36 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
 
-// Route points for polyline
+// Strategic route waypoints optimized for road-snaking match
 const routePoints = [
-  [59.9139, 10.7522], [59.7000, 10.2000], [59.5833, 9.2500],
-  [59.5833, 9.1667], [59.8833, 8.5833], [60.0000, 7.5000],
-  [60.4333, 7.2500], [60.4667, 7.0667], [60.3667, 6.1000],
-  [60.3913, 5.3221], [60.2936, 5.2181]
+  [59.9139, 10.7522], [59.6667, 9.6500], [59.5833, 9.1667], 
+  [59.8833, 8.5833], [60.0167, 7.5000], [60.4283, 7.2512], 
+  [60.4667, 7.0667], [60.6244, 6.4433], [60.3913, 5.3221], 
+  [60.2936, 5.2181]
 ];
 
-// Primary route line
-L.polyline(routePoints, {
-  color: '#2d6a4f',
-  weight: 4,
-  opacity: 0.7,
-  dashArray: '12,8'
-}).addTo(map);
+// Dynamically fetch and display the structural snaking driving route via OSRM
+const routeCoordStr = routePoints.map(p => `${p[1]},${p[0]}`).join(';');
+const routingUrl = `https://router.project-osrm.org/route/v1/driving/${routeCoordStr}?geometries=geojson&overview=full`;
+
+fetch(routingUrl)
+  .then(r => r.json())
+  .then(res => {
+    if (res.code === 'Ok' && res.routes && res.routes[0]) {
+      const actualCoords = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+      L.polyline(actualCoords, {
+        color: '#2d6a4f',
+        weight: 4,
+        opacity: 0.8
+      }).addTo(map);
+      map.fitBounds(actualCoords, { padding: [40, 40] });
+    } else {
+      L.polyline(routePoints, { color: '#2d6a4f', weight: 4, opacity: 0.7, dashArray: '12,8' }).addTo(map);
+    }
+  })
+  .catch(() => {
+    L.polyline(routePoints, { color: '#2d6a4f', weight: 4, opacity: 0.7, dashArray: '12,8' }).addTo(map);
+  });
 
 // Main markers (base locations)
 data.forEach((d, idx) => {
@@ -941,8 +951,6 @@ map.fitBounds(allCoords, { padding: [50, 50] });
 // ---------- Open first day by default ----------
 document.querySelector('.day-card:first-child').classList.add('open');
 initPerDayMap(1);
-
-
 
 // ---------- Export JSON ----------
 function exportJSON() {
