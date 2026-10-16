@@ -1,6 +1,7 @@
 ---
 description: Primary travel director and technical orchestrator that coordinates specialized subagents to research, fact-check, build, and verify the Norway 2027 itinerary pages
 mode: primary
+model: opencode-go/kimi-k2.7-code
 color: "#2d6a4f"
 temperature: 0.2
 permission:

@@ -1,6 +1,7 @@
 ---
 description: Frontend and itinerary data engineer that updates HTML/CSS/JS files, maintains the data array schema, configures Leaflet/OSRM maps, and styles custom icons and badges
 mode: subagent
+model: opencode-go/kimi-k2.7-code
 color: "#22c55e"
 temperature: 0.1
 permission:

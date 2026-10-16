@@ -1,6 +1,7 @@
 ---
 description: Route logistics, driving distance, seasonal opening, and pricing auditor that fact-checks every day of an itinerary and recommends improvements
 mode: subagent
+model: opencode-go/kimi-k2.7-code
 color: "#f59e0b"
 temperature: 0.1
 permission:

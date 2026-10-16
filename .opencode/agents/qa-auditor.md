@@ -1,6 +1,7 @@
 ---
 description: Automated quality assurance auditor that validates HTML/JS syntax, zero em dashes, data schema completeness, icon/tag mappings, and JSON/CSV export integrity
 mode: subagent
+model: opencode-go/glm-5.3-flash
 color: "#8b5cf6"
 temperature: 0.0
 permission:

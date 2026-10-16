@@ -1,6 +1,7 @@
 ---
 description: Norway travel and local discovery specialist that researches attractions, hidden gems, hikes, disc golf courses, restaurants, breweries, distilleries, gyms, and day spas with verified coordinates, hours, and pricing
 mode: subagent
+model: opencode-go/glm-5.3-flash
 color: "#06b6d4"
 temperature: 0.3
 permission:
