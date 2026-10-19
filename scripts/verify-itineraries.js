@@ -7,7 +7,7 @@ const args = process.argv.slice(2);
 
 const targetFiles = args.length > 0
   ? args
-  : fs.readdirSync(repoRoot).filter(f => /^itinerary\d+\.html$|^index\.html$/.test(f)).sort();
+  : fs.readdirSync(repoRoot).filter(f => /^index\.html$/.test(f)).sort();
 
 let hasErrors = false;
 
@@ -32,7 +32,7 @@ targetFiles.forEach(file => {
   const mainScriptMatch = html.match(/<script>([\s\S]*?)<\/script>\s*<\/body>/i);
   if (mainScriptMatch) {
     try {
-      new Function(mainScriptMatch[1]);
+      new Function(mainScriptMatch[1].trim());
     } catch (err) {
       issues.push(`JavaScript syntax error in <script>: ${err.message}`);
     }
@@ -40,21 +40,24 @@ targetFiles.forEach(file => {
     issues.push('Could not locate main <script> block before </body>');
   }
 
-  // 3. If itinerary file, audit the data array
+  // 3. If index.html, audit the data array
   let metrics = null;
-  if (/^itinerary\d+\.html$/.test(path.basename(file))) {
+  if (/^index\.html$/.test(path.basename(file))) {
     const dataMatch = html.match(/const data = (\[[\s\S]*?\]);\s*\r?\n\s*\/\/ Colors per day/);
     if (!dataMatch) {
       issues.push('Could not extract "const data = [...]" block');
     } else {
       try {
         const data = eval(dataMatch[1]);
-        if (!Array.isArray(data) || data.length !== 10) {
-          issues.push(`Expected 10 days in data array, found ${Array.isArray(data) ? data.length : 'non-array'}`);
+        const expectedDays = 11;
+        if (!Array.isArray(data) || data.length !== expectedDays) {
+          issues.push(`Expected ${expectedDays} days in data array, found ${Array.isArray(data) ? data.length : 'non-array'}`);
         }
 
         let totalStops = 0;
+        let stopsWithCite = 0;
         let totalActivities = 0;
+        let activitiesWithCite = 0;
         let totalPois = 0;
         const tagCounts = {};
         const iconCounts = {};
@@ -65,10 +68,12 @@ targetFiles.forEach(file => {
           }
           (d.stops || []).forEach(s => {
             totalStops++;
+            if (s.cite && /^https?:\/\//i.test(s.cite)) stopsWithCite++;
             if (s.tag) tagCounts[s.tag] = (tagCounts[s.tag] || 0) + 1;
           });
           (d.activities || []).forEach(a => {
             totalActivities++;
+            if (a.cite && /^https?:\/\//i.test(a.cite)) activitiesWithCite++;
             if (a.tag) tagCounts[a.tag] = (tagCounts[a.tag] || 0) + 1;
             if (a.icon) iconCounts[a.icon] = (iconCounts[a.icon] || 0) + 1;
           });
@@ -80,7 +85,16 @@ targetFiles.forEach(file => {
           });
         });
 
-        metrics = { days: data.length, totalStops, totalActivities, totalPois, tagCounts, iconCounts };
+        metrics = {
+          days: data.length,
+          totalStops,
+          stopsWithCite,
+          totalActivities,
+          activitiesWithCite,
+          totalPois,
+          tagCounts,
+          iconCounts
+        };
       } catch (e) {
         issues.push(`Failed to evaluate data array: ${e.message}`);
       }
@@ -96,7 +110,9 @@ targetFiles.forEach(file => {
   }
 
   if (metrics) {
-    console.log(`  Days: ${metrics.days} | Stops: ${metrics.totalStops} | Activities: ${metrics.totalActivities} | POIs: ${metrics.totalPois}`);
+    const stopsPct = metrics.totalStops ? Math.round((metrics.stopsWithCite / metrics.totalStops) * 100) : 100;
+    const actPct = metrics.totalActivities ? Math.round((metrics.activitiesWithCite / metrics.totalActivities) * 100) : 100;
+    console.log(`  Days: ${metrics.days} | Stops: ${metrics.totalStops} (${metrics.stopsWithCite} cited, ${stopsPct}%) | Activities: ${metrics.totalActivities} (${metrics.activitiesWithCite} cited, ${actPct}%) | POIs: ${metrics.totalPois}`);
     if (Object.keys(metrics.tagCounts).length > 0) {
       console.log(`  Tags: ${JSON.stringify(metrics.tagCounts)}`);
     }

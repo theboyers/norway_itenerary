@@ -3,110 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Norway 2027 - Trip Dashboard</title>
+<title>Norway Road Trip 2027</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f4f2ed;--surface:#ffffff;--text:#1a1a2e;--muted:#6b7280;--accent:#2d6a4f;--accent2:#1b4332;--gold:#d4a373;--border:#e5e7eb;--card-shadow:0 4px 24px rgba(0,0,0,0.06);--hover-shadow:0 8px 40px rgba(0,0,0,0.1);--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
 .dark{--bg:#0f172a;--surface:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--accent:#4ade80;--accent2:#22c55e;--border:#334155;--card-shadow:0 4px 24px rgba(0,0,0,0.3);--hover-shadow:0 8px 40px rgba(0,0,0,0.4)}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:var(--transition);min-height:100vh}
+html{scroll-behavior:smooth;scroll-padding-top:52px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:var(--transition)}
 
+/* Scrollbar */
 ::-webkit-scrollbar{width:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
 
+/* Theme toggle */
 .theme-toggle{position:fixed;top:20px;right:20px;z-index:1000;background:var(--surface);border:2px solid var(--border);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.2rem;box-shadow:var(--card-shadow);transition:var(--transition)}
 .theme-toggle:hover{transform:rotate(15deg);box-shadow:var(--hover-shadow)}
 
-.hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1a2e 0%,#1a3a3a 40%,#2d6a4f 70%,#40916c 100%);overflow:hidden;padding:2rem}
+/* Hero */
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#0b1a2e 0%,#1a3a3a 40%,#2d6a4f 70%,#40916c 100%);overflow:hidden;padding:2rem}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.03)' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") bottom/cover no-repeat;pointer-events:none}
 .hero-content{position:relative;z-index:1;max-width:900px}
 .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:0.5rem 1.5rem;border-radius:50px;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-0.02em}
+.hero h1{font-size:clamp(2.5rem,8vw,5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-0.02em}
 .hero h1 span{background:linear-gradient(135deg,#4ade80,#d4a373);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .subtitle{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.8);margin-bottom:1.5rem;font-weight:300}
-.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,0.8);margin-bottom:2rem;font-weight:300}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
 .hero-stat{text-align:center;display:flex;flex-direction:column;gap:0.35rem}
-.hero-stat .num{font-size:1.5rem;font-weight:700;color:#4ade80;display:block}
-.hero-stat .label{font-size:0.75rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
+.hero-stat .num{font-size:2rem;font-weight:700;color:#4ade80;display:block}
+.hero-stat .label{font-size:0.8rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.hero-cta{display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;transition:var(--transition);font-size:0.95rem}
+.hero-cta:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
 
-.container{max-width:1200px;margin:0 auto;padding:3rem 1rem}
+/* Map section */
+.map-section{padding:3rem 1rem;max-width:1400px;margin:0 auto}
+.map-section h2{font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem}
+.map-section h2 i{color:var(--accent)}
+.map-section>p{color:var(--muted);margin-bottom:1.5rem;max-width:600px}
+#map{height:500px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border);z-index:1}
+.map-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;font-size:0.85rem;color:var(--muted);align-items:center}
+.map-legend .legend-item{display:flex;align-items:center;gap:0.4rem}
+.map-legend .legend-dot{width:12px;height:12px;border-radius:50%}
+.map-legend .legend-line{width:24px;height:3px;border-radius:2px}
 
-.section-header{text-align:center;margin-bottom:2.5rem}
-.section-header h2{font-size:1.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+/* Route link */
+.route-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;padding:0.6rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:50px;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;transition:var(--transition)}
+.route-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:var(--card-shadow)}
+.route-link i{color:var(--accent)}
+
+/* Timeline */
+.timeline{padding:3rem 1rem 5rem;max-width:1000px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3rem}
+.section-header h2{font-size:2rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0.75rem}
 .section-header h2 i{color:var(--accent)}
-.section-header p{color:var(--muted);margin-top:0.5rem;max-width:600px;margin-left:auto;margin-right:auto}
+.section-header p{color:var(--muted);margin-top:0.5rem}
 
-.itinerary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-bottom:3rem}
-.itinerary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);transition:var(--transition);text-decoration:none;color:var(--text);display:flex;flex-direction:column}
-.itinerary-card:hover{transform:translateY(-4px);box-shadow:var(--hover-shadow)}
-.itinerary-card .card-top{height:8px;flex-shrink:0}
-.itinerary-card .card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
-.itinerary-card h3{font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem}
-.itinerary-card h3 i{color:var(--accent);font-size:1rem}
-.itinerary-card .card-subtitle{color:var(--muted);font-size:0.82rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.35rem}
-.itinerary-card .card-subtitle i{font-size:0.75rem}
-.route-pills{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem}
-.route-pill{padding:0.2rem 0.6rem;border-radius:20px;font-size:0.7rem;font-weight:600;color:#fff;white-space:nowrap}
-.route-pill:nth-child(1){background:#ef4444}
-.route-pill:nth-child(2){background:#f97316}
-.route-pill:nth-child(3){background:#eab308}
-.route-pill:nth-child(4){background:#22c55e}
-.route-pill:nth-child(5){background:#06b6d4}
-.route-pill:nth-child(6){background:#3b82f6}
-.route-pill:nth-child(7){background:#8b5cf6}
-.route-pill:nth-child(8){background:#ec4899}
-.route-pill:nth-child(9){background:#14b8a6}
-.route-pill:nth-child(10){background:#f43f5e}
-.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem}
-.card-stat{background:var(--bg);border-radius:8px;padding:0.6rem}
-.card-stat .cs-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);font-weight:600;margin-bottom:0.35rem;display:block}
-.card-stat .cs-value{font-size:0.9rem;font-weight:600;color:var(--text)}
-.card-stat .cs-value i{color:var(--accent);width:1rem}
-.card-highlights{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;flex:1}
-.card-highlights li{list-style:none;display:flex;align-items:flex-start;gap:0.4rem}
-.card-highlights li i{color:var(--accent);margin-top:0.25em;font-size:0.7rem}
-.card-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.25rem;background:var(--accent);color:#fff;border-radius:50px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:var(--transition);align-self:flex-start}
-.card-cta:hover{background:var(--accent2);transform:translateY(-2px)}
-.card-cta i{font-size:0.8rem}
+.day-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--card-shadow);margin-bottom:1.5rem;overflow:hidden;transition:var(--transition);border:1px solid var(--border);position:relative}
+.day-card:hover{box-shadow:var(--hover-shadow);transform:translateY(-2px)}
+.day-card .day-number{position:absolute;top:0;left:0;bottom:0;width:6px}
+.day-card:nth-child(1) .day-number{background:#ef4444}
+.day-card:nth-child(2) .day-number{background:#f97316}
+.day-card:nth-child(3) .day-number{background:#eab308}
+.day-card:nth-child(4) .day-number{background:#22c55e}
+.day-card:nth-child(5) .day-number{background:#06b6d4}
+.day-card:nth-child(6) .day-number{background:#3b82f6}
+.day-card:nth-child(7) .day-number{background:#8b5cf6}
+.day-card:nth-child(8) .day-number{background:#ec4899}
+.day-card:nth-child(9) .day-number{background:#14b8a6}
+.day-card:nth-child(10) .day-number{background:#f43f5e}
+.day-card:nth-child(11) .day-number{background:#0ea5e9}
 
-.table-responsive{width:100%;overflow-x:auto;border-radius:var(--radius);box-shadow:var(--card-shadow);border:1px solid var(--border);background:var(--surface);margin-bottom:1.5rem}
-.comparison-table{width:100%;border-collapse:collapse}
-.comparison-table th,.comparison-table td{padding:0.85rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:0.88rem}
-.comparison-table th{background:var(--bg);font-weight:600;color:var(--text);white-space:nowrap;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em}
-.comparison-table td{color:var(--muted)}
-.comparison-table tr:last-child td{border-bottom:none}
-.comparison-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
-.comparison-table i{color:var(--accent);width:1.2rem;text-align:center}
+.day-header{padding:1.25rem 1.5rem 1.25rem 2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;user-select:none;-webkit-tap-highlight-color:transparent}
+.day-header-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0}
+.day-header .day-label{display:flex;flex-direction:column}
+.day-header .day-label .day-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);font-weight:600}
+.day-header .day-label .day-date{font-weight:700;font-size:1.1rem}
+.day-header .base-badge{background:var(--accent);color:#fff;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .drive-badge{background:var(--gold);color:#1a1a2e;padding:0.25rem 0.75rem;border-radius:50px;font-size:0.75rem;font-weight:600;white-space:nowrap}
+.day-header .toggle-icon{color:var(--muted);transition:transform 0.3s ease;font-size:1rem;flex-shrink:0}
+.day-card.open .toggle-icon{transform:rotate(180deg)}
 
-footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
-footer a{color:var(--accent);text-decoration:none}
+.day-body{padding:0 2rem;max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease}
+.day-card.open .day-body{max-height:10000px;padding:0 2rem 1.5rem}
 
+.day-body h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;color:var(--text)}
+.day-body h3 i{color:var(--accent);width:1.2rem;text-align:center}
+.day-body .activity-list{list-style:none;margin-bottom:1rem}
+.day-body .activity-list li{display:flex;align-items:flex-start;gap:0.6rem;padding:0.35rem 0;color:var(--text);font-size:0.92rem}
+.day-body .activity-list li i, .day-body .activity-list li svg{color:var(--accent);margin-top:0.2em;width:1rem;height:1rem;text-align:center;flex-shrink:0}
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+
+.day-body .hotel-section{margin-top:0.75rem;padding:0.9rem 1.2rem;background:var(--bg);border-radius:10px;font-size:0.9rem}
+.day-body .hotel-section .hotel-label{font-weight:600;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;color:var(--text)}
+.day-body .hotel-section .hotel-label i{color:var(--accent)}
+.day-body .hotel-section p{color:var(--muted)}
+.lodging-tier{margin-bottom:0.35rem;padding-bottom:0.35rem}
+.lodging-tier:not(:last-child){border-bottom:1px solid var(--border)}
+.lodging-tier:last-child{margin-bottom:0;padding-bottom:0}
+.lodging-tier .lodging-tier-header{display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap}
+.lodging-tier .lodging-tier-header .lodging-tier-badge{display:inline-block;padding:0.08rem 0.45rem;border-radius:4px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:#fff;line-height:1.4}
+.lodging-tier-header strong{font-size:0.85rem;flex:1;min-width:0}
+.lodging-tier .lodging-tier-header .lodging-tier-price{color:var(--accent);font-weight:600;font-size:0.82rem;white-space:nowrap}
+.lodging-tier .lodging-tier-details{margin-top:0.15rem;color:var(--muted);font-size:0.8rem;line-height:1.45}
+.lodging-tier .lodging-tier-details .lodging-pros{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details .lodging-cons{display:block;margin-bottom:0.1rem}
+.lodging-tier .lodging-tier-details a{font-size:0.78rem}
+
+/* Day 0 special marker adjustment */
+.day-card .drive-detail{display:block;margin-top:0.35rem;padding:0.4rem 0.75rem;background:var(--bg);border-radius:8px;font-size:0.85rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem}
+.day-card .drive-detail i{color:var(--gold)}
+.day-body .stop-item{font-size:0.85rem;color:var(--muted);padding:0.15rem 0}
+
+/* Stop grid cards */
+.stop-grid{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:0.75rem}
+.stop-card{padding:0.75rem 1rem;background:var(--bg);border-radius:10px;border-left:3px solid var(--gold);min-width:0}
+.stop-card-top{display:flex;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap}
+.stop-card-name{font-weight:600;font-size:0.9rem;color:var(--text);word-break:break-word;overflow-wrap:break-word;line-height:1.3}
+.stop-desc{font-size:0.8rem;color:var(--muted);margin-top:0.25rem;line-height:1.5}
+.badge{display:inline-flex;align-items:center;gap:0.25rem;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;font-weight:600;white-space:nowrap}
+.badge-price{background:#d4a37333;color:#c77d3a}
+.dark .badge-price{background:#d4a37322;color:#f0c27a}
+.badge-time{background:#2d6a4f22;color:var(--accent)}
+.badge-hours{background:#3b82f61f;color:#2563eb}
+.dark .badge-hours{background:#60a5fa22;color:#60a5fa}
+.badge-tag{background:#6366f118;color:#4f46e5}
+.dark .badge-tag{background:#818cf822;color:#a5b4fc}
+.badge-tag-hiking{background:#10b98118;color:#059669}
+.dark .badge-tag-hiking{background:#34d39922;color:#34d399}
+.badge-tag-disc-golf{background:#f59e0b18;color:#d97706}
+.dark .badge-tag-disc-golf{background:#fbbf2422;color:#fbbf24}
+.badge-tag-adventure{background:#ef444418;color:#dc2626}
+.dark .badge-tag-adventure{background:#f8717122;color:#f87171}
+.badge-tag-teen{background:#8b5cf618;color:#7c3aed}
+.dark .badge-tag-teen{background:#a78bfa22;color:#c4b5fd}
+.badge-tag-scenic{background:#10b98118;color:#059669}
+.dark .badge-tag-scenic{background:#34d39922;color:#34d399}
+.svg-disc-golf-basket{display:inline-block;width:1.15em;height:1.15em;vertical-align:-0.18em;fill:currentColor}
+i.fa-disc-golf-basket{display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='2' width='12' height='2.2' rx='0.5' fill='black'/%3E%3Crect x='11' y='0.8' width='2' height='1.5' rx='0.3' fill='black'/%3E%3Crect x='11.2' y='4' width='1.6' height='17.5' fill='black'/%3E%3Cpath d='M8 4.2 L9.5 12 M10 4.2 L10.8 12 M16 4.2 L14.5 12 M14 4.2 L13.2 12' stroke='black' stroke-width='1.1' stroke-linecap='round' stroke-dasharray='1.2,0.8' fill='none'/%3E%3Cpath d='M4.5 12.2 h15 l-1.5 4.8 h-12 z' fill='black'/%3E%3Cpath d='M7.5 21.5 h9 v1.5 h-9 z' fill='black'/%3E%3C/svg%3E") no-repeat center / contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='2' width='12' height='2.2' rx='0.5' fill='black'/%3E%3Crect x='11' y='0.8' width='2' height='1.5' rx='0.3' fill='black'/%3E%3Crect x='11.2' y='4' width='1.6' height='17.5' fill='black'/%3E%3Cpath d='M8 4.2 L9.5 12 M10 4.2 L10.8 12 M16 4.2 L14.5 12 M14 4.2 L13.2 12' stroke='black' stroke-width='1.1' stroke-linecap='round' stroke-dasharray='1.2,0.8' fill='none'/%3E%3Cpath d='M4.5 12.2 h15 l-1.5 4.8 h-12 z' fill='black'/%3E%3Cpath d='M7.5 21.5 h9 v1.5 h-9 z' fill='black'/%3E%3C/svg%3E") no-repeat center / contain;vertical-align:-0.15em}
+.badge-tag-food{background:#e11d4818;color:#be123c}
+.dark .badge-tag-food{background:#f43f5e22;color:#fb7185}
+.badge-tag-wellness{background:#06b6d418;color:#0891b2}
+.dark .badge-tag-wellness{background:#22d3ee22;color:#22d3ee}
+.badge-tag-gym{background:#64748b18;color:#475569}
+.dark .badge-tag-gym{background:#94a3b822;color:#94a3b8}
+.activity-content{display:flex;flex-direction:column;gap:0.25rem;min-width:0}
+.activity-text{font-size:0.92rem;line-height:1.3}
+.activity-meta{display:flex;gap:0.35rem;flex-wrap:wrap}
+.activity-list li{align-items:flex-start!important}
+.activity-list li i.fas, .activity-list li svg{margin-top:0.3em!important}
+
+.day-body .activity-list li i.fa-car{color:var(--gold)}
+.day-body .activity-list li i.fa-moon{color:#8b5cf6}
+
+.activity-desc{font-size:0.8rem;color:var(--muted);line-height:1.4}
+
+/* Group notes */
+.group-notes{padding:0.85rem 1.1rem;background:#3b82f610;border:1px solid #3b82f630;border-radius:10px;font-size:0.85rem;color:var(--text);margin-bottom:0.75rem;display:flex;align-items:flex-start;gap:0.7rem;line-height:1.6}
+.group-notes i{color:#3b82f6;font-size:1rem;margin-top:0.15em;flex-shrink:0}
+.dark .group-notes{background:#3b82f608;border-color:#3b82f640}
+
+/* Meals */
+.meals-grid{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem}
+.meal-item{display:flex;flex-direction:column;gap:0.3rem;padding:0.6rem 1rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--accent)}
+.meal-item:nth-child(2){border-left-color:var(--gold)}
+.meal-item:nth-child(3){border-left-color:#8b5cf6}
+.meal-label{font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);display:flex;align-items:center;gap:0.35rem}
+.meal-label i{font-size:0.75rem;width:1rem;text-align:center}
+.meal-label .fa-sun{color:#eab308}
+.meal-label .fa-bread-slice{color:var(--gold)}
+.meal-label .fa-moon{color:#8b5cf6}
+.meal-text{font-size:0.85rem;color:var(--muted);line-height:1.5}
+
+/* Info section */
 .info-section{padding:3rem 1rem;max-width:1000px;margin:0 auto}
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:1.5rem}
 .info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);transition:var(--transition)}
 .info-card:hover{transform:translateY(-2px);box-shadow:var(--hover-shadow)}
 .info-card h3{font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
 .info-card h3 i{color:var(--accent)}
-.info-card p,.info-card li{color:var(--muted);font-size:0.92rem;line-height:1.7}
+.info-card p{color:var(--muted);font-size:0.92rem;line-height:1.7}
 .info-card a{color:var(--accent);text-decoration:none;font-weight:500}
 .info-card a:hover{text-decoration:underline}
-.collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
-.collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
-.collapse-toggle i{font-size:0.65rem;transition:transform 0.3s ease}
-.collapse-toggle.open i{transform:rotate(180deg)}
-.collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.collapse-content.open{max-height:2000px}
+
+
+/* Planning checklist */
 .checklist{list-style:none;margin-top:0.5rem}
-.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.3rem 0.4rem;font-size:0.85rem;color:var(--muted);border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
-.checklist li:hover{background:var(--bg);border-radius:6px}
+.checklist li{display:flex;align-items:flex-start;gap:0.5rem;padding:0.35rem 0;font-size:0.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
 .checklist li:last-child{border-bottom:none}
+.checklist li i{color:var(--accent);margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center}
+.checklist li strong{color:var(--text)}
+.checklist li{cursor:pointer;transition:background 0.15s}
+.checklist li:hover{background:var(--bg);border-radius:6px}
 .checklist li i{margin-top:0.2em;flex-shrink:0;width:1rem;text-align:center;color:var(--muted)}
 .checklist li.done span{text-decoration:line-through;opacity:0.5}
 .checklist li.done i{color:var(--accent)!important}
-.checklist li strong{color:var(--text)}
 .checklist-cat{margin-bottom:0.5rem}
 .checklist-cat h4{font-size:0.88rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0.5rem;margin:0.75rem 0 0.25rem 0;border-radius:8px;background:var(--bg);cursor:pointer;user-select:none;transition:var(--transition)}
 .checklist-cat h4:hover{opacity:0.85}
@@ -116,18 +211,83 @@ footer a{color:var(--accent);text-decoration:none}
 .checklist-cat .cat-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
 .checklist-cat .cat-body.open{max-height:2000px}
 .cat-counter{font-size:0.72rem;color:var(--muted);margin-left:0.35rem;font-weight:400}
-.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
-@media print{ .collapse-toggle{display:none!important} .collapse-content{max-height:none!important} }
+.collapse-toggle{display:inline-flex;align-items:center;gap:0.35rem;background:none;border:1px solid var(--border);border-radius:50px;padding:0.25rem 0.75rem;font-size:0.75rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;transition:var(--transition);font-weight:500}
+.collapse-toggle:hover{background:var(--bg);border-color:var(--accent)}
 
-@media(max-width:768px){
-  .hero{min-height:40vh}
-  .hero-stats{gap:1rem}
-  .hero-stat .num{font-size:1.2rem}
-  .itinerary-grid{grid-template-columns:1fr}
-  .card-stats{grid-template-columns:1fr 1fr}
-  .container{padding:2rem 1rem}
-  .comparison-table th,.comparison-table td{padding:0.5rem 0.6rem;font-size:0.8rem}
+/* Footer */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+
+/* Per-day mini maps */
+.day-map { height: 220px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; z-index: 1; }
+@media(max-width:768px) { .day-map { height: 180px; } }
+@media print { .day-map { display: none; } }
+
+/* Leaflet overrides */
+.leaflet-popup-content-wrapper{border-radius:12px!important;font-family:inherit!important}
+.leaflet-popup-content{margin:12px 16px!important;font-size:0.9rem!important;line-height:1.5!important}
+.leaflet-popup-content strong{color:var(--accent)}
+.leaflet-control-zoom a{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+
+/* Prevent right-side overflow */
+.day-body,.info-card,.activity-text,.activity-desc,.stop-desc,.stop-card-name{overflow-wrap:break-word;word-break:break-word}
+
+/* Print */
+@media print{
+  .theme-toggle,.hero-cta,.route-link,.sticky-nav,.glance-strip{display:none!important}
+  .hero{min-height:auto;padding:1rem}
+  .day-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .day-body{max-height:none!important;padding:1rem 2rem 1rem 2rem!important}
+  .day-header{cursor:default}
+  .toggle-icon{display:none!important}
+  #map{height:300px}
 }
+
+/* Sticky nav */
+.sticky-nav{position:sticky;top:0;z-index:999;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:0.5rem 1rem;display:flex;align-items:center;gap:0.75rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sticky-nav::-webkit-scrollbar{display:none}
+.sticky-nav a{display:inline-flex;align-items:center;gap:0.35rem;padding:0.35rem 0.75rem;border-radius:50px;font-size:0.8rem;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;transition:var(--transition);border:1px solid transparent}
+.sticky-nav a:hover{color:var(--accent);border-color:var(--accent);background:var(--bg)}
+.sticky-nav .nav-divider{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.sticky-nav .day-jump{width:28px;height:28px;padding:0;justify-content:center;border-radius:50%;font-size:0.7rem;font-weight:700}
+.sticky-nav .day-jump.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sticky-nav .export-btn{margin-left:auto;background:var(--accent);color:#fff!important;border-color:var(--accent)!important;font-weight:600!important}
+.sticky-nav .export-btn:hover{background:var(--accent2)!important}
+
+/* At a glance */
+.glance-strip{display:flex;gap:0.5rem;padding:1.5rem 1rem;max-width:1000px;margin:0 auto 1rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.glance-strip::-webkit-scrollbar{display:none}
+.glance-item{flex:1;min-width:80px;max-width:120px;text-align:center;padding:0.75rem 0.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--text)}
+.glance-item:hover{transform:translateY(-2px);box-shadow:var(--card-shadow);border-color:var(--accent)}
+.glance-item .glance-day{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);font-weight:600}
+.glance-item .glance-icon{font-size:1.3rem;margin:0.3rem 0;display:block}
+.glance-item .glance-base{font-size:0.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.glance-item .glance-drive{font-size:0.6rem;color:var(--gold);margin-top:0.15rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero-stats{gap:1rem}
+  .hero-stat .num{font-size:1.5rem}
+  .day-header{padding:1rem 1rem 1rem 1.5rem;flex-wrap:wrap}
+  .day-header-left{flex-wrap:wrap;gap:0.5rem}
+  .day-body{padding:0 1rem}
+  .day-card.open .day-body{padding:0 1rem 1rem 1rem}
+  #map{height:350px}
+  .map-legend{gap:0.5rem;font-size:0.8rem}
+  .sticky-nav{padding:0.4rem 0.75rem;gap:0.5rem}
+  .sticky-nav a{font-size:0.75rem;padding:0.3rem 0.6rem}
+  .sticky-nav .day-jump{width:26px;height:26px;font-size:0.65rem}
+  .glance-strip{padding:1rem 0.75rem}
+  .glance-item{min-width:80px;padding:0.6rem 0.4rem}
+  .glance-item .glance-icon{font-size:1.1rem}
+}
+
+/* Collapse content for Jet Lag Playbook and price data */
+.collapse-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.collapse-content.open{max-height:2000px}
+.collapse-toggle.open i{transform:rotate(180deg)}
+.info-card p,.info-card li{color:var(--muted);font-size:0.92rem;line-height:1.7}
+@media print{ .collapse-toggle{display:none!important} .collapse-content{max-height:none!important} }
 </style>
 </head>
 <body>
@@ -138,333 +298,173 @@ footer a{color:var(--accent);text-decoration:none}
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><i class="fas fa-map-marked-alt"></i> Norway 2027</div>
-    <h1>Trip <span>Dashboard</span></h1>
+    <div class="hero-badge"><i class="fas fa-plane"></i> May 28 - Jun 7, 2027  -  EDT → CEST (+6h)</div>
+    <h1>Norway <span>Road Trip</span></h1>
+    <p class="subtitle">Oslo → Flåm → Loen → Otta → Oslo  -  EDT +6h = CEST</p>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="num">5</span><span class="label">Itineraries</span></div>
-      <div class="hero-stat"><span class="num">10</span><span class="label">Days Each</span></div>
-      <div class="hero-stat"><span class="num">May - June</span><span class="label">2027</span></div>
+      <div class="hero-stat">
+        <span class="num">11</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">4</span>
+        <span class="label">Bases</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">~16h</span>
+        <span class="label">Driving</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">$1,620–3,025</span>
+        <span class="label">Total/person*</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">~$50–80</span>
+        <span class="label">Food/day</span>
+      </div>
+    </div>
+    <p style="font-size:0.7rem;color:rgba(255,255,255,0.45);margin-top:0.5rem;max-width:500px;margin-left:auto;margin-right:auto">* Lodging (one room per family) + flights (~$800–1,200) + activities (~$200–600). Food ~$50–80/person/day. Fuel, tolls, car rental separate.</p>
+    <div class="hero-ctas">
+      <a href="#map" class="hero-cta"><i class="fas fa-map-marked-alt"></i> See the Route</a>
+      <a href="planning.html" class="hero-cta"><i class="fas fa-list-check"></i> Open Planning Board</a>
     </div>
   </div>
 </section>
 
-<div class="container">
+<nav class="sticky-nav" id="stickyNav">
+  <a href="#mapSection"><i class="fas fa-map"></i> Map</a>
+  <a href="#days"><i class="fas fa-calendar-alt"></i> Days</a>
+  <span class="nav-divider"></span>
+  <a href="#day-1" class="day-jump" title="Day 1 - Oslo">1</a>
+  <a href="#day-2" class="day-jump" title="Day 2 - Flåm">2</a>
+  <a href="#day-3" class="day-jump" title="Day 3 - Flåm">3</a>
+  <a href="#day-4" class="day-jump" title="Day 4 - Flåm">4</a>
+  <a href="#day-5" class="day-jump" title="Day 5 - Loen">5</a>
+  <a href="#day-6" class="day-jump" title="Day 6 - Loen">6</a>
+  <a href="#day-7" class="day-jump" title="Day 7 - Otta">7</a>
+  <a href="#day-8" class="day-jump" title="Day 8 - Otta">8</a>
+  <a href="#day-9" class="day-jump" title="Day 9 - Otta">9</a>
+  <a href="#day-10" class="day-jump" title="Day 10 - Oslo">10</a>
+  <a href="#day-11" class="day-jump" title="Day 11 - Depart">11</a>
+  <span class="nav-divider"></span>
+  <a href="#booking-checklist"><i class="fas fa-tasks"></i> Checklist</a>
+  <a href="#info"><i class="fas fa-info-circle"></i> Info</a>
+  <a href="#price-chart"><i class="fas fa-chart-line"></i> Prices</a>
+  <span class="nav-divider"></span>
+  <a href="planning.html"><i class="fas fa-tasks"></i> Planning Board</a>
+  <a href="#" onclick="exportJSON();return false;" class="export-btn" title="Export JSON"><i class="fas fa-file-code"></i> JSON</a>
+  <a href="#" onclick="exportCSV();return false;" class="export-btn" style="margin-left:0" title="Export CSV"><i class="fas fa-file-csv"></i> CSV</a>
+</nav>
 
+<section class="map-section" id="mapSection">
+  <h2><i class="fas fa-map"></i> Route Overview</h2>
+  <p>Click a marker to see each overnight base. The dashed line shows the full driving route.</p>
+  <div id="map"></div>
+  <div class="map-legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Overnight base</span>
+    <span class="legend-item"><span class="legend-line" style="background:#2d6a4f"></span> Drive route</span>
+    <a href="https://maps.app.goo.gl/XRrUWct1mEGTHiKd7" target="_blank" rel="noopener" class="route-link">
+      <i class="fas fa-route"></i> Open in Google Maps
+    </a>
+  </div>
+</section>
+
+<section class="timeline" id="days">
   <div class="section-header">
-    <h2><i class="fas fa-route"></i> Choose Your Route</h2>
+    <h2><i class="fas fa-calendar-alt"></i> Day-by-Day Itinerary</h2>
+    <p>Click each day to expand details - drive routes, activities, and lodging for every stop.</p>
   </div>
+  <div class="glance-strip" id="glanceStrip"></div>
+  <div id="timelineContainer"></div>
+</section>
 
-  <div class="itinerary-grid">
-    <!-- Route 1 -->
-    <a href="itinerary1.html" class="itinerary-card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3><i class="fas fa-mountain"></i> Route 1 - Northern Loop</h3>
-        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 - Oslo &rarr; Fl&aring;m &rarr; Loen &rarr; Jotunheimen &rarr; Lillehammer &rarr; Oslo</div>
-        <div class="route-pills">
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Loen</span>
-          <span class="route-pill">Loen</span>
-          <span class="route-pill">Lillehammer</span>
-          <span class="route-pill">Lillehammer</span>
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Depart</span>
-        </div>
-        <div class="card-stats">
-          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 3</span></div>
-          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~16h</span></div>
-          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Oslo (OSL)</span></div>
-          <div class="card-stat"><span class="cs-label">Total/person</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,620&ndash;3,025</span></div>
-        </div>
-        <ul class="card-highlights">
-           <li><i class="fas fa-check"></i> National Museum (The Scream), Opera House roof walk</li>
-           <li><i class="fas fa-check"></i> Fl&aring;m Railway, Stegastein Viewpoint, fjord kayak</li>
-          <li><i class="fas fa-check"></i> Briksdal glacier, Loen Skylift, Via Ferrata</li>
-           <li><i class="fas fa-check"></i> Lom Stave Church, Sjoa River rafting</li>
-          <li><i class="fas fa-check"></i> Arctic Dome glamping, Maihaugen Museum</li>
-        </ul>
-        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
-      </div>
-    </a>
-
-    <!-- Route 2 -->
-    <a href="itinerary2.html" class="itinerary-card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3><i class="fas fa-ship"></i> Route 2 - Southern Loop</h3>
-        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 - Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Hardanger &rarr; Stavanger</div>
-        <div class="route-pills">
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Hardanger</span>
-          <span class="route-pill">Hardanger</span>
-          <span class="route-pill">Stavanger</span>
-          <span class="route-pill">Stavanger</span>
-          <span class="route-pill">Depart</span>
-        </div>
-        <div class="card-stats">
-          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 3</span></div>
-          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~19h</span></div>
-          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Stavanger (SVG)</span></div>
-          <div class="card-stat"><span class="cs-label">Total/person</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,380&ndash;2,770</span></div>
-        </div>
-        <ul class="card-highlights">
-          <li><i class="fas fa-check"></i> Oslo Fjord cruise, Vigeland Sculpture Park</li>
-          <li><i class="fas fa-check"></i> Fl&aring;m Railway, Stegastein, Aurlandsfjord kayak</li>
-          <li><i class="fas fa-check"></i> Fl&oslash;yen funicular, Bryggen wharf, Bergen Fish Market</li>
-          <li><i class="fas fa-check"></i> Steinsdalsfossen, V&oslash;ringsfossen, Bondhusbreen glacier, fruit farms</li>
-          <li><i class="fas fa-check"></i> Preikestolen hike, Lysefjord cruise</li>
-        </ul>
-        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
-      </div>
-    </a>
-
-    <!-- Route 3 -->
-    <a href="itinerary3.html" class="itinerary-card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3><i class="fas fa-water"></i> Route 3 - Geiranger &amp; Northwest</h3>
-        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 - Oslo &rarr; Lom &rarr; Geiranger &rarr; &Aring;lesund &rarr; Trondheim</div>
-        <div class="route-pills">
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Lom</span>
-          <span class="route-pill">Geiranger</span>
-          <span class="route-pill">Geiranger</span>
-          <span class="route-pill">&Aring;lesund</span>
-          <span class="route-pill">&Aring;lesund</span>
-          <span class="route-pill">Molde</span>
-          <span class="route-pill">Trondheim</span>
-          <span class="route-pill">Trondheim</span>
-          <span class="route-pill">Depart</span>
-        </div>
-        <div class="card-stats">
-          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 6</span></div>
-          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~16h</span></div>
-          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Trondheim (TRD)</span></div>
-          <div class="card-stat"><span class="cs-label">Total/person</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,370&ndash;2,590</span></div>
-        </div>
-        <ul class="card-highlights">
-          <li><i class="fas fa-check"></i> UNESCO Geirangerfjord cruise, Dalsnibba Skywalk</li>
-          <li><i class="fas fa-check"></i> Trollstigen mountain pass, Atlantic Ocean Road</li>
-          <li><i class="fas fa-check"></i> &Aring;lesund Art Nouveau city, Atlantic Sea Park</li>
-          <li><i class="fas fa-check"></i> Nidaros Cathedral, Rockheim pop music museum</li>
-          <li><i class="fas fa-check"></i> Lom Bakery, bacalao in &Aring;lesund, Fagn in Trondheim</li>
-        </ul>
-        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
-      </div>
-    </a>
-
-    <!-- Route 4 -->
-    <a href="itinerary4.html" class="itinerary-card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3><i class="fas fa-mountain"></i> Route 4 - Telemark &amp; Hardanger</h3>
-        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 - Oslo &rarr; Rjukan &rarr; Hardangervidda &rarr; Hardanger &rarr; Bergen</div>
-        <div class="route-pills">
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Rjukan</span>
-          <span class="route-pill">Rjukan</span>
-          <span class="route-pill">Hardanger</span>
-          <span class="route-pill">Hardanger</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Depart</span>
-        </div>
-        <div class="card-stats">
-          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 4</span></div>
-          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~13h</span></div>
-          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Bergen (BGO)</span></div>
-          <div class="card-stat"><span class="cs-label">Total/person</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,290&ndash;2,480</span></div>
-        </div>
-        <ul class="card-highlights">
-          <li><i class="fas fa-check"></i> Fram Polar Museum, Vigeland Park, Akershus Fortress</li>
-          <li><i class="fas fa-check"></i> Heddal Stave Church, Vemork WWII Sabotage Museum</li>
-          <li><i class="fas fa-check"></i> Gaustabanen inside the rock, Hardangervidda plateau</li>
-          <li><i class="fas fa-check"></i> Vøringsfossen (182m platforms), Bondhusbreen trail</li>
-          <li><i class="fas fa-check"></i> Voss rafting, Fantoft Disc Golf, Mostraumen cruise</li>
-        </ul>
-        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
-      </div>
-    </a>
-
-    <!-- Route 5 -->
-    <a href="itinerary5.html" class="itinerary-card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3><i class="fas fa-water"></i> Route 5 - Lofoten &amp; Fjords</h3>
-        <div class="card-subtitle"><i class="fas fa-calendar-alt"></i> May 28 &ndash; Jun 6 - Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Lofoten &rarr; Depart</div>
-        <div class="route-pills">
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Oslo</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Fl&aring;m</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Bergen</span>
-          <span class="route-pill">Lofoten</span>
-          <span class="route-pill">Lofoten</span>
-          <span class="route-pill">Lofoten</span>
-          <span class="route-pill">Depart</span>
-        </div>
-        <div class="card-stats">
-          <div class="card-stat"><span class="cs-label">Bases</span><span class="cs-value"><i class="fas fa-city"></i> 4</span></div>
-          <div class="card-stat"><span class="cs-label">Driving</span><span class="cs-value"><i class="fas fa-car"></i> ~7h</span></div>
-          <div class="card-stat"><span class="cs-label">Departure</span><span class="cs-value"><i class="fas fa-plane-departure"></i> Leknes (LKN)</span></div>
-          <div class="card-stat"><span class="cs-label">Total/person</span><span class="cs-value"><i class="fas fa-wallet"></i> $1,270&ndash;2,630</span></div>
-        </div>
-        <ul class="card-highlights">
-          <li><i class="fas fa-check"></i> Bergen Railway link, Fl&aring;m Railway steep descent</li>
-          <li><i class="fas fa-check"></i> N&aelig;r&oslash;yfjord UNESCO cruise, Aurlandsfjord kayak</li>
-          <li><i class="fas fa-check"></i> Fl&oslash;ibanen funicular, Bryggen wharf, Mostraumen cruise</li>
-          <li><i class="fas fa-check"></i> Steep Reinebringen hike, Reinefjorden stillwater kayak</li>
-          <li><i class="fas fa-check"></i> Anita's Sjømat fish burger, traditional red rorbu stay</li>
-        </ul>
-        <span class="card-cta"><i class="fas fa-arrow-right"></i> View Itinerary</span>
-      </div>
-    </a>
-
+<section class="info-section" id="booking-checklist">
+  <div class="section-header">
+    <h2><i class="fas fa-tasks"></i> Booking Checklist</h2>
+    <p>Click each item to mark it done. Categories collapse via header click. Items specific to this route.</p>
   </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3><i class="fas fa-tasks"></i> Pre-Trip Bookings <span style="font-size:0.72rem;color:var(--muted);font-weight:400"> - click to check off</span></h3>
 
-  <div class="section-header" id="comparison">
-    <h2><i class="fas fa-balance-scale"></i> Quick Comparison</h2>
-    <p>Key metrics at a glance across all five routes. Total/person includes lodging, flights (~$800&ndash;1,200), and activities (~$200&ndash;600).</p>
+      <div class="checklist-cat" id="cat1-transport">
+        <h4 onclick="toggleCat('cat1-transport')"><i class="fas fa-car"></i> Transportation <span class="cat-counter" id="counter1-transport">0/5</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body1-transport">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book outbound flights</strong> PIT/MGW/IAD → OSL (1+ stops, 10-11+ hrs) ~$800-1,200/person</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book return flights</strong> OSL → US (11-13+ hours transit time)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book rental cars</strong> (2 cars, Days 2-10) - pick up Day 2 morning &amp; return Day 10 afternoon or Day 11 at OSL</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Confirm AutoPASS &amp; FerryPay</strong> links rental vehicle tag for automated toll and Sognefjord ferry billing</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>International Driving Permit (IDP)</strong> - Obtain via AAA $30+ per driver</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat1-lodging">
+        <h4 onclick="toggleCat('cat1-lodging')"><i class="fas fa-bed"></i> Lodging <span class="cat-counter" id="counter1-lodging">0/4</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body1-lodging">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo hotel center</strong> (Days 1 &amp; 10, 2 nights total) - Citybox $120 / Radisson RED $165 / Grand $320 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Flåm base lodging</strong> (Days 2-4, 3 nights) - Flåmsbrygga $235 / Flåm Marina $260 / Fretheim $310 per night</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen private house / apartment</strong> (Days 5-6, 2 nights) - Airbnb-style rental ~$600+ for the stay</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Otta base lodging</strong> (Days 7-9, 3 nights) - Airbnb / apartment ~$660-1,200 for the stay, or Sjoa Rafting AS log cabins $42 pp/night</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat1-activities">
+        <h4 onclick="toggleCat('cat1-activities')"><i class="fas fa-mountain"></i> Activities <span class="cat-counter" id="counter1-activities">0/16</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body1-activities">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Oslo Waterfront Sauna</strong> (Day 1 or 10) - Oslo Badstuforening public slots - BOOKS 2 WEEKS OUT</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>National Museum Oslo</strong> (Day 1) - $22 (220 NOK) adult entry, under 18 free</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Borgund Stave Church</strong> (Day 2) - $15 (150 NOK) historical center admission</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Flåm Railway &amp; Zipline/Bike</strong> (Day 3) - ~$85 (900 NOK) round trip train - HIGH PRIORITY, book 2+ months ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Nærøyfjord UNESCO cruise</strong> (Day 3 or 4) - $64 (640 NOK) silent electric catamaran</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Njord Kayak on Aurlandsfjord</strong> (Day 3) - $115 (1,235 NOK) guided stillwater tour</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Aurlandsdalen Hike</strong> (Day 4) - Pre-book Aurland Taxi to Østerbø (public shuttle starts June 1) or hike Vassbygdi-Sinjarheim</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Loen Skylift boarding pass</strong> (Day 5 or 6) - 595 NOK (~$56) adult round trip</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Briksdal Glacier troll car</strong> (Day 6) - 300 NOK (~$31) round trip transport slots</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Via Ferrata Loen Climb</strong> (Day 6) - ~1,790 NOK ($170) - Strict safety caps, book far ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Flåm Via Ferrata</strong> (Day 4) - guided climb in the Aurlandsfjord area, book ahead</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Lom Stave Church</strong> (Day 7 or 9) - $12 (120 NOK) traditional entry pass</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Bakeriet i Lom</strong> (Day 7 or 9) - famous cardamom buns, $6-15</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Sjoa River Rafting</strong> (Day 8) - Sjoa Familierafting Class I-II ($83) or Sjoa Rafting AS Short Trip ($101) / Aasengjuvet ($169)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Galdhøpiggen guided hike</strong> (Day 9) - guide fee 600-700 NOK ($61-66), Juvasshytta opens 14 May 2027</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Besseggen Ridge boat-and-hike</strong> (Day 9) - Gjende boat season starts 5 June 2027</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Maihaugen Open-Air Museum</strong> (Day 10) - $17 (180 NOK) entry</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist-cat" id="cat1-dining">
+        <h4 onclick="toggleCat('cat1-dining')"><i class="fas fa-utensils"></i> Dining Reservations <span class="cat-counter" id="counter1-dining">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
+        <div class="cat-body open" id="body1-dining">
+          <ul class="checklist">
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Ægir BrewPub</strong> (Flåm, Days 2-4) - Timber hearth tables fill up, reserve early</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Kest Tasting Room</strong> (Aurland, Day 3 Sunday) - 8-course regional menu (open Fri-Sun evenings)</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fretheim Hotel Arven Restaurant</strong> (Flåm, Day 4) - Sognefjord-focused upscale fare</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Hotel Alexandra dinner buffet</strong> (Loen, Day 5 or 6) - Premier local seafood feast spread</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Fossheim Turisthotell dinner</strong> (Lom, Day 9) - traditional mountain cuisine, $40-60 pp</span></li>
+            <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Smalhans or Den Glade Gris</strong> (Oslo, Day 1 or 10) - Essential city sharing plates / pork knuckle slots</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:0.5rem;display:flex;gap:0.5rem;flex-wrap:wrap">
+        <button class="collapse-toggle" onclick="expandAllCats()" style="font-size:0.72rem"><i class="fas fa-expand"></i> Expand all</button>
+        <button class="collapse-toggle" onclick="collapseAllCats()" style="font-size:0.72rem"><i class="fas fa-compress"></i> Collapse all</button>
+        <button class="collapse-toggle" onclick="resetChecklist()" style="font-size:0.72rem;color:#ef4444;border-color:#ef4444"><i class="fas fa-undo"></i> Reset all</button>
+      </div>
+    </div>
   </div>
+  <div class="info-grid" id="referencesContainer" style="margin-top:1.5rem"></div>
+</section>
 
-  <div class="table-responsive">
-    <table class="comparison-table">
-        <thead>
-        <tr>
-          <th style="width:16%"></th>
-          <th style="width:16%">Route 1</th>
-          <th style="width:16%">Route 2</th>
-          <th style="width:16%">Route 3</th>
-          <th style="width:16%">Route 4</th>
-          <th style="width:16%">Route 5</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><i class="fas fa-route"></i> Route</td>
-          <td>Oslo &rarr; Fl&aring;m &rarr; Loen &rarr; Lillehammer &rarr; Oslo</td>
-          <td>Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Hardanger &rarr; Stavanger</td>
-          <td>Oslo &rarr; Lom &rarr; Geiranger &rarr; &Aring;lesund &rarr; Molde &rarr; Trondheim</td>
-          <td>Oslo &rarr; Rjukan &rarr; Hardangervidda &rarr; Hardanger &rarr; Bergen</td>
-          <td>Oslo &rarr; Fl&aring;m &rarr; Bergen &rarr; Lofoten &rarr; Depart</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-plane-departure"></i> End city</td>
-          <td>Oslo (OSL)</td>
-          <td>Stavanger (SVG)</td>
-          <td>Trondheim (TRD)</td>
-          <td>Bergen (BGO)</td>
-          <td>Leknes (LKN)</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-car"></i> Driving</td>
-          <td>~16h</td>
-          <td>~19h</td>
-          <td>~16h</td>
-          <td>~13h</td>
-          <td>~7h (plus train &amp; flights)</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-city"></i> Bases</td>
-          <td>3</td>
-          <td>3</td>
-          <td>6</td>
-          <td>4</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-wallet"></i> Total/person*</td>
-          <td>$1,620&ndash;3,025</td>
-          <td>$1,380&ndash;2,770</td>
-          <td>$1,370&ndash;2,590</td>
-          <td>$1,290&ndash;2,480</td>
-          <td>$1,270&ndash;2,630</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-moon"></i> Lodging/night</td>
-          <td>$175&ndash;300</td>
-          <td>$141&ndash;338</td>
-          <td>$128&ndash;267</td>
-          <td>$100&ndash;260</td>
-          <td>$95&ndash;301</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-mountain"></i> Glaciers</td>
-          <td>Briksdal, B&oslash;yabreen, Kjenndalen</td>
-          <td>Bondhusbreen</td>
-          <td>None on route</td>
-          <td>Bondhusbreen</td>
-          <td>Bondhusbreen</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-water"></i> Fjord cruises</td>
-          <td>Undredal catamaran</td>
-          <td>Mostraumen, Hardangerfjord, Lysefjord</td>
-          <td>Geirangerfjord UNESCO, RIB safari</td>
-          <td>Mostraumen sightseeing</td>
-          <td>N&aelig;r&oslash;yfjord UNESCO, Mostraumen</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-hiking"></i> Signature hikes</td>
-          <td>Utladalen, Fl&aring;m Valley</td>
-          <td>Preikestolen, Bondhusbreen, Trolltunga</td>
-          <td>Storseterfossen, Skagefl&aring;, Sukkertoppen</td>
-          <td>Gaustatoppen, Bondhusbreen lake path</td>
-          <td>Reinebringen, Ryten, Trail walks</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-church"></i> Stave churches</td>
-          <td>Borgund, Lom, Ringebu</td>
-          <td>Borgund</td>
-          <td>Ringebu, Lom, Kvernes</td>
-          <td>Heddal (largest), Fantoft</td>
-          <td>Norwegian Folk Museum (replica)</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-campground"></i> Unique stays</td>
-          <td>Arctic Dome glamping</td>
-          <td>Fjord hotels (Hardanger)</td>
-          <td>Historic fjord hotel (Geiranger)</td>
-          <td>Gaustatoppen mountain lodge</td>
-          <td>Traditional red rorbu cabins</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-utensils"></i> Local food/drink</td>
-          <td>&AElig;gir BrewPub, brewery crawl</td>
-          <td>Fish Market, Hardanger cider</td>
-          <td>Bakery, bacalao, Fagn restaurant</td>
-          <td>Schrøder tavern, Pingvinen raspeballer, cider</td>
-          <td>Mathallen, &AElig;gir, Anita's fish burger, Fiskekrogen</td>
-        </tr>
-        <tr>
-          <td><i class="fas fa-star"></i> Best for</td>
-          <td>Mountains + glaciers + variety</td>
-          <td>Coastal cities + Preikestolen</td>
-          <td>Epic roads + UNESCO fjord + music</td>
-          <td>Wartime history + mountain tram + deep town life</td>
-          <td>Midnight Sun + Arctic archipelago + Fjord railways</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;text-align:right"><em>* Total/person = lodging (one room per family per night, split per person) + round-trip flights (~$800&ndash;1,200) + activities (~$200&ndash;600). Food (~$50&ndash;80/person/day), fuel, tolls, and rental car are separate.</em></p>
-
-</div>
-
-  <section class="info-section" id="price-chart" style="padding-top:0">
+<section class="info-section" id="price-chart" style="padding-top:0">
     <div class="section-header">
       <h2><i class="fas fa-chart-line"></i> Flight Price Trends</h2>
-      <p>Representative pricing pattern for PIT &rarr; OSL (round trip, economy) departing late May. Based on travel industry research and observed fares. Actual prices may vary.</p>
+      <p>Representative pricing pattern for US to Oslo (round trip, economy) departing late May. Based on travel industry research and observed fares. Actual prices may vary.</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--card-shadow);max-width:900px;margin:0 auto">
       <canvas id="priceChart" width="800" height="400" style="width:100%;height:auto;max-height:400px"></canvas>
@@ -526,26 +526,24 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
   </section>
 
-  <section class="info-section" id="info">
+<section class="info-section" id="info">
     <div class="section-header">
       <h2><i class="fas fa-info-circle"></i> Trip Info</h2>
-      <p>Everything you need to plan the trip - shared across all routes.</p>
+      <p>Everything you need to plan the trip - for this trip.</p>
     </div>
     <div class="info-grid">
       <div class="info-card">
         <h3><i class="fas fa-users"></i> The Group</h3>
-        <p><strong>Two families traveling together</strong> - each with their own rental car and hotel room. Activities are suitable for everyone; mix and match based on your family's interests.<br>
-        <strong>Boyer family:</strong> Christopher, Deborah, and Duncan (17). Hiking, stillwater kayaking, disc golf, epic views.<br>
-        <strong>Lilly family:</strong> Clayton, Christa, and Ira (13). Fitness hiking, mild whitewater, epic views.<br>
-        Each day in the individual itineraries has a <em>Group Notes</em> section with specific suggestions.</p>
+        <p><strong>Two families traveling together</strong> - each with their own rental car and hotel room. Between the two families there is a 17-year-old and a 13-year-old. Activities suit a range of ages; mix and match by interest.<br>
+        Each day has a <em>Group Notes</em> section with specific suggestions.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-car"></i> Driving</h3>
-        <p>Rental car for the full trip (except Route 5 which uses train + flight + rental in Lofoten). Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common - <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network. Norwegian Scenic Routes (Sognefjellet, Aurlandsfjellet, Valdresflye, Trollstigen) are highlights of many routes.</p>
+        <p>Rental car for the full trip. Most drives are 2&ndash;5.5 hours through scenic mountain and fjord roads. Toll roads are common - <a href="https://www.autopass.no" target="_blank" rel="noopener">AutoPASS</a> covers all tolls automatically. Ferries are part of the normal road network. Norwegian Scenic Routes (Sognefjellet, Aurlandsfjellet, Valdresflye) are highlights of this route.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-cloud-sun"></i> Weather &amp; Daylight</h3>
-        <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F) in valleys/fjords; 5&ndash;15&deg;C (40&ndash;60&deg;F) in mountains and Lofoten. Sunset ~10:30 PM &ndash; midnight depending on latitude, sunrise ~4:00 AM. Lofoten has 24-hour daylight starting May 27. Rain gear essential - fjord weather changes fast. Glacier areas stay cooler. Pack layers: base layer, fleece, waterproof outer.</p>
+        <p>Late May / early June: 10&ndash;20&deg;C (50&ndash;68&deg;F) in valleys/fjords; 5&ndash;15&deg;C (40&ndash;60&deg;F) in mountains. Sunset ~10:30 PM &ndash; midnight depending on latitude, sunrise ~4:00 AM. Rain gear essential - fjord weather changes fast. Glacier areas stay cooler. Pack layers: base layer, fleece, waterproof outer.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-clock"></i> Jet Lag Playbook</h3>
@@ -560,11 +558,11 @@ footer a{color:var(--accent);text-decoration:none}
       </div>
       <div class="info-card">
         <h3><i class="fas fa-utensils"></i> Food</h3>
-        <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots. Must-tries: <em>raspeballer</em> (potato dumplings), fresh salmon, <em>brunost</em> (brown cheese), <em>fårikål</em> (lamb stew), cloudberries with cream, fresh seafood at fish markets, local craft beer and aquavit. Each itinerary has specific restaurant recommendations.</p>
+        <p>Breakfast usually included at hotels. Lunch from supermarkets (Kiwi, Rema 1000) or roadside cafes. Dinner at hotel restaurants or local spots. Must-tries: <em>raspeballer</em> (potato dumplings), fresh salmon, <em>brunost</em> (brown cheese), <em>fårikål</em> (lamb stew), cloudberries with cream, fresh seafood at fish markets, local craft beer and aquavit. The itinerary has specific restaurant recommendations.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-hiking"></i> Activities</h3>
-        <p>Most outdoor activities run late May to September. Book fjord cruises and glacier guides in advance. Key activity types: fjord cruises (electric catamaran or RIB), glacier hiking/walks, stillwater kayaking, via ferrata, stave churches, scenic mountain passes, brewery visits, and disc golf. Each itinerary lists specific bookable activities.</p>
+        <p>Most outdoor activities run late May to September. Book fjord cruises and glacier guides in advance. Key activity types: fjord cruises (electric catamaran or RIB), glacier hiking/walks, stillwater kayaking, whitewater rafting, national park hiking, via ferrata, stave churches, scenic mountain passes, brewery visits, and disc golf. The itinerary lists specific bookable activities.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-language"></i> Language</h3>
@@ -575,7 +573,7 @@ footer a{color:var(--accent);text-decoration:none}
         <p><strong>Unlimited data + hotspot for everyone.</strong> Norway has excellent 4G/5G coverage in towns and along main roads. Remote fjord and mountain areas may have spotty service. Two approaches:</p>
         <p><strong>eSIM (easiest):</strong> Each person installs an <a href="https://www.airalo.com" target="_blank" rel="noopener">Airalo</a> or <a href="https://www.holafly.com" target="_blank" rel="noopener">Holafly</a> Norway eSIM before departure. Unlimited data for 10 days ~$20&ndash;40. Supports hotspot tethering. No physical SIM swap - install on both iPhone and Android.</p>
         <p><strong>Physical SIM:</strong> Pick up a <a href="https://www.telia.no" target="_blank" rel="noopener">Telia</a> or <a href="https://www.telenor.no" target="_blank" rel="noopener">Telenor</a> prepaid SIM at Oslo Airport arrivals. Unlimited data ~$30&ndash;50 for 30 days. Hotspot included. One SIM per car can share Wi-Fi to everyone in the vehicle.</p>
-        <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Lærdal tunnel, Jotunheimen valleys, Lofoten mountain passes) may have no signal regardless.</p>
+        <p><strong>Group plan:</strong> Each family gets one data plan and enables hotspot. The three travelers in each car share one connection. Download offline Google Maps for the entire route as backup. Remote areas (Lærdal tunnel, Jotunheimen valleys) may have no signal regardless.</p>
       </div>
       <div class="info-card">
         <h3><i class="fas fa-shield-alt"></i> Travel Insurance</h3>
@@ -586,8 +584,7 @@ footer a{color:var(--accent);text-decoration:none}
       </div>
       <div class="info-card">
         <h3><i class="fas fa-wallet"></i> Estimated Budget</h3>
-        <p><strong>Budget varies by route</strong> - see the <a href="#comparison">Quick Comparison table above</a> for total per-person ranges and the individual itinerary pages for detailed breakdowns by base.<br>
-        <strong>Total per person (9 nights, incl. flights + activities):</strong> $1,270&ndash;3,070 depending on route and hotel tier (budget, mid, or premium).<br>
+        <p><strong>Estimated total per person (10 nights, incl. flights + activities):</strong> $1,620&ndash;3,025 depending on hotel tier (budget, mid, or premium).<br>
         <strong>Lodging per person (one room per family per night):</strong> $270&ndash;1,270.<br>
         Costs include accommodation, flights (~$800&ndash;1,200 round trip), and activities (~$200&ndash;600). Food (~$50&ndash;80/person/day), fuel, tolls, and rental car are separate. Each family books and pays separately.</p>
       </div>
@@ -601,9 +598,9 @@ footer a{color:var(--accent);text-decoration:none}
       </div>
       <div class="info-card">
         <h3><i class="fas fa-calendar-alt"></i> When to Book</h3>
-        <p><strong>Flights (PIT/MGW &rarr; various Norwegian airports):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking. From Pittsburgh (PIT), connecting through JFK/EWR or direct to a European hub (LHR, CDG, FRA) then connect. Aim for Economy Plus ~$800&ndash;1,200 round trip. Open-jaw itineraries (fly into one city, out of another) are common.</p>
+        <p><strong>Flights (PIT/MGW &rarr; Oslo):</strong> Book 3&ndash;5 months out (Jan&ndash;Feb 2027). Best prices seen Tue&ndash;Wed. Use <a href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a> price tracking. From Pittsburgh (PIT), connecting through JFK/EWR or direct to a European hub (LHR, CDG, FRA) then connect. Aim for Economy Plus ~$800&ndash;1,200 round trip.</p>
         <p><strong>Car rental:</strong> Book 8&ndash;12 weeks ahead (Mar&ndash;early Apr 2027). Use <a href="https://www.discovercars.com" target="_blank" rel="noopener">Discover Cars</a> or <a href="https://www.rentalcars.com" target="_blank" rel="noopener">RentalCars.com</a>. Mid-size SUV or station wagon recommended. Expect ~$400&ndash;800 total per car. Check for free cancellation.</p>
-        <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027). Popular properties (Fretheim, Alexandra, Lofoten rorbuer) sell out first - book even earlier for Lofoten (6+ months). Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation, rebook if rates drop.</p>
+        <p><strong>Hotels:</strong> Book 4&ndash;6 months ahead (Dec 2026&ndash;Jan 2027). Popular properties (Fretheim and Flåmsbrygga in Flåm, Hotel Alexandra and Loenfjord in Loen, and private rentals in Otta) sell out first - book early. Use <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a> with free cancellation, rebook if rates drop.</p>
         <p><strong>Tip:</strong> Set calendar reminders for each booking window. Check hotel websites directly for member rates.</p>
       </div>
       <div class="info-card">
@@ -659,14 +656,14 @@ footer a{color:var(--accent);text-decoration:none}
           <h4 onclick="toggleCat('cat-bookings')"><i class="fas fa-calendar-check"></i> Activities &amp; Bookings <span class="cat-counter" id="counter-bookings">0/9</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
           <div class="cat-body open" id="body-bookings">
             <ul class="checklist">
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book competitive hotels</strong> (Dec 2026) - Fretheim, Alexandra, Arctic Dome, rorbuer book early</span></li>
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book all hotels</strong> (Jan 2027) - 9 nights, free cancellation on Booking.com</span></li>
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book fjord cruises</strong> - Undredal catamaran, Geirangerfjord, Nærøyfjord, Lysefjord etc.</span></li>
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book glacier hike / walk</strong> - Briksdal, Bondhusbreen, Folgefonna, Kjenndalen</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book competitive hotels</strong> (Dec 2026) - Fretheim, Flåmsbrygga in Flåm, and Hotel Alexandra in Loen book early</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book all hotels</strong> (Jan 2027) - 10 nights, free cancellation on Booking.com</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book fjord cruises</strong> - Nærøyfjord and Aurlandsfjord cruises</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book glacier hike / walk</strong> - Briksdal, Bøyabreen, Kjenndalen, Supphellebreen</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book guided activities</strong> - Via Ferrata, kayaking, rafting, Loen Skylift</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Book Flåm Railway</strong> - popular train sells out, book at least 2 months ahead</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check disc golf courses</strong> along route - pack discs if bringing your own</span></li>
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Restaurant reservations</strong> - Ægir BrewPub, Fagn, Michelin spots need booking</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Restaurant reservations</strong> - Ægir BrewPub in Flåm, BrimiBue in Lom, Kest in Aurland</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Set calendar reminders</strong> for every booking window - don't miss competitive rooms</span></li>
             </ul>
           </div>
@@ -690,7 +687,7 @@ footer a{color:var(--accent);text-decoration:none}
           <h4 onclick="toggleCat('cat-finance')"><i class="fas fa-wallet"></i> Financial <span class="cat-counter" id="counter-finance">0/6</span><i class="fas fa-chevron-down cat-arrow"></i></h4>
           <div class="cat-body open" id="body-finance">
             <ul class="checklist">
-              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Notify banks</strong> of travel dates (May 28 – Jun 6) - avoid fraud blocks</span></li>
+              <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Notify banks</strong> of travel dates (May 28 - Jun 7) - avoid fraud blocks</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Check foreign transaction fees</strong> - use cards with 0% FTF (Chase Sapphire, Capital One, etc.)</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Set/confirm PIN</strong> for all credit cards - Norway uses chip + PIN everywhere</span></li>
               <li onclick="toggleItem(this)"><i class="far fa-circle"></i> <span><strong>Get Norwegian kroner (NOK)</strong> - ~$200–300 cash per family for small purchases</span></li>
@@ -746,20 +743,541 @@ footer a{color:var(--accent);text-decoration:none}
   </section>
 
 <footer>
-  <p>Norway 2027 - May 28 &ndash; Jun 6 - EDT &rarr; CEST (+6h)</p>
+  <p>Norway Road Trip  -  May 28 - Jun 7, 2027  -  EDT to CEST (+6h)</p>
+  <p>Build your own plan with the <a href="planning.html">Planning Board</a>.</p>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// Price chart
+const data = [
+  {
+    day: 1, date: new Date(2027, 4, 28),
+    base: "Oslo",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 59.9139, lng: 10.7522,
+    poi: []
+  },
+  {
+    day: 2, date: new Date(2027, 4, 29),
+    base: "Flåm",
+    drive: "Oslo → Flåm via Hemsedalsfjellet",
+    driveTime: "4 hr 45 min (315 km)",
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 60.8622, lng: 7.1141,
+    poi: []
+  },
+  {
+    day: 3, date: new Date(2027, 4, 30),
+    base: "Flåm",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 60.8622, lng: 7.1141,
+    poi: []
+  },
+  {
+    day: 4, date: new Date(2027, 4, 31),
+    base: "Flåm",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 60.8622, lng: 7.1141,
+    poi: []
+  },
+  {
+    day: 5, date: new Date(2027, 5, 1),
+    base: "Loen",
+    drive: "Flåm → Loen via Fjærland",
+    driveTime: "3 hr 45 min (202 km)",
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 61.8712, lng: 6.8568,
+    poi: []
+  },
+  {
+    day: 6, date: new Date(2027, 5, 2),
+    base: "Loen",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 61.8712, lng: 6.8568,
+    poi: []
+  },
+  {
+    day: 7, date: new Date(2027, 5, 3),
+    base: "Otta",
+    drive: "Loen → Otta via Rv15",
+    driveTime: "3 hr 15 min (195 km)",
+    stops: [],
+    activities: [],
+    directions: ["Take Fv60 north out of Loen and merge onto Rv15 east through Stryn, climbing the Strynefjellet mountain corridor toward Lom (~1 hr 45 min, 105 km)","Continue on Rv15 past Vågåmo and through the Gudbrandsdalen valley to Otta (~1 hr 30 min, 90 km)"],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 61.7712, lng: 9.5293,
+    poi: []
+  },
+  {
+    day: 8, date: new Date(2027, 5, 4),
+    base: "Otta",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 61.7712, lng: 9.5293,
+    poi: []
+  },
+  {
+    day: 9, date: new Date(2027, 5, 5),
+    base: "Otta",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 61.7712, lng: 9.5293,
+    poi: []
+  },
+  {
+    day: 10, date: new Date(2027, 5, 6),
+    base: "Oslo",
+    drive: "Otta → Oslo via E6",
+    driveTime: "4 hr (290 km)",
+    stops: [],
+    activities: [],
+    directions: ["Take E6 south from Otta through Gudbrandsdalen to Lillehammer (~1 hr 45 min, 110 km)","From Lillehammer continue south on E6 along Lake Mjøsa past Hamar and Eidsvoll to Oslo (~2 hr, 180 km)"],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 59.9139, lng: 10.7522,
+    poi: []
+  },
+  {
+    day: 11, date: new Date(2027, 5, 7),
+    base: "Depart Oslo",
+    drive: null,
+    driveTime: null,
+    stops: [],
+    activities: [],
+    groupNotes: "",
+    lodging: "-",
+    lodgingDetail: "",
+    meals: null,
+    lat: 59.911, lng: 10.7524,
+    poi: []
+  }
+];
+
+// Colors per day
+const colors = ['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#14b8a6','#f43f5e','#0ea5e9'];
+
+// ---------- Timeline ----------
+const container = document.getElementById('timelineContainer');
+
+const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+data.forEach((d, idx) => {
+  const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
+  const dayName = dayNames[d.date.getDay()];
+
+  const driveHtml = d.drive
+    ? `<span class="drive-badge"><i class="fas fa-car"></i> ${d.drive}  -  ${d.driveTime}</span>`
+    : '';
+
+  const directionsHtml = d.directions
+    ? `<h3 style="margin-top:0.75rem"><i class="fas fa-route"></i> Directions</h3><div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">${d.directions.map(dir => `<div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.25rem 0"><span style="color:var(--accent);font-size:0.75rem;margin-top:0.2em;flex-shrink:0"><i class="fas fa-arrow-right"></i></span><span>${dir}</span></div>`).join('')}</div>`
+    : '';
+
+  const citeHtml = url => url ? ` <a href="${url}" target="_blank" rel="noopener" style="color:var(--muted);font-size:0.7rem;text-decoration:none;white-space:nowrap"><i class="fas fa-external-link-alt"></i></a>` : '';
+
+  const svgDiscGolfBasket = `<svg class="svg-disc-golf-basket" viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em;fill:currentColor;display:inline-block" aria-hidden="true"><rect x="6" y="2" width="12" height="2.2" rx="0.5"/><rect x="11" y="0.8" width="2" height="1.5" rx="0.3"/><rect x="11.2" y="4" width="1.6" height="17.5"/><path d="M8 4.2 L9.5 12 M10 4.2 L10.8 12 M16 4.2 L14.5 12 M14 4.2 L13.2 12" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="1.2,0.8" fill="none"/><path d="M4.5 12.2 h15 l-1.5 4.8 h-12 z"/><path d="M7.5 21.5 h9 v1.5 h-9 z"/></svg>`;
+
+  function renderActivityIcon(icon) {
+    if (!icon) return '';
+    if (icon === 'fa-disc-golf-basket' || icon === 'disc-golf-basket') {
+      return svgDiscGolfBasket;
+    }
+    return `<i class="fas ${icon}"></i>`;
+  }
+
+  function renderTagBadge(tag) {
+    if (!tag) return '';
+    const clean = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    let cls = 'badge-tag';
+    let icon = 'fa-tag';
+    if (clean.includes('hike') || clean.includes('hiking')) { cls += ' badge-tag-hiking'; icon = 'fa-hiking'; }
+    else if (clean.includes('disc')) { cls += ' badge-tag-disc-golf'; icon = 'fa-disc-golf-basket'; }
+    else if (clean.includes('raft')) { cls += ' badge-tag-adventure'; icon = 'fa-water'; }
+    else if (clean.includes('adventure') || clean.includes('climb') || clean.includes('via-ferrata') || clean.includes('zipline') || clean.includes('bobsleigh') || clean.includes('skydiving')) { cls += ' badge-tag-adventure'; icon = 'fa-bolt'; }
+    else if (clean.includes('scenic') || clean.includes('view') || clean.includes('overlook') || clean.includes('lookout')) { cls += ' badge-tag-scenic'; icon = 'fa-mountain'; }
+    else if (clean.includes('teen') || clean.includes('youth') || clean.includes('family')) { cls += ' badge-tag-teen'; icon = 'fa-child'; }
+    else if (clean.includes('brew') || clean.includes('distill') || clean.includes('beer') || clean.includes('cider') || clean.includes('aquavit')) { cls += ' badge-tag-food'; icon = 'fa-beer'; }
+    else if (clean.includes('food') || clean.includes('drink') || clean.includes('baker') || clean.includes('restaur') || clean.includes('wine') || clean.includes('cheese')) { cls += ' badge-tag-food'; icon = 'fa-utensils'; }
+    else if (clean.includes('wellness') || clean.includes('spa') || clean.includes('sauna') || clean.includes('bath') || clean.includes('pool')) { cls += ' badge-tag-wellness'; icon = 'fa-spa'; }
+    else if (clean.includes('gym') || clean.includes('fitness') || clean.includes('workout')) { cls += ' badge-tag-gym'; icon = 'fa-dumbbell'; }
+
+    const iconHtml = icon === 'fa-disc-golf-basket' ? svgDiscGolfBasket : `<i class="fas ${icon}"></i>`;
+    return `<span class="badge ${cls}">${iconHtml} ${tag}</span>`;
+  }
+
+  const stopsTitle = d.drive ? 'Stops Along the Way' : 'Optional Sights & Excursions';
+  const stopsHtml = d.stops.length
+    ? `<h3 style="margin-top:0.75rem"><i class="fas fa-stop-circle"></i> ${stopsTitle}</h3><div class="stop-grid">${d.stops.map(s => {
+        const name = s.name || s.text || '';
+        const priceBadge = s.price ? `<span class="badge badge-price">${s.price}</span>` : '';
+        const timeBadge = s.time ? `<span class="badge badge-time"><i class="far fa-clock"></i> ${s.time}</span>` : '';
+        const hoursBadge = s.hours ? `<span class="badge badge-hours"><i class="far fa-calendar-alt"></i> ${s.hours}</span>` : '';
+        const tagBadge = renderTagBadge(s.tag);
+        const descHtml = s.desc ? `<div class="stop-desc">${s.desc}</div>` : '';
+        return `<div class="stop-card">
+          <div class="stop-card-top">${priceBadge}${timeBadge}${hoursBadge}${tagBadge}</div>
+          <div class="stop-card-name">${name}${citeHtml(s.cite)}</div>
+          ${descHtml}
+        </div>`;
+      }).join('')}</div>`
+    : '';
+
+  const activitiesHtml = d.activities.map(a => {
+    const hoursBadge = a.hours ? `<span class="badge badge-hours"><i class="far fa-calendar-alt"></i> ${a.hours}</span>` : '';
+    const tagBadge = renderTagBadge(a.tag);
+    return `<li>
+      ${renderActivityIcon(a.icon)}
+      <div class="activity-content">
+        <span class="activity-text">${a.text}${citeHtml(a.cite)}</span>
+        <span class="activity-meta">${a.price ? `<span class="badge badge-price">${a.price}</span>` : ''}${a.time ? `<span class="badge badge-time"><i class="far fa-clock"></i> ${s_or_a_time(a.time)}</span>` : ''}${hoursBadge}${tagBadge}</span>
+        ${a.desc ? `<span class="activity-desc">${a.desc}</span>` : ''}
+      </div>
+    </li>`;
+  }).join('');
+
+  const activitiesSectionHtml = (d.activities && d.activities.length > 0)
+    ? `<h3><i class="fas fa-mountain"></i> Activities</h3><ul class="activity-list">${activitiesHtml}</ul>`
+    : '';
+
+  function s_or_a_time(t) { return t; }
+
+  const groupNotesHtml = d.groupNotes ? `<div class="group-notes"><i class="fas fa-users"></i> ${d.groupNotes}</div>` : '';
+
+  const mealsHtml = d.meals ? `<h3><i class="fas fa-utensils"></i> Meals</h3>
+    <div class="meals-grid">
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-sun"></i> Breakfast</span>
+        <span class="meal-text">${d.meals.breakfast || 'Hotel buffet included'}</span>
+      </div>
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-bread-slice"></i> Lunch</span>
+        <span class="meal-text">${d.meals.lunch}</span>
+      </div>
+      <div class="meal-item">
+        <span class="meal-label"><i class="fas fa-moon"></i> Dinner</span>
+        <span class="meal-text">${d.meals.dinner}</span>
+      </div>
+    </div>` : '';
+
+  const hotelHtml = Array.isArray(d.lodging) ? `<div class="hotel-section">
+    ${d.lodging.map(l => `
+      <div class="lodging-tier">
+        <div class="lodging-tier-header">
+          <span class="lodging-tier-badge" style="background:${l.tier==='Budget'?'var(--accent)':l.tier==='Mid'?'#8b5cf6':'#f59e0b'}">${l.tier}</span>
+          <strong>${l.name}</strong>
+          <span class="lodging-tier-price">${l.price}</span>
+        </div>
+        <div class="lodging-tier-details">
+          <span class="lodging-pros"><strong>Pros:</strong> ${l.pros}</span>
+          <span class="lodging-cons"><strong>Cons:</strong> ${l.cons}</span>
+          ${l.cite ? `<a href="${l.cite}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Book / Details</a>` : ''}
+        </div>
+      </div>
+    `).join('')}
+  </div>` : d.lodging === '-' ? '' : `<div class="hotel-section">
+    <div class="hotel-label"><i class="fas fa-moon"></i> ${d.lodging}</div>
+    <p>${d.lodgingDetail}</p>
+  </div>`;
+
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.id = `day-${d.day}`;
+  card.innerHTML = `
+    <div class="day-number"></div>
+    <div class="day-header" data-day="${idx}">
+      <div class="day-header-left">
+        <div class="day-label">
+          <span class="day-num">Day ${d.day}  -  ${dayName}</span>
+          <span class="day-date">${dateStr} - ${d.base}</span>
+        </div>
+        ${driveHtml}
+      </div>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </div>
+    <div class="day-body">
+      <div id="day-map-${d.day}" class="day-map"></div>
+      ${groupNotesHtml}
+      ${activitiesSectionHtml}
+      ${mealsHtml}
+      ${directionsHtml}
+      ${stopsHtml}
+      ${hotelHtml}
+    </div>
+  `;
+  container.appendChild(card);
+
+  card.querySelector('.day-header').addEventListener('click', () => {
+    card.classList.toggle('open');
+    if (card.classList.contains('open')) initPerDayMap(d.day);
+  });
+});
+
+// ---------- At a Glance strip ----------
+const glanceIcons = {
+  'Oslo': 'fa-city',
+  'Flåm': 'fa-water',
+  'Loen': 'fa-mountain',
+  'Otta': 'fa-water',
+  'Lillehammer': 'fa-campground',
+  'Depart Oslo': 'fa-plane-departure'
+};
+
+const glanceStrip = document.getElementById('glanceStrip');
+data.forEach((d, idx) => {
+  const icon = glanceIcons[d.base] || 'fa-map-pin';
+  const item = document.createElement('a');
+  item.className = 'glance-item';
+  item.href = `#day-${d.day}`;
+  item.style.borderTopColor = colors[idx];
+  item.style.borderTopWidth = '3px';
+  item.innerHTML = `
+    <div class="glance-day">Day ${d.day}</div>
+    <i class="fas ${icon} glance-icon" style="color:${colors[idx]}"></i>
+    <div class="glance-base">${d.base}</div>
+    ${d.drive ? `<div class="glance-drive"><i class="fas fa-car"></i> ${d.driveTime.replace(' (','<br>(')}</div>` : ''}
+  `;
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById(`day-${d.day}`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target.classList.contains('open')) target.classList.add('open');
+    initPerDayMap(d.day);
+    }
+  });
+  glanceStrip.appendChild(item);
+});
+
+// ---------- Scroll tracking for nav ----------
+const dayJumps = document.querySelectorAll('.sticky-nav .day-jump');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const dayNum = entry.target.id.replace('day-', '');
+      dayJumps.forEach(j => j.classList.remove('active'));
+      const activeJump = document.querySelector(`.sticky-nav .day-jump[title*="Day ${dayNum} "]`);
+      if (activeJump) activeJump.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+document.querySelectorAll('.day-card').forEach(card => observer.observe(card));
+
+// Day jump click: also open the card
+dayJumps.forEach(jump => {
+  jump.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = jump.getAttribute('href');
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target.classList.contains('open')) target.classList.add('open');
+    }
+    const dayNum = parseInt(href.replace('#day-', ''));
+    initPerDayMap(dayNum);
+  });
+});
+
+// ---------- Map ----------
+const map = L.map('map', {
+  zoomControl: true,
+  scrollWheelZoom: true
+}).setView([61.2, 8.5], 7);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18
+}).addTo(map);
+
+// Fetch and display the actual driving routes on the main overall map
+data.forEach((d, idx) => {
+  if (d.drive) {
+    const waypoints = [];
+    // Add previous day's base as the starting point
+    if (idx > 0) {
+      const prev = data[idx - 1];
+      waypoints.push({ lat: prev.lat, lng: prev.lng });
+    }
+    // Add intermediate highway stops (excluding optional ferry/summit side detours)
+    if (d.stops) {
+      d.stops.forEach(s => { if (s.lat && s.lng && !s.routeExclude) waypoints.push({ lat: s.lat, lng: s.lng }); });
+    }
+    // Add current day's base as the destination point
+    waypoints.push({ lat: d.lat, lng: d.lng });
+
+    if (waypoints.length > 1) {
+      const coordStr = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+      
+      fetch(url)
+        .then(r => r.json())
+        .then(res => {
+          if (res.code === 'Ok' && res.routes && res.routes[0]) {
+            const coordsGeo = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+            L.polyline(coordsGeo, {
+              color: '#2d6a4f',
+              weight: 4,
+              opacity: 0.8,
+              dashArray: '12,8'
+            }).addTo(map);
+          }
+        })
+        .catch(() => {
+          const straightCoords = waypoints.map(p => [p.lat, p.lng]);
+          L.polyline(straightCoords, {
+            color: '#2d6a4f',
+            weight: 3,
+            opacity: 0.6,
+            dashArray: '12,8'
+          }).addTo(map);
+        });
+    }
+  }
+});
+
+// Main markers (base locations)
+data.forEach((d, idx) => {
+  const color = colors[idx];
+  const dateStr = `${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`;
+
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;font-weight:700">${d.day}</div>`,
+    className: '',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+  });
+
+  const popupHtml = `
+    <strong>Day ${d.day} - ${d.base}</strong><br>
+    ${dateStr}<br>
+    ${d.drive ? `<em>${d.drive} ${d.driveTime}</em><br>` : ''}
+    <a href="#days" onclick="document.querySelector('.day-card:nth-child(${d.day}) .day-header').click();return false;">View details →</a>
+  `;
+
+  const marker = L.marker([d.lat, d.lng], { icon: markerIcon })
+    .addTo(map)
+    .bindPopup(popupHtml);
+
+  // Label
+  const labelIcon = L.divIcon({
+    html: `<div style="background:rgba(0,0,0,0.6);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;white-space:nowrap">${d.base}</div>`,
+    className: '',
+    iconSize: [0, 0],
+    iconAnchor: [0, -15]
+  });
+  L.marker([d.lat, d.lng], { icon: labelIcon, interactive: false }).addTo(map);
+
+  // POI markers
+  if (d.poi) {
+    d.poi.forEach(p => {
+      L.circleMarker([p.lat, p.lng], {
+        radius: 6,
+        fillColor: color,
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map)
+        .bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+  // Stop markers on overview map
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        const stopIcon = L.divIcon({
+          html: `<div style="width:10px;height:10px;background:#fff;border:2px solid ${color};border-radius:1px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [10, 10], iconAnchor: [5, 5]
+        });
+        const metaParts = [s.tag ? `[${s.tag}]` : '', s.price, s.time, s.hours].filter(Boolean).join(' | ');
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(map)
+          .bindPopup(`<strong>${s.name}</strong>${metaParts ? `<br><em>${metaParts}</em>` : ''}${s.desc ? `<br>${s.desc}` : ''}`);
+      }
+    });
+  }
+});
+
+// ---------- Theme ----------
+const toggle = document.getElementById('themeToggle');
+const icon = toggle.querySelector('i');
+const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+if (prefersDark) {
+  document.body.classList.add('dark');
+  icon.className = 'fas fa-sun';
+}
+let priceChartInstance = null;
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+  if (priceChartInstance) { priceChartInstance.destroy(); priceChartInstance = null; }
+  initPriceChart();
+});
+
+// ---------- Price Chart ----------
 function initPriceChart() {
   const canvas = document.getElementById('priceChart');
   if (!canvas) return;
   const isDark = document.body.classList.contains('dark');
   const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
   const textColor = isDark ? '#94a3b8' : '#6b7280';
-
   const labels = ['Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May'];
-
   const shadePlugin = {
     id: 'shadeBands',
     beforeDraw(chart) {
@@ -772,23 +1290,21 @@ function initPriceChart() {
         { start: 6, end: 6, color: 'rgba(234,179,8,0.10)' },
         { start: 7, end: 8, color: 'rgba(34,197,94,0.10)' },
         { start: 9, end: 9, color: 'rgba(234,179,8,0.10)' },
-        { start: 10, end: 11, color: 'rgba(239,68,68,0.08)' },
+        { start: 10, end: 11, color: 'rgba(239,68,68,0.08)' }
       ];
-      bands.forEach(({ start, end, color }) => {
-        const x1 = xScale.getPixelForValue(start);
-        const x2 = xScale.getPixelForValue(end);
+      bands.forEach(function(b) {
+        const x1 = xScale.getPixelForValue(b.start);
+        const x2 = xScale.getPixelForValue(b.end);
         if (x1 === undefined || x2 === undefined) return;
-        const w = xScale.getPixelForValue(end + 1) - xScale.getPixelForValue(end) || 0;
-        ctx.fillStyle = color;
+        const w = xScale.getPixelForValue(b.end + 1) - xScale.getPixelForValue(b.end) || 0;
+        ctx.fillStyle = b.color;
         ctx.fillRect(x1 - w / 2, chartArea.top, x2 - x1 + w, chartArea.bottom - chartArea.top);
       });
     }
   };
-
   const data2024 = [980,960,940,920,900,880,860,840,820,880,960,1080];
   const data2025 = [1020,990,960,930,910,890,870,850,830,860,940,1050];
   const data2026 = [950,930,910,890,870,850,830,810,790,840,920,1040];
-
   priceChartInstance = new Chart(canvas, {
     type: 'line',
     plugins: [shadePlugin],
@@ -812,106 +1328,226 @@ function initPriceChart() {
           borderColor: isDark ? '#334155' : '#e5e7eb',
           borderWidth: 1,
           cornerRadius: 8,
-          callbacks: {
-            label: ctx => ` ${ctx.dataset.label}: $${ctx.raw}`
-          }
+          callbacks: { label: function(ctx) { return ' ' + ctx.dataset.label + ': $' + ctx.parsed.y; } }
         }
       },
       scales: {
-        x: {
-          grid: { color: gridColor, drawBorder: false },
-          ticks: { color: textColor, font: { size: 10 }, maxRotation: 45 }
-        },
-        y: {
-          grid: { color: gridColor, drawBorder: false },
-          ticks: { color: textColor, font: { size: 10 }, callback: v => '$' + v },
-          beginAtZero: false,
-          min: 700
-        }
+        x: { grid: { color: gridColor, drawBorder: false }, ticks: { color: textColor, font: { size: 10 }, maxRotation: 45 } },
+        y: { grid: { color: gridColor, drawBorder: false }, ticks: { color: textColor, font: { size: 10 }, callback: function(v) { return '$' + v; } }, beginAtZero: false, min: 700 }
       },
       interaction: { mode: 'index', intersect: false }
     }
   });
 }
 
-const toggle = document.getElementById('themeToggle');
-const icon = toggle.querySelector('i');
-const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
-if (prefersDark) {
-  document.body.classList.add('dark');
-  icon.className = 'fas fa-sun';
-}
-let priceChartInstance = null;
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-  if (priceChartInstance) { priceChartInstance.destroy(); priceChartInstance = null; }
-  initPriceChart();
-});
-
 function toggleCollapse(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.toggle('open');
+  var el = document.getElementById(id);
+  var isOpen = el.classList.toggle('open');
   btn.classList.toggle('open');
-  const textNode = btn.childNodes[btn.childNodes.length - 1];
-  const show = btn.getAttribute('data-show') || 'Show details';
-  const hide = btn.getAttribute('data-hide') || 'Hide details';
+  var textNode = btn.childNodes[btn.childNodes.length - 1];
+  var show = btn.getAttribute('data-show') || 'Show details';
+  var hide = btn.getAttribute('data-hide') || 'Hide details';
   textNode.textContent = isOpen ? ' ' + hide : ' ' + show;
 }
 
 initPriceChart();
 
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
-}
-document.querySelectorAll('.itinerary-card .card-top').forEach(el => {
-  const c = shuffle(['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#14b8a6','#f43f5e']);
-  el.style.background = 'linear-gradient(90deg,' + c.join(',') + ')';
+// ---------- Fit map to bounds ----------
+const allCoords = data.map(d => [d.lat, d.lng]);
+data.forEach(d => {
+  if (d.poi) d.poi.forEach(p => allCoords.push([p.lat, p.lng]));
+  if (d.stops) d.stops.forEach(s => { if (s.lat && s.lng) allCoords.push([s.lat, s.lng]); });
 });
+map.fitBounds(allCoords, { padding: [50, 50] });
 
-// ---------- Interactive Checklist ----------
+// ---------- Per-day maps ----------
+function initPerDayMap(dayNum) {
+  const mapId = `day-map-${dayNum}`;
+  const el = document.getElementById(mapId);
+  if (!el) return;
+  if (el._leaflet_map) {
+    setTimeout(() => el._leaflet_map.invalidateSize(), 150);
+    return;
+  }
+  const d = data[dayNum - 1];
+  if (!d) return;
+  const color = colors[dayNum - 1];
+  const dm = L.map(mapId, { zoomControl: false, scrollWheelZoom: false, dragging: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://openstreetmap.org/copyright">OSM</a>', maxZoom: 18
+  }).addTo(dm);
+  const markerIcon = L.divIcon({
+    html: `<div style="background:${color};width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.7rem;font-weight:700">${d.day}</div>`,
+    className: '', iconSize: [22, 22], iconAnchor: [11, 11]
+  });
+  L.marker([d.lat, d.lng], { icon: markerIcon }).addTo(dm)
+    .bindPopup(`<strong>Day ${d.day} - ${d.base}</strong><br>${d.date.getDate()} ${d.date.toLocaleString('en',{month:'short'})}`);
+  const coords = [[d.lat, d.lng]];
+  // Stop markers (white square with colored border)
+  if (d.stops) {
+    d.stops.forEach(s => {
+      if (s.lat && s.lng) {
+        coords.push([s.lat, s.lng]);
+        const stopIcon = L.divIcon({
+          html: `<div style="width:12px;height:12px;background:#fff;border:2.5px solid ${color};border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>`,
+          className: '', iconSize: [12, 12], iconAnchor: [6, 6]
+        });
+        const metaParts = [s.tag ? `[${s.tag}]` : '', s.price, s.time, s.hours].filter(Boolean).join(' | ');
+        L.marker([s.lat, s.lng], { icon: stopIcon }).addTo(dm)
+          .bindPopup(`<strong>${s.name}</strong>${metaParts ? `<br><em>${metaParts}</em>` : ''}<br>${s.desc || ''}`);
+      }
+    });
+  }
+  // POI markers (solid colored circles)
+  if (d.poi) {
+    d.poi.forEach(p => {
+      coords.push([p.lat, p.lng]);
+      L.circleMarker([p.lat, p.lng], { radius: 6, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.8 })
+        .addTo(dm).bindPopup(`<strong>${p.name}</strong><br>${p.note || ''}`);
+    });
+  }
+  // Driving route polyline - fetch real road path from OSRM
+  if (d.drive) {
+    const waypoints = [];
+    if (dayNum > 1) {
+      const prev = data[dayNum - 2];
+      waypoints.push({ lat: prev.lat, lng: prev.lng });
+    }
+    if (d.stops) {
+      d.stops.forEach(s => { if (s.lat && s.lng && !s.routeExclude) waypoints.push({ lat: s.lat, lng: s.lng }); });
+    }
+    waypoints.push({ lat: d.lat, lng: d.lng });
+    if (waypoints.length > 1) {
+      const coordStr = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+      const url = `https://router.project-osrm.org/route/v1/driving/${coordStr}?geometries=geojson&overview=full`;
+      fetch(url).then(r => r.json()).then(res => {
+        if (res.code === 'Ok' && res.routes && res.routes[0]) {
+          const coordsGeo = res.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+          L.polyline(coordsGeo, {
+            color: '#2d6a4f', weight: 4, opacity: 0.7, dashArray: '12,8'
+          }).addTo(dm);
+        }
+      }).catch(() => {});
+    }
+  }
+
+  if (coords.length > 0) dm.fitBounds(coords, { padding: [40, 40], maxZoom: 11 });
+  el._leaflet_map = dm;
+  setTimeout(() => dm.invalidateSize(), 200);
+}
+
+// ---------- Open first day by default ----------
+document.querySelector('.day-card:first-child').classList.add('open');
+initPerDayMap(1);
+
+// ---------- Export JSON & CSV ----------
+function exportJSON() {
+  var cleanData = data.map(function(d) {
+    var o = {};
+    for (var k in d) {
+      if (k === 'date') {
+        o[k] = d.date instanceof Date ? d.date.toISOString().split('T')[0] : d.date;
+      } else {
+        o[k] = d[k];
+      }
+    }
+    return o;
+  });
+  var blob = new Blob([JSON.stringify(cleanData, null, 2)], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'norway-route1-northern-loop.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function exportCSV() {
+  var headers = ['Day','Date','Base','Drive','Drive Time','Directions','Breakfast','Lunch','Dinner','Stops','Activities','Group Notes','Lodging','Latitude','Longitude','Points of Interest'];
+  var esc = function(v) {
+    var s = String(v == null ? '' : v).replace(/"/g, '""');
+    return '"' + s + '"';
+  };
+  var rows = data.map(function(d) {
+    var dateStr = d.date instanceof Date ? d.date.toISOString().split('T')[0] : d.date;
+    var dirs = (d.directions || []).join(' | ');
+    var stops = (d.stops || []).map(function(s) { return s.name + ' (' + [s.tag ? '[' + s.tag + ']' : '', s.price, s.time, s.hours].filter(Boolean).join(', ') + ')'; }).join('; ');
+    var acts = (d.activities || []).map(function(a) { return a.text + ' (' + [a.tag ? '[' + a.tag + ']' : '', a.price, a.time, a.hours].filter(Boolean).join(', ') + ')'; }).join('; ');
+    var lodg = Array.isArray(d.lodging) ? d.lodging.map(function(l) { return l.tier + ': ' + l.name + ' (' + l.price + ')'; }).join('; ') : (d.lodging || '');
+    var pois = (d.poi || []).map(function(p) { return p.name + ' [' + p.lat + ',' + p.lng + ']'; }).join('; ');
+    return [
+      d.day, dateStr, d.base, d.drive || '', d.driveTime || '', dirs,
+      d.meals ? d.meals.breakfast : '', d.meals ? d.meals.lunch : '', d.meals ? d.meals.dinner : '',
+      stops, acts, d.groupNotes || '', lodg, d.lat, d.lng, pois
+    ].map(esc).join(',');
+  });
+  var csv = '\uFEFF' + headers.map(esc).join(',') + '\r\n' + rows.join('\r\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'norway-route1-northern-loop.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---------- References ----------
+const citeUrls = new Set();
+data.forEach(d => {
+  (d.activities || []).forEach(a => { if (a.cite) citeUrls.add(a.cite); });
+  (d.stops || []).forEach(s => { if (s.cite) citeUrls.add(s.cite); });
+});
+const refContainer = document.getElementById('referencesContainer');
+if (refContainer && citeUrls.size) {
+  const items = [...citeUrls].sort().map(url => {
+    const label = url.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    return `<li style="break-inside:avoid;margin-bottom:0.5rem"><a href="${url}" target="_blank" rel="noopener" style="font-size:0.85rem">${label}</a></li>`;
+  }).join('');
+  refContainer.innerHTML = `<div class="info-card"><h3><i class="fas fa-link"></i> Sources (${citeUrls.size})</h3><ul style="column-count:2;column-gap:2rem;list-style:none;padding:0">${items}</ul></div>`;
+}
+
+// ---------- Interactive Checklists (unified for booking + planning) ----------
 function toggleItem(el) {
   el.classList.toggle('done');
-  const icon = el.querySelector('i');
+  var ic = el.querySelector('i');
   if (el.classList.contains('done')) {
-    icon.className = 'fas fa-check-circle';
+    ic.className = 'fas fa-check-circle';
   } else {
-    icon.className = 'far fa-circle';
+    ic.className = 'far fa-circle';
   }
   updateCounters();
 }
 
 function updateCounters() {
-  document.querySelectorAll('.checklist-cat').forEach(cat => {
-    const items = cat.querySelectorAll('.checklist li');
-    const done = cat.querySelectorAll('.checklist li.done');
-    const counter = document.getElementById('counter-' + cat.id.replace('cat-', ''));
+  document.querySelectorAll('.checklist-cat').forEach(function(cat) {
+    var items = cat.querySelectorAll('.checklist li');
+    var done = cat.querySelectorAll('.checklist li.done');
+    var counter = cat.querySelector('.cat-counter');
     if (counter) counter.textContent = done.length + '/' + items.length;
   });
 }
 
 function toggleCat(id) {
-  const body = document.getElementById('body-' + id.replace('cat-', ''));
-  const h4 = document.querySelector('#' + id + ' h4');
-  body.classList.toggle('open');
-  h4.classList.toggle('open');
+  var bodyId = id.replace(/^cat(1?)-/, 'body$1-');
+  var body = document.getElementById(bodyId);
+  var h4 = document.querySelector('#' + id + ' > h4');
+  if (body) body.classList.toggle('open');
+  if (h4) h4.classList.toggle('open');
 }
 
 function expandAllCats() {
-  document.querySelectorAll('.checklist-cat .cat-body').forEach(b => b.classList.add('open'));
-  document.querySelectorAll('.checklist-cat h4').forEach(h => h.classList.add('open'));
+  document.querySelectorAll('.checklist-cat .cat-body').forEach(function(b) { b.classList.add('open'); });
+  document.querySelectorAll('.checklist-cat h4').forEach(function(h) { h.classList.add('open'); });
 }
 
 function collapseAllCats() {
-  document.querySelectorAll('.checklist-cat .cat-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.checklist-cat h4').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.checklist-cat .cat-body').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.checklist-cat h4').forEach(function(h) { h.classList.remove('open'); });
 }
 
 function resetChecklist() {
   if (!confirm('Reset all checklist items?')) return;
-  document.querySelectorAll('.checklist li').forEach(li => {
+  document.querySelectorAll('.checklist li').forEach(function(li) {
     li.classList.remove('done');
     li.querySelector('i').className = 'far fa-circle';
   });

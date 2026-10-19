@@ -3,7 +3,7 @@ description: Fact-check an itinerary file day by day for driving distances, seas
 agent: orchestrator
 ---
 
-Please coordinate a comprehensive day-by-day fact-check of `$ARGUMENTS` (default to `itinerary1.html` if no file is specified):
+Please coordinate a comprehensive day-by-day fact-check of `$ARGUMENTS` (default to `index.html` if no file is specified):
 
 1. Delegate to `@fact-checker` to audit each of the 10 days for:
    - Driving distances (miles and km), realistic Norwegian drive times, and ferry crossings.

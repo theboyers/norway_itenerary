@@ -10,17 +10,12 @@ const args = process.argv.slice(2);
 const targetFiles = args.length > 0
   ? args
   : fs.readdirSync(repoRoot)
-      .filter(f => /^itinerary\d+\.html$/.test(f))
+      .filter(f => /^index\.html$/.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
 // Fallback output names if a page does not declare its own export filename.
 const FALLBACK_OUTPUT = {
-  'itinerary1.html': 'norway-route1-northern-loop',
-  'itinerary2.html': 'norway-route2-southern-loop',
-  'itinerary3.html': 'norway-route3-geiranger-northwest',
-  'itinerary4.html': 'norway-route4-telemark-hardanger',
-  'itinerary5.html': 'norway-route5-lofoten-fjords',
-  'itinerary6.html': 'norway-route6-south-coast-explorer'
+  'index.html': 'norway-route1-northern-loop'
 };
 
 // Extract the "const data = [...]" array literal using bracket matching.
